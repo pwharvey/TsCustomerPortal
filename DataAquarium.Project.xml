@@ -1,0 +1,74 @@
+<!-- 
+  This file is provided to store the settings for your Data Aquarium project. 
+  You can safely delete this file if no further code generation is planned.
+-->
+<project compatibility="20111118" dataModel="required" subscriptionLevel="Unlimited" name="TsCustomerPortal" prettyName="Ts Customer Portal" type="Web Site Factory" codeDomProvider="VisualBasic" targetFramework="4.6" userInterface="TouchUI" pageImplementation="html" sourceControl="git" xmlns="urn:schemas-codeontime-com:data-aquarium-project">
+  <connectionString hostDatabaseSharing="false" sessionStateMode="None">Data Source=localhost;Initial Catalog=timbersmartwebportal;Persist Security Info=True;User ID=timbersmartwebcustomer;Password=t1mber;</connectionString>
+  <providerName>System.Data.SqlClient</providerName>
+  <namespace>TimberSmart</namespace>
+  <webServer run="true" port="9201">
+    <webConfig></webConfig>
+  </webServer>
+  <features pageHeader="" copyright="" annotations="false" annotationsPath="" newColumn="true" floating="false" maxGridFields="100" multiSelect="true" batchEdit="false" advancedSearch="false" advancedLookup="false" relationshipExplorer="false" enablePermalinks="false" enableHistory="false" enableTransactions="false" showModalForms="true" tabViewSelection="5" useSaveAndNew="true">
+    <navigation detectUnderscoreSeparatedSchema="" />
+    <blob allowUploadOnInsert="true" />
+    <framework scriptOnly="true" useExtenders="false" />
+    <grid actionColumn="true" />
+    <touch desktopDisplayDensity="Condensed" mobileDisplayDensity="Auto" transitions="" sidebar="Landscape" labelsInForm="AlignedLeft" buttonShapes="true" labelsInList="DisplayedBelow" initialListMode="SeeAll" promoteActions="true" mapApiIdentifier="" />
+    <cms searchEngine="" analysisEngine="" analysisOnDataPages="false" />
+    <ease urlHashing="false">
+      <auditing>Modified By User Name = ModifiedBy|updated_by
+Modified By User ID      = ModifiedByUserId
+Modified On Date          = ModifiedOn|updated|update_date
+Created By User Name  = CreatedBy
+Created By User ID       = CreatedById|created_user_id
+Created On Date           = CreatedOn|create_date</auditing>
+    </ease>
+    <packageProperties></packageProperties>
+    <smtp deliveryMethod="Network" deliveryFormat="" from="" clientDomain="" targetName="" host="" port="" defaultCredentials="true" enableSsl="false" username="" password="" />
+  </features>
+  <reports enabled="true" />
+  <host path="" url="" />
+  <databaseObjectFilter generate="ControllersAndPages"></databaseObjectFilter>
+  <bll discoveryDepth="3" labelFormatExpression="" generate="false" selectMethod="Select" selectSingleMethod="SelectSingle" insertMethod="Insert" updateMethod="Update" deleteMethod="Delete" generateSharedBusinessRules="true" includeViews="true" tabViewSelection="0" normalizeModelNames="true">
+    <fieldMap></fieldMap>
+    <keys></keys>
+    <fieldsToIgnore></fieldsToIgnore>
+    <fieldsToHide></fieldsToHide>
+    <customLabels></customLabels>
+  </bll>
+  <membership enabled="false" providerName="System.Data.SqlClient" connectionString="" windowsAuthentication="false" activeDirectory="false" customSecurity="true" dedicatedLogin="true" displayRememberMe="true" rememberMeSet="true" displaySignUp="false" displayPasswordRecovery="false" displayMyAccount="false" displayHelp="true" idleUserDetectionTimeout="15" tabViewSelection="1" validationKey="FEF77B86F46EF3C472527A26C2B86DD881EEE6840C8C2A88343AA0D1C590E3198C7C93DA4758119AD2DB0352D660D8B7E17948CC3E25F7444F6C2CA85A01F458">
+    <adConfig></adConfig>
+    <config>table Users = Users 
+column [int|uiid] UserID = UserID 
+column [text] UserName = UserName 
+column [text] Password = Password 
+column [text] Email = Email 
+column [text] Comment = Comment 
+column [text] PasswordQuestion = PasswordQuestion 
+column [text] PasswordAnswer = PasswordAnswer 
+column [bool] IsApproved = IsApproved 
+column [date] LastActivityDate = LastActivityDate 
+column [date] LastLoginDate = LastLoginDate 
+column [date] LastPasswordChangedDate = LastPasswordChangedDate 
+column [date] CreationDate = CreationDate 
+column [bool] IsLockedOut = IsLockedOut 
+column [date] LastLockedOutDate = LastLockedOutDate 
+column [int]  FailedPasswordAttemptCount = FailedPasswordAttemptCount 
+column [date] FailedPasswordAttemptWindowStart = FailedPasswordAttemptWindowStart 
+column [int]  FailedPasswordAnswerAttemptCount = FailedPasswordAnswerAttemptCount 
+column [date] FailedPasswordAnswerAttemptWindowStart = FailedPasswordAnswerAttemptWindowStart
+
+table Roles = Roles 
+column [int|uiid] RoleID = RoleID 
+column [text] RoleName = RoleName 
+
+table UserRoles = UserRoles 
+column [int|uiid] UserID = UserID 
+column [int|uiid] RoleID =  RoleID
+</config>
+  </membership>
+  <globalization uiCulture="en-NZ" culture="en-NZ" enableClientBasedCulture="false" supportedCultures="en-NZ,en-NZ; en-NZ,en-GB; " googleTranslateApiKey="" />
+  <layout name="Classic" menuStyle="MultiLevel" />
+  <theme name="Aquarium" />
+</project>

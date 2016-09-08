@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tConsignmentPurchaseOrder" alias="tConsignmentPurchaseOrder" created="2016-05-29T11:02:26" modified="2016-05-29T11:04:40" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column fieldName="ConsignmentPurchaseOrderID" name="ConsignmentPurchaseOrderID" label="Consignment Purchase Order No" />
+    <column fieldName="CustomerID" name="CustomerID" label="Customer ID" />
+    <column fieldName="CustomerRef" name="CustomerRef" label="Customer Ref" />
+    <column fieldName="SentOn" name="SentOn" label="Sent On" format="g" />
+    <column fieldName="CreatedBy" name="CreatedBy" label="Created By" />
+    <column fieldName="CreatedOn" name="CreatedOn" label="Created On" format="g" />
+    <column fieldName="ModifiedBy" name="ModifiedBy" label="Modified By" />
+    <column fieldName="ModifiedOn" name="ModifiedOn" label="Modified On" format="g" />
+  </columns>
+</dataModel>

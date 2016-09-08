@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tDocument" alias="tDocument" created="2016-09-08T18:57:23" modified="2016-09-08T18:57:45" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="DocumentType" parentTableSchema="dbo" parentTableName="tDocumentType" x="363" y="20">
+      <foreignKeyColumn columnName="DocumentTypeID" parentColumnName="DocumentTypeID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column fieldName="DocumentID" name="DocumentID" label="Document ID" />
+    <column fieldName="DocumentTypeID" name="DocumentTypeID" label="Document Type ID" aliasColumnName="DocumentTypeName" aliasForeignKey="DocumentType" />
+    <column fieldName="DocumentTypeName" name="DocumentTypeName" label="Document Type Name" foreignKey="DocumentType" />
+    <column name="SourceReferenceName" fieldName="DocumentTypeSourceReferenceName" label="Document Type Source Reference Name" foreignKey="DocumentType" />
+    <column name="DocumentReferenceName" fieldName="DocumentReferenceName" label="Document Reference Name" foreignKey="DocumentType" />
+    <column fieldName="CustomerID" name="CustomerID" label="Customer ID" />
+    <column fieldName="SourceID" name="SourceID" label="Source ID" />
+    <column fieldName="SourceReference" name="SourceReference" label="Source Reference" />
+    <column fieldName="DocumentReference" name="DocumentReference" label="Document Reference" />
+    <column fieldName="DocumentDate" name="DocumentDate" label="Document Date" />
+    <column fieldName="DocumentFileName" name="DocumentFileName" label="Document File Name" />
+    <column fieldName="DocumentLength" name="DocumentLength" label="Document Length" />
+    <column fieldName="DocumentContentType" name="DocumentContentType" label="Document Content Type" />
+    <column fieldName="Notes" name="Notes" label="Notes" />
+  </columns>
+</dataModel>

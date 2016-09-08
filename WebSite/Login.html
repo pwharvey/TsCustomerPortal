@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Login</title>
+</head>
+<body class="HomePage Wide Tall">
+    <div data-app-role="page" data-content-framework="bootstrap">
+        <div class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <span class="navbar-brand">ITI</span>
+                </div>
+                <div class="navbar-collapse">
+                    <div class="navbar-form navbar-right" role="form">
+                        <div class="form-group">
+                            <input id="login-user-name" type="text" placeholder="Username" class="form-control" autocapitalize="off">
+                        </div>
+                        <div class="form-group">
+                            <input id="login-password" type="password" placeholder="Password" class="form-control">
+                        </div>
+                        <button id="login-button" class="btn btn-success">Sign in</button>
+                    </div>
+                </div>
+                <!--/.navbar-collapse -->
+            </div>
+        </div>
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1>ITI Customer Portal</h1>
+                <p>
+                    Welcome to the ITI customer Portal.
+                </p>
+
+                <p><a href="#" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <h2>^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^</h2>                    
+                </div>               
+            </div>
+            <hr />
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2>Consignment Stock</h2>
+                    <p>View and analyse stock you currently have on consignment.</p>
+                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                </div>
+                <div class="col-sm-4">
+                    <h2>Consignment Stock Usage</h2>
+                    <p>Scan or enter consignment packets as they are consumed.</p>
+                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                </div>
+                <div class="col-sm-4">
+                    <h2>More Features</h2>
+                    <p>Many more features to come in the following months.</p>
+                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                </div>
+            </div>
+
+            <hr/>
+        <!-- /container -->
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        (function () {
+            var resources = Web.MembershipResources.Messages;
+
+            function performLogin() {
+
+                var userName = $('#login-user-name'),
+                    password = $('#login-password');
+                if (!userName.val())
+                    $app.alert(resources.BlankUserName, function () {
+                        userName.focus();
+                    });
+                else if (!password.val())
+                    $app.alert(resources.BlankPassword, function () {
+                        password.focus();
+                    });
+                else
+                    $app.login(userName.val(), password.val(), true,
+                        function () {
+                            var returnUrl = window.location.href.match(/\?ReturnUrl=(.+)$/);
+                            window.location.replace(returnUrl && decodeURIComponent(returnUrl[1]) || __baseUrl);
+                        },
+                        function () {
+                            $app.alert(resources.InvalidUserNameAndPassword, function () {
+                                userName.focus();
+                            });
+                        });
+                return false;
+            }
+
+            $(document)
+                .on('click', '#login-button', performLogin)
+                .on('keydown', 'input', function (event) {
+                    if (event.which == 13) {
+                        event.preventDefault();
+                        performLogin();
+                        return false;
+                    }
+                });
+        })();
+    </script>
+</body>
+</html>

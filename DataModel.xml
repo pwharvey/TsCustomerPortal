@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel nameMaxLength="128" parameterMarker="@" quote="&quot;">
+  <table name="Roles" schema="dbo">
+    <columns>
+      <column name="RoleID" type="int" allowNulls="false" identity="true" readOnly="true" dataType="Int32" />
+      <column name="RoleName" type="nvarchar" length="50" dataType="String" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="RoleID" />
+    </primaryKey>
+    <foreignKeys />
+  </table>
+  <table name="tCompany" schema="dbo">
+    <columns>
+      <column name="CompanyID" type="int" allowNulls="false" identity="true" readOnly="true" dataType="Int32" />
+      <column name="CompanyName" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="LinkedServerName" type="nvarchar" length="50" dataType="String" />
+      <column name="DatabaseName" type="nvarchar" length="50" dataType="String" />
+      <column name="CreatedBy" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="CreatedOn" type="datetime" dataType="DateTime" />
+      <column name="ModifiedBy" type="nvarchar" length="50" dataType="String" />
+      <column name="ModifiedOn" type="datetime" dataType="DateTime" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="CompanyID" />
+    </primaryKey>
+    <foreignKeys />
+  </table>
+  <table name="tConsignmentPurchaseOrder" schema="dbo">
+    <columns>
+      <column name="ConsignmentPurchaseOrderID" type="int" allowNulls="false" identity="true" readOnly="true" dataType="Int32" />
+      <column name="CustomerID" type="int" allowNulls="false" dataType="Int32" />
+      <column name="CustomerRef" type="nvarchar" length="50" dataType="String" />
+      <column name="SentOn" type="datetime" allowNulls="false" dataType="DateTime" />
+      <column name="CreatedBy" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="CreatedOn" type="datetime" allowNulls="false" dataType="DateTime" />
+      <column name="ModifiedBy" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="ModifiedOn" type="datetime" allowNulls="false" dataType="DateTime" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="ConsignmentPurchaseOrderID" />
+    </primaryKey>
+    <foreignKeys>
+      <foreignKey parentTableSchema="dbo" parentTableName="tCustomer">
+        <foreignKeyColumn columnName="CustomerID" parentColumnName="CustomerID" />
+      </foreignKey>
+    </foreignKeys>
+  </table>
+  <table name="tConsignmentStock" schema="dbo">
+    <columns>
+      <column name="ConsignmentStockID" type="int" allowNulls="false" identity="true" readOnly="true" dataType="Int32" />
+      <column name="CustomerID" type="int" allowNulls="false" dataType="Int32" />
+      <column name="PacketNo" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="ProductID" type="int" allowNulls="false" dataType="Int32" />
+      <column name="TransferDocketNo" type="int" dataType="Int32" />
+      <column name="TransferDate" type="date" dataType="DateTime" />
+      <column name="Price" type="decimal" dataType="Decimal" />
+      <column name="PriceUOM" type="nvarchar" length="50" dataType="String" />
+      <column name="Pieces" type="int" allowNulls="false" default="((0))" dataType="Int32" />
+      <column name="Cube" type="decimal" allowNulls="false" default="((0))" dataType="Decimal" />
+      <column name="Area" type="decimal" allowNulls="false" default="((0))" dataType="Decimal" />
+      <column name="Lineal" type="decimal" allowNulls="false" default="((0))" dataType="Decimal" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="ConsignmentStockID" />
+    </primaryKey>
+    <foreignKeys>
+      <foreignKey parentTableSchema="dbo" parentTableName="tCustomer">
+        <foreignKeyColumn columnName="CustomerID" parentColumnName="CustomerID" />
+      </foreignKey>
+      <foreignKey parentTableSchema="dbo" parentTableName="tProduct">
+        <foreignKeyColumn columnName="ProductID" parentColumnName="ProductID" />
+      </foreignKey>
+    </foreignKeys>
+  </table>
+  <table name="tConsignmentUsage" schema="dbo">
+    <columns>
+      <column name="ConsignmentUsageID" type="int" allowNulls="false" identity="true" readOnly="true" dataType="Int32" />
+      <column name="CustomerID" type="int" allowNulls="false" dataType="Int32" />
+      <column name="PacketNo" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="ProductID" type="int" dataType="Int32" />
+      <column name="ConsumedOn" type="date" allowNulls="false" dataType="DateTime" />
+      <column name="InStock" type="bit" default="((0))" dataType="Boolean" />
+      <column name="Price" type="decimal" dataType="Decimal" />
+      <column name="PriceUOM" type="nvarchar" length="50" dataType="String" />
+      <column name="Pieces" type="int" dataType="Int32" />
+      <column name="Cube" type="decimal" dataType="Decimal" />
+      <column name="Area" type="decimal" dataType="Decimal" />
+      <column name="Lineal" type="decimal" dataType="Decimal" />
+      <column name="ConsignmentPurchaseOrderID" type="int" dataType="Int32" />
+      <column name="Errors" type="nvarchar" length="250" dataType="String" />
+      <column name="SentOn" type="datetime" dataType="DateTime" />
+      <column name="CreatedBy" type="nvarchar" length="50" dataType="String" />
+      <column name="CreatedOn" type="datetime" dataType="DateTime" />
+      <column name="ModifiedBy" type="nvarchar" length="50" dataType="String" />
+      <column name="ModifiedOn" type="datetime" dataType="DateTime" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="ConsignmentUsageID" />
+    </primaryKey>
+    <foreignKeys>
+      <foreignKey parentTableSchema="dbo" parentTableName="tConsignmentPurchaseOrder">
+        <foreignKeyColumn columnName="ConsignmentPurchaseOrderID" parentColumnName="ConsignmentPurchaseOrderID" />
+      </foreignKey>
+      <foreignKey parentTableSchema="dbo" parentTableName="tCustomer">
+        <foreignKeyColumn columnName="CustomerID" parentColumnName="CustomerID" />
+      </foreignKey>
+      <foreignKey parentTableSchema="dbo" parentTableName="tProduct">
+        <foreignKeyColumn columnName="ProductID" parentColumnName="ProductID" />
+      </foreignKey>
+    </foreignKeys>
+  </table>
+  <table name="tCustomer" schema="dbo">
+    <columns>
+      <column name="CustomerID" type="int" allowNulls="false" identity="true" readOnly="true" dataType="Int32" />
+      <column name="CompanyID" type="int" allowNulls="false" dataType="Int32" />
+      <column name="CustomerCode" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="CustomerName" type="nvarchar" length="100" allowNulls="false" dataType="String" />
+      <column name="Enabled" type="bit" allowNulls="false" default="((0))" dataType="Boolean" />
+      <column name="Consignment" type="bit" allowNulls="false" default="((0))" dataType="Boolean" />
+      <column name="CreatedBy" type="nvarchar" length="50" dataType="String" />
+      <column name="CreatedOn" type="datetime" dataType="DateTime" />
+      <column name="ModifiedBy" type="nvarchar" length="50" dataType="String" />
+      <column name="ModifiedOn" type="datetime" dataType="DateTime" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="CustomerID" />
+    </primaryKey>
+    <foreignKeys>
+      <foreignKey parentTableSchema="dbo" parentTableName="tCompany">
+        <foreignKeyColumn columnName="CompanyID" parentColumnName="CompanyID" />
+      </foreignKey>
+    </foreignKeys>
+  </table>
+  <table name="tDocument" schema="dbo">
+    <columns>
+      <column name="DocumentID" type="int" allowNulls="false" identity="true" readOnly="true" dataType="Int32" />
+      <column name="DocumentTypeID" type="int" allowNulls="false" dataType="Int32" />
+      <column name="CustomerID" type="int" allowNulls="false" dataType="Int32" />
+      <column name="SourceID" type="int" dataType="Int32" />
+      <column name="SourceReference" type="nvarchar" length="50" dataType="String" />
+      <column name="DocumentReference" type="nvarchar" length="50" dataType="String" />
+      <column name="DocumentDate" type="date" allowNulls="false" dataType="DateTime" />
+      <column name="DocumentFileName" type="nvarchar" length="250" dataType="String" />
+      <column name="DocumentLength" type="int" dataType="Int32" />
+      <column name="DocumentContentType" type="nvarchar" length="50" dataType="String" />
+      <column name="Notes" type="nvarchar" onDemand="true" dataType="String" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="DocumentID" />
+    </primaryKey>
+    <foreignKeys>
+      <foreignKey parentTableSchema="dbo" parentTableName="tCustomer">
+        <foreignKeyColumn columnName="CustomerID" parentColumnName="CustomerID" />
+      </foreignKey>
+      <foreignKey parentTableSchema="dbo" parentTableName="tDocumentType">
+        <foreignKeyColumn columnName="DocumentTypeID" parentColumnName="DocumentTypeID" />
+      </foreignKey>
+    </foreignKeys>
+  </table>
+  <table name="tDocumentType" schema="dbo">
+    <columns>
+      <column name="DocumentTypeID" type="int" allowNulls="false" identity="true" readOnly="true" dataType="Int32" />
+      <column name="DocumentTypeName" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="SourceReferenceName" type="nvarchar" length="50" dataType="String" />
+      <column name="DocumentReferenceName" type="nvarchar" length="50" dataType="String" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="DocumentTypeID" />
+    </primaryKey>
+    <foreignKeys />
+  </table>
+  <table name="tGCSUpdater" schema="dbo">
+    <columns>
+      <column name="GCSUpdaterID" type="int" allowNulls="false" identity="true" readOnly="true" dataType="Int32" />
+      <column name="SiteID" type="nvarchar" length="15" allowNulls="false" dataType="String" />
+      <column name="TableName" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="LastUpdatedOn" type="datetime" allowNulls="false" dataType="DateTime" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="GCSUpdaterID" />
+    </primaryKey>
+    <foreignKeys />
+  </table>
+  <table name="tProduct" schema="dbo">
+    <columns>
+      <column name="ProductID" type="int" allowNulls="false" identity="true" readOnly="true" dataType="Int32" />
+      <column name="ProductCode" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="ProductName" type="nvarchar" length="100" allowNulls="false" dataType="String" />
+      <column name="CategoryCode" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="CategoryName" type="nvarchar" length="100" allowNulls="false" dataType="String" />
+      <column name="Width" type="decimal" allowNulls="false" dataType="Decimal" />
+      <column name="Thickness" type="decimal" allowNulls="false" dataType="Decimal" />
+      <column name="Length" type="decimal" allowNulls="false" dataType="Decimal" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="ProductID" />
+    </primaryKey>
+    <foreignKeys />
+  </table>
+  <table name="UserRoles" schema="dbo">
+    <columns>
+      <column name="UserID" type="int" allowNulls="false" dataType="Int32" />
+      <column name="RoleID" type="int" allowNulls="false" dataType="Int32" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="UserID" />
+      <primaryKeyColumn columnName="RoleID" />
+    </primaryKey>
+    <foreignKeys>
+      <foreignKey parentTableSchema="dbo" parentTableName="Roles">
+        <foreignKeyColumn columnName="RoleID" parentColumnName="RoleID" />
+      </foreignKey>
+      <foreignKey parentTableSchema="dbo" parentTableName="Users">
+        <foreignKeyColumn columnName="UserID" parentColumnName="UserID" />
+      </foreignKey>
+    </foreignKeys>
+  </table>
+  <table name="Users" schema="dbo">
+    <columns>
+      <column name="UserID" type="int" allowNulls="false" identity="true" readOnly="true" dataType="Int32" />
+      <column name="UserName" type="nvarchar" length="128" allowNulls="false" dataType="String" />
+      <column name="Password" type="nvarchar" length="128" allowNulls="false" dataType="String" />
+      <column name="Email" type="nvarchar" length="128" dataType="String" />
+      <column name="Comment" type="ntext" length="1073741823" onDemand="true" allowQBE="false" dataType="String" />
+      <column name="PasswordQuestion" type="nvarchar" length="256" dataType="String" />
+      <column name="PasswordAnswer" type="nvarchar" length="128" dataType="String" />
+      <column name="IsApproved" type="bit" allowNulls="false" default="((0))" dataType="Boolean" />
+      <column name="LastActivityDate" type="datetime" allowNulls="false" default="(getdate())" dataType="DateTime" />
+      <column name="LastLoginDate" type="datetime" allowNulls="false" default="(getdate())" dataType="DateTime" />
+      <column name="LastPasswordChangedDate" type="datetime" allowNulls="false" default="(getdate())" dataType="DateTime" />
+      <column name="CreationDate" type="datetime" allowNulls="false" default="(getdate())" dataType="DateTime" />
+      <column name="IsLockedOut" type="bit" allowNulls="false" default="((0))" dataType="Boolean" />
+      <column name="LastLockedOutDate" type="datetime" allowNulls="false" default="(getdate())" dataType="DateTime" />
+      <column name="FailedPasswordAttemptCount" type="int" allowNulls="false" default="((0))" dataType="Int32" />
+      <column name="FailedPasswordAttemptWindowStart" type="datetime" allowNulls="false" default="(getdate())" dataType="DateTime" />
+      <column name="FailedPasswordAnswerAttemptCount" type="int" allowNulls="false" default="((0))" dataType="Int32" />
+      <column name="FailedPasswordAnswerAttemptWindowStart" type="datetime" allowNulls="false" default="(getdate())" dataType="DateTime" />
+      <column name="CustomerID" type="int" dataType="Int32" />
+    </columns>
+    <primaryKey>
+      <primaryKeyColumn columnName="UserID" />
+    </primaryKey>
+    <foreignKeys />
+  </table>
+  <table name="vConsignmentStockDashboard" schema="dbo">
+    <columns>
+      <column name="CustomerID" type="int" allowNulls="false" dataType="Int32" />
+      <column name="CategoryCode" type="nvarchar" length="50" allowNulls="false" dataType="String" />
+      <column name="CategoryName" type="nvarchar" length="100" allowNulls="false" dataType="String" />
+      <column name="Width" type="decimal" allowNulls="false" dataType="Decimal" />
+      <column name="Thickness" type="decimal" allowNulls="false" dataType="Decimal" />
+      <column name="Length" type="decimal" allowNulls="false" dataType="Decimal" />
+      <column name="Packets" type="int" dataType="Int32" />
+      <column name="Cube" type="decimal" dataType="Decimal" />
+      <column name="Lineal" type="decimal" dataType="Decimal" />
+      <column name="Pieces" type="int" dataType="Int32" />
+    </columns>
+  </table>
+  <table name="vConsignmentUsageDashboard" schema="dbo">
+    <columns>
+      <column name="CustomerID" type="int" allowNulls="false" dataType="Int32" />
+      <column name="ProductCategoryCode" type="nvarchar" length="50" dataType="String" />
+      <column name="CategoryName" type="nvarchar" length="100" dataType="String" />
+      <column name="ProductWidth" type="decimal" dataType="Decimal" />
+      <column name="ProductThickness" type="decimal" dataType="Decimal" />
+      <column name="ProductLength" type="decimal" dataType="Decimal" />
+      <column name="ConsumedOn" type="date" allowNulls="false" dataType="DateTime" />
+      <column name="Packets" type="int" dataType="Int32" />
+    </columns>
+  </table>
+</dataModel>

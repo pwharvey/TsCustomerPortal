@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="ConsignmentStock" conflictDetection="overwriteChanges" label="Consignment Stock" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"tConsignmentStock"."ConsignmentStockID" "ConsignmentStockID"
+	,"tConsignmentStock"."CustomerID" "CustomerID"
+	,"tConsignmentStock"."PacketNo" "PacketNo"
+	,"tConsignmentStock"."ProductID" "ProductID"
+	,"Product"."ProductCode" "ProductCode"
+	,"Product"."ProductName" "ProductName"
+	,"Product"."CategoryCode" "ProductCategoryCode"
+	,"Product"."CategoryName" "ProductCategoryName"
+	,"Product"."Width" "ProductWidth"
+	,"Product"."Thickness" "ProductThickness"
+	,"Product"."Length" "ProductLength"
+	,"tConsignmentStock"."Pieces" "Pieces"
+	,"tConsignmentStock"."Cube" "Cube"
+	,"tConsignmentStock"."Area" "Area"
+	,"tConsignmentStock"."Lineal" "Lineal"
+	,"tConsignmentStock"."TransferDocketNo" "TransferDocketNo"
+	,"tConsignmentStock"."TransferDate" "TransferDate"
+	,"tConsignmentStock"."Price" "Price"
+	,"tConsignmentStock"."PriceUOM" "PriceUom"
+from "dbo"."tConsignmentStock" "tConsignmentStock"
+	left join "dbo"."tProduct" "Product" on "tConsignmentStock"."ProductID" = "Product"."ProductID"
+]]></text>
+    </command>
+    <command id="ConsignmentStockIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="ConsignmentStockID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="ConsignmentStockID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Consignment Stock ID" readOnly="true" />
+    <field name="CustomerID" type="Int32" allowNulls="false" label="Customer ID" showInSummary="true" readOnly="true" />
+    <field name="PacketNo" type="String" allowNulls="false" label="Packet No" length="50" showInSummary="true" readOnly="true" />
+    <field name="ProductID" type="Int32" allowNulls="false" label="Product ID" readOnly="true">
+      <items style="Lookup" dataController="Product" dataValueField="ProductID" dataTextField="ProductCode" copy="ProductName=ProductName, ProductCategoryCode=CategoryCode, ProductCategoryName=CategoryName, ProductWidth=Width, ProductThickness=Thickness, ProductLength=Length" />
+    </field>
+    <field name="ProductCode" type="String" readOnly="true" label="Product Code" length="50" />
+    <field name="ProductName" type="String" readOnly="true" label="Product Name" length="100" showInSummary="true" />
+    <field name="ProductCategoryCode" type="String" readOnly="true" label="Category Code" length="50" />
+    <field name="ProductCategoryName" type="String" readOnly="true" label="Category Name" length="100" />
+    <field name="ProductWidth" type="Decimal" readOnly="true" label="Width" />
+    <field name="ProductThickness" type="Decimal" readOnly="true" label="Thickness" />
+    <field name="ProductLength" type="Decimal" readOnly="true" label="Length" />
+    <field name="Pieces" type="Decimal" allowNulls="false" default="((0))" label="Pieces" showInSummary="true" readOnly="true" />
+    <field name="Cube" type="Decimal" allowNulls="false" default="((0))" label="Cube" showInSummary="true" readOnly="true" />
+    <field name="Area" type="Decimal" allowNulls="false" default="((0))" label="Area" readOnly="true" />
+    <field name="Lineal" type="Decimal" allowNulls="false" default="((0))" label="Lineal" readOnly="true" showInSummary="true" />
+    <field name="TransferDocketNo" type="Int32" label="Docket No" />
+    <field name="TransferDate" type="DateTime" dataFormatString="D" label="Transfer Date" />
+    <field name="Price" type="Decimal" dataFormatString="c" label="Price" roles="Consignment Pricing,Admins" />
+    <field name="PriceUom" type="String" label="Price Uom" length="50" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Consignment Stock" sortExpression="ProductCategoryName, ProductWidth, ProductThickness, ProductName, PacketNo">
+      <headerText />
+      <dataFields>
+        <dataField fieldName="ProductCategoryName" tag="pivot1-row1-column &#xD;&#xA;pivot2-row1-pie&#xD;&#xA;" />
+        <dataField fieldName="ProductName" tag="pivot3-row1-column-top20-sortascbyvalue" />
+        <dataField fieldName="PacketNo" columns="10" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count&#xD;&#xA;pivot3-val1-count&#xD;&#xA;" />
+        <dataField fieldName="Pieces" columns="15" />
+        <dataField fieldName="Cube" columns="15" />
+        <dataField fieldName="Area" columns="15" />
+        <dataField fieldName="Lineal" columns="15" />
+        <dataField fieldName="TransferDocketNo" columns="15" />
+        <dataField fieldName="TransferDate" columns="20" />
+        <dataField fieldName="Price" columns="15" />
+        <dataField fieldName="PriceUom" columns="50" />
+        <dataField fieldName="ProductCategoryCode" columns="50" />
+        <dataField fieldName="ProductID" aliasFieldName="ProductCode" />
+        <dataField fieldName="ProductWidth" columns="15" />
+        <dataField fieldName="ProductThickness" columns="15" />
+        <dataField fieldName="ProductLength" columns="15" />
+        <dataField fieldName="CustomerID" columns="15" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Consignment Stock">
+      <headerText />
+      <categories>
+        <category id="c1" headerText="Packet" newColumn="true">
+          <description />
+          <dataFields>
+            <dataField fieldName="PacketNo" columns="50" />
+            <dataField fieldName="ProductName" />
+          </dataFields>
+        </category>
+        <category headerText="Transfer Docket" id="c5">
+          <dataFields>
+            <dataField fieldName="TransferDocketNo" columns="15" />
+            <dataField fieldName="TransferDate" columns="20" />
+          </dataFields>
+        </category>
+        <category headerText="Pricing" id="c6">
+          <dataFields>
+            <dataField fieldName="Price" columns="15" />
+            <dataField fieldName="PriceUom" columns="50" />
+          </dataFields>
+        </category>
+        <category headerText="Measures" id="c2" newColumn="true">
+          <dataFields>
+            <dataField fieldName="Pieces" columns="15" />
+            <dataField fieldName="Cube" columns="15" />
+            <dataField fieldName="Area" columns="15" />
+            <dataField fieldName="Lineal" columns="15" />
+          </dataFields>
+        </category>
+        <category headerText="Dimensions" id="c4">
+          <dataFields>
+            <dataField fieldName="ProductWidth" columns="15" />
+            <dataField fieldName="ProductThickness" columns="15" />
+            <dataField fieldName="ProductLength" columns="15" />
+          </dataFields>
+        </category>
+        <category headerText="Codes" id="c3">
+          <dataFields>
+            <dataField fieldName="ProductID" aliasFieldName="ProductCode" />
+            <dataField fieldName="ProductCategoryCode" columns="50" />
+            <dataField fieldName="ProductCategoryName" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a3" commandName="Cancel" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag9" scope="ActionColumn">
+      <action id="a1" commandName="Edit" commandArgument="editForm1" />
+      <action id="a2" commandName="Delete" />
+    </actionGroup>
+    <actionGroup id="ag100" scope="ActionBar" headerText="Actions Flat" flat="true">
+      <action commandName="SQL" id="a100" headerText="Update From Supplier" roles="Consignment Edit">
+        <data><![CDATA[Exec pConsignmentStockGet @BusinessRules_UserId]]></data>
+      </action>
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Select" type="Sql" phase="Before"><![CDATA[--Exec pConsignmentStockGet @BusinessRules_UserId
+--SET @Result_ShowAlert = @BusinessRules_UserId
+--SET @Session_StockGet = GetDate()
+]]></rule>
+  </businessRules>
+</dataController>

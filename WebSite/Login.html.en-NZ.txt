@@ -1,0 +1,9 @@
+*******************************************************************************
+Your application uses this file to locate resource strings defined
+in Login.html project item. 
+
+Replace the text between localization brackets as needed.
+*******************************************************************************
+
+^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^
+

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tDocumentType" alias="tDocumentType" created="2016-09-08T18:56:47" modified="2016-09-08T18:56:52" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column fieldName="DocumentTypeID" name="DocumentTypeID" label="Document Type ID" />
+    <column fieldName="DocumentTypeName" name="DocumentTypeName" label="Document Type Name" />
+    <column fieldName="SourceReferenceName" name="SourceReferenceName" label="Source Reference Name" />
+    <column fieldName="DocumentReferenceName" name="DocumentReferenceName" label="Document Reference Name" />
+  </columns>
+</dataModel>

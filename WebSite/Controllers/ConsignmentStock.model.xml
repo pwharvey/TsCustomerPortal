@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tConsignmentStock" alias="tConsignmentStock" created="2016-05-16T15:26:02" modified="2016-05-24T16:38:06" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Product" parentTableSchema="dbo" parentTableName="tProduct" x="424" y="39">
+      <foreignKeyColumn columnName="ProductID" parentColumnName="ProductID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column fieldName="ConsignmentStockID" name="ConsignmentStockID" label="Consignment Stock ID" />
+    <column fieldName="CustomerID" name="CustomerID" label="Customer ID" />
+    <column fieldName="PacketNo" name="PacketNo" label="Packet No" />
+    <column fieldName="ProductID" name="ProductID" label="Product ID" aliasColumnName="ProductCode" aliasForeignKey="Product" />
+    <column fieldName="ProductCode" name="ProductCode" label="Product Code" foreignKey="Product" />
+    <column name="ProductName" fieldName="ProductName" label="Product Name" foreignKey="Product" />
+    <column name="CategoryCode" fieldName="ProductCategoryCode" label="Product Category Code" foreignKey="Product" />
+    <column name="CategoryName" fieldName="ProductCategoryName" label="Product Category Name" foreignKey="Product" />
+    <column name="Width" fieldName="ProductWidth" label="Product Width" foreignKey="Product" />
+    <column name="Thickness" fieldName="ProductThickness" label="Product Thickness" foreignKey="Product" />
+    <column name="Length" fieldName="ProductLength" label="Product Length" foreignKey="Product" />
+    <column fieldName="Pieces" name="Pieces" label="Pieces" />
+    <column fieldName="Cube" name="Cube" label="Cube" />
+    <column fieldName="Area" name="Area" label="Area" />
+    <column fieldName="Lineal" name="Lineal" label="Lineal" />
+    <column name="TransferDocketNo" fieldName="TransferDocketNo" label="Transfer Docket No" />
+    <column name="TransferDate" fieldName="TransferDate" label="Transfer Date" format="g" />
+    <column name="Price" fieldName="Price" label="Price" format="c" />
+    <column name="PriceUOM" fieldName="PriceUom" label="Price Uom" />
+  </columns>
+</dataModel>

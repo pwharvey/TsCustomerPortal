@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tCustomer" alias="tCustomer" created="2016-05-16T15:25:40" modified="2016-05-16T15:25:45" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Company" parentTableSchema="dbo" parentTableName="tCompany" x="325" y="20">
+      <foreignKeyColumn columnName="CompanyID" parentColumnName="CompanyID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column fieldName="CustomerID" name="CustomerID" label="Customer ID" />
+    <column fieldName="CompanyID" name="CompanyID" label="Company ID" aliasColumnName="CompanyName" aliasForeignKey="Company" />
+    <column fieldName="CompanyName" name="CompanyName" label="Company Name" foreignKey="Company" />
+    <column fieldName="CustomerCode" name="CustomerCode" label="Customer Code" />
+    <column fieldName="CustomerName" name="CustomerName" label="Customer Name" />
+    <column fieldName="Enabled" name="Enabled" label="Enabled" />
+    <column fieldName="Consignment" name="Consignment" label="Consignment" />
+    <column fieldName="CreatedBy" name="CreatedBy" label="Created By" />
+    <column fieldName="CreatedOn" name="CreatedOn" label="Created On" format="g" />
+    <column fieldName="ModifiedBy" name="ModifiedBy" label="Modified By" />
+    <column fieldName="ModifiedOn" name="ModifiedOn" label="Modified On" format="g" />
+  </columns>
+</dataModel>

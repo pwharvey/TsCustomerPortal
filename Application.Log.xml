@@ -1,0 +1,1620 @@
+﻿<?xml version="1.0" encoding="utf-8"?><log xmlns:aquarium="urn:schemas-codeontime-com:data-aquarium" xmlns:app="urn:schemas-codeontime-com:data-aquarium-application" xmlns:a="urn:schemas-codeontime-com:data-aquarium" xmlns="urn:schemas-codeontime-com:xml-builder"><c y="NodeSet" t="2016-05-16T17:31:55">
+  <page name="ConsignmentStock" />
+  <move>
+    <page name="ConsignmentUsage" />
+  </move>
+</c><c y="NodeSet" t="2016-05-16T17:35:38">
+  <pages />
+  <insert type="page">
+    <Name>CCC</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Path>CCC</Path>
+    <Title>CCC</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-16T17:35:44">
+  <page name="CCC" />
+  <move>
+    <page name="ConsignmentUsage" />
+    <container id="container1" />
+  </move>
+</c><c y="NodeSet" t="2016-05-16T17:36:02">
+  <page name="CCC" />
+  <update>
+    <Title>Consignment Usage</Title>
+  </update>
+</c><c y="NodeSet" t="2016-05-16T17:36:07">
+  <page name="ConsignmentUsage" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-16T17:36:20">
+  <page name="CCC" />
+  <update>
+    <Name>ConsignmentUsage</Name>
+  </update>
+</c><c y="NodeSet" t="2016-05-16T17:41:37">
+  <page name="ConsignmentUsage" />
+  <update>
+    <Name>ConsignmentUsageold</Name>
+  </update>
+</c><c y="NodeSet" t="2016-05-16T17:41:48">
+  <pages />
+  <insert type="page">
+    <Name>ConsignmentUsage</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Path>Consignment Usage</Path>
+    <Title>Consignment Usage</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-16T17:42:00">
+  <page name="ConsignmentUsage" />
+  <move>
+    <page name="ConsignmentUsageold" />
+    <container id="container1" />
+  </move>
+</c><c y="NodeSet" t="2016-05-16T17:42:08">
+  <page name="ConsignmentUsageold" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-16T17:49:05">
+  <page name="Customer" />
+  <container id="container1" />
+  <copy>
+    <page name="ConsignmentUsage" />
+    <dataView id="view1" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-16T17:49:17">
+  <page name="Customer" />
+  <dataView id="view1" />
+  <moveRef type="controller">
+    <Controller>ConsignmentUsage</Controller>
+    <View>grid1</View>
+    <DataField>CustomerID</DataField>
+  </moveRef>
+</c><c y="NodeSet" t="2016-05-17T10:08:56">
+  <pages />
+  <insert type="page">
+    <Name>Security</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Path>Security</Path>
+    <Title>Security</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-17T10:09:11">
+  <page name="Security" />
+  <update>
+    <Roles>Admin</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-17T10:09:15">
+  <page name="Security" />
+  <move>
+    <page name="Users" />
+  </move>
+</c><c y="NodeSet" t="2016-05-17T10:09:22">
+  <page name="Security" />
+  <move>
+    <page name="Roles" />
+  </move>
+</c><c y="NodeSet" t="2016-05-17T10:09:49">
+  <page name="Users" />
+  <container id="container1" />
+  <move>
+    <page name="UserRoles" />
+    <dataView id="view1" />
+  </move>
+</c><c y="NodeSet" t="2016-05-17T10:09:59">
+  <page name="Users" />
+  <dataView id="view1" />
+  <moveRef type="controller">
+    <Controller>UserRoles</Controller>
+    <View>grid1</View>
+    <DataField>UserID</DataField>
+  </moveRef>
+</c><c y="NodeSet" t="2016-05-17T10:10:18">
+  <page name="Roles" />
+  <container id="container1" />
+  <copy>
+    <page name="Users" />
+    <dataView id="view2" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-17T10:10:24">
+  <page name="Roles" />
+  <dataView id="view1" />
+  <moveRef type="controller">
+    <Controller>UserRoles</Controller>
+    <View>grid1</View>
+    <DataField>RoleID</DataField>
+  </moveRef>
+</c><c y="NodeSet" t="2016-05-17T10:11:30">
+  <pages />
+  <insert type="page">
+    <Name>Consignment</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Path>Consignment</Path>
+    <Title>Consignment</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-17T10:11:37">
+  <page name="Consignment" />
+  <move>
+    <page name="ConsignmentStock" />
+  </move>
+</c><c y="NodeSet" t="2016-05-17T10:11:42">
+  <page name="ConsignmentStock" />
+  <move>
+    <page name="ConsignmentUsage" />
+  </move>
+</c><c y="NodeSet" t="2016-05-17T10:11:50">
+  <page name="Consignment" />
+  <move>
+    <page name="ConsignmentUsage" />
+  </move>
+</c><c y="NodeSet" t="2016-05-17T10:12:18">
+  <page name="ConsignmentUsage" />
+  <update>
+    <Roles>Consignment,Admin</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-17T10:12:44">
+  <page name="ConsignmentUsage" />
+  <update>
+    <Roles />
+  </update>
+</c><c y="NodeSet" t="2016-05-17T10:13:04">
+  <page name="Consignment" />
+  <update>
+    <Roles>Consignment,Admin</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-17T10:13:38">
+  <pages />
+  <insert type="page">
+    <Name>Setup</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Path>Setup</Path>
+    <Title>Setup</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-17T10:13:47">
+  <page name="Setup" />
+  <move>
+    <page name="Customer" />
+  </move>
+</c><c y="NodeSet" t="2016-05-17T10:13:57">
+  <page name="Setup" />
+  <move>
+    <page name="Security" />
+  </move>
+</c><c y="NodeSet" t="2016-05-17T10:14:07">
+  <page name="Setup" />
+  <before>
+    <page name="Security" />
+  </before>
+</c><c y="NodeSet" t="2016-05-17T10:14:15">
+  <page name="Security" />
+  <before>
+    <page name="Setup" />
+  </before>
+</c><c y="NodeSet" t="2016-05-17T10:14:27">
+  <page name="UserRoles" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-17T10:14:38">
+  <page name="Product" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-17T10:14:49">
+  <page name="Setup" />
+  <move>
+    <page name="Company" />
+  </move>
+</c><c y="NodeSet" t="2016-05-17T10:15:17">
+  <page name="Setup" />
+  <update>
+    <Roles>Admin</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-17T10:16:40">
+  <page name="Security" />
+  <update>
+    <Roles />
+  </update>
+</c><c y="NodeSet" t="2016-05-17T10:17:53">
+  <page name="Security" />
+  <update>
+    <Roles>Admin</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-17T10:42:38">
+  <userControl name="Welcome" />
+  <update>
+    <Body>                  
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;body&gt;
+                
+&lt;div style="padding-left:8px"&gt;&lt;div class="ParaInfo"&gt;
+        ^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/div&gt;
+&lt;div class="ParaHeader"&gt;
+    ^SignInHeader^Instructions^SignInHeader^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+    if membership option has been selected for this application.^SignInPara1^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    &lt;div style="border: solid 1px black; background-color: InfoBackground; padding: 8px;
+        float: left;"&gt;
+        ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin13%&lt;/b&gt;
+        &lt;br /&gt;
+        &lt;br /&gt;
+        ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+    &lt;/div&gt;
+    &lt;div style="clear:both;margin-bottom:8px"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="app-welcome" data-app-role="page" data-activator="Button|^SignInHeader^Instructions^SignInHeader^" data-activator-description="^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^"&gt;
+      &lt;p&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/p&gt;
+      &lt;p&gt;
+          ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+  if membership option has been selected for this application.^SignInPara1^
+      &lt;/p&gt;
+
+      &lt;p&gt;
+          ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+  web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+  access all areas of the web site with the exception of membership manager.^SignInPara2^
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;&lt;a href="#" data-role="button" data-inline="true" data-theme="b" data-app-role="loginstatus" data-icon="lock"&gt;Login Status&lt;/a&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+                  
+&lt;/body&gt;
+&lt;/html&gt;
+                </Body>
+  </update>
+</c><c y="NodeSet" t="2016-05-17T10:43:29">
+  <userControl name="Welcome" />
+  <update>
+    <Body>                  
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;body&gt;
+                
+&lt;div style="padding-left:8px"&gt;&lt;div class="ParaInfo"&gt;
+        ^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/div&gt;
+&lt;div class="ParaHeader"&gt;
+    ^SignInHeader^Instructions^SignInHeader^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+    if membership option has been selected for this application.^SignInPara1^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    &lt;div style="border: solid 1px black; background-color: InfoBackground; padding: 8px;
+        float: left;"&gt;
+        ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+        &lt;br /&gt;
+        &lt;br /&gt;
+        ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+    &lt;/div&gt;
+    &lt;div style="clear:both;margin-bottom:8px"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="app-welcome" data-app-role="page" data-activator="Button|^SignInHeader^Instructions^SignInHeader^" data-activator-description="^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^"&gt;
+      &lt;p&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/p&gt;
+      &lt;p&gt;
+          ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+  if membership option has been selected for this application.^SignInPara1^
+      &lt;/p&gt;
+
+      &lt;p&gt;
+          ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+  web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+  access all areas of the web site with the exception of membership manager.^SignInPara2^
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;&lt;a href="#" data-role="button" data-inline="true" data-theme="b" data-app-role="loginstatus" data-icon="lock"&gt;Login Status&lt;/a&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+                  
+&lt;/body&gt;
+&lt;/html&gt;
+                </Body>
+  </update>
+</c><c y="NodeSet" t="2016-05-17T10:43:37">
+  <userControl name="Welcome" />
+  <update>
+    <Body>                  
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;body&gt;
+                
+&lt;div style="padding-left:8px"&gt;&lt;div class="ParaInfo"&gt;
+        ^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/div&gt;
+&lt;div class="ParaHeader"&gt;
+    ^SignInHeader^Instructions^SignInHeader^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+    if membership option has been selected for this application.^SignInPara1^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    &lt;div style="border: solid 1px black; background-color: InfoBackground; padding: 8px;
+        float: left;"&gt;
+        ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+        &lt;br /&gt;
+        &lt;br /&gt;
+        ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+    &lt;/div&gt;
+    &lt;div style="clear:both;margin-bottom:8px"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="app-welcome" data-app-role="page" data-activator="Button|^SignInHeader^Instructions^SignInHeader^" data-activator-description="^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^"&gt;
+      &lt;p&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/p&gt;
+      &lt;p&gt;
+          ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+  if membership option has been selected for this application.^SignInPara1^
+      &lt;/p&gt;
+
+      &lt;p&gt;
+          ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+  web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+  access all areas of the web site with the exception of membership manager.^SignInPara2^
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;&lt;a href="#" data-role="button" data-inline="true" data-theme="b" data-app-role="loginstatus" data-icon="lock"&gt;Login Status&lt;/a&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+                  
+&lt;/body&gt;
+&lt;/html&gt;
+                </Body>
+  </update>
+</c><c y="NodeSet" t="2016-05-18T12:40:09">
+  <page name="Customer" />
+  <dataView id="view2" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-18T12:52:15">
+  <page name="Company" />
+  <move>
+    <page name="Customer" />
+  </move>
+</c><c y="NodeSet" t="2016-05-18T12:52:23">
+  <page name="Company" />
+  <before>
+    <page name="Customer" />
+  </before>
+</c><c y="NodeSet" t="2016-05-18T12:52:33">
+  <page name="Customer" />
+  <move>
+    <page name="Company" />
+  </move>
+</c><c y="NodeSet" t="2016-05-18T12:52:37">
+  <page name="Customer" />
+  <move>
+    <page name="Company" />
+  </move>
+</c><c y="NodeSet" t="2016-05-18T12:52:40">
+  <page name="Customer" />
+  <move>
+    <page name="Company" />
+  </move>
+</c><c y="NodeSet" t="2016-05-18T12:52:44">
+  <page name="Customer" />
+  <before>
+    <page name="Company" />
+  </before>
+</c><c y="NodeSet" t="2016-05-18T13:12:58">
+  <page name="Security" />
+  <update>
+    <Roles>Admins</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-18T13:13:06">
+  <page name="Setup" />
+  <update>
+    <Roles>Admins</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-18T13:13:17">
+  <page name="Consignment" />
+  <update>
+    <Roles>Consignment</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-18T14:21:04">
+  <page name="Security" />
+  <copy>
+    <page name="Users" />
+    <dataView id="view2" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-18T14:22:20">
+  <page name="Security" />
+  <container id="container1" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-18T18:02:28">
+  <page name="Users" />
+  <dataView id="view1" />
+  <update>
+    <AutoHighlightFirstRow>true</AutoHighlightFirstRow>
+  </update>
+</c><c y="NodeSet" t="2016-05-18T18:03:27">
+  <page name="Roles" />
+  <dataView id="view1" />
+  <update>
+    <AutoHighlightFirstRow>true</AutoHighlightFirstRow>
+  </update>
+</c><c y="NodeSet" t="2016-05-18T18:09:45">
+  <page name="Company" />
+  <dataView id="view1" />
+  <update>
+    <AutoHighlightFirstRow>true</AutoHighlightFirstRow>
+  </update>
+</c><c y="NodeSet" t="2016-05-18T18:16:03">
+  <page name="ConsignmentStock" />
+  <dataView id="view1" />
+  <update>
+    <AutoHighlightFirstRow>true</AutoHighlightFirstRow>
+  </update>
+</c><c y="NodeSet" t="2016-05-18T18:16:11">
+  <page name="ConsignmentUsage" />
+  <dataView id="view1" />
+  <update>
+    <AutoHighlightFirstRow>true</AutoHighlightFirstRow>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:01:49">
+  <page name="ConsignmentStock" />
+  <update>
+    <UseExtenders>false</UseExtenders>
+    <Roles>Consignment Stock</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:02:30">
+  <page name="ConsignmentUsage" />
+  <update>
+    <Roles>Consignment Usage</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:02:51">
+  <page name="Consignment" />
+  <update>
+    <Title>Consignment Stock, Consignment Usage</Title>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:03:26">
+  <page name="Company" />
+  <update>
+    <UseExtenders>false</UseExtenders>
+    <Roles>Admins</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:03:33">
+  <page name="Customer" />
+  <update>
+    <UseExtenders>false</UseExtenders>
+    <Roles>Admins</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:03:42">
+  <page name="Users" />
+  <update>
+    <UseExtenders>false</UseExtenders>
+    <Roles>Admins</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:03:49">
+  <page name="Roles" />
+  <update>
+    <UseExtenders>false</UseExtenders>
+    <Roles>Admins</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:03:56">
+  <page name="Roles" />
+  <update>
+    <About />
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:04:03">
+  <page name="Users" />
+  <update>
+    <About />
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:04:17">
+  <page name="Customer" />
+  <update>
+    <About />
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:04:26">
+  <page name="Company" />
+  <update>
+    <About />
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:04:47">
+  <page name="ConsignmentStock" />
+  <update>
+    <About />
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:05:33">
+  <page name="ConsignmentUsage" />
+  <update>
+    <Description>View Consignment Usage</Description>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:13:08">
+  <page name="Consignment" />
+  <update>
+    <Title>Consignment</Title>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:13:22">
+  <page name="Consignment" />
+  <update>
+    <Roles>Consignment Stock,Consignment Usage</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:16:19">
+  <page name="Home" />
+  <control id="control2" />
+  <update>
+    <Text>tttttttttt</Text>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:16:45">
+  <page name="Home" />
+  <control id="control2" />
+  <update>
+    <Text />
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:17:24">
+  <page name="Home" />
+  <container id="container2" />
+  <copyRef type="controller">
+    <Controller>ConsignmentUsage</Controller>
+  </copyRef>
+</c><c y="NodeSet" t="2016-05-19T09:21:44">
+  <page name="Home" />
+  <control id="control1" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-19T09:21:53">
+  <page name="Home" />
+  <dataView id="view1" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-19T09:22:29">
+  <page name="Home" />
+  <container id="container2" />
+  <update>
+    <Flow>NewRow</Flow>
+    <CssStyle> margin-top:8px; </CssStyle>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:25:38">
+  <page name="Home" />
+  <container id="container1" />
+  <insert type="dataView">
+    <Controller>ConsignmentStock</Controller>
+    <View>grid1</View>
+    <Tag>StockDashboard</Tag>
+    <ShowInSummary>false</ShowInSummary>
+    <PageSize>5</PageSize>
+    <ShowActionBar>true</ShowActionBar>
+    <ShowDescription>false</ShowDescription>
+    <ShowViewSelector>false</ShowViewSelector>
+    <ShowSearchBar>true</ShowSearchBar>
+    <ShowQuickFind>true</ShowQuickFind>
+    <SearchByFirstLetter>false</SearchByFirstLetter>
+    <ShowRowNumber>false</ShowRowNumber>
+    <ShowPageSize>true</ShowPageSize>
+    <ShowModalForms>false</ShowModalForms>
+    <SearchOnStart>false</SearchOnStart>
+    <ShowDetailsInListMode>true</ShowDetailsInListMode>
+    <AutoHighlightFirstRow>false</AutoHighlightFirstRow>
+    <AutoSelectFirstRow>false</AutoSelectFirstRow>
+    <RefreshInterval>30</RefreshInterval>
+  </insert>
+</c><c y="NodeSet" t="2016-05-19T09:27:31">
+  <page name="Home" />
+  <control id="control2" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-19T09:28:13">
+  <page name="Home" />
+  <container id="container2" />
+  <insert type="dataView">
+    <Controller>ConsignmentUsage</Controller>
+    <Tag>ConsignmentUsageDashboard</Tag>
+    <ShowInSummary>false</ShowInSummary>
+    <PageSize>5</PageSize>
+    <ShowActionBar>true</ShowActionBar>
+    <ShowDescription>false</ShowDescription>
+    <ShowViewSelector>false</ShowViewSelector>
+    <ShowSearchBar>true</ShowSearchBar>
+    <ShowQuickFind>true</ShowQuickFind>
+    <SearchByFirstLetter>false</SearchByFirstLetter>
+    <ShowRowNumber>false</ShowRowNumber>
+    <ShowPageSize>true</ShowPageSize>
+    <ShowModalForms>false</ShowModalForms>
+    <SearchOnStart>false</SearchOnStart>
+    <ShowDetailsInListMode>true</ShowDetailsInListMode>
+    <AutoHighlightFirstRow>false</AutoHighlightFirstRow>
+    <AutoSelectFirstRow>false</AutoSelectFirstRow>
+  </insert>
+</c><c y="NodeSet" t="2016-05-19T09:30:44">
+  <page name="Home" />
+  <dataView id="view2" />
+  <update>
+    <ShowDescription>true</ShowDescription>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:31:48">
+  <page name="Home" />
+  <dataView id="view1" />
+  <update>
+    <ShowDescription>true</ShowDescription>
+    <ShowViewSelector>true</ShowViewSelector>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T09:46:41">
+  <page name="Home" />
+  <dataView id="view1" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-19T09:49:18">
+  <page name="Home" />
+  <container id="container1" />
+  <insert type="dataView">
+    <Controller>ConsignmentStockDashboard</Controller>
+    <View>grid1</View>
+    <Tag>ConsignmentStockDashboard</Tag>
+    <ShowInSummary>false</ShowInSummary>
+    <PageSize>5</PageSize>
+    <ShowActionBar>true</ShowActionBar>
+    <ShowDescription>true</ShowDescription>
+    <ShowViewSelector>true</ShowViewSelector>
+    <ShowSearchBar>true</ShowSearchBar>
+    <ShowQuickFind>true</ShowQuickFind>
+    <SearchByFirstLetter>false</SearchByFirstLetter>
+    <ShowRowNumber>false</ShowRowNumber>
+    <ShowPageSize>true</ShowPageSize>
+    <ShowModalForms>false</ShowModalForms>
+    <SearchOnStart>false</SearchOnStart>
+    <ShowDetailsInListMode>true</ShowDetailsInListMode>
+    <AutoHighlightFirstRow>false</AutoHighlightFirstRow>
+    <AutoSelectFirstRow>false</AutoSelectFirstRow>
+  </insert>
+</c><c y="NodeSet" t="2016-05-19T09:49:26">
+  <page name="ConsignmentStockDashboard" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-19T10:12:06">
+  <page name="Home" />
+  <dataView id="view1" />
+  <update>
+    <Tag>view-style-chart</Tag>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T10:23:01">
+  <page name="Home" />
+  <container id="container1" />
+  <copyRef type="controller">
+    <Controller>ConsignmentStock</Controller>
+  </copyRef>
+</c><c y="NodeSet" t="2016-05-19T10:23:15">
+  <page name="Home" />
+  <dataView id="view1" />
+  <moveRef type="controller">
+    <Controller>ConsignmentStock</Controller>
+    <View>grid1</View>
+    <DataField>ProductCategoryCode</DataField>
+  </moveRef>
+</c><c y="NodeSet" t="2016-05-19T10:24:15">
+  <page name="Home" />
+  <dataView id="view3" />
+  <update>
+    <FilterField2>ProductWidth</FilterField2>
+    <FilterField3>ProductThickness</FilterField3>
+    <FilterField4>ProductLength</FilterField4>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T11:03:35">
+  <page name="Home" />
+  <dataView id="view2" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-19T11:03:37">
+  <page name="Home" />
+  <container id="container2" />
+  <copy>
+    <page name="ConsignmentUsageDashboard" />
+    <dataView id="view1" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-19T11:03:46">
+  <page name="ConsignmentUsageDashboard" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-19T11:05:09">
+  <page name="Home" />
+  <dataView id="view2" />
+  <update>
+    <PageSize>5</PageSize>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T11:06:47">
+  <page name="Home" />
+  <dataView id="view2" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-19T11:07:29">
+  <page name="Home" />
+  <container id="container2" />
+  <insert type="dataView">
+    <Controller>ConsignmentUsageDashboard</Controller>
+    <View>grid1</View>
+    <ShowInSummary>false</ShowInSummary>
+    <PageSize>5</PageSize>
+    <ShowActionBar>true</ShowActionBar>
+    <ShowDescription>true</ShowDescription>
+    <ShowViewSelector>true</ShowViewSelector>
+    <ShowSearchBar>true</ShowSearchBar>
+    <ShowQuickFind>true</ShowQuickFind>
+    <SearchByFirstLetter>false</SearchByFirstLetter>
+    <ShowRowNumber>false</ShowRowNumber>
+    <ShowPageSize>true</ShowPageSize>
+    <ShowModalForms>false</ShowModalForms>
+    <SearchOnStart>false</SearchOnStart>
+    <ShowDetailsInListMode>true</ShowDetailsInListMode>
+    <AutoHighlightFirstRow>false</AutoHighlightFirstRow>
+    <AutoSelectFirstRow>false</AutoSelectFirstRow>
+    <RefreshInterval>30</RefreshInterval>
+  </insert>
+</c><c y="NodeSet" t="2016-05-19T11:13:00">
+  <page name="Home" />
+  <container id="container2" />
+  <copyRef type="controller">
+    <Controller>ConsignmentUsage</Controller>
+  </copyRef>
+</c><c y="NodeSet" t="2016-05-19T11:13:34">
+  <page name="Home" />
+  <dataView id="view2" />
+  <moveRef type="controller">
+    <Controller>ConsignmentUsage</Controller>
+    <View>grid1</View>
+    <DataField>ConsumedOn</DataField>
+  </moveRef>
+</c><c y="NodeSet" t="2016-05-19T11:18:55">
+  <page name="Home" />
+  <dataView id="view4" />
+  <update>
+    <FilterField2>ProductCategoryCode</FilterField2>
+    <FilterField3>ProductWidth</FilterField3>
+    <FilterField4>ProductThickness</FilterField4>
+    <FilterField5>ProductLength</FilterField5>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T13:31:59">
+  <page name="Home" />
+  <dataView id="view3" />
+  <update>
+    <FilterField5>CustomerID</FilterField5>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T14:05:09">
+  <page name="Home" />
+  <dataView id="view4" />
+  <update>
+    <FilterField3>WidthAndThickness</FilterField3>
+    <FilterField4>ProductLength</FilterField4>
+    <FilterField5>CustomerID</FilterField5>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T17:03:00">
+  <pages />
+  <insert type="page">
+    <Name>Dashboard</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Path>Dashboard</Path>
+    <Title>Dashboard</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-19T17:03:04">
+  <page name="Consignment" />
+  <move>
+    <page name="Dashboard" />
+  </move>
+</c><c y="NodeSet" t="2016-05-19T17:03:06">
+  <page name="Home" />
+  <move>
+    <page name="Dashboard" />
+  </move>
+</c><c y="NodeSet" t="2016-05-19T17:03:09">
+  <page name="Home" />
+  <move>
+    <page name="Dashboard" />
+  </move>
+</c><c y="NodeSet" t="2016-05-19T17:03:13">
+  <page name="Home" />
+  <before>
+    <page name="Dashboard" />
+  </before>
+</c><c y="NodeSet" t="2016-05-19T17:03:19">
+  <page name="Home" />
+  <move>
+    <page name="Dashboard" />
+  </move>
+</c><c y="NodeSet" t="2016-05-19T17:03:22">
+  <page name="Consignment" />
+  <move>
+    <page name="Dashboard" />
+  </move>
+</c><c y="NodeSet" t="2016-05-19T17:03:26">
+  <page name="Consignment" />
+  <move>
+    <page name="Dashboard" />
+  </move>
+</c><c y="NodeSet" t="2016-05-19T17:03:31">
+  <page name="Consignment" />
+  <before>
+    <page name="Dashboard" />
+  </before>
+</c><c y="NodeSet" t="2016-05-19T17:03:40">
+  <page name="Dashboard" />
+  <move>
+    <page name="Home" />
+    <container id="container2" />
+  </move>
+</c><c y="NodeSet" t="2016-05-19T17:03:40">
+  <page name="Dashboard" />
+  <move>
+    <page name="Home" />
+    <container id="container1" />
+  </move>
+</c><c y="NodeSet" t="2016-05-19T17:03:59">
+  <page name="Home" />
+  <update>
+    <UseExtenders>false</UseExtenders>
+    <Roles>Admins</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-19T17:04:21">
+  <page name="Home" />
+  <copy>
+    <userControl name="Welcome" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-19T17:04:21">
+  <page name="Home" />
+  <copy>
+    <userControl name="TableOfContents" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-20T09:40:42">
+  <page name="Dashboard" />
+  <dataView id="view1" />
+  <update>
+    <AutoHighlightFirstRow>true</AutoHighlightFirstRow>
+    <RefreshInterval>30</RefreshInterval>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T09:41:08">
+  <page name="Dashboard" />
+  <dataView id="view2" />
+  <update>
+    <AutoHighlightFirstRow>true</AutoHighlightFirstRow>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T11:00:17">
+  <pages />
+  <renameRefs type="view">
+    <Controller>ConsignmentUsage</Controller>
+    <Name>grid1</Name>
+    <NewName>gridEntered</NewName>
+  </renameRefs>
+</c><c y="NodeSet" t="2016-05-20T11:16:43">
+  <page name="ConsignmentUsage" />
+  <container id="container1" />
+  <copy>
+    <page name="ConsignmentUsage" />
+    <dataView id="view1" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-20T11:16:55">
+  <page name="ConsignmentUsage" />
+  <dataView id="view1" />
+  <update>
+    <Activator>Tab</Activator>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T11:17:01">
+  <page name="ConsignmentUsage" />
+  <dataView id="view2" />
+  <update>
+    <Activator>Tab</Activator>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T11:18:13">
+  <page name="ConsignmentUsage" />
+  <dataView id="view2" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-20T11:18:32">
+  <page name="ConsignmentUsage" />
+  <insert type="container">
+    <Flow>NewRow</Flow>
+  </insert>
+</c><c y="NodeSet" t="2016-05-20T11:18:43">
+  <page name="ConsignmentUsage" />
+  <container id="c101" />
+  <copy>
+    <page name="ConsignmentUsage" />
+    <dataView id="view1" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-20T16:00:12">
+  <page name="ConsignmentUsage" />
+  <container id="container1" />
+  <copy>
+    <page name="ConsignmentUsage" />
+    <dataView id="view1" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-20T16:02:22">
+  <page name="ConsignmentUsage" />
+  <container id="c101" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-20T16:02:27">
+  <page name="ConsignmentUsage" />
+  <dataView id="view3" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-20T16:02:42">
+  <pages />
+  <insert type="page" context="/page/Consignment">
+    <Name>Test</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Title>Test</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-20T16:02:52">
+  <page name="Test" />
+  <insert type="container">
+    <Flow>NewRow</Flow>
+  </insert>
+</c><c y="NodeSet" t="2016-05-20T16:03:03">
+  <page name="Test" />
+  <insert type="container">
+    <Flow>NewRow</Flow>
+  </insert>
+</c><c y="NodeSet" t="2016-05-20T16:03:10">
+  <page name="Test" />
+  <container id="c102" />
+  <update>
+    <Flow>NewColumn</Flow>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:03:16">
+  <page name="Test" />
+  <container id="c101" />
+  <update>
+    <Flow>NewColumn</Flow>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:03:56">
+  <page name="Test" />
+  <container id="c101" />
+  <copy>
+    <page name="ConsignmentUsage" />
+    <dataView id="view1" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-20T16:04:01">
+  <page name="Test" />
+  <container id="c102" />
+  <copy>
+    <page name="ConsignmentUsage" />
+    <dataView id="view1" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-20T16:05:19">
+  <page name="Test" />
+  <dataView id="view1" />
+  <update>
+    <Activator>SideBarTask</Activator>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:05:25">
+  <page name="Test" />
+  <container id="c102" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-20T16:05:35">
+  <page name="Test" />
+  <container id="c101" />
+  <copy>
+    <page name="Test" />
+    <dataView id="view1" />
+  </copy>
+</c><c y="NodeSet" t="2016-05-20T16:06:55">
+  <page name="Test" />
+  <container id="c101" />
+  <update>
+    <Flow>NewRow</Flow>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:07:13">
+  <page name="Test" />
+  <update>
+    <Template>Narrow Jumbotron</Template>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:08:01">
+  <page name="Test" />
+  <update>
+    <Template />
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:08:06">
+  <page name="Test" />
+  <dataView id="view2" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-20T16:08:26">
+  <page name="Test" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-20T16:10:36">
+  <page name="ConsignmentUsage" />
+  <dataView id="view1" />
+  <update>
+    <Tag>view-style-grid, 
+view-style-list-disabled, 
+view-style-charts-disabled</Tag>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:11:49">
+  <page name="ConsignmentUsage" />
+  <dataView id="view1" />
+  <update>
+    <Tag>view-style-grid, 
+view-style-list-disabled, 
+view-style-charts-disabled</Tag>
+    <Activator />
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:12:01">
+  <page name="ConsignmentUsage" />
+  <dataView id="view1" />
+  <update>
+    <Tag>view-style-grid, 
+view-style-list-disabled, 
+view-style-charts-disabled</Tag>
+    <Activator>None</Activator>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:28:15">
+  <page name="ConsignmentUsage" />
+  <dataView id="view1" />
+  <update>
+    <Tag>view-style-grid</Tag>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:49:23">
+  <page name="Consignment" />
+  <update>
+    <Device>Touch UI</Device>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:50:09">
+  <page name="Consignment" />
+  <insert type="container">
+    <Flow>NewRow</Flow>
+  </insert>
+</c><c y="NodeSet" t="2016-05-20T16:51:02">
+  <page name="Consignment" />
+  <move>
+    <page name="ConsignmentStock" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T16:51:09">
+  <page name="ConsignmentUsage" />
+  <move>
+    <page name="ConsignmentStock" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T16:52:25">
+  <page name="ConsignmentUsage" />
+  <move>
+    <page name="ConsignmentStock" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T16:52:29">
+  <page name="ConsignmentUsage" />
+  <before>
+    <page name="ConsignmentStock" />
+  </before>
+</c><c y="NodeSet" t="2016-05-20T16:52:41">
+  <page name="Consignment" />
+  <container id="c101" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-20T16:53:36">
+  <page name="Dashboard" />
+  <dataView id="view1" />
+  <update>
+    <Tag>view-style-grid</Tag>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:53:47">
+  <page name="Dashboard" />
+  <dataView id="view2" />
+  <update>
+    <Tag>view-style-grid</Tag>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:54:02">
+  <page name="ConsignmentStock" />
+  <dataView id="view1" />
+  <update>
+    <Tag>view-style-grid</Tag>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:54:39">
+  <page name="Users" />
+  <move>
+    <page name="Users" />
+    <dataView id="view1" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T16:54:52">
+  <page name="Users" />
+  <container id="container1" />
+  <move>
+    <page name="Users" />
+    <container id="c101" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T16:54:54">
+  <page name="Users" />
+  <container id="c101" />
+  <move>
+    <page name="Users" />
+    <container id="container1" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T16:55:11">
+  <page name="Users" />
+  <dataView id="view1" />
+  <update>
+    <Activator>Tab</Activator>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:55:18">
+  <page name="Users" />
+  <dataView id="view2" />
+  <update>
+    <Activator>Tab</Activator>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T16:56:01">
+  <page name="Users" />
+  <container id="c101" />
+  <update>
+    <CssStyle />
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:07:20">
+  <page name="Users" />
+  <dataView id="view1" />
+  <update>
+    <Text>Users</Text>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:07:36">
+  <page name="Users" />
+  <dataView id="view2" />
+  <update>
+    <Text>Roles</Text>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:08:34">
+  <page name="Users" />
+  <container id="container1" />
+  <move>
+    <page name="Users" />
+    <dataView id="view1" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T17:08:39">
+  <page name="Users" />
+  <container id="c101" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-20T17:08:48">
+  <page name="Users" />
+  <dataView id="view1" />
+  <move>
+    <page name="Users" />
+    <dataView id="view2" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T17:08:58">
+  <page name="Users" />
+  <dataView id="view2" />
+  <update>
+    <Activator>None</Activator>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:10:33">
+  <pages />
+  <insert type="page">
+    <Name>Test</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Path>Test</Path>
+    <Title>Test</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-20T17:10:48">
+  <page name="Test" />
+  <insert type="container">
+    <Flow>NewRow</Flow>
+  </insert>
+</c><c y="NodeSet" t="2016-05-20T17:11:05">
+  <page name="Test" />
+  <container id="c101" />
+  <insert type="dataView">
+    <Controller>Company</Controller>
+    <View>grid1</View>
+    <ShowInSummary>false</ShowInSummary>
+    <ShowActionBar>true</ShowActionBar>
+    <ShowDescription>true</ShowDescription>
+    <ShowViewSelector>true</ShowViewSelector>
+    <ShowSearchBar>true</ShowSearchBar>
+    <ShowQuickFind>true</ShowQuickFind>
+    <SearchByFirstLetter>false</SearchByFirstLetter>
+    <ShowRowNumber>false</ShowRowNumber>
+    <ShowPageSize>true</ShowPageSize>
+    <ShowModalForms>false</ShowModalForms>
+    <SearchOnStart>false</SearchOnStart>
+    <ShowDetailsInListMode>true</ShowDetailsInListMode>
+    <AutoHighlightFirstRow>false</AutoHighlightFirstRow>
+    <AutoSelectFirstRow>false</AutoSelectFirstRow>
+  </insert>
+</c><c y="NodeSet" t="2016-05-20T17:11:26">
+  <page name="Test" />
+  <container id="c101" />
+  <insert type="dataView">
+    <Controller>Company</Controller>
+    <View>grid1</View>
+    <ShowInSummary>false</ShowInSummary>
+    <ShowActionBar>true</ShowActionBar>
+    <ShowDescription>true</ShowDescription>
+    <ShowViewSelector>true</ShowViewSelector>
+    <ShowSearchBar>true</ShowSearchBar>
+    <ShowQuickFind>true</ShowQuickFind>
+    <SearchByFirstLetter>false</SearchByFirstLetter>
+    <ShowRowNumber>false</ShowRowNumber>
+    <ShowPageSize>true</ShowPageSize>
+    <ShowModalForms>false</ShowModalForms>
+    <SearchOnStart>false</SearchOnStart>
+    <ShowDetailsInListMode>true</ShowDetailsInListMode>
+    <AutoHighlightFirstRow>false</AutoHighlightFirstRow>
+    <AutoSelectFirstRow>false</AutoSelectFirstRow>
+  </insert>
+</c><c y="NodeSet" t="2016-05-20T17:11:45">
+  <page name="Test" />
+  <dataView id="view1" />
+  <update>
+    <Activator>Tab</Activator>
+    <Text>Company 1</Text>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:11:57">
+  <page name="Test" />
+  <dataView id="view2" />
+  <update>
+    <Activator>Tab</Activator>
+    <Text>Company 2</Text>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:14:07">
+  <page name="Test" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-20T17:14:39">
+  <page name="Dashboard" />
+  <dataView id="view3" />
+  <move>
+    <page name="Dashboard" />
+    <dataView id="view2" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T17:14:43">
+  <page name="Dashboard" />
+  <container id="container2" />
+  <move>
+    <page name="Dashboard" />
+    <dataView id="view4" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T17:14:48">
+  <page name="Dashboard" />
+  <container id="container2" />
+  <move>
+    <page name="Dashboard" />
+    <dataView id="view4" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T17:14:49">
+  <page name="Dashboard" />
+  <container id="container2" />
+  <move>
+    <page name="Dashboard" />
+    <dataView id="view4" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T17:14:51">
+  <page name="Dashboard" />
+  <dataView id="view2" />
+  <move>
+    <page name="Dashboard" />
+    <dataView id="view4" />
+  </move>
+</c><c y="NodeSet" t="2016-05-20T17:15:35">
+  <page name="Dashboard" />
+  <dataView id="view1" />
+  <update>
+    <Activator>Tab</Activator>
+    <Text>Consignment Stock</Text>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:15:49">
+  <page name="Dashboard" />
+  <dataView id="view2" />
+  <update>
+    <Activator>Tab</Activator>
+    <Text>Consignment Usage</Text>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:23:04">
+  <page name="Dashboard" />
+  <dataView id="view1" />
+  <update>
+    <ShowInSummary>true</ShowInSummary>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:23:35">
+  <page name="Dashboard" />
+  <dataView id="view3" />
+  <update>
+    <ShowInSummary>true</ShowInSummary>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:23:41">
+  <page name="Dashboard" />
+  <dataView id="view2" />
+  <update>
+    <ShowInSummary>true</ShowInSummary>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:23:50">
+  <page name="Dashboard" />
+  <dataView id="view4" />
+  <update>
+    <ShowInSummary>true</ShowInSummary>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:27:21">
+  <page name="Dashboard" />
+  <container id="container2" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-20T17:28:17">
+  <page name="Dashboard" />
+  <dataView id="view1" />
+  <update>
+    <Activator>None</Activator>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:28:23">
+  <page name="Dashboard" />
+  <dataView id="view2" />
+  <update>
+    <Activator>None</Activator>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:32:03">
+  <page name="Dashboard" />
+  <dataView id="view1" />
+  <update>
+    <Activator>Tab</Activator>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:32:11">
+  <page name="Dashboard" />
+  <dataView id="view2" />
+  <update>
+    <Activator>Tab</Activator>
+  </update>
+</c><c y="NodeSet" t="2016-05-20T17:36:25">
+  <page name="Home" />
+  <update>
+    <Roles>*</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-22T17:08:53">
+  <page name="Company" />
+  <update>
+    <Roles>Admins,ITI</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-22T17:09:02">
+  <page name="Customer" />
+  <update>
+    <Roles>Admins,ITI</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-22T17:09:14">
+  <page name="Users" />
+  <update>
+    <Roles>Admins,ITI</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-23T08:35:39">
+  <page name="Dashboard" />
+  <update>
+    <Roles>Consignment Stock,Consignment Usage,Admins</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-23T08:35:53">
+  <page name="Dashboard" />
+  <move>
+    <page name="Consignment" />
+  </move>
+</c><c y="NodeSet" t="2016-05-23T08:35:56">
+  <page name="Dashboard" />
+  <move>
+    <page name="Consignment" />
+  </move>
+</c><c y="NodeSet" t="2016-05-23T08:36:00">
+  <page name="Dashboard" />
+  <before>
+    <page name="Consignment" />
+  </before>
+</c><c y="NodeSet" t="2016-05-23T08:36:19">
+  <page name="Home" />
+  <container id="c101" />
+  <move>
+    <page name="Home" />
+    <container id="c102" />
+  </move>
+</c><c y="NodeSet" t="2016-05-23T08:36:23">
+  <page name="Home" />
+  <container id="c102" />
+  <before>
+    <page name="Home" />
+    <container id="c101" />
+  </before>
+</c><c y="NodeSet" t="2016-05-23T08:36:33">
+  <page name="Home" />
+  <container id="c101" />
+  <before>
+    <page name="Home" />
+    <container id="c102" />
+  </before>
+</c><c y="NodeSet" t="2016-05-23T09:28:54">
+  <pages />
+  <insert type="page" context="/page/Dashboard">
+    <Name>Test</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Title>Test</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-23T09:29:21">
+  <page name="Test" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-23T09:29:55">
+  <page name="Setup" />
+  <move>
+    <page name="Dashboard" />
+    <container id="container1" />
+  </move>
+</c><c y="NodeSet" t="2016-05-23T09:30:18">
+  <pages />
+  <insert type="page" context="/page/Dashboard">
+    <Name>ConsignmentStockr</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Title>Consignment Stock</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-23T09:30:42">
+  <page name="ConsignmentStockr" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-23T09:30:54">
+  <pages />
+  <insert type="page" context="/page/Dashboard">
+    <Name>DashboardConsignmentStock</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Title>Dashboard Consignment Stock</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-23T09:31:01">
+  <page name="DashboardConsignmentStock" />
+  <update>
+    <Title>Consignment Stock</Title>
+  </update>
+</c><c y="NodeSet" t="2016-05-23T09:31:33">
+  <page name="DashboardConsignmentStock" />
+  <update>
+    <Roles>Consignment Stock,Admins</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-23T09:31:42">
+  <page name="DashboardConsignmentStock" />
+  <move>
+    <page name="Setup" />
+    <dataView id="view1" />
+  </move>
+</c><c y="NodeSet" t="2016-05-23T09:32:02">
+  <page name="Setup" />
+  <move>
+    <page name="Setup" />
+    <dataView id="view3" />
+  </move>
+</c><c y="NodeSet" t="2016-05-23T09:32:32">
+  <pages />
+  <insert type="page" context="/page/Dashboard">
+    <Name>DashboardConsignmentUsage</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Title>Dashboard Consignment Usage</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-23T09:32:51">
+  <page name="DashboardConsignmentUsage" />
+  <update>
+    <Title>Consignment Usage</Title>
+    <Roles>Consignment Stock,Admins</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-05-23T09:33:02">
+  <page name="DashboardConsignmentUsage" />
+  <update>
+    <Title>Consignment Usage Dashboard</Title>
+  </update>
+</c><c y="NodeSet" t="2016-05-23T09:33:28">
+  <page name="DashboardConsignmentStock" />
+  <update>
+    <Title>Consignment Stock Dashboard</Title>
+  </update>
+</c><c y="NodeSet" t="2016-05-23T09:33:33">
+  <page name="DashboardConsignmentUsage" />
+  <move>
+    <page name="Setup" />
+    <container id="container1" />
+  </move>
+</c><c y="NodeSet" t="2016-05-23T09:33:51">
+  <page name="DashboardConsignmentStock" />
+  <dataView id="view1" />
+  <move>
+    <page name="Setup" />
+    <dataView id="view3" />
+  </move>
+</c><c y="NodeSet" t="2016-05-23T09:34:02">
+  <page name="Setup" />
+  <container id="c101" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-23T09:37:00">
+  <page name="DashboardConsignmentStock" />
+  <update>
+    <Title>Consignment Stock</Title>
+  </update>
+</c><c y="NodeSet" t="2016-05-23T09:37:08">
+  <page name="DashboardConsignmentUsage" />
+  <update>
+    <Title>Consignment Usage</Title>
+  </update>
+</c><c y="NodeSet" t="2016-05-24T09:10:11">
+  <pages />
+  <insert type="page">
+    <Name>Me</Name>
+    <Generate>Always</Generate>
+    <UseExtenders>false</UseExtenders>
+    <Path>Me</Path>
+    <Title>Me</Title>
+    <Roles>*</Roles>
+  </insert>
+</c><c y="NodeSet" t="2016-05-24T09:10:14">
+  <page name="Me" />
+  <copyRef type="controller">
+    <Controller>Me</Controller>
+  </copyRef>
+</c><c y="NodeSet" t="2016-05-24T09:19:51">
+  <page name="Me" />
+  <rename>My Details</rename>
+</c><c y="NodeSet" t="2016-05-25T13:37:29">
+  <page name="TConsignmentUsage" />
+  <delete />
+</c><c y="NodeSet" t="2016-05-29T16:29:12">
+  <page name="Consignment" />
+  <move>
+    <page name="ConsignmentPurchaseOrder" />
+  </move>
+</c><c y="NodeSet" t="2016-05-29T16:35:03">
+  <page name="ConsignmentPurchaseOrder" />
+  <copyRef type="controller">
+    <Controller>ConsignmentUsage</Controller>
+  </copyRef>
+</c><c y="NodeSet" t="2016-05-29T16:35:45">
+  <page name="ConsignmentPurchaseOrder" />
+  <dataView id="view1" />
+  <moveRef type="controller">
+    <Controller>ConsignmentUsage</Controller>
+    <View>gridSent</View>
+    <DataField>ConsignmentPurchaseOrderID</DataField>
+  </moveRef>
+</c><c y="NodeSet" t="2016-05-29T16:36:38">
+  <page name="ConsignmentPurchaseOrder" />
+  <dataView id="view2" />
+  <update>
+    <Activator>Tab</Activator>
+    <Text>Packs Consumed</Text>
+  </update>
+</c><c y="NodeSet" t="2016-05-29T16:39:17">
+  <page name="ConsignmentPurchaseOrder" />
+  <update>
+    <UseExtenders>false</UseExtenders>
+    <Roles>Consignment Usage</Roles>
+  </update>
+</c><c y="NodeSet" t="2016-06-03T08:48:14">
+  <page name="ConsignmentStock" />
+  <update>
+    <Template>Three Columns</Template>
+  </update>
+</c><c y="NodeSet" t="2016-06-03T08:50:18">
+  <page name="ConsignmentStock" />
+  <update>
+    <Template />
+  </update>
+</c><c y="NodeSet" t="2016-09-08T18:58:02">
+  <page name="DocumentType" />
+  <delete />
+</c><c y="NodeSet" t="2016-09-08T18:58:06">
+  <page name="Document" />
+  <delete />
+</c></log>
