@@ -58,10 +58,10 @@ from "dbo"."tConsignmentPurchaseOrder" "tConsignmentPurchaseOrder"
         </category>
         <category headerText="Modified" id="c2" newColumn="true">
           <dataFields>
-            <dataField fieldName="CreatedBy" columns="50" />
-            <dataField fieldName="CreatedOn" columns="20" />
             <dataField fieldName="ModifiedBy" columns="50" />
             <dataField fieldName="ModifiedOn" columns="20" />
+            <dataField fieldName="CreatedBy" columns="50" />
+            <dataField fieldName="CreatedOn" columns="20" />
           </dataFields>
         </category>
       </categories>

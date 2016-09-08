@@ -47,12 +47,12 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
     <field name="CustomerID" type="Int32" allowNulls="false" label="Customer ID" showInSummary="true" />
     <field name="PacketNo" type="String" label="Packet No" length="50" showInSummary="true" causesCalculate="true" />
     <field name="ConsumedOn" type="DateTime" allowNulls="false" label="Consumed On" showInSummary="true" />
-    <field name="Price" type="Decimal" dataFormatString="c" label="Price" roles="Consignment Pricing" />
-    <field name="PriceUom" type="String" label="Price Uom" length="50" />
-    <field name="Pieces" type="Int32" label="Pieces" />
     <field name="Cube" type="Decimal" label="Cube" />
     <field name="Area" type="Decimal" label="Area" />
     <field name="Lineal" type="Decimal" label="Lineal" />
+    <field name="Price" type="Decimal" dataFormatString="c" label="Price" roles="Consignment Pricing" />
+    <field name="PriceUom" type="String" label="Price Uom" length="50" />
+    <field name="Pieces" type="Int32" label="Pieces" />
     <field name="SentOn" type="DateTime" dataFormatString="g" label="Sent On" />
     <field name="CreatedBy" type="String" label="Created By" length="50" showInSummary="true" />
     <field name="CreatedOn" type="DateTime" dataFormatString="g" label="Created On" />
@@ -88,15 +88,15 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
         <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count" />
         <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100" />
         <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-columnstacked-date" />
-        <dataField fieldName="InStock" />
-        <dataField fieldName="Errors" />
         <dataField fieldName="SentOn" columns="20" />
+        <dataField fieldName="Errors" />
+        <dataField fieldName="InStock" />
         <dataField fieldName="Pieces" columns="15" />
         <dataField fieldName="Cube" columns="15" />
         <dataField fieldName="Area" columns="15" />
         <dataField fieldName="Lineal" columns="15" />
-        <dataField fieldName="Price" columns="15" />
         <dataField fieldName="PriceUom" columns="50" />
+        <dataField fieldName="Price" columns="15" />
         <dataField fieldName="ProductCategoryCode" columns="50" hidden="true" />
         <dataField fieldName="ProductCategoryName" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
         <dataField fieldName="ProductWidth" columns="15" />
@@ -108,37 +108,37 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
     </view>
     <view id="gridSent" commandId="command1" type="Grid" label="Usage Sent" filter="NOT SentOn IS NULL" sortExpression="ConsignmentUsageID desc" reportTemplate="true">
       <dataFields>
-        <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count" />
+        <dataField fieldName="ProductCategoryCode" columns="50" tag="pivot1-col1" hidden="true" />
+        <dataField fieldName="ProductCategoryName" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
+        <dataField fieldName="ProductWidth" columns="15" />
+        <dataField fieldName="ProductLength" columns="15" />
+        <dataField fieldName="ProductThickness" columns="15" />
         <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100" />
+        <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count" />
         <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-columnstacked-date" />
         <dataField fieldName="Price" columns="15" />
         <dataField fieldName="PriceUom" columns="50" />
         <dataField fieldName="ConsignmentPurchaseOrderID" columns="15" />
         <dataField fieldName="ConsignmentPurchaseOrderCustomerRef" columns="50" />
         <dataField fieldName="SentOn" columns="20" />
-        <dataField fieldName="Pieces" columns="15" />
         <dataField fieldName="Cube" columns="15" />
         <dataField fieldName="Area" columns="15" />
         <dataField fieldName="Lineal" columns="15" />
-        <dataField fieldName="ProductCategoryCode" columns="50" tag="pivot1-col1" hidden="true" />
-        <dataField fieldName="ProductCategoryName" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
-        <dataField fieldName="ProductWidth" columns="15" />
-        <dataField fieldName="ProductThickness" columns="15" />
-        <dataField fieldName="ProductLength" columns="15" />
+        <dataField fieldName="Pieces" columns="15" />
       </dataFields>
     </view>
     <view id="gridErrors" commandId="command1" type="Grid" label="Usage Errors" filter="NOT Errors IS NULL" sortExpression="ConsignmentUsageID desc" reportTemplate="true">
       <dataFields>
-        <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count" />
-        <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100" />
-        <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-column-date" />
-        <dataField fieldName="InStock" />
-        <dataField fieldName="Errors" />
-        <dataField fieldName="SentOn" columns="20" />
         <dataField fieldName="ProductCategoryCode" columns="50" />
+        <dataField fieldName="SentOn" columns="20" />
         <dataField fieldName="ProductWidth" columns="15" />
-        <dataField fieldName="ProductThickness" columns="15" />
         <dataField fieldName="ProductLength" columns="15" />
+        <dataField fieldName="ProductThickness" columns="15" />
+        <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100" />
+        <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count" />
+        <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-column-date" />
+        <dataField fieldName="Errors" />
+        <dataField fieldName="InStock" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Consignment Usage">
@@ -154,16 +154,16 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
         </category>
         <category headerText="Measures" id="c4">
           <dataFields>
-            <dataField fieldName="Pieces" columns="15" />
-            <dataField fieldName="Cube" columns="15" />
             <dataField fieldName="Area" columns="15" />
             <dataField fieldName="Lineal" columns="15" />
+            <dataField fieldName="Pieces" columns="15" />
+            <dataField fieldName="Cube" columns="15" />
           </dataFields>
         </category>
         <category headerText="Pricing" id="c5" newColumn="true">
           <dataFields>
-            <dataField fieldName="Price" columns="15" />
             <dataField fieldName="PriceUom" columns="50" />
+            <dataField fieldName="Price" columns="15" />
           </dataFields>
         </category>
         <category headerText="Stock Status" id="c3">
@@ -209,8 +209,8 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
             <dataField fieldName="ProductThickness" columns="15" />
             <dataField fieldName="ProductLength" columns="15" />
             <dataField fieldName="ProductCategoryName" />
-            <dataField fieldName="InStock" hidden="true" />
             <dataField fieldName="Errors" rows="5" hidden="true" />
+            <dataField fieldName="InStock" hidden="true" />
           </dataFields>
         </category>
         <category headerText="Last Entered" id="c3" collapsed="true" newColumn="true">
@@ -233,10 +233,10 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
     </actionGroup>
     <actionGroup id="ag2" scope="Form">
       <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
       <action id="a2" commandName="Delete" />
       <action id="a3" commandName="Cancel" />
       <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
-      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
       <action commandName="Insert" commandArgument="CANCEL" headerText="Close" whenLastCommandName="New" id="a100" />
     </actionGroup>
     <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">

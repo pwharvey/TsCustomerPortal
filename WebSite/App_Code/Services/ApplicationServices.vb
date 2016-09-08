@@ -709,7 +709,7 @@ Namespace TimberSmart.Services
         
         Public Overridable ReadOnly Property Name() As String
             Get
-                Return "Ts Customer Portal New Version"
+                Return "Ts Customer Portal"
             End Get
         End Property
         

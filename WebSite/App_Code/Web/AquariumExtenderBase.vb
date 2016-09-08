@@ -216,11 +216,11 @@ Namespace TimberSmart.Web
                 End If
                 p.ClientScript.RegisterStartupScript(GetType(AquariumExtenderBase), "TargetFramework", String.Format("var __targetFramework=""4.6"",__tf=4.0,__servicePath=""{0}"",__baseUrl=""{1}"",__design"& _ 
                             "erPort=""{2}"";", p.ResolveClientUrl(AquariumExtenderBase.DefaultServicePath), p.ResolveClientUrl("~"), ApplicationServices.DesignerPort), true)
-                p.ClientScript.RegisterStartupScript(GetType(AquariumExtenderBase), "TouchUI", String.Format("var __settings={{appInfo:""TsCustomerPortalNewVersion|{0}"",mobileDisplayDensity:""A"& _ 
-                            "uto"",desktopDisplayDensity:""Condensed"",mapApiIdentifier:"""",labelsInList:""Display"& _ 
-                            "edBelow"",labelsInForm:""AlignedLeft"",initialListMode:""SeeAll"",buttonShapes:true,s"& _ 
-                            "idebar:""Landscape"",promoteActions:true,transitions:"""",theme:""Aquarium"",maxPivotR"& _ 
-                            "owCount: {1},help:true,ui:""TouchUI""{2}}};", BusinessRules.JavaScriptString(HttpContext.Current.User.Identity.Name), ApplicationServices.Create().MaxPivotRowCount, siteContent), true)
+                p.ClientScript.RegisterStartupScript(GetType(AquariumExtenderBase), "TouchUI", String.Format("var __settings={{appInfo:""TsCustomerPortal|{0}"",mobileDisplayDensity:""Auto"",deskt"& _ 
+                            "opDisplayDensity:""Condensed"",mapApiIdentifier:"""",labelsInList:""DisplayedBelow"",l"& _ 
+                            "abelsInForm:""AlignedLeft"",initialListMode:""SeeAll"",buttonShapes:true,sidebar:""La"& _ 
+                            "ndscape"",promoteActions:true,transitions:"""",theme:""Aquarium"",maxPivotRowCount: {"& _ 
+                            "1},help:true,ui:""TouchUI""{2}}};", BusinessRules.JavaScriptString(HttpContext.Current.User.Identity.Name), ApplicationServices.Create().MaxPivotRowCount, siteContent), true)
             End If
         End Sub
         

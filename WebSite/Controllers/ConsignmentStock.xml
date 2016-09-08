@@ -104,17 +104,17 @@ from "dbo"."tConsignmentStock" "tConsignmentStock"
         </category>
         <category headerText="Measures" id="c2" newColumn="true">
           <dataFields>
-            <dataField fieldName="Pieces" columns="15" />
-            <dataField fieldName="Cube" columns="15" />
             <dataField fieldName="Area" columns="15" />
             <dataField fieldName="Lineal" columns="15" />
+            <dataField fieldName="Pieces" columns="15" />
+            <dataField fieldName="Cube" columns="15" />
           </dataFields>
         </category>
         <category headerText="Dimensions" id="c4">
           <dataFields>
-            <dataField fieldName="ProductWidth" columns="15" />
-            <dataField fieldName="ProductThickness" columns="15" />
             <dataField fieldName="ProductLength" columns="15" />
+            <dataField fieldName="ProductThickness" columns="15" />
+            <dataField fieldName="ProductWidth" columns="15" />
           </dataFields>
         </category>
         <category headerText="Codes" id="c3">
