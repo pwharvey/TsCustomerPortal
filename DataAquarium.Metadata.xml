@@ -109,8 +109,8 @@
       <DataSourceInformation>
         <CompositeIdentifierSeparatorPattern>\.</CompositeIdentifierSeparatorPattern>
         <DataSourceProductName>Microsoft SQL Server</DataSourceProductName>
-        <DataSourceProductVersion>12.00.5000</DataSourceProductVersion>
-        <DataSourceProductVersionNormalized>12.00.5000</DataSourceProductVersionNormalized>
+        <DataSourceProductVersion>10.50.1600</DataSourceProductVersion>
+        <DataSourceProductVersionNormalized>10.50.1600</DataSourceProductVersionNormalized>
         <GroupByBehavior>2</GroupByBehavior>
         <IdentifierPattern>(^\[\p{Lo}\p{Lu}\p{Ll}_@#][\p{Lo}\p{Lu}\p{Ll}\p{Nd}@$#_]*$)|(^\[[^\]\0]|\]\]+\]$)|(^\"[^\"\0]|\"\"+\"$)</IdentifierPattern>
         <IdentifierCase>1</IdentifierCase>
@@ -703,7 +703,7 @@
         <LiteralSuffix>'}</LiteralSuffix>
       </DataTypes>
       <DataTypes>
-        <TypeName>Microsoft.SqlServer.Types.SqlHierarchyId, Microsoft.SqlServer.Types, Version=12.0.0.0, PublicKeyToken=89845dcd8080cc91</TypeName>
+        <TypeName>Microsoft.SqlServer.Types.SqlHierarchyId, Microsoft.SqlServer.Types, Version=10.0.0.0, PublicKeyToken=89845dcd8080cc91</TypeName>
         <ProviderDbType>29</ProviderDbType>
         <ColumnSize>892</ColumnSize>
         <IsFixedLength>false</IsFixedLength>
@@ -712,7 +712,7 @@
         <IsLiteralSupported>false</IsLiteralSupported>
       </DataTypes>
       <DataTypes>
-        <TypeName>Microsoft.SqlServer.Types.SqlGeometry, Microsoft.SqlServer.Types, Version=12.0.0.0, PublicKeyToken=89845dcd8080cc91</TypeName>
+        <TypeName>Microsoft.SqlServer.Types.SqlGeometry, Microsoft.SqlServer.Types, Version=10.0.0.0, PublicKeyToken=89845dcd8080cc91</TypeName>
         <ProviderDbType>29</ProviderDbType>
         <ColumnSize>-1</ColumnSize>
         <IsFixedLength>false</IsFixedLength>
@@ -721,7 +721,7 @@
         <IsLiteralSupported>false</IsLiteralSupported>
       </DataTypes>
       <DataTypes>
-        <TypeName>Microsoft.SqlServer.Types.SqlGeography, Microsoft.SqlServer.Types, Version=12.0.0.0, PublicKeyToken=89845dcd8080cc91</TypeName>
+        <TypeName>Microsoft.SqlServer.Types.SqlGeography, Microsoft.SqlServer.Types, Version=10.0.0.0, PublicKeyToken=89845dcd8080cc91</TypeName>
         <ProviderDbType>29</ProviderDbType>
         <ColumnSize>-1</ColumnSize>
         <IsFixedLength>false</IsFixedLength>
@@ -2328,13 +2328,19 @@
       <Tables>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
         <TABLE_TYPE>BASE TABLE</TABLE_TYPE>
       </Tables>
       <Tables>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <TABLE_TYPE>BASE TABLE</TABLE_TYPE>
+      </Tables>
+      <Tables>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
         <TABLE_TYPE>BASE TABLE</TABLE_TYPE>
       </Tables>
       <Tables>
@@ -2352,13 +2358,13 @@
       <Tables>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>Roles</TABLE_NAME>
+        <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
         <TABLE_TYPE>BASE TABLE</TABLE_TYPE>
       </Tables>
       <Tables>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
+        <TABLE_NAME>Roles</TABLE_NAME>
         <TABLE_TYPE>BASE TABLE</TABLE_TYPE>
       </Tables>
     </DocumentElement>
@@ -2515,6 +2521,36 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>ConsignmentPurchaseOrderID</COLUMN_NAME>
+        <ORDINAL_POSITION>1</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>CustomerID</COLUMN_NAME>
+        <ORDINAL_POSITION>2</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
         <COLUMN_NAME>SentOn</COLUMN_NAME>
         <ORDINAL_POSITION>4</ORDINAL_POSITION>
         <IS_NULLABLE>NO</IS_NULLABLE>
@@ -2576,36 +2612,6 @@
         <IS_NULLABLE>NO</IS_NULLABLE>
         <DATA_TYPE>datetime</DATA_TYPE>
         <DATETIME_PRECISION>3</DATETIME_PRECISION>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>ConsignmentPurchaseOrderID</COLUMN_NAME>
-        <ORDINAL_POSITION>1</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>CustomerID</COLUMN_NAME>
-        <ORDINAL_POSITION>2</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
         <IS_SPARSE>false</IS_SPARSE>
         <IS_COLUMN_SET>false</IS_COLUMN_SET>
         <IS_FILESTREAM>false</IS_FILESTREAM>
@@ -2811,6 +2817,19 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
+        <COLUMN_NAME>ConsumedOn</COLUMN_NAME>
+        <ORDINAL_POSITION>5</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>date</DATA_TYPE>
+        <DATETIME_PRECISION>0</DATETIME_PRECISION>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
         <COLUMN_NAME>ConsignmentUsageID</COLUMN_NAME>
         <ORDINAL_POSITION>1</ORDINAL_POSITION>
         <IS_NULLABLE>NO</IS_NULLABLE>
@@ -2856,11 +2875,13 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
-        <COLUMN_NAME>ConsumedOn</COLUMN_NAME>
-        <ORDINAL_POSITION>5</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>date</DATA_TYPE>
-        <DATETIME_PRECISION>0</DATETIME_PRECISION>
+        <COLUMN_NAME>ProductID</COLUMN_NAME>
+        <ORDINAL_POSITION>4</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
         <IS_SPARSE>false</IS_SPARSE>
         <IS_COLUMN_SET>false</IS_COLUMN_SET>
         <IS_FILESTREAM>false</IS_FILESTREAM>
@@ -3070,21 +3091,6 @@
       <Columns>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
-        <COLUMN_NAME>ProductID</COLUMN_NAME>
-        <ORDINAL_POSITION>4</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tCustomer</TABLE_NAME>
         <COLUMN_NAME>CustomerID</COLUMN_NAME>
         <ORDINAL_POSITION>1</ORDINAL_POSITION>
@@ -3228,6 +3234,19 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>DocumentDate</COLUMN_NAME>
+        <ORDINAL_POSITION>7</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>date</DATA_TYPE>
+        <DATETIME_PRECISION>0</DATETIME_PRECISION>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
         <COLUMN_NAME>DocumentID</COLUMN_NAME>
         <ORDINAL_POSITION>1</ORDINAL_POSITION>
         <IS_NULLABLE>NO</IS_NULLABLE>
@@ -3273,11 +3292,43 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>DocumentDate</COLUMN_NAME>
-        <ORDINAL_POSITION>7</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>date</DATA_TYPE>
-        <DATETIME_PRECISION>0</DATETIME_PRECISION>
+        <COLUMN_NAME>SourceID</COLUMN_NAME>
+        <ORDINAL_POSITION>4</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>SourceReference</COLUMN_NAME>
+        <ORDINAL_POSITION>5</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>DocumentReference</COLUMN_NAME>
+        <ORDINAL_POSITION>6</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
         <IS_SPARSE>false</IS_SPARSE>
         <IS_COLUMN_SET>false</IS_COLUMN_SET>
         <IS_FILESTREAM>false</IS_FILESTREAM>
@@ -3337,51 +3388,6 @@
         <DATA_TYPE>nvarchar</DATA_TYPE>
         <CHARACTER_MAXIMUM_LENGTH>-1</CHARACTER_MAXIMUM_LENGTH>
         <CHARACTER_OCTET_LENGTH>-1</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>SourceID</COLUMN_NAME>
-        <ORDINAL_POSITION>4</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>SourceReference</COLUMN_NAME>
-        <ORDINAL_POSITION>5</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>DocumentReference</COLUMN_NAME>
-        <ORDINAL_POSITION>6</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
         <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
         <IS_SPARSE>false</IS_SPARSE>
         <IS_COLUMN_SET>false</IS_COLUMN_SET>
@@ -3621,6 +3627,64 @@
         <NUMERIC_PRECISION>18</NUMERIC_PRECISION>
         <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
         <NUMERIC_SCALE>3</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>SupplierUsageID</COLUMN_NAME>
+        <ORDINAL_POSITION>1</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>CustomerID</COLUMN_NAME>
+        <ORDINAL_POSITION>2</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>PacketNo</COLUMN_NAME>
+        <ORDINAL_POSITION>3</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>UsagePostedOn</COLUMN_NAME>
+        <ORDINAL_POSITION>4</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>datetime</DATA_TYPE>
+        <DATETIME_PRECISION>3</DATETIME_PRECISION>
         <IS_SPARSE>false</IS_SPARSE>
         <IS_COLUMN_SET>false</IS_COLUMN_SET>
         <IS_FILESTREAM>false</IS_FILESTREAM>
@@ -4353,6 +4417,36 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>ConsignmentPurchaseOrderID</COLUMN_NAME>
+        <ORDINAL_POSITION>1</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </AllColumns>
+      <AllColumns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>CustomerID</COLUMN_NAME>
+        <ORDINAL_POSITION>2</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </AllColumns>
+      <AllColumns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
         <COLUMN_NAME>SentOn</COLUMN_NAME>
         <ORDINAL_POSITION>4</ORDINAL_POSITION>
         <IS_NULLABLE>NO</IS_NULLABLE>
@@ -4414,36 +4508,6 @@
         <IS_NULLABLE>NO</IS_NULLABLE>
         <DATA_TYPE>datetime</DATA_TYPE>
         <DATETIME_PRECISION>3</DATETIME_PRECISION>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </AllColumns>
-      <AllColumns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>ConsignmentPurchaseOrderID</COLUMN_NAME>
-        <ORDINAL_POSITION>1</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </AllColumns>
-      <AllColumns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>CustomerID</COLUMN_NAME>
-        <ORDINAL_POSITION>2</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
         <IS_SPARSE>false</IS_SPARSE>
         <IS_COLUMN_SET>false</IS_COLUMN_SET>
         <IS_FILESTREAM>false</IS_FILESTREAM>
@@ -4649,6 +4713,19 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
+        <COLUMN_NAME>ConsumedOn</COLUMN_NAME>
+        <ORDINAL_POSITION>5</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>date</DATA_TYPE>
+        <DATETIME_PRECISION>0</DATETIME_PRECISION>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </AllColumns>
+      <AllColumns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
         <COLUMN_NAME>ConsignmentUsageID</COLUMN_NAME>
         <ORDINAL_POSITION>1</ORDINAL_POSITION>
         <IS_NULLABLE>NO</IS_NULLABLE>
@@ -4694,11 +4771,13 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
-        <COLUMN_NAME>ConsumedOn</COLUMN_NAME>
-        <ORDINAL_POSITION>5</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>date</DATA_TYPE>
-        <DATETIME_PRECISION>0</DATETIME_PRECISION>
+        <COLUMN_NAME>ProductID</COLUMN_NAME>
+        <ORDINAL_POSITION>4</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
         <IS_SPARSE>false</IS_SPARSE>
         <IS_COLUMN_SET>false</IS_COLUMN_SET>
         <IS_FILESTREAM>false</IS_FILESTREAM>
@@ -4908,21 +4987,6 @@
       <AllColumns>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
-        <COLUMN_NAME>ProductID</COLUMN_NAME>
-        <ORDINAL_POSITION>4</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </AllColumns>
-      <AllColumns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tCustomer</TABLE_NAME>
         <COLUMN_NAME>CustomerID</COLUMN_NAME>
         <ORDINAL_POSITION>1</ORDINAL_POSITION>
@@ -5066,6 +5130,19 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>DocumentDate</COLUMN_NAME>
+        <ORDINAL_POSITION>7</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>date</DATA_TYPE>
+        <DATETIME_PRECISION>0</DATETIME_PRECISION>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </AllColumns>
+      <AllColumns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
         <COLUMN_NAME>DocumentID</COLUMN_NAME>
         <ORDINAL_POSITION>1</ORDINAL_POSITION>
         <IS_NULLABLE>NO</IS_NULLABLE>
@@ -5111,11 +5188,43 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>DocumentDate</COLUMN_NAME>
-        <ORDINAL_POSITION>7</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>date</DATA_TYPE>
-        <DATETIME_PRECISION>0</DATETIME_PRECISION>
+        <COLUMN_NAME>SourceID</COLUMN_NAME>
+        <ORDINAL_POSITION>4</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </AllColumns>
+      <AllColumns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>SourceReference</COLUMN_NAME>
+        <ORDINAL_POSITION>5</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </AllColumns>
+      <AllColumns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>DocumentReference</COLUMN_NAME>
+        <ORDINAL_POSITION>6</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
         <IS_SPARSE>false</IS_SPARSE>
         <IS_COLUMN_SET>false</IS_COLUMN_SET>
         <IS_FILESTREAM>false</IS_FILESTREAM>
@@ -5175,51 +5284,6 @@
         <DATA_TYPE>nvarchar</DATA_TYPE>
         <CHARACTER_MAXIMUM_LENGTH>-1</CHARACTER_MAXIMUM_LENGTH>
         <CHARACTER_OCTET_LENGTH>-1</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </AllColumns>
-      <AllColumns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>SourceID</COLUMN_NAME>
-        <ORDINAL_POSITION>4</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </AllColumns>
-      <AllColumns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>SourceReference</COLUMN_NAME>
-        <ORDINAL_POSITION>5</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <IS_SPARSE>false</IS_SPARSE>
-        <IS_COLUMN_SET>false</IS_COLUMN_SET>
-        <IS_FILESTREAM>false</IS_FILESTREAM>
-      </AllColumns>
-      <AllColumns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>DocumentReference</COLUMN_NAME>
-        <ORDINAL_POSITION>6</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
         <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
         <IS_SPARSE>false</IS_SPARSE>
         <IS_COLUMN_SET>false</IS_COLUMN_SET>
@@ -5459,6 +5523,64 @@
         <NUMERIC_PRECISION>18</NUMERIC_PRECISION>
         <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
         <NUMERIC_SCALE>3</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </AllColumns>
+      <AllColumns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>SupplierUsageID</COLUMN_NAME>
+        <ORDINAL_POSITION>1</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </AllColumns>
+      <AllColumns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>CustomerID</COLUMN_NAME>
+        <ORDINAL_POSITION>2</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </AllColumns>
+      <AllColumns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>PacketNo</COLUMN_NAME>
+        <ORDINAL_POSITION>3</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <IS_SPARSE>false</IS_SPARSE>
+        <IS_COLUMN_SET>false</IS_COLUMN_SET>
+        <IS_FILESTREAM>false</IS_FILESTREAM>
+      </AllColumns>
+      <AllColumns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>UsagePostedOn</COLUMN_NAME>
+        <ORDINAL_POSITION>4</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>datetime</DATA_TYPE>
+        <DATETIME_PRECISION>3</DATETIME_PRECISION>
         <IS_SPARSE>false</IS_SPARSE>
         <IS_COLUMN_SET>false</IS_COLUMN_SET>
         <IS_FILESTREAM>false</IS_FILESTREAM>
@@ -6126,34 +6248,7 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tProduct</TABLE_NAME>
-        <COLUMN_NAME>Length</COLUMN_NAME>
-      </ViewColumns>
-      <ViewColumns>
-        <VIEW_CATALOG>TimberSmartWebPortal</VIEW_CATALOG>
-        <VIEW_SCHEMA>dbo</VIEW_SCHEMA>
-        <VIEW_NAME>vConsignmentUsageDashboard</VIEW_NAME>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tProduct</TABLE_NAME>
-        <COLUMN_NAME>Thickness</COLUMN_NAME>
-      </ViewColumns>
-      <ViewColumns>
-        <VIEW_CATALOG>TimberSmartWebPortal</VIEW_CATALOG>
-        <VIEW_SCHEMA>dbo</VIEW_SCHEMA>
-        <VIEW_NAME>vConsignmentUsageDashboard</VIEW_NAME>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tProduct</TABLE_NAME>
-        <COLUMN_NAME>Width</COLUMN_NAME>
-      </ViewColumns>
-      <ViewColumns>
-        <VIEW_CATALOG>TimberSmartWebPortal</VIEW_CATALOG>
-        <VIEW_SCHEMA>dbo</VIEW_SCHEMA>
-        <VIEW_NAME>vConsignmentUsageDashboard</VIEW_NAME>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tProduct</TABLE_NAME>
-        <COLUMN_NAME>CategoryName</COLUMN_NAME>
+        <COLUMN_NAME>ProductID</COLUMN_NAME>
       </ViewColumns>
       <ViewColumns>
         <VIEW_CATALOG>TimberSmartWebPortal</VIEW_CATALOG>
@@ -6171,7 +6266,34 @@
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tProduct</TABLE_NAME>
-        <COLUMN_NAME>ProductID</COLUMN_NAME>
+        <COLUMN_NAME>CategoryName</COLUMN_NAME>
+      </ViewColumns>
+      <ViewColumns>
+        <VIEW_CATALOG>TimberSmartWebPortal</VIEW_CATALOG>
+        <VIEW_SCHEMA>dbo</VIEW_SCHEMA>
+        <VIEW_NAME>vConsignmentUsageDashboard</VIEW_NAME>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tProduct</TABLE_NAME>
+        <COLUMN_NAME>Width</COLUMN_NAME>
+      </ViewColumns>
+      <ViewColumns>
+        <VIEW_CATALOG>TimberSmartWebPortal</VIEW_CATALOG>
+        <VIEW_SCHEMA>dbo</VIEW_SCHEMA>
+        <VIEW_NAME>vConsignmentUsageDashboard</VIEW_NAME>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tProduct</TABLE_NAME>
+        <COLUMN_NAME>Thickness</COLUMN_NAME>
+      </ViewColumns>
+      <ViewColumns>
+        <VIEW_CATALOG>TimberSmartWebPortal</VIEW_CATALOG>
+        <VIEW_SCHEMA>dbo</VIEW_SCHEMA>
+        <VIEW_NAME>vConsignmentUsageDashboard</VIEW_NAME>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tProduct</TABLE_NAME>
+        <COLUMN_NAME>Length</COLUMN_NAME>
       </ViewColumns>
     </DocumentElement>
   </ViewColumnsCollection>
@@ -6365,14 +6487,38 @@
       <IndexColumns>
         <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
         <constraint_schema>dbo</constraint_schema>
-        <constraint_name>PK_Customer</constraint_name>
+        <constraint_name>idxCustomer</constraint_name>
         <table_catalog>TimberSmartWebPortal</table_catalog>
         <table_schema>dbo</table_schema>
         <table_name>tCustomer</table_name>
         <column_name>CustomerID</column_name>
         <ordinal_position>1</ordinal_position>
         <KeyType>56</KeyType>
-        <index_name>PK_Customer</index_name>
+        <index_name>idxCustomer</index_name>
+      </IndexColumns>
+      <IndexColumns>
+        <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
+        <constraint_schema>dbo</constraint_schema>
+        <constraint_name>idxCustomer_CompanyCustomer</constraint_name>
+        <table_catalog>TimberSmartWebPortal</table_catalog>
+        <table_schema>dbo</table_schema>
+        <table_name>tCustomer</table_name>
+        <column_name>CompanyID</column_name>
+        <ordinal_position>1</ordinal_position>
+        <KeyType>56</KeyType>
+        <index_name>idxCustomer_CompanyCustomer</index_name>
+      </IndexColumns>
+      <IndexColumns>
+        <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
+        <constraint_schema>dbo</constraint_schema>
+        <constraint_name>idxCustomer_CompanyCustomer</constraint_name>
+        <table_catalog>TimberSmartWebPortal</table_catalog>
+        <table_schema>dbo</table_schema>
+        <table_name>tCustomer</table_name>
+        <column_name>CustomerCode</column_name>
+        <ordinal_position>2</ordinal_position>
+        <KeyType>231</KeyType>
+        <index_name>idxCustomer_CompanyCustomer</index_name>
       </IndexColumns>
       <IndexColumns>
         <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
@@ -6385,18 +6531,6 @@
         <ordinal_position>1</ordinal_position>
         <KeyType>56</KeyType>
         <index_name>PK_tDocument</index_name>
-      </IndexColumns>
-      <IndexColumns>
-        <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
-        <constraint_schema>dbo</constraint_schema>
-        <constraint_name>IX_tDocumentTypeUnique</constraint_name>
-        <table_catalog>TimberSmartWebPortal</table_catalog>
-        <table_schema>dbo</table_schema>
-        <table_name>tDocumentType</table_name>
-        <column_name>DocumentTypeName</column_name>
-        <ordinal_position>1</ordinal_position>
-        <KeyType>231</KeyType>
-        <index_name>IX_tDocumentTypeUnique</index_name>
       </IndexColumns>
       <IndexColumns>
         <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
@@ -6433,6 +6567,42 @@
         <ordinal_position>1</ordinal_position>
         <KeyType>56</KeyType>
         <index_name>PK_Product</index_name>
+      </IndexColumns>
+      <IndexColumns>
+        <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
+        <constraint_schema>dbo</constraint_schema>
+        <constraint_name>idxSupplierUsage</constraint_name>
+        <table_catalog>TimberSmartWebPortal</table_catalog>
+        <table_schema>dbo</table_schema>
+        <table_name>tSupplierUsage</table_name>
+        <column_name>SupplierUsageID</column_name>
+        <ordinal_position>1</ordinal_position>
+        <KeyType>56</KeyType>
+        <index_name>idxSupplierUsage</index_name>
+      </IndexColumns>
+      <IndexColumns>
+        <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
+        <constraint_schema>dbo</constraint_schema>
+        <constraint_name>idxSupplierUsage_CustomerID</constraint_name>
+        <table_catalog>TimberSmartWebPortal</table_catalog>
+        <table_schema>dbo</table_schema>
+        <table_name>tSupplierUsage</table_name>
+        <column_name>CustomerID</column_name>
+        <ordinal_position>1</ordinal_position>
+        <KeyType>56</KeyType>
+        <index_name>idxSupplierUsage_CustomerID</index_name>
+      </IndexColumns>
+      <IndexColumns>
+        <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
+        <constraint_schema>dbo</constraint_schema>
+        <constraint_name>idxSupplierUsage_PacketNo</constraint_name>
+        <table_catalog>TimberSmartWebPortal</table_catalog>
+        <table_schema>dbo</table_schema>
+        <table_name>tSupplierUsage</table_name>
+        <column_name>PacketNo</column_name>
+        <ordinal_position>1</ordinal_position>
+        <KeyType>231</KeyType>
+        <index_name>idxSupplierUsage_PacketNo</index_name>
       </IndexColumns>
       <IndexColumns>
         <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
@@ -6527,12 +6697,22 @@
       <Indexes>
         <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
         <constraint_schema>dbo</constraint_schema>
-        <constraint_name>PK_Customer</constraint_name>
+        <constraint_name>idxCustomer</constraint_name>
         <table_catalog>TimberSmartWebPortal</table_catalog>
         <table_schema>dbo</table_schema>
         <table_name>tCustomer</table_name>
-        <index_name>PK_Customer</index_name>
+        <index_name>idxCustomer</index_name>
         <type_desc>CLUSTERED</type_desc>
+      </Indexes>
+      <Indexes>
+        <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
+        <constraint_schema>dbo</constraint_schema>
+        <constraint_name>idxCustomer_CompanyCustomer</constraint_name>
+        <table_catalog>TimberSmartWebPortal</table_catalog>
+        <table_schema>dbo</table_schema>
+        <table_name>tCustomer</table_name>
+        <index_name>idxCustomer_CompanyCustomer</index_name>
+        <type_desc>NONCLUSTERED</type_desc>
       </Indexes>
       <Indexes>
         <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
@@ -6543,16 +6723,6 @@
         <table_name>tDocument</table_name>
         <index_name>PK_tDocument</index_name>
         <type_desc>CLUSTERED</type_desc>
-      </Indexes>
-      <Indexes>
-        <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
-        <constraint_schema>dbo</constraint_schema>
-        <constraint_name>IX_tDocumentTypeUnique</constraint_name>
-        <table_catalog>TimberSmartWebPortal</table_catalog>
-        <table_schema>dbo</table_schema>
-        <table_name>tDocumentType</table_name>
-        <index_name>IX_tDocumentTypeUnique</index_name>
-        <type_desc>NONCLUSTERED</type_desc>
       </Indexes>
       <Indexes>
         <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
@@ -6583,6 +6753,36 @@
         <table_name>tProduct</table_name>
         <index_name>PK_Product</index_name>
         <type_desc>CLUSTERED</type_desc>
+      </Indexes>
+      <Indexes>
+        <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
+        <constraint_schema>dbo</constraint_schema>
+        <constraint_name>idxSupplierUsage</constraint_name>
+        <table_catalog>TimberSmartWebPortal</table_catalog>
+        <table_schema>dbo</table_schema>
+        <table_name>tSupplierUsage</table_name>
+        <index_name>idxSupplierUsage</index_name>
+        <type_desc>CLUSTERED</type_desc>
+      </Indexes>
+      <Indexes>
+        <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
+        <constraint_schema>dbo</constraint_schema>
+        <constraint_name>idxSupplierUsage_CustomerID</constraint_name>
+        <table_catalog>TimberSmartWebPortal</table_catalog>
+        <table_schema>dbo</table_schema>
+        <table_name>tSupplierUsage</table_name>
+        <index_name>idxSupplierUsage_CustomerID</index_name>
+        <type_desc>NONCLUSTERED</type_desc>
+      </Indexes>
+      <Indexes>
+        <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
+        <constraint_schema>dbo</constraint_schema>
+        <constraint_name>idxSupplierUsage_PacketNo</constraint_name>
+        <table_catalog>TimberSmartWebPortal</table_catalog>
+        <table_schema>dbo</table_schema>
+        <table_name>tSupplierUsage</table_name>
+        <index_name>idxSupplierUsage_PacketNo</index_name>
+        <type_desc>NONCLUSTERED</type_desc>
       </Indexes>
       <Indexes>
         <constraint_catalog>TimberSmartWebPortal</constraint_catalog>
@@ -8708,6 +8908,863 @@
         </Column>
       </DocumentElement>
     </Table>
+    <Table Schema="dbo" Name="tConsignmentPurchaseOrder">
+      <DocumentElement>
+        <Column>
+          <ColumnName>ConsignmentPurchaseOrderID</ColumnName>
+          <ColumnOrdinal>0</ColumnOrdinal>
+          <ColumnSize>4</ColumnSize>
+          <NumericPrecision>10</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>true</IsKey>
+          <BaseColumnName>ConsignmentPurchaseOrderID</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
+          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>8</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>true</IsIdentity>
+          <IsAutoIncrement>true</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>true</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>int</DataTypeName>
+          <NonVersionedProviderType>8</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>CustomerID</ColumnName>
+          <ColumnOrdinal>1</ColumnOrdinal>
+          <ColumnSize>4</ColumnSize>
+          <NumericPrecision>10</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>CustomerID</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
+          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>8</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>int</DataTypeName>
+          <NonVersionedProviderType>8</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>CustomerRef</ColumnName>
+          <ColumnOrdinal>2</ColumnOrdinal>
+          <ColumnSize>50</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>CustomerRef</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>true</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>SentOn</ColumnName>
+          <ColumnOrdinal>3</ColumnOrdinal>
+          <ColumnSize>8</ColumnSize>
+          <NumericPrecision>23</NumericPrecision>
+          <NumericScale>3</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>SentOn</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
+          <DataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>4</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlDateTime, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>datetime</DataTypeName>
+          <NonVersionedProviderType>4</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>CreatedBy</ColumnName>
+          <ColumnOrdinal>4</ColumnOrdinal>
+          <ColumnSize>50</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>CreatedBy</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>CreatedOn</ColumnName>
+          <ColumnOrdinal>5</ColumnOrdinal>
+          <ColumnSize>8</ColumnSize>
+          <NumericPrecision>23</NumericPrecision>
+          <NumericScale>3</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>CreatedOn</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
+          <DataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>4</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlDateTime, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>datetime</DataTypeName>
+          <NonVersionedProviderType>4</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>ModifiedBy</ColumnName>
+          <ColumnOrdinal>6</ColumnOrdinal>
+          <ColumnSize>50</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>ModifiedBy</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>ModifiedOn</ColumnName>
+          <ColumnOrdinal>7</ColumnOrdinal>
+          <ColumnSize>8</ColumnSize>
+          <NumericPrecision>23</NumericPrecision>
+          <NumericScale>3</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>ModifiedOn</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
+          <DataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>4</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlDateTime, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>datetime</DataTypeName>
+          <NonVersionedProviderType>4</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+      </DocumentElement>
+    </Table>
+    <Table Schema="dbo" Name="tSupplierUsage">
+      <DocumentElement>
+        <Column>
+          <ColumnName>SupplierUsageID</ColumnName>
+          <ColumnOrdinal>0</ColumnOrdinal>
+          <ColumnSize>4</ColumnSize>
+          <NumericPrecision>10</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>true</IsKey>
+          <BaseColumnName>SupplierUsageID</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tSupplierUsage</BaseTableName>
+          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>8</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>true</IsIdentity>
+          <IsAutoIncrement>true</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>true</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>int</DataTypeName>
+          <NonVersionedProviderType>8</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>CustomerID</ColumnName>
+          <ColumnOrdinal>1</ColumnOrdinal>
+          <ColumnSize>4</ColumnSize>
+          <NumericPrecision>10</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>CustomerID</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tSupplierUsage</BaseTableName>
+          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>8</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>int</DataTypeName>
+          <NonVersionedProviderType>8</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>PacketNo</ColumnName>
+          <ColumnOrdinal>2</ColumnOrdinal>
+          <ColumnSize>50</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>PacketNo</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tSupplierUsage</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>UsagePostedOn</ColumnName>
+          <ColumnOrdinal>3</ColumnOrdinal>
+          <ColumnSize>8</ColumnSize>
+          <NumericPrecision>23</NumericPrecision>
+          <NumericScale>3</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>UsagePostedOn</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tSupplierUsage</BaseTableName>
+          <DataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>true</AllowDBNull>
+          <ProviderType>4</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlDateTime, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>datetime</DataTypeName>
+          <NonVersionedProviderType>4</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+      </DocumentElement>
+    </Table>
+    <Table Schema="dbo" Name="tGCSUpdater">
+      <DocumentElement>
+        <Column>
+          <ColumnName>GCSUpdaterID</ColumnName>
+          <ColumnOrdinal>0</ColumnOrdinal>
+          <ColumnSize>4</ColumnSize>
+          <NumericPrecision>10</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>true</IsKey>
+          <BaseColumnName>GCSUpdaterID</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tGCSUpdater</BaseTableName>
+          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>8</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>true</IsIdentity>
+          <IsAutoIncrement>true</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>true</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>int</DataTypeName>
+          <NonVersionedProviderType>8</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>SiteID</ColumnName>
+          <ColumnOrdinal>1</ColumnOrdinal>
+          <ColumnSize>15</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>SiteID</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tGCSUpdater</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>TableName</ColumnName>
+          <ColumnOrdinal>2</ColumnOrdinal>
+          <ColumnSize>50</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>TableName</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tGCSUpdater</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>LastUpdatedOn</ColumnName>
+          <ColumnOrdinal>3</ColumnOrdinal>
+          <ColumnSize>8</ColumnSize>
+          <NumericPrecision>23</NumericPrecision>
+          <NumericScale>3</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>LastUpdatedOn</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tGCSUpdater</BaseTableName>
+          <DataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>4</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlDateTime, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>datetime</DataTypeName>
+          <NonVersionedProviderType>4</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+      </DocumentElement>
+    </Table>
+    <Table Schema="dbo" Name="tDocumentType">
+      <DocumentElement>
+        <Column>
+          <ColumnName>DocumentTypeID</ColumnName>
+          <ColumnOrdinal>0</ColumnOrdinal>
+          <ColumnSize>4</ColumnSize>
+          <NumericPrecision>10</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>true</IsKey>
+          <BaseColumnName>DocumentTypeID</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocumentType</BaseTableName>
+          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>8</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>true</IsIdentity>
+          <IsAutoIncrement>true</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>true</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>int</DataTypeName>
+          <NonVersionedProviderType>8</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>DocumentTypeName</ColumnName>
+          <ColumnOrdinal>1</ColumnOrdinal>
+          <ColumnSize>50</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>DocumentTypeName</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocumentType</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>SourceReferenceName</ColumnName>
+          <ColumnOrdinal>2</ColumnOrdinal>
+          <ColumnSize>50</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>SourceReferenceName</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocumentType</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>true</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>DocumentReferenceName</ColumnName>
+          <ColumnOrdinal>3</ColumnOrdinal>
+          <ColumnSize>50</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>DocumentReferenceName</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocumentType</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>true</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+      </DocumentElement>
+    </Table>
+    <Table Schema="dbo" Name="tDocument">
+      <DocumentElement>
+        <Column>
+          <ColumnName>DocumentID</ColumnName>
+          <ColumnOrdinal>0</ColumnOrdinal>
+          <ColumnSize>4</ColumnSize>
+          <NumericPrecision>10</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>true</IsKey>
+          <BaseColumnName>DocumentID</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocument</BaseTableName>
+          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>8</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>true</IsIdentity>
+          <IsAutoIncrement>true</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>true</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>int</DataTypeName>
+          <NonVersionedProviderType>8</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>DocumentTypeID</ColumnName>
+          <ColumnOrdinal>1</ColumnOrdinal>
+          <ColumnSize>4</ColumnSize>
+          <NumericPrecision>10</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>DocumentTypeID</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocument</BaseTableName>
+          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>8</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>int</DataTypeName>
+          <NonVersionedProviderType>8</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>CustomerID</ColumnName>
+          <ColumnOrdinal>2</ColumnOrdinal>
+          <ColumnSize>4</ColumnSize>
+          <NumericPrecision>10</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>CustomerID</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocument</BaseTableName>
+          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>8</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>int</DataTypeName>
+          <NonVersionedProviderType>8</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>SourceID</ColumnName>
+          <ColumnOrdinal>3</ColumnOrdinal>
+          <ColumnSize>4</ColumnSize>
+          <NumericPrecision>10</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>SourceID</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocument</BaseTableName>
+          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>true</AllowDBNull>
+          <ProviderType>8</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>int</DataTypeName>
+          <NonVersionedProviderType>8</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>SourceReference</ColumnName>
+          <ColumnOrdinal>4</ColumnOrdinal>
+          <ColumnSize>50</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>SourceReference</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocument</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>true</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>DocumentReference</ColumnName>
+          <ColumnOrdinal>5</ColumnOrdinal>
+          <ColumnSize>50</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>DocumentReference</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocument</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>true</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>DocumentDate</ColumnName>
+          <ColumnOrdinal>6</ColumnOrdinal>
+          <ColumnSize>3</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>DocumentDate</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocument</BaseTableName>
+          <DataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>false</AllowDBNull>
+          <ProviderType>31</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>date</DataTypeName>
+          <NonVersionedProviderType>31</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>DocumentFileName</ColumnName>
+          <ColumnOrdinal>7</ColumnOrdinal>
+          <ColumnSize>250</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>DocumentFileName</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocument</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>true</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>DocumentLength</ColumnName>
+          <ColumnOrdinal>8</ColumnOrdinal>
+          <ColumnSize>4</ColumnSize>
+          <NumericPrecision>10</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>DocumentLength</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocument</BaseTableName>
+          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>true</AllowDBNull>
+          <ProviderType>8</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>int</DataTypeName>
+          <NonVersionedProviderType>8</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>DocumentContentType</ColumnName>
+          <ColumnOrdinal>9</ColumnOrdinal>
+          <ColumnSize>50</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>DocumentContentType</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocument</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>true</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>false</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+        <Column>
+          <ColumnName>Notes</ColumnName>
+          <ColumnOrdinal>10</ColumnOrdinal>
+          <ColumnSize>2147483647</ColumnSize>
+          <NumericPrecision>255</NumericPrecision>
+          <NumericScale>255</NumericScale>
+          <IsUnique>false</IsUnique>
+          <IsKey>false</IsKey>
+          <BaseColumnName>Notes</BaseColumnName>
+          <BaseSchemaName>dbo</BaseSchemaName>
+          <BaseTableName>tDocument</BaseTableName>
+          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
+          <AllowDBNull>true</AllowDBNull>
+          <ProviderType>12</ProviderType>
+          <IsAliased>false</IsAliased>
+          <IsExpression>false</IsExpression>
+          <IsIdentity>false</IsIdentity>
+          <IsAutoIncrement>false</IsAutoIncrement>
+          <IsRowVersion>false</IsRowVersion>
+          <IsHidden>false</IsHidden>
+          <IsLong>true</IsLong>
+          <IsReadOnly>false</IsReadOnly>
+          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
+          <DataTypeName>nvarchar</DataTypeName>
+          <NonVersionedProviderType>12</NonVersionedProviderType>
+          <IsColumnSet>false</IsColumnSet>
+        </Column>
+      </DocumentElement>
+    </Table>
     <Table Schema="dbo" Name="tConsignmentUsage">
       <DocumentElement>
         <Column>
@@ -9225,639 +10282,6 @@
         </Column>
       </DocumentElement>
     </Table>
-    <Table Schema="dbo" Name="tConsignmentPurchaseOrder">
-      <DocumentElement>
-        <Column>
-          <ColumnName>ConsignmentPurchaseOrderID</ColumnName>
-          <ColumnOrdinal>0</ColumnOrdinal>
-          <ColumnSize>4</ColumnSize>
-          <NumericPrecision>10</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>true</IsKey>
-          <BaseColumnName>ConsignmentPurchaseOrderID</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
-          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>8</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>true</IsIdentity>
-          <IsAutoIncrement>true</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>true</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>int</DataTypeName>
-          <NonVersionedProviderType>8</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>CustomerID</ColumnName>
-          <ColumnOrdinal>1</ColumnOrdinal>
-          <ColumnSize>4</ColumnSize>
-          <NumericPrecision>10</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>CustomerID</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
-          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>8</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>int</DataTypeName>
-          <NonVersionedProviderType>8</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>CustomerRef</ColumnName>
-          <ColumnOrdinal>2</ColumnOrdinal>
-          <ColumnSize>50</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>CustomerRef</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>true</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>SentOn</ColumnName>
-          <ColumnOrdinal>3</ColumnOrdinal>
-          <ColumnSize>8</ColumnSize>
-          <NumericPrecision>23</NumericPrecision>
-          <NumericScale>3</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>SentOn</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
-          <DataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>4</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlDateTime, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>datetime</DataTypeName>
-          <NonVersionedProviderType>4</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>CreatedBy</ColumnName>
-          <ColumnOrdinal>4</ColumnOrdinal>
-          <ColumnSize>50</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>CreatedBy</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>CreatedOn</ColumnName>
-          <ColumnOrdinal>5</ColumnOrdinal>
-          <ColumnSize>8</ColumnSize>
-          <NumericPrecision>23</NumericPrecision>
-          <NumericScale>3</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>CreatedOn</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
-          <DataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>4</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlDateTime, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>datetime</DataTypeName>
-          <NonVersionedProviderType>4</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>ModifiedBy</ColumnName>
-          <ColumnOrdinal>6</ColumnOrdinal>
-          <ColumnSize>50</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>ModifiedBy</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>ModifiedOn</ColumnName>
-          <ColumnOrdinal>7</ColumnOrdinal>
-          <ColumnSize>8</ColumnSize>
-          <NumericPrecision>23</NumericPrecision>
-          <NumericScale>3</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>ModifiedOn</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tConsignmentPurchaseOrder</BaseTableName>
-          <DataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>4</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlDateTime, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>datetime</DataTypeName>
-          <NonVersionedProviderType>4</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-      </DocumentElement>
-    </Table>
-    <Table Schema="dbo" Name="tDocumentType">
-      <DocumentElement>
-        <Column>
-          <ColumnName>DocumentTypeID</ColumnName>
-          <ColumnOrdinal>0</ColumnOrdinal>
-          <ColumnSize>4</ColumnSize>
-          <NumericPrecision>10</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>true</IsKey>
-          <BaseColumnName>DocumentTypeID</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocumentType</BaseTableName>
-          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>8</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>true</IsIdentity>
-          <IsAutoIncrement>true</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>true</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>int</DataTypeName>
-          <NonVersionedProviderType>8</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>DocumentTypeName</ColumnName>
-          <ColumnOrdinal>1</ColumnOrdinal>
-          <ColumnSize>50</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>DocumentTypeName</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocumentType</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>SourceReferenceName</ColumnName>
-          <ColumnOrdinal>2</ColumnOrdinal>
-          <ColumnSize>50</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>SourceReferenceName</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocumentType</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>true</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>DocumentReferenceName</ColumnName>
-          <ColumnOrdinal>3</ColumnOrdinal>
-          <ColumnSize>50</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>DocumentReferenceName</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocumentType</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>true</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-      </DocumentElement>
-    </Table>
-    <Table Schema="dbo" Name="tDocument">
-      <DocumentElement>
-        <Column>
-          <ColumnName>DocumentID</ColumnName>
-          <ColumnOrdinal>0</ColumnOrdinal>
-          <ColumnSize>4</ColumnSize>
-          <NumericPrecision>10</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>true</IsKey>
-          <BaseColumnName>DocumentID</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocument</BaseTableName>
-          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>8</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>true</IsIdentity>
-          <IsAutoIncrement>true</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>true</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>int</DataTypeName>
-          <NonVersionedProviderType>8</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>DocumentTypeID</ColumnName>
-          <ColumnOrdinal>1</ColumnOrdinal>
-          <ColumnSize>4</ColumnSize>
-          <NumericPrecision>10</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>DocumentTypeID</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocument</BaseTableName>
-          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>8</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>int</DataTypeName>
-          <NonVersionedProviderType>8</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>CustomerID</ColumnName>
-          <ColumnOrdinal>2</ColumnOrdinal>
-          <ColumnSize>4</ColumnSize>
-          <NumericPrecision>10</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>CustomerID</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocument</BaseTableName>
-          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>8</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>int</DataTypeName>
-          <NonVersionedProviderType>8</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>SourceID</ColumnName>
-          <ColumnOrdinal>3</ColumnOrdinal>
-          <ColumnSize>4</ColumnSize>
-          <NumericPrecision>10</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>SourceID</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocument</BaseTableName>
-          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>true</AllowDBNull>
-          <ProviderType>8</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>int</DataTypeName>
-          <NonVersionedProviderType>8</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>SourceReference</ColumnName>
-          <ColumnOrdinal>4</ColumnOrdinal>
-          <ColumnSize>50</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>SourceReference</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocument</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>true</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>DocumentReference</ColumnName>
-          <ColumnOrdinal>5</ColumnOrdinal>
-          <ColumnSize>50</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>DocumentReference</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocument</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>true</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>DocumentDate</ColumnName>
-          <ColumnOrdinal>6</ColumnOrdinal>
-          <ColumnSize>3</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>DocumentDate</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocument</BaseTableName>
-          <DataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>31</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>date</DataTypeName>
-          <NonVersionedProviderType>31</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>DocumentFileName</ColumnName>
-          <ColumnOrdinal>7</ColumnOrdinal>
-          <ColumnSize>250</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>DocumentFileName</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocument</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>true</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>DocumentLength</ColumnName>
-          <ColumnOrdinal>8</ColumnOrdinal>
-          <ColumnSize>4</ColumnSize>
-          <NumericPrecision>10</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>DocumentLength</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocument</BaseTableName>
-          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>true</AllowDBNull>
-          <ProviderType>8</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>int</DataTypeName>
-          <NonVersionedProviderType>8</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>DocumentContentType</ColumnName>
-          <ColumnOrdinal>9</ColumnOrdinal>
-          <ColumnSize>50</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>DocumentContentType</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocument</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>true</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>Notes</ColumnName>
-          <ColumnOrdinal>10</ColumnOrdinal>
-          <ColumnSize>2147483647</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>Notes</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tDocument</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>true</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>true</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-      </DocumentElement>
-    </Table>
     <Table Schema="dbo" Name="Roles">
       <DocumentElement>
         <Column>
@@ -9916,118 +10340,6 @@
         </Column>
       </DocumentElement>
     </Table>
-    <Table Schema="dbo" Name="tGCSUpdater">
-      <DocumentElement>
-        <Column>
-          <ColumnName>GCSUpdaterID</ColumnName>
-          <ColumnOrdinal>0</ColumnOrdinal>
-          <ColumnSize>4</ColumnSize>
-          <NumericPrecision>10</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>true</IsKey>
-          <BaseColumnName>GCSUpdaterID</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tGCSUpdater</BaseTableName>
-          <DataType>System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>8</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>true</IsIdentity>
-          <IsAutoIncrement>true</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>true</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlInt32, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>int</DataTypeName>
-          <NonVersionedProviderType>8</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>SiteID</ColumnName>
-          <ColumnOrdinal>1</ColumnOrdinal>
-          <ColumnSize>15</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>SiteID</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tGCSUpdater</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>TableName</ColumnName>
-          <ColumnOrdinal>2</ColumnOrdinal>
-          <ColumnSize>50</ColumnSize>
-          <NumericPrecision>255</NumericPrecision>
-          <NumericScale>255</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>TableName</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tGCSUpdater</BaseTableName>
-          <DataType>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>12</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlString, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>nvarchar</DataTypeName>
-          <NonVersionedProviderType>12</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-        <Column>
-          <ColumnName>LastUpdatedOn</ColumnName>
-          <ColumnOrdinal>3</ColumnOrdinal>
-          <ColumnSize>8</ColumnSize>
-          <NumericPrecision>23</NumericPrecision>
-          <NumericScale>3</NumericScale>
-          <IsUnique>false</IsUnique>
-          <IsKey>false</IsKey>
-          <BaseColumnName>LastUpdatedOn</BaseColumnName>
-          <BaseSchemaName>dbo</BaseSchemaName>
-          <BaseTableName>tGCSUpdater</BaseTableName>
-          <DataType>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</DataType>
-          <AllowDBNull>false</AllowDBNull>
-          <ProviderType>4</ProviderType>
-          <IsAliased>false</IsAliased>
-          <IsExpression>false</IsExpression>
-          <IsIdentity>false</IsIdentity>
-          <IsAutoIncrement>false</IsAutoIncrement>
-          <IsRowVersion>false</IsRowVersion>
-          <IsHidden>false</IsHidden>
-          <IsLong>false</IsLong>
-          <IsReadOnly>false</IsReadOnly>
-          <ProviderSpecificDataType>System.Data.SqlTypes.SqlDateTime, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</ProviderSpecificDataType>
-          <DataTypeName>datetime</DataTypeName>
-          <NonVersionedProviderType>4</NonVersionedProviderType>
-          <IsColumnSet>false</IsColumnSet>
-        </Column>
-      </DocumentElement>
-    </Table>
   </TableSchemas>
   <Tables>
     <DocumentElement>
@@ -10082,13 +10394,19 @@
       <Tables>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
         <TABLE_TYPE>BASE TABLE</TABLE_TYPE>
       </Tables>
       <Tables>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <TABLE_TYPE>BASE TABLE</TABLE_TYPE>
+      </Tables>
+      <Tables>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
         <TABLE_TYPE>BASE TABLE</TABLE_TYPE>
       </Tables>
       <Tables>
@@ -10106,13 +10424,13 @@
       <Tables>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>Roles</TABLE_NAME>
+        <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
         <TABLE_TYPE>BASE TABLE</TABLE_TYPE>
       </Tables>
       <Tables>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
+        <TABLE_NAME>Roles</TABLE_NAME>
         <TABLE_TYPE>BASE TABLE</TABLE_TYPE>
       </Tables>
     </DocumentElement>
@@ -11050,6 +11368,380 @@
       <Columns>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>ConsignmentPurchaseOrderID</COLUMN_NAME>
+        <ORDINAL_POSITION>1</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>CustomerID</COLUMN_NAME>
+        <ORDINAL_POSITION>2</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>CustomerRef</COLUMN_NAME>
+        <ORDINAL_POSITION>3</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>SentOn</COLUMN_NAME>
+        <ORDINAL_POSITION>4</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>datetime</DATA_TYPE>
+        <DATETIME_PRECISION>3</DATETIME_PRECISION>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>CreatedBy</COLUMN_NAME>
+        <ORDINAL_POSITION>5</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>CreatedOn</COLUMN_NAME>
+        <ORDINAL_POSITION>6</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>datetime</DATA_TYPE>
+        <DATETIME_PRECISION>3</DATETIME_PRECISION>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>ModifiedBy</COLUMN_NAME>
+        <ORDINAL_POSITION>7</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
+        <COLUMN_NAME>ModifiedOn</COLUMN_NAME>
+        <ORDINAL_POSITION>8</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>datetime</DATA_TYPE>
+        <DATETIME_PRECISION>3</DATETIME_PRECISION>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>SupplierUsageID</COLUMN_NAME>
+        <ORDINAL_POSITION>1</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>CustomerID</COLUMN_NAME>
+        <ORDINAL_POSITION>2</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>PacketNo</COLUMN_NAME>
+        <ORDINAL_POSITION>3</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>UsagePostedOn</COLUMN_NAME>
+        <ORDINAL_POSITION>4</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>datetime</DATA_TYPE>
+        <DATETIME_PRECISION>3</DATETIME_PRECISION>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
+        <COLUMN_NAME>GCSUpdaterID</COLUMN_NAME>
+        <ORDINAL_POSITION>1</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
+        <COLUMN_NAME>SiteID</COLUMN_NAME>
+        <ORDINAL_POSITION>2</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>15</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>30</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
+        <COLUMN_NAME>TableName</COLUMN_NAME>
+        <ORDINAL_POSITION>3</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
+        <COLUMN_NAME>LastUpdatedOn</COLUMN_NAME>
+        <ORDINAL_POSITION>4</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>datetime</DATA_TYPE>
+        <DATETIME_PRECISION>3</DATETIME_PRECISION>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocumentType</TABLE_NAME>
+        <COLUMN_NAME>DocumentTypeID</COLUMN_NAME>
+        <ORDINAL_POSITION>1</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocumentType</TABLE_NAME>
+        <COLUMN_NAME>DocumentTypeName</COLUMN_NAME>
+        <ORDINAL_POSITION>2</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocumentType</TABLE_NAME>
+        <COLUMN_NAME>SourceReferenceName</COLUMN_NAME>
+        <ORDINAL_POSITION>3</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocumentType</TABLE_NAME>
+        <COLUMN_NAME>DocumentReferenceName</COLUMN_NAME>
+        <ORDINAL_POSITION>4</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>DocumentID</COLUMN_NAME>
+        <ORDINAL_POSITION>1</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>DocumentTypeID</COLUMN_NAME>
+        <ORDINAL_POSITION>2</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>CustomerID</COLUMN_NAME>
+        <ORDINAL_POSITION>3</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>SourceID</COLUMN_NAME>
+        <ORDINAL_POSITION>4</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>SourceReference</COLUMN_NAME>
+        <ORDINAL_POSITION>5</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>DocumentReference</COLUMN_NAME>
+        <ORDINAL_POSITION>6</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>DocumentDate</COLUMN_NAME>
+        <ORDINAL_POSITION>7</ORDINAL_POSITION>
+        <IS_NULLABLE>NO</IS_NULLABLE>
+        <DATA_TYPE>date</DATA_TYPE>
+        <DATETIME_PRECISION>0</DATETIME_PRECISION>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>DocumentFileName</COLUMN_NAME>
+        <ORDINAL_POSITION>8</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>250</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>500</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>DocumentLength</COLUMN_NAME>
+        <ORDINAL_POSITION>9</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>int</DATA_TYPE>
+        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
+        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
+        <NUMERIC_SCALE>0</NUMERIC_SCALE>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>DocumentContentType</COLUMN_NAME>
+        <ORDINAL_POSITION>10</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tDocument</TABLE_NAME>
+        <COLUMN_NAME>Notes</COLUMN_NAME>
+        <ORDINAL_POSITION>11</ORDINAL_POSITION>
+        <IS_NULLABLE>YES</IS_NULLABLE>
+        <DATA_TYPE>nvarchar</DATA_TYPE>
+        <CHARACTER_MAXIMUM_LENGTH>-1</CHARACTER_MAXIMUM_LENGTH>
+        <CHARACTER_OCTET_LENGTH>-1</CHARACTER_OCTET_LENGTH>
+        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
+        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
+      </Columns>
+      <Columns>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
         <COLUMN_NAME>ConsignmentUsageID</COLUMN_NAME>
         <ORDINAL_POSITION>1</ORDINAL_POSITION>
@@ -11273,285 +11965,6 @@
       <Columns>
         <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>ConsignmentPurchaseOrderID</COLUMN_NAME>
-        <ORDINAL_POSITION>1</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>CustomerID</COLUMN_NAME>
-        <ORDINAL_POSITION>2</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>CustomerRef</COLUMN_NAME>
-        <ORDINAL_POSITION>3</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>SentOn</COLUMN_NAME>
-        <ORDINAL_POSITION>4</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>datetime</DATA_TYPE>
-        <DATETIME_PRECISION>3</DATETIME_PRECISION>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>CreatedBy</COLUMN_NAME>
-        <ORDINAL_POSITION>5</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>CreatedOn</COLUMN_NAME>
-        <ORDINAL_POSITION>6</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>datetime</DATA_TYPE>
-        <DATETIME_PRECISION>3</DATETIME_PRECISION>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>ModifiedBy</COLUMN_NAME>
-        <ORDINAL_POSITION>7</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tConsignmentPurchaseOrder</TABLE_NAME>
-        <COLUMN_NAME>ModifiedOn</COLUMN_NAME>
-        <ORDINAL_POSITION>8</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>datetime</DATA_TYPE>
-        <DATETIME_PRECISION>3</DATETIME_PRECISION>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocumentType</TABLE_NAME>
-        <COLUMN_NAME>DocumentTypeID</COLUMN_NAME>
-        <ORDINAL_POSITION>1</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocumentType</TABLE_NAME>
-        <COLUMN_NAME>DocumentTypeName</COLUMN_NAME>
-        <ORDINAL_POSITION>2</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocumentType</TABLE_NAME>
-        <COLUMN_NAME>SourceReferenceName</COLUMN_NAME>
-        <ORDINAL_POSITION>3</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocumentType</TABLE_NAME>
-        <COLUMN_NAME>DocumentReferenceName</COLUMN_NAME>
-        <ORDINAL_POSITION>4</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>DocumentID</COLUMN_NAME>
-        <ORDINAL_POSITION>1</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>DocumentTypeID</COLUMN_NAME>
-        <ORDINAL_POSITION>2</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>CustomerID</COLUMN_NAME>
-        <ORDINAL_POSITION>3</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>SourceID</COLUMN_NAME>
-        <ORDINAL_POSITION>4</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>SourceReference</COLUMN_NAME>
-        <ORDINAL_POSITION>5</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>DocumentReference</COLUMN_NAME>
-        <ORDINAL_POSITION>6</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>DocumentDate</COLUMN_NAME>
-        <ORDINAL_POSITION>7</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>date</DATA_TYPE>
-        <DATETIME_PRECISION>0</DATETIME_PRECISION>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>DocumentFileName</COLUMN_NAME>
-        <ORDINAL_POSITION>8</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>250</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>500</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>DocumentLength</COLUMN_NAME>
-        <ORDINAL_POSITION>9</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>DocumentContentType</COLUMN_NAME>
-        <ORDINAL_POSITION>10</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tDocument</TABLE_NAME>
-        <COLUMN_NAME>Notes</COLUMN_NAME>
-        <ORDINAL_POSITION>11</ORDINAL_POSITION>
-        <IS_NULLABLE>YES</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>-1</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>-1</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>Roles</TABLE_NAME>
         <COLUMN_NAME>RoleID</COLUMN_NAME>
         <ORDINAL_POSITION>1</ORDINAL_POSITION>
@@ -11574,58 +11987,30 @@
         <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
         <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
       </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
-        <COLUMN_NAME>GCSUpdaterID</COLUMN_NAME>
-        <ORDINAL_POSITION>1</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>int</DATA_TYPE>
-        <NUMERIC_PRECISION>10</NUMERIC_PRECISION>
-        <NUMERIC_PRECISION_RADIX>10</NUMERIC_PRECISION_RADIX>
-        <NUMERIC_SCALE>0</NUMERIC_SCALE>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
-        <COLUMN_NAME>SiteID</COLUMN_NAME>
-        <ORDINAL_POSITION>2</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>15</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>30</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
-        <COLUMN_NAME>TableName</COLUMN_NAME>
-        <ORDINAL_POSITION>3</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>nvarchar</DATA_TYPE>
-        <CHARACTER_MAXIMUM_LENGTH>50</CHARACTER_MAXIMUM_LENGTH>
-        <CHARACTER_OCTET_LENGTH>100</CHARACTER_OCTET_LENGTH>
-        <CHARACTER_SET_NAME>UNICODE</CHARACTER_SET_NAME>
-        <COLLATION_NAME>Latin1_General_CI_AS</COLLATION_NAME>
-      </Columns>
-      <Columns>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tGCSUpdater</TABLE_NAME>
-        <COLUMN_NAME>LastUpdatedOn</COLUMN_NAME>
-        <ORDINAL_POSITION>4</ORDINAL_POSITION>
-        <IS_NULLABLE>NO</IS_NULLABLE>
-        <DATA_TYPE>datetime</DATA_TYPE>
-        <DATETIME_PRECISION>3</DATETIME_PRECISION>
-      </Columns>
     </DocumentElement>
   </Columns>
   <PrimaryKeyColumns>
     <DocumentElement>
+      <PrimaryKeyColumns>
+        <CONSTRAINT_CATALOG>TimberSmartWebPortal</CONSTRAINT_CATALOG>
+        <CONSTRAINT_SCHEMA>dbo</CONSTRAINT_SCHEMA>
+        <CONSTRAINT_NAME>idxCustomer</CONSTRAINT_NAME>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tCustomer</TABLE_NAME>
+        <COLUMN_NAME>CustomerID</COLUMN_NAME>
+        <ORDINAL_POSITION>1</ORDINAL_POSITION>
+      </PrimaryKeyColumns>
+      <PrimaryKeyColumns>
+        <CONSTRAINT_CATALOG>TimberSmartWebPortal</CONSTRAINT_CATALOG>
+        <CONSTRAINT_SCHEMA>dbo</CONSTRAINT_SCHEMA>
+        <CONSTRAINT_NAME>idxSupplierUsage</CONSTRAINT_NAME>
+        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
+        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
+        <TABLE_NAME>tSupplierUsage</TABLE_NAME>
+        <COLUMN_NAME>SupplierUsageID</COLUMN_NAME>
+        <ORDINAL_POSITION>1</ORDINAL_POSITION>
+      </PrimaryKeyColumns>
       <PrimaryKeyColumns>
         <CONSTRAINT_CATALOG>TimberSmartWebPortal</CONSTRAINT_CATALOG>
         <CONSTRAINT_SCHEMA>dbo</CONSTRAINT_SCHEMA>
@@ -11694,16 +12079,6 @@
         <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
         <TABLE_NAME>tConsignmentUsage</TABLE_NAME>
         <COLUMN_NAME>ConsignmentUsageID</COLUMN_NAME>
-        <ORDINAL_POSITION>1</ORDINAL_POSITION>
-      </PrimaryKeyColumns>
-      <PrimaryKeyColumns>
-        <CONSTRAINT_CATALOG>TimberSmartWebPortal</CONSTRAINT_CATALOG>
-        <CONSTRAINT_SCHEMA>dbo</CONSTRAINT_SCHEMA>
-        <CONSTRAINT_NAME>PK_Customer</CONSTRAINT_NAME>
-        <TABLE_CATALOG>TimberSmartWebPortal</TABLE_CATALOG>
-        <TABLE_SCHEMA>dbo</TABLE_SCHEMA>
-        <TABLE_NAME>tCustomer</TABLE_NAME>
-        <COLUMN_NAME>CustomerID</COLUMN_NAME>
         <ORDINAL_POSITION>1</ORDINAL_POSITION>
       </PrimaryKeyColumns>
       <PrimaryKeyColumns>
