@@ -1015,10 +1015,6 @@
         <xs:documentation>Specifies the data controller field that provides the item value.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="filterField2" type="xs:string" use="optional"/>
-    <xs:attribute name="filterField3" type="xs:string" use="optional"/>
-    <xs:attribute name="filterField4" type="xs:string" use="optional"/>
-    <xs:attribute name="filterField5" type="xs:string" use="optional"/>
 
     <xs:attribute name="showInSummary" type="xs:boolean" use="optional"/>
     <xs:attribute name="showActionBar" type="xs:boolean" use="optional"/>
@@ -1871,6 +1867,11 @@
           <xs:attribute name="tab" type="xs:string" use="optional">
             <xs:annotation>
               <xs:documentation>The name of the form tab that owns the category.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="wizard" type="xs:string" use="optional">
+            <xs:annotation>
+              <xs:documentation>The name of the wizard step that makes this category visible to the user.</xs:documentation>
             </xs:annotation>
           </xs:attribute>
           <xs:attribute name="newColumn" type="xs:boolean" use="optional">

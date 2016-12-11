@@ -1532,6 +1532,122 @@ Namespace TimberSmart.Data
             'Deprecated in 8.5.9.0. See DataControllerBase.ProcessManyToManyFields()
         End Sub
         
+        Private Sub UpdateGeoFields()
+            Dim geoFields As XPathNodeIterator = Config.Select("/c:dataController/c:views/c:view[@id='{0}']/c:categories/c:category/c:dataFields/"& _ 
+                    "c:dataField[contains(@tag, 'geocode-')]", View)
+            If (geoFields.Count > 0) Then
+                'build address
+                Dim wasModified As Boolean = false
+                Dim latitudeField As String = String.Empty
+                Dim longitudeField As String = String.Empty
+                Dim values As Dictionary(Of String, String) = New Dictionary(Of String, String)()
+                values.Add("address", Nothing)
+                values.Add("city", Nothing)
+                values.Add("state", Nothing)
+                values.Add("region", Nothing)
+                values.Add("zip", Nothing)
+                values.Add("country", Nothing)
+                For Each nav As XPathNavigator in geoFields
+                    Dim tag As String = nav.GetAttribute("tag", String.Empty)
+                    Dim fieldName As String = nav.GetAttribute("fieldName", String.Empty)
+                    Dim m As Match = Regex.Match(tag, "(\s|^)geocode-(?'Type'\w+)(\s|$)")
+                    If m.Success Then
+                        Dim type As String = m.Groups("Type").Value
+                        If (type = "latitude") Then
+                            latitudeField = fieldName
+                        Else
+                            If (type = "longitude") Then
+                                longitudeField = fieldName
+                            Else
+                                If ((type = "zipcode") OrElse (type = "postalcode")) Then
+                                    type = "zip"
+                                End If
+                                Dim fv As FieldValue = SelectFieldValueObject(fieldName)
+                                If (Not (fv) Is Nothing) Then
+                                    If fv.Modified Then
+                                        wasModified = true
+                                    End If
+                                    values(type) = Convert.ToString(fv.Value)
+                                End If
+                            End If
+                        End If
+                    End If
+                Next
+                'geocode address
+                Dim address As String = String.Join(",", values.Values.Distinct().ToArray())
+                If (wasModified AndAlso Not (String.IsNullOrEmpty("address"))) Then
+                    Dim latitude As Decimal
+                    Dim longitude As Decimal
+                    If Geocode(address, latitude, longitude) Then
+                        If Not (String.IsNullOrEmpty(latitudeField)) Then
+                            UpdateFieldValue(latitudeField, latitude)
+                        End If
+                        If Not (String.IsNullOrEmpty(longitudeField)) Then
+                            UpdateFieldValue(longitudeField, longitude)
+                        End If
+                    End If
+                End If
+            End If
+        End Sub
+        
+        ''' <summary>
+        ''' Queries Google Geocode API for Latitude and Longitude of the requested Address.
+        ''' The Google Maps API Identifier must be defined within the Project Wizard.
+        ''' Please note the Google Maps APIs Terms of Service: https://developers.google.com/maps/premium/support#terms-of-use
+        ''' </summary>
+        ''' <param name="address">Address to query.</param>
+        ''' <param name="latitude">The returned Latitude. Will return 0 if request failed.</param>
+        ''' <param name="longitude">The returned Longitude. Will return 0 if request failed.</param>
+        ''' <returns>True if the geocode request succeeded.</returns>
+        Public Overridable Function Geocode(ByVal address As String, ByRef latitude As Decimal, ByRef longitude As Decimal) As Boolean
+            'send request
+            Dim request As WebRequest = WebRequest.Create(String.Format("https://maps.googleapis.com/maps/api/geocode/json?address={0}&{1}", HttpUtility.UrlEncode(address), ApplicationServices.MapsApiIdentifier))
+            Dim response As WebResponse = request.GetResponse()
+            Dim json As String = String.Empty
+            Using sr As StreamReader = New StreamReader(response.GetResponseStream())
+                json = sr.ReadToEnd()
+            End Using
+            If Not (String.IsNullOrEmpty(json)) Then
+                Dim m As Match = Regex.Match(json, """location""\s*:\s*{\s*""lat""\s*:\s(?'Latitude'-?\d+.\d+),\s*""lng""\s*:\s*(?'Longitud"& _ 
+                        "e'-?\d+.\d+)")
+                If m.Success Then
+                    latitude = Decimal.Parse(m.Groups("Latitude").Value)
+                    longitude = Decimal.Parse(m.Groups("Longitude").Value)
+                    Return true
+                End If
+            End If
+            latitude = 0
+            longitude = 0
+            Return false
+        End Function
+        
+        ''' <summary>
+        ''' Queries Google Distance Matrix API to fetch the estimated driving distance between the origin and destination.
+        ''' The Google Maps API Identifier must be defined within the Project Wizard.
+        ''' Please note the Google Maps APIs Terms of Service: https://developers.google.com/maps/premium/support#terms-of-use
+        ''' </summary>
+        ''' <param name="origin">The origin address.</param>
+        ''' <param name="destination">The destination address.</param>
+        ''' <returns>Returns the distance in meters. Will return 0 if the request has failed.</returns>
+        Public Overridable Function CalculateDistance(ByVal origin As String, ByVal destination As String) As Integer
+            'send request
+            Dim request As WebRequest = WebRequest.Create(String.Format("https://maps.googleapis.com/maps/api/distancematrix/json?origins={0}&destinations"& _ 
+                        "={1}&{2}", HttpUtility.UrlEncode(origin), HttpUtility.UrlEncode(destination), ApplicationServices.MapsApiIdentifier))
+            Dim response As WebResponse = request.GetResponse()
+            Dim json As String = String.Empty
+            Using sr As StreamReader = New StreamReader(response.GetResponseStream())
+                json = sr.ReadToEnd()
+            End Using
+            If Not (String.IsNullOrEmpty(json)) Then
+                Dim m As Match = Regex.Match(json, """distance""\s*:\s*{\s*""text""\s*:\s*""[\w\d\s\.]+"",\s*""value""\s+:\s+(?'Distance'\d+)"& _ 
+                        "\s*}")
+                If m.Success Then
+                    Return Integer.Parse(m.Groups("Distance").Value)
+                End If
+            End If
+            Return 0
+        End Function
+        
         Sub IDataFilter_Filter(ByVal filter As SortedDictionary(Of String, Object)) Implements IDataFilter.Filter
             'do nothing
         End Sub
@@ -3004,10 +3120,10 @@ Namespace TimberSmart.Data
                     skip = true
                 End If
                 If (Not (skip) AndAlso Not (String.IsNullOrEmpty(ruleName))) Then
-                    If (Not (String.IsNullOrEmpty(Whitelist)) AndAlso (Array.IndexOf(Whitelist.Split(New Char() {Global.Microsoft.VisualBasic.ChrW(59), Global.Microsoft.VisualBasic.ChrW(44)}, StringSplitOptions.RemoveEmptyEntries), ruleName) = -1)) Then
+                    If Not (RuleInWhitelist(ruleName)) Then
                         skip = true
                     End If
-                    If (Not (String.IsNullOrEmpty(Blacklist)) AndAlso Not ((Array.IndexOf(Blacklist.Split(New Char() {Global.Microsoft.VisualBasic.ChrW(59), Global.Microsoft.VisualBasic.ChrW(44)}, StringSplitOptions.RemoveEmptyEntries), ruleName) = -1))) Then
+                    If RuleInBlacklist(ruleName) Then
                         skip = true
                     End If
                 End If
@@ -3334,6 +3450,9 @@ Namespace TimberSmart.Data
         End Sub
         
         Protected Overrides Sub BeforeSqlAction(ByVal args As ActionArgs, ByVal result As ActionResult)
+            If ((args.CommandName = "Insert") OrElse (args.CommandName = "Update")) Then
+                UpdateGeoFields()
+            End If
             ApplicationServices.Create().BeforeAction(args, result)
             MyBase.BeforeSqlAction(args, result)
         End Sub

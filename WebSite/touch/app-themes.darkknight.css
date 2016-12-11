@@ -1,7 +1,4 @@
-﻿.app-theme-darkknight #app-bar-tools .ui-btn.ui-btn-icon-notext.ui-icon-bars:not(.ui-icon-refresh):not(.ui-btn-active):after {
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2014%2014%22%20style%3D%22enable-background%3Anew%200%200%2014%2014%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20style%3D%22fill%3A%23FFFFFF%3B%22%20d%3D%22M1%2C4h12c0.553%2C0%2C1-0.447%2C1-1s-0.447-1-1-1H1C0.447%2C2%2C0%2C2.447%2C0%2C3S0.447%2C4%2C1%2C4z%20M13%2C6H1%20C0.447%2C6%2C0%2C6.447%2C0%2C7c0%2C0.553%2C0.447%2C1%2C1%2C1h12c0.553%2C0%2C1-0.447%2C1-1C14%2C6.447%2C13.553%2C6%2C13%2C6z%20M13%2C10H1c-0.553%2C0-1%2C0.447-1%2C1%20s0.447%2C1%2C1%2C1h12c0.553%2C0%2C1-0.447%2C1-1S13.553%2C10%2C13%2C10z%22%2F%3E%3C%2Fsvg%3E");
-}
-/* grey drop icon - #cccccc */
+﻿/* grey drop icon - #cccccc */
 .app-theme-darkknight .app-menu-strip a.ui-btn.app-has-children:not(.ui-btn-active)::after {
     border-top-color: #ccc;
 }
@@ -34,7 +31,8 @@
     .app-theme-darkknight .ui-page-theme-a .ui-panel-wrapper,
     .app-theme-darkknight .app-page-header,
     .app-theme-darkknight .app-status-bar,
-    .app-theme-darkknight .ui-panel {
+    .app-theme-darkknight .ui-panel,
+    .app-bar-footer.ui-bar-inherit {
         background-color: #fafafa;
         border-color: #999999;
     }
@@ -235,6 +233,7 @@ body:not(.app-sidebar-undocked).app-theme-darkknight .app-sidebar,
     .app-theme-darkknight .ui-listview .app-frozen-spacer,
     .app-theme-darkknight .app-grid-header,
     .app-theme-darkknight .app-echo .dv-item, 
+    .app-echo .app-grid .ui-last-child,
     .app-theme-darkknight .app-echo .app-listview,
     .app-theme-darkknight [data-container],
     .app-theme-darkknight [data-layout="form"] {
@@ -274,8 +273,8 @@ body.app-desktop.app-theme-darkknight .app-grid.app-listview :not(.app-selected)
 .app-theme-darkknight .app-map-info .ui-popup-arrow,
 .app-theme-darkknight .ui-listview .app-frozen-spacer,
 .app-theme-darkknight [data-container="toggle"],
-.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected), 
-body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
+.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected):not(.ui-btn-active):not(.app-checked), 
+body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected):not(.ui-btn-active):not(.app-checked) {
     color: #000;
     background-color: #ddd;
 }
@@ -295,7 +294,8 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 .app-theme-darkknight .app-field-label-before,
 .app-theme-darkknight .app-field-label,
 .app-theme-darkknight .ui-panel .app-item-desc,
-.app-theme-darkknight .app-item-number {
+.app-theme-darkknight .app-item-number,
+.app-data-input-popup li:not(.app-selected) span.app-text-normal {
     color: #c11820 !important;
 }
 
@@ -372,9 +372,11 @@ html head + body.app-desktop.app-theme-darkknight .ui-btn-a.ui-btn:hover:not(.ap
 
 /*selected button*/
 .app-theme-darkknight .app-selected:not(.ui-btn-active),
+.app-theme-darkknight .app-checked:not(.ui-btn-active),
 .app-theme-darkknight .app-selected:hover,
 .app-theme-darkknight .app-selected:visited,
-.app-theme-darkknight .app-selected .app-frozen-spacer {
+.app-theme-darkknight .app-selected .app-frozen-spacer,
+.app-theme-darkknight .app-checked .app-frozen-spacer {
     background-color: #cfcfcf !important;
     border-color: #c6c6c6 !important;
     color: #000 !important;
@@ -386,9 +388,11 @@ html head + body.app-desktop.app-theme-darkknight .ui-btn-a.ui-btn:hover:not(.ap
 
 /* selected hover*/
 html body.app-desktop.app-theme-darkknight .ui-btn.app-selected:hover:not(.ui-btn-active),
+html body.app-desktop.app-theme-darkknight .ui-btn.app-checked:hover:not(.ui-btn-active),
 .app-theme-darkknight .app-echo-toolbar .app-selected:not(.ui-btn-active),
 .app-theme-darkknight .app-echo-toolbar .app-selected:not(.ui-btn-active):hover,
-.app-theme-darkknight .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer {
+.app-theme-darkknight .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer,
+.app-theme-darkknight .app-listview .app-checked:not(.ui-btn-active):hover .app-frozen-spacer {
     background-color: #ccc !important;
     border-color: #c6c6c6 !important;
     color: #000 !important;
@@ -397,7 +401,6 @@ html body.app-desktop.app-theme-darkknight .ui-btn.app-selected:hover:not(.ui-bt
 /* click */
 
 .app-theme-darkknight .app-grid-header .ui-btn-active,
-.app-theme-darkknight .dv-item .app-btn-more.ui-btn-active,
     [data-container="collapsible"] [data-container="toggle"].ui-btn-active {
     background-color: #9c0b12 !important;
     color: #fff !important;
@@ -407,6 +410,11 @@ html body.app-desktop.app-theme-darkknight .ui-btn.app-selected:hover:not(.ui-bt
 .app-theme-darkknight [data-input="checkboxlist"] .app-data-list li.app-selected::after {
     background-color: #9c0b12;
 }
+
+    .ui-btn.ui-btn-active::after,
+    .app-btn-more.ui-btn-active::after {
+        color: #9c0b12;
+    }
 
 .app-theme-darkknight [data-input] .app-data-list li.app-selected,
 .app-theme-darkknight [data-input] .app-data-list li::before,
@@ -463,6 +471,13 @@ html body.app-theme-darkknight .ui-btn.ui-btn-active,
     background-color: #9C0B12 !important;
 }
 
+    [data-input] .app-control-helper ul li.ui-btn-active,
+    [data-input].app-has-focus .app-control-helper ul li.app-focus {
+        border-color: #9C0B12 !important;
+        background-color: #9C0B12 !important;
+        color: #fff!important;
+    }
+
 .app-theme-darkknight .app-btn-check .app-icon-themed {
     fill: #fff;
 }
@@ -487,16 +502,16 @@ html body.app-theme-darkknight .ui-btn.ui-btn-active,
     border-color: #222 !important;
 }
 
-    .app-theme-darkknight.app-desktop .app-bar-tools .ui-btn.ui-btn-icon-notext:hover,
-    .app-theme-darkknight .app-bar-tools .ui-btn.ui-btn-icon-notext.ui-btn-active {
+    .app-theme-darkknight.app-desktop .app-bar-tools .ui-btn.ui-btn-icon-notext:not(.ui-icon-dots):hover,
+    .app-theme-darkknight .app-bar-tools .ui-btn.ui-btn-icon-notext:not(.ui-icon-dots).ui-btn-active {
         border-color: #9c0b12 !important;
     }
 
-.app-theme-darkknight.app-desktop .ui-btn.ui-btn-icon-notext:hover {
+.app-theme-darkknight.app-desktop .ui-btn.ui-btn-icon-notext:not(.ui-icon-dots):hover {
     border-color: #999999 !important;
 }
 
-.app-theme-darkknight .ui-btn.ui-btn-active.ui-btn-icon-notext:not(.ui-radio-on)::after,
+.app-theme-darkknight .ui-btn.ui-btn-active.ui-btn-icon-notext:not(.ui-icon-dots):not(.app-btn-more):not(.ui-radio-on)::after,
 .app-theme-darkknight .ui-btn.ui-btn-active.ui-btn-icon-left:not(.ui-radio-on)::after,
 .app-theme-darkknight .ui-btn.ui-btn-active.ui-btn-icon-right:not(.ui-radio-on):not(.app-btn-icon-transparent)::after,
 .app-theme-darkknight .ui-btn.ui-btn-active.ui-btn-icon-top:not(.ui-radio-on)::after,
@@ -634,10 +649,13 @@ html body.app-theme-darkknight .ui-group-theme-b .ui-bar-inherit {
     background-color: #9c0b12;
 }
 
-.app-theme-darkknight .ui-bar-a .app-menu-strip .ui-btn:not(.ui-btn-active), .app-theme-darkknight .ui-bar-a .app-user-name {
+.app-bar-tools .ui-btn:not(.ui-btn-active)::after,
+.app-theme-darkknight .ui-bar-a .app-menu-strip .ui-btn:not(.ui-btn-active), 
+.app-theme-darkknight .ui-bar-a .app-user-name {
     color: #ccc !important;
 }
 
+.app-desktop .app-bar-tools .ui-btn:hover:not(.ui-btn-active)::after,
 .app-theme-darkknight .ui-bar-a .app-menu-strip .ui-btn:hover:not(.ui-btn-active),
 .app-theme-darkknight .ui-bar-a .app-menu-strip .ui-btn.app-selected:not(.ui-btn-active),
 .app-theme-darkknight .ui-bar-a .app-menu-strip .ui-btn.app-selected:hover:not(.ui-btn-active) {
@@ -679,6 +697,8 @@ html body.app-theme-darkknight .ui-group-theme-b .ui-bar-inherit {
     border-color: #9c0b12;
 }
 
+.app-calendar-plugin-container .app-time-container .app-selected,
+.app-calendar-plugin-container .app-time-header .app-cal-selected,
 .app-theme-darkknight .app-day-header :not(.ui-btn-active).ui-btn .app-current-day,
 .app-theme-darkknight .app-has-current-day .app-current-time,
 .app-theme-darkknight .app-calendar-agenda-list > li.app-has-current-day h2:not(.ui-btn-active) > span,
@@ -687,9 +707,13 @@ html body.app-theme-darkknight .ui-group-theme-b .ui-bar-inherit {
     color: #9c0b12;
 }
 
-.app-theme-darkknight .app-calendar-plugin table tr.ui-btn-active td,
-.app-theme-darkknight .app-calendar-plugin table td.ui-btn-active,
-.app-theme-darkknight .app-calendar-yearview .app-calendar-month td.ui-btn-active {
+.app-calendar-plugin-container .app-time-selector .app-time-hand,
+.app-calendar-plugin-container .app-time-hand > span,
+.app-calendar-plugin table tr.ui-btn-active td,
+.app-calendar-plugin table tr.ui-btn-active td:hover,
+.app-calendar-plugin table td.ui-btn-active,
+.app-calendar-plugin table td.ui-btn-active:hover,
+.app-calendar-yearview .app-calendar-month td.ui-btn-active {
     background-color: #9c0b12 !important;
 }
 

@@ -14,7 +14,7 @@
     <blob allowUploadOnInsert="true" />
     <framework scriptOnly="true" useExtenders="false" />
     <grid actionColumn="true" />
-    <touch desktopDisplayDensity="Condensed" mobileDisplayDensity="Auto" transitions="" sidebar="Landscape" labelsInForm="AlignedLeft" buttonShapes="true" labelsInList="DisplayedBelow" initialListMode="SeeAll" promoteActions="true" mapApiIdentifier="" />
+    <touch desktopDisplayDensity="Condensed" mobileDisplayDensity="Auto" transitions="" sidebar="Landscape" labelsInForm="AlignedLeft" buttonShapes="true" labelsInList="DisplayedBelow" initialListMode="SeeAll" promoteActions="true" mapApiIdentifier="" smartDates="true" />
     <cms searchEngine="" analysisEngine="" analysisOnDataPages="false" />
     <ease urlHashing="false">
       <auditing>Modified By User Name = ModifiedBy|updated_by

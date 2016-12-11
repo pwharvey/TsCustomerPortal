@@ -693,12 +693,10 @@ Namespace TimberSmart.Data
             If Not (IncludeMetadata("items")) Then
                 Return false
             End If
-            If ((field.ItemsStyle = "CheckBoxList") AndAlso (Not (String.IsNullOrEmpty(field.ItemsTargetController)) AndAlso String.IsNullOrEmpty(field.ItemsDataValueField))) Then
-                Dim dummy1 As String
-                Dim dummy2 As String
-                InitializeManyToManyProperties(field, Controller, dummy1, dummy2)
+            If field.SupportsStaticItems() Then
+                InitializeManyToManyProperties(field)
             End If
-            If (field.SupportsStaticItems() AndAlso (String.IsNullOrEmpty(field.ContextFields) OrElse ((Not (contextValues) Is Nothing) OrElse (field.ItemsStyle = "CheckBoxList")))) Then
+            If (field.SupportsStaticItems() AndAlso (String.IsNullOrEmpty(field.ContextFields) OrElse (Not (contextValues) Is Nothing))) Then
                 If PopulatingStaticItems Then
                     Return true
                 End If
@@ -743,7 +741,11 @@ Namespace TimberSmart.Data
                         Next
                         filter = contextFilter.ToArray()
                     End If
-                    Dim request As PageRequest = New PageRequest(-1, 1000, field.ItemsDataTextField, filter)
+                    Dim sortExpression As String = Nothing
+                    If (String.IsNullOrEmpty(field.ItemsTargetController) AndAlso String.IsNullOrEmpty(field.ItemsDataView)) Then
+                        sortExpression = field.ItemsDataTextField
+                    End If
+                    Dim request As PageRequest = New PageRequest(-1, 1000, sortExpression, filter)
                     If (Not (ActionArgs.Current) Is Nothing) Then
                         request.ExternalFilter = ActionArgs.Current.ExternalFilter
                     End If
@@ -836,7 +838,7 @@ Namespace TimberSmart.Data
                                 End Using
                             End If
                         End If
-                        If ((Not (ViewLayout) Is Nothing) AndAlso Regex.IsMatch(ViewLayout, "^\s*w+\.\w\.html\s*$", RegexOptions.IgnoreCase)) Then
+                        If ((Not (ViewLayout) Is Nothing) AndAlso Regex.IsMatch(ViewLayout, "^\s*\w+\.\w+\.html\s*$", RegexOptions.IgnoreCase)) Then
                             fileName = ViewLayout
                         Else
                             tryLoad = false
@@ -897,6 +899,9 @@ Namespace TimberSmart.Data
             If Not (IncludeMetadata("fields")) Then
                 Fields.Clear()
             Else
+                For Each f As DataField in Fields
+                    InitializeManyToManyProperties(f)
+                Next
                 If ((Not (m_FieldFilter) Is Nothing) AndAlso (m_FieldFilter.Length > 0)) Then
                     Dim newFields As List(Of DataField) = New List(Of DataField)()
                     Dim newFieldMap As List(Of Integer) = New List(Of Integer)()
@@ -1108,7 +1113,15 @@ Namespace TimberSmart.Data
             Return false
         End Function
         
-        Public Shared Sub InitializeManyToManyProperties(ByVal field As DataField, ByVal controller As String, ByRef targetForeignKey1 As String, ByRef targetForeignKey2 As String)
+        Public Overloads Overridable Sub InitializeManyToManyProperties(ByVal field As DataField)
+            Dim key1 As String = Nothing
+            Dim key2 As String = Nothing
+            If (Not (String.IsNullOrEmpty(field.ItemsTargetController)) AndAlso String.IsNullOrEmpty(field.ItemsDataValueField)) Then
+                ViewPage.InitializeManyToManyProperties(field, m_Controller, key1, key2)
+            End If
+        End Sub
+        
+        Public Overloads Shared Sub InitializeManyToManyProperties(ByVal field As DataField, ByVal controller As String, ByRef targetForeignKey1 As String, ByRef targetForeignKey2 As String)
             Dim target As Controller = New Controller()
             target.SelectView(field.ItemsTargetController, Nothing)
             Dim field1 As XPathNodeIterator = target.Config.Select(String.Format("/c:dataController/c:fields/c:field[c:items/@dataController='{0}']", controller))

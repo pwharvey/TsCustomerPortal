@@ -103,7 +103,7 @@ Namespace TimberSmart.Rules
                     Dim client As SmtpClient = New SmtpClient()
                     client.Send(message)
                     'hide modal popup and display a confirmation
-                    Result.ExecuteOnClient("$app.alert('{0}', function () { window.history.go(-2); })", Localize("NewPasswordAlert", "A new password has been emailed to the address on file."))
+                    Result.ExecuteOnClient("$app.alert('{0}', function () {{ window.history.go(-2); }})", Localize("NewPasswordAlert", "A new password has been emailed to the address on file."))
                 Catch [error] As Exception
                     Result.ShowAlert([error].Message)
                 End Try
@@ -113,7 +113,7 @@ Namespace TimberSmart.Rules
         <RowBuilder("MyProfile", "myAccountForm", RowKind.Existing)>  _
         Protected Overridable Sub PrepareCurrentUserRow()
             UpdateFieldValue("UserName", UserName)
-            UpdateFieldValue("Email", "UserEmail")
+            UpdateFieldValue("Email", UserEmail)
             UpdateFieldValue("PasswordQuestion", Membership.GetUser().PasswordQuestion)
         End Sub
         

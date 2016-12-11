@@ -1,8 +1,4 @@
-﻿.app-theme-lichen #app-bar-tools .ui-btn.ui-btn-icon-notext.ui-icon-bars:not(.ui-icon-refresh):not(.ui-btn-active):after {
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2014%2014%22%20style%3D%22enable-background%3Anew%200%200%2014%2014%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20style%3D%22fill%3A%23FFFFFF%3B%22%20d%3D%22M1%2C4h12c0.553%2C0%2C1-0.447%2C1-1s-0.447-1-1-1H1C0.447%2C2%2C0%2C2.447%2C0%2C3S0.447%2C4%2C1%2C4z%20M13%2C6H1%20C0.447%2C6%2C0%2C6.447%2C0%2C7c0%2C0.553%2C0.447%2C1%2C1%2C1h12c0.553%2C0%2C1-0.447%2C1-1C14%2C6.447%2C13.553%2C6%2C13%2C6z%20M13%2C10H1c-0.553%2C0-1%2C0.447-1%2C1%20s0.447%2C1%2C1%2C1h12c0.553%2C0%2C1-0.447%2C1-1S13.553%2C10%2C13%2C10z%22%2F%3E%3C%2Fsvg%3E");
-}
-
-/* grey drop icon - #777777 */
+﻿/* grey drop icon - #777777 */
 .app-theme-lichen .app-menu-strip a.ui-btn.app-has-children:not(.ui-btn-active)::after {
     border-top-color: #777;
 }
@@ -23,15 +19,6 @@
     border-top-color: #000;
 }
 
-/*black dots*/
-.app-theme-lichen .ui-btn:not(.ui-btn-active).app-btn-icon-transparent.ui-icon-dots::after {
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0D%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20300%20100%22%20enable-background%3D%22new%200%200%20300%20100%22%20xml%3Aspace%3D%22preserve%22%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%22150%22%20cy%3D%2248%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%22250%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3C/svg%3E%0D%0A');
-}
-
-/* black vdots*/
-.app-android.app-theme-lichen .ui-btn:not(.ui-btn-active).app-btn-icon-transparent.ui-icon-dots::after {
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0D%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20100%20300%22%20enable-background%3D%22new%200%200%20100%20300%22%20xml%3Aspace%3D%22preserve%22%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2249%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2251%22%20cy%3D%22150%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2249%22%20cy%3D%22250%22%20r%3D%2225%22/%3E%0D%0A%3C/svg%3E%0D%0A');
-}
 /*********************************/
 /* THEME: lichen                */
 /*******************************/
@@ -49,7 +36,8 @@
     .app-theme-lichen .ui-page-theme-a .ui-panel-wrapper,
     .app-theme-lichen .ui-panel,
     .app-theme-lichen .app-page-header,
-    .app-theme-lichen .app-status-bar {
+    .app-theme-lichen .app-status-bar,
+    .app-bar-footer.ui-bar-inherit {
         background-color: #e6e5c7;
         border-color: #a8a761;
     }
@@ -237,6 +225,7 @@
     .app-theme-lichen .ui-listview .app-frozen-spacer,
     .app-theme-lichen .app-grid-header,
     .app-theme-lichen .app-echo .dv-item, 
+    .app-echo .app-grid .ui-last-child,
     .app-theme-lichen .app-echo .app-listview,
     .app-theme-lichen [data-container],
     .app-theme-lichen [data-layout="form"] {
@@ -276,8 +265,8 @@
     .app-theme-lichen .app-map-info .ui-popup-arrow,
     .app-theme-lichen .ui-listview .app-frozen-spacer,
     .app-theme-lichen [data-container="toggle"],
-.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected), 
-body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
+.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected):not(.ui-btn-active):not(.app-checked), 
+body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected):not(.ui-btn-active):not(.app-checked) {
         /*color: #000;*/
         background-color: #efefd7;
     }
@@ -297,7 +286,8 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     .app-theme-lichen .app-field-label-before,
     .app-theme-lichen .app-field-label,
     .app-theme-lichen .ui-panel .app-item-desc,
-    .app-theme-lichen .app-item-number {
+    .app-theme-lichen .app-item-number,
+    .app-data-input-popup li:not(.app-selected) span.app-text-normal {
         color: #949356 !important;
     }
 
@@ -346,9 +336,11 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 
     /*selected button*/
     .app-theme-lichen .app-selected:not(.ui-btn-active),
+    .app-theme-lichen .app-checked:not(.ui-btn-active),
     .app-theme-lichen .app-selected:hover,
     .app-theme-lichen .app-selected:visited,
-    .app-theme-lichen .app-selected .app-frozen-spacer {
+    .app-theme-lichen .app-selected .app-frozen-spacer,
+    .app-theme-lichen .app-checked .app-frozen-spacer {
         background-color: #dadab0 !important;
         border-color: #c6c58f !important;
         color: #000 !important;
@@ -379,9 +371,11 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 
     /* selected hover*/
     html body.app-desktop.app-theme-lichen .ui-btn.app-selected:hover:not(.ui-btn-active),
+    html body.app-desktop.app-theme-lichen .ui-btn.app-checked:hover:not(.ui-btn-active),
     .app-theme-lichen .app-echo-toolbar .app-selected:not(.ui-btn-active),
     .app-theme-lichen .app-echo-toolbar .app-selected:not(.ui-btn-active):hover,
-    .app-theme-lichen .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer {
+    .app-theme-lichen .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer,
+    .app-theme-lichen .app-listview .app-checked:not(.ui-btn-active):hover .app-frozen-spacer {
         background-color: #d5d5ac !important;
         border-color: #c6c58f !important;
         color: #000 !important;
@@ -390,15 +384,19 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     /* click */
 
     .app-theme-lichen .app-grid-header .ui-btn-active,
-    .app-theme-lichen .dv-item .app-btn-more.ui-btn-active,
     [data-container="collapsible"] [data-container="toggle"].ui-btn-active {
         background-color: #003399 !important;
         color: #fff !important;
     }
 
     .app-theme-lichen .app-listview .ui-btn.app-selected::before,
-.app-theme-lichen [data-input="checkboxlist"] .app-data-list li.app-selected::after {
+    .app-theme-lichen [data-input="checkboxlist"] .app-data-list li.app-selected::after {
         background-color: #003399;
+    }
+
+    .ui-btn.ui-btn-active::after,
+    .app-btn-more.ui-btn-active::after {
+        color: #003399;
     }
 
 .app-theme-lichen [data-input] .app-data-list li.app-selected,
@@ -452,6 +450,13 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
         background-color: #003399 !important;
     }
 
+    [data-input] .app-control-helper ul li.ui-btn-active,
+    [data-input].app-has-focus .app-control-helper ul li.app-focus {
+        border-color: #003399 !important;
+        background-color: #003399 !important;
+        color: #fff!important;
+    }
+
     .app-theme-lichen .app-btn-check .app-icon-themed {
         fill: #fff;
     }
@@ -479,11 +484,11 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 
     .app-theme-lichen .app-bar-tools .ui-btn,
     .app-theme-lichen .app-map-info-toolbar .ui-btn,
-    .app-theme-lichen .ui-btn.ui-btn-icon-notext.ui-btn-active {
+    .app-theme-lichen .ui-btn.ui-btn-icon-notext.ui-btn-active:not(.ui-icon-dots) {
         border-color: #4c4f2a !important;
     }
 
-    .app-theme-lichen.app-desktop .ui-btn.ui-btn-icon-notext:hover:not(.ui-btn-active) {
+    .app-desktop .ui-btn.ui-btn-icon-notext:hover:not(.ui-btn-active):not(.ui-icon-dots) {
         background-color: #cfd0aa !important;
         border-color: #a8a761 !important;
     }
@@ -496,11 +501,11 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
         border-color: #292911 !important;
     }
 
-    .app-theme-lichen .ui-btn.ui-btn-icon-notext:not(.ui-radio-on)::after,
-    .app-theme-lichen .ui-btn.ui-btn-icon-left:not(.ui-radio-on)::after,
-    .app-theme-lichen .ui-btn.ui-btn-icon-right:not(.ui-radio-on):not(.app-btn-icon-transparent)::after,
-    .app-theme-lichen .ui-btn.ui-btn-icon-top:not(.ui-radio-on)::after,
-    .app-theme-lichen .ui-btn.ui-btn-icon-bottom:not(.ui-radio-on)::after,
+    .app-theme-lichen .ui-btn.ui-btn-icon-notext:not(.ui-icon-dots)::after,
+    .app-theme-lichen .ui-btn.ui-btn-icon-left::after,
+    .app-theme-lichen .ui-btn.ui-btn-icon-right:not(.app-btn-icon-transparent)::after,
+    .app-theme-lichen .ui-btn.ui-btn-icon-top::after,
+    .app-theme-lichen .ui-btn.ui-btn-icon-bottom::after,
     .app-theme-lichen .ui-checkbox-on:after,
     .app-theme-lichen .ui-flipswitch-active,
     .app-theme-lichen .ui-slider-track .ui-btn-active {
@@ -522,7 +527,7 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     }
 
 
-    .app-theme-lichen .ui-btn.ui-btn-active.ui-btn-icon-notext::after,
+    .app-theme-lichen .ui-btn.ui-btn-active.ui-btn-icon-notext:not(.ui-icon-dots)::after,
     .app-theme-lichen .ui-btn.ui-btn-active.ui-btn-icon-left::after,
     .app-theme-lichen .ui-btn.ui-btn-active.ui-btn-icon-right:not(.app-btn-icon-transparent)::after,
     .app-theme-lichen .ui-btn.ui-btn-active.ui-btn-icon-top::after,
@@ -657,10 +662,13 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     background-color: #003399;
 }
 
-.app-theme-lichen .ui-bar-a .app-menu-strip .ui-btn:not(.ui-btn-active), .app-theme-lichen .ui-bar-a .app-user-name {
+.app-bar-tools .ui-btn:not(.ui-btn-active)::after,
+.app-theme-lichen .ui-bar-a .app-menu-strip .ui-btn:not(.ui-btn-active), 
+.app-theme-lichen .ui-bar-a .app-user-name {
     color: #ccc !important;
 }
 
+.app-desktop .app-bar-tools .ui-btn:hover:not(.ui-btn-active)::after,
 .app-theme-lichen .ui-bar-a .app-menu-strip .ui-btn:hover:not(.ui-btn-active),
 .app-theme-lichen .ui-bar-a .app-menu-strip .ui-btn.app-selected:not(.ui-btn-active) {
     color: #fff !important;
@@ -710,6 +718,8 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     border-color: #a8a761;
 }
 
+.app-calendar-plugin-container .app-time-container .app-selected,
+.app-calendar-plugin-container .app-time-header .app-cal-selected,
 .app-theme-lichen .app-day-header :not(.ui-btn-active).ui-btn .app-current-day,
 .app-theme-lichen .app-has-current-day .app-current-time,
 .app-theme-lichen .app-calendar-agenda-list > li.app-has-current-day h2:not(.ui-btn-active) > span,
@@ -718,9 +728,13 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     color: #a8a761;
 }
 
-.app-theme-lichen .app-calendar-plugin table tr.ui-btn-active td,
-.app-theme-lichen .app-calendar-plugin table td.ui-btn-active,
-.app-theme-lichen .app-calendar-yearview .app-calendar-month td.ui-btn-active {
+.app-calendar-plugin-container .app-time-selector .app-time-hand,
+.app-calendar-plugin-container .app-time-hand > span,
+.app-calendar-plugin table tr.ui-btn-active td,
+.app-calendar-plugin table tr.ui-btn-active td:hover,
+.app-calendar-plugin table td.ui-btn-active,
+.app-calendar-plugin table td.ui-btn-active:hover,
+.app-calendar-yearview .app-calendar-month td.ui-btn-active {
     background-color: #a8a761 !important;
 }
 

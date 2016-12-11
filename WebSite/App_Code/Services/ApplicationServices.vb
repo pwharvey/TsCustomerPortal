@@ -595,6 +595,8 @@ Namespace TimberSmart.Services
         
         Public Shared SystemResourceRegex As Regex = New Regex("~/((sys/)|(views/)|(site\b))", RegexOptions.IgnoreCase)
         
+        Private Shared m_MapsApiIdentifier As String
+        
         Private m_UserTheme As String
         
         Public Shared CssUrlRegex As Regex = New Regex("(?'Header'\burl\s*\(\s*(\&quot;|\')?)(?'Name'\w+)(?'Symbol'\S)")
@@ -713,6 +715,15 @@ Namespace TimberSmart.Services
             End Get
         End Property
         
+        Public Shared ReadOnly Property MapsApiIdentifier() As String
+            Get
+                If String.IsNullOrEmpty(m_MapsApiIdentifier) Then
+                    m_MapsApiIdentifier = WebConfigurationManager.AppSettings("MapsApiIdentifier")
+                End If
+                Return m_MapsApiIdentifier
+            End Get
+        End Property
+        
         Public Overridable ReadOnly Property MaxPivotRowCount() As Integer
             Get
                 Return 250000
@@ -740,7 +751,7 @@ Namespace TimberSmart.Services
             Get
                 If String.IsNullOrEmpty(m_UserTheme) Then
                     If (Not (HttpContext.Current) Is Nothing) Then
-                        Dim themeCookie As HttpCookie = HttpContext.Current.Request.Cookies(".COTTHEME")
+                        Dim themeCookie As HttpCookie = HttpContext.Current.Request.Cookies((".COTTHEME" + BusinessRules.UserName))
                         If (Not (themeCookie) Is Nothing) Then
                             m_UserTheme = themeCookie.Value
                         End If
@@ -1508,7 +1519,7 @@ Namespace TimberSmart.Services
             Return true
         End Function
         
-        Public Shared Sub RegisterCssLinks(ByVal p As Page, ByVal contentFramework As String)
+        Public Shared Sub RegisterCssLinks(ByVal p As Page)
             For Each c As Control in p.Header.Controls
                 If TypeOf c Is HtmlLink Then
                     Dim l As HtmlLink = CType(c,HtmlLink)
@@ -1526,11 +1537,11 @@ Namespace TimberSmart.Services
                             p.Header.Controls.AddAt(0, meta)
                             Dim allowCompression As Boolean = true
                             If (ApplicationServices.EnableMinifiedCss AndAlso allowCompression) Then
-                                l.Href = (p.ResolveUrl(String.Format("~/appservices/stylesheet-{0}.min.css", ApplicationServices.Version)) + String.Format("?_t={0}&_cf={1}", ApplicationServices.Create().UserTheme, contentFramework))
+                                l.Href = (p.ResolveUrl(String.Format("~/appservices/stylesheet-{0}.min.css", ApplicationServices.Version)) + String.Format("?_t={0}&_cf=", ApplicationServices.Create().UserTheme))
                                 l.Attributes("class") = "app-theme"
                             Else
                                 For Each stylesheet As String in ApplicationServices.TouchUIStylesheets()
-                                    If (Not (stylesheet.StartsWith("jquery.mobile")) AndAlso ((contentFramework = "bootstrap") OrElse Not (stylesheet.StartsWith("bootstrap")))) Then
+                                    If (Not (stylesheet.StartsWith("jquery.mobile")) AndAlso Not (stylesheet.StartsWith("bootstrap"))) Then
                                         Dim cssLink As HtmlLink = New HtmlLink()
                                         cssLink.Href = String.Format("~/touch/{0}?{1}", stylesheet, ApplicationServices.Version)
                                         cssLink.Attributes("type") = "text/css"
@@ -1752,14 +1763,25 @@ Namespace TimberSmart.Services
             If (Not (result) Is Nothing) Then
                 context.Response.ContentType = "application/json; charset=utf-8"
                 Dim output As String = String.Format("{{""d"":{0}}}", serializer.Serialize(result))
-                Dim dataIndex As Integer = output.IndexOf(",""NewRow"":")
-                If (dataIndex >= 0) Then
-                    Dim metadata As String = ViewPageCompressRegex.Replace(output.Substring(0, dataIndex), String.Empty)
+                Dim startIndex As Integer = 0
+                Dim dataIndex As Integer = 0
+                Dim lastIndex As Integer = 0
+                Dim lastLength As Integer = output.Length
+                Do While true
+                    startIndex = output.IndexOf("{""Controller"":", lastIndex, StringComparison.Ordinal)
+                    dataIndex = output.IndexOf(",""NewRow"":", lastIndex, StringComparison.Ordinal)
+                    If ((startIndex < 0) OrElse (dataIndex < 0)) Then
+                        Exit Do
+                    End If
+                    Dim metadata As String = (output.Substring(0, startIndex) + ViewPageCompressRegex.Replace(output.Substring(startIndex, (dataIndex - startIndex)), String.Empty))
                     If metadata.EndsWith(",") Then
                         metadata = metadata.Substring(0, (metadata.Length - 1))
                     End If
                     output = (ViewPageCompress2Regex.Replace(metadata, "}$1") + output.Substring(dataIndex))
-                End If
+                    lastIndex = ((dataIndex + 10)  _
+                                - (lastLength - output.Length))
+                    lastLength = output.Length
+                Loop
                 ApplicationServices.CompressOutput(context, output)
             End If
             context.Response.End()

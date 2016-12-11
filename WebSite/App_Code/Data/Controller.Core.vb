@@ -932,9 +932,10 @@ Namespace TimberSmart.Data
                     Dim targetForeignKey1Index As Integer = manyToManyPage.IndexOfField(targetForeignKey1)
                     Dim targetForeignKey2Index As Integer = manyToManyPage.IndexOfField(targetForeignKey2)
                     'determine text field for items
-                    Dim items As Dictionary(Of Object, Object) = New Dictionary(Of Object, Object)()
+                    Dim items As SortedDictionary(Of Object, Object) = New SortedDictionary(Of Object, Object)()
+                    Dim keyList As List(Of Object) = New List(Of Object)()
                     Dim targetTextIndex As Integer = -1
-                    If Not ((field.ItemsStyle = "CheckBoxList")) Then
+                    If Not (field.SupportsStaticItems()) Then
                         For Each f As DataField in manyToManyPage.Fields
                             If (f.Name = targetForeignKey2) Then
                                 If Not (String.IsNullOrEmpty(f.AliasName)) Then
@@ -961,13 +962,15 @@ Namespace TimberSmart.Data
                                 Dim text As Object = row(targetTextIndex)
                                 If Not (items.ContainsKey(v2)) Then
                                     items.Add(v2, text)
+                                    keyList.Add(v2)
                                 End If
                             End If
                         End If
                     Next
                     If Not ((items.Count = 0)) Then
-                        For Each kvp As KeyValuePair(Of Object, Object) in items
-                            field.Items.Add(New Object() {kvp.Key, kvp.Value})
+                        For Each k As Object in keyList
+                            Dim v As Object = items(k)
+                            field.Items.Add(New Object() {k, v})
                         Next
                     End If
                 End If

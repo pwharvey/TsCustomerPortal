@@ -8,17 +8,6 @@
 .app-theme-verdant a.ui-btn.app-has-children:hover::after {
     border-top-color: #000;
 }
-
-
-/*black dots*/
-.app-theme-verdant .ui-btn:not(.ui-btn-active).app-btn-icon-transparent.ui-icon-dots::after {
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0D%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20300%20100%22%20enable-background%3D%22new%200%200%20300%20100%22%20xml%3Aspace%3D%22preserve%22%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%22150%22%20cy%3D%2248%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%22250%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3C/svg%3E%0D%0A');
-}
-
-/* black vdots*/
-.app-android.app-theme-verdant .ui-btn:not(.ui-btn-active).app-btn-icon-transparent.ui-icon-dots::after {
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0D%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20100%20300%22%20enable-background%3D%22new%200%200%20100%20300%22%20xml%3Aspace%3D%22preserve%22%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2249%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2251%22%20cy%3D%22150%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2249%22%20cy%3D%22250%22%20r%3D%2225%22/%3E%0D%0A%3C/svg%3E%0D%0A');
-}
 /*********************************/
 /* THEME: verdant               */
 /*******************************/
@@ -35,7 +24,8 @@
 
     .app-theme-verdant .ui-page-theme-a .ui-panel-wrapper,
     .app-theme-verdant .ui-panel,
-    .app-theme-verdant .app-status-bar {
+    .app-theme-verdant .app-status-bar,
+    .app-bar-footer.ui-bar-inherit {
         background-color: #a1d334;
         border-color: #7caa17;
     }
@@ -114,7 +104,7 @@
 
     body:not(.app-sidebar-undocked).app-theme-verdant .ui-header-fixed .ui-title,
     body:not(.app-sidebar-undocked).app-theme-verdant .app-sidebar,
-    .app-theme-verdant .app-divider:not(.ui-collapsible),
+    .app-theme-verdant .app-divider:not(.ui-collapsible):not(.app-calculated),
     .app-theme-verdant .app-echo,
     .app-theme-verdant .app-header {
         border-color: #7caa17 !important;
@@ -204,6 +194,7 @@
     .app-theme-verdant .ui-listview .app-frozen-spacer,
     .app-theme-verdant .app-grid-header,
     .app-theme-verdant .app-echo .dv-item, 
+    .app-echo .app-grid .ui-last-child,
     .app-theme-verdant .app-echo .app-listview,
     .app-theme-verdant [data-container],
     .app-theme-verdant [data-layout="form"] {
@@ -245,8 +236,8 @@
     .app-theme-verdant .ui-datepicker .ui-datepicker-next,
     .app-theme-verdant .ui-listview .app-frozen-spacer,
     .app-theme-verdant [data-container="toggle"],
-.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected), 
-body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
+.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected):not(.ui-btn-active):not(.app-checked), 
+body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected):not(.ui-btn-active):not(.app-checked) {
         /*color: #000;*/
         background-color: #eaffbc;
     }
@@ -266,7 +257,8 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     .app-theme-verdant .app-field-label-before,
     .app-theme-verdant .app-field-label,
     .app-theme-verdant .ui-panel .app-item-desc,
-    .app-theme-verdant .app-item-number {
+    .app-theme-verdant .app-item-number,
+    .app-data-input-popup li:not(.app-selected) span.app-text-normal {
         color: #003399 !important;
     }
 
@@ -317,9 +309,11 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 
     /*selected button*/
     .app-theme-verdant .app-selected:not(.ui-btn-active),
+    .app-theme-verdant .app-checked:not(.ui-btn-active),
     .app-theme-verdant .app-selected:hover,
     .app-theme-verdant .app-selected:visited,
-    .app-theme-verdant .app-selected .app-frozen-spacer {
+    .app-theme-verdant .app-selected .app-frozen-spacer,
+    .app-theme-verdant .app-checked .app-frozen-spacer {
         background-color: #feda93 !important;
         border-color: #8fbf28 !important;
         color: #000 !important;
@@ -351,9 +345,11 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 
     /* selected hover*/
     html body.app-desktop.app-theme-verdant .ui-btn.app-selected:hover:not(.ui-btn-active),
+    html body.app-desktop.app-theme-verdant .ui-btn.app-checked:hover:not(.ui-btn-active),
     .app-theme-verdant .app-echo-toolbar .app-selected:not(.ui-btn-active),
     .app-theme-verdant .app-echo-toolbar .app-selected:not(.ui-btn-active):hover,
-    .app-theme-verdant .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer {
+    .app-theme-verdant .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer,
+    .app-theme-verdant .app-listview .app-checked:not(.ui-btn-active):hover .app-frozen-spacer {
         background-color: #fdd483 !important;
         border-color: #8fbf28;
         color: #000 !important;
@@ -361,15 +357,19 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 
     /* click */
     .app-theme-verdant .app-grid-header .ui-btn-active,
-    .app-theme-verdant .dv-item .app-btn-more.ui-btn-active,
     [data-container="collapsible"] [data-container="toggle"].ui-btn-active {
         background-color: #d2b47a !important;
         color: #fff !important;
     }
 
     .app-theme-verdant .app-listview .ui-btn.app-selected::before,
-.app-theme-verdant [data-input="checkboxlist"] .app-data-list li.app-selected::after {
+    .app-theme-verdant [data-input="checkboxlist"] .app-data-list li.app-selected::after {
         background-color: #d2b47a;
+    }
+
+    .ui-btn.ui-btn-active::after,
+    .app-btn-more.ui-btn-active::after {
+        color: #d2b47a;
     }
 
 .app-theme-verdant [data-input] .app-data-list li.app-selected,
@@ -392,8 +392,13 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     .app-theme-verdant .app-listview-static .ui-btn-active .app-item-desc,
     .app-theme-verdant .ui-btn-active p,
     .app-theme-verdant .ui-btn-active p.ui-li-aside,
-    .app-theme-verdant .ui-btn.ui-btn-active span:not(.ui-li-count) {
+    .app-theme-verdant .ui-btn.ui-btn-active span:not(.ui-li-count),
+    .dv-item .ui-btn-active .app-btn-more::after {
         color: #000 !important;
+    }
+
+    .dv-item .ui-btn-active .app-btn-check.app-btn-check-selected {
+        border-color: #000!important;
     }
 
     .app-theme-verdant .dv-action-see-all .app-btn-prev.ui-btn-active,
@@ -425,6 +430,13 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
         background-color: #D2B47A !important;
     }
 
+    [data-input] .app-control-helper ul li.ui-btn-active,
+    [data-input].app-has-focus .app-control-helper ul li.app-focus {
+        border-color: #D2B47A !important;
+        background-color: #D2B47A !important;
+        color: #fff!important;
+    }
+
     .app-theme-verdant .app-btn-check .app-icon-themed {
         fill: #000;
     }
@@ -443,8 +455,8 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 
     /*button on header bar*/
 
-    .app-theme-verdant.app-desktop .ui-btn.ui-btn-icon-notext:hover,
-    .app-theme-verdant .ui-btn.ui-btn-icon-notext.ui-btn-active,
+    .app-theme-verdant.app-desktop .ui-btn.ui-btn-icon-notext:not(.ui-icon-dots):hover,
+    .app-theme-verdant .ui-btn.ui-btn-icon-notext:not(.ui-icon-dots).ui-btn-active,
     .app-theme-verdant .ui-datepicker .ui-datepicker-prev:hover,
     .app-theme-verdant .ui-datepicker .ui-datepicker-next:hover {
         background-color: #d5f298 !important;
@@ -484,7 +496,7 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     }
 
 
-    .app-theme-verdant .ui-btn.ui-btn-active.ui-btn-icon-notext::after,
+    .app-theme-verdant .ui-btn.ui-btn-active.ui-btn-icon-notext:not(.ui-icon-dots)::after,
     .app-theme-verdant .ui-btn.ui-btn-active.ui-btn-icon-left::after,
     .app-theme-verdant .ui-btn.ui-btn-active.ui-btn-icon-right:not(.app-btn-icon-transparent)::after,
     .app-theme-verdant .ui-btn.ui-btn-active.ui-btn-icon-top::after,
@@ -657,6 +669,8 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     border-color: #d2b47a;
 }
 
+.app-calendar-plugin-container .app-time-container .app-selected,
+.app-calendar-plugin-container .app-time-header .app-cal-selected,
 .app-theme-verdant .app-day-header :not(.ui-btn-active).ui-btn .app-current-day,
 .app-theme-verdant .app-has-current-day .app-current-time,
 .app-theme-verdant .app-calendar-agenda-list > li.app-has-current-day h2:not(.ui-btn-active) > span,
@@ -665,9 +679,13 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     color: #d2b47a;
 }
 
-.app-theme-verdant .app-calendar-plugin table tr.ui-btn-active td,
-.app-theme-verdant .app-calendar-plugin table td.ui-btn-active,
-.app-theme-verdant .app-calendar-yearview .app-calendar-month td.ui-btn-active {
+.app-calendar-plugin-container .app-time-selector .app-time-hand,
+.app-calendar-plugin-container .app-time-hand > span,
+.app-calendar-plugin table tr.ui-btn-active td,
+.app-calendar-plugin table tr.ui-btn-active td:hover,
+.app-calendar-plugin table td.ui-btn-active,
+.app-calendar-plugin table td.ui-btn-active:hover,
+.app-calendar-yearview .app-calendar-month td.ui-btn-active {
     background-color: #d2b47a !important;
 }
 
@@ -675,6 +693,7 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 .app-theme-verdant .app-calendar-month-header h1 {
     color: #002570 !important;
 }
+
 /***** bootstrap *****/
 
 .app-theme-verdant .app-bootstrap a:not(.btn),

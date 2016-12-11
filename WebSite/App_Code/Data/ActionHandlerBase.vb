@@ -51,11 +51,9 @@ Namespace TimberSmart.Data
         
         Private m_Result As ActionResult
         
-        <System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)>  _
-        Private m_Whitelist As String
+        Private m_Whitelist As List(Of String)
         
-        <System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)>  _
-        Private m_Blacklist As String
+        Private m_Blacklist As List(Of String)
         
         Public Property Arguments() As ActionArgs
             Get
@@ -80,19 +78,25 @@ Namespace TimberSmart.Data
         
         Public Property Whitelist() As String
             Get
-                Return Me.m_Whitelist
+                If (m_Whitelist Is Nothing) Then
+                    Return String.Empty
+                End If
+                Return String.Join(",", m_Whitelist)
             End Get
             Set
-                Me.m_Whitelist = value
+                m_Whitelist = New List(Of String)(value.Split(Global.Microsoft.VisualBasic.ChrW(44), Global.Microsoft.VisualBasic.ChrW(59)))
             End Set
         End Property
         
         Public Property Blacklist() As String
             Get
-                Return Me.m_Blacklist
+                If (m_Blacklist Is Nothing) Then
+                    Return String.Empty
+                End If
+                Return String.Join(",", m_Blacklist)
             End Get
             Set
-                Me.m_Blacklist = value
+                m_Blacklist = New List(Of String)(value.Split(Global.Microsoft.VisualBasic.ChrW(44), Global.Microsoft.VisualBasic.ChrW(59)))
             End Set
         End Property
         
@@ -103,48 +107,50 @@ Namespace TimberSmart.Data
         End Sub
         
         Public Sub ClearBlackAndWhiteLists()
-            m_Blacklist = String.Empty
-            m_Whitelist = String.Empty
+            If (Not (m_Whitelist) Is Nothing) Then
+                m_Whitelist.Clear()
+            End If
+            If (Not (m_Blacklist) Is Nothing) Then
+                m_Blacklist.Clear()
+            End If
         End Sub
         
         Protected Sub AddToWhitelist(ByVal rule As String)
-            m_Whitelist = UpdateNameList(m_Whitelist, rule, true)
+            If (m_Whitelist Is Nothing) Then
+                m_Whitelist = New List(Of String)()
+            End If
+            If Not (m_Whitelist.Contains(rule)) Then
+                m_Whitelist.Add(rule)
+            End If
         End Sub
         
         Protected Sub RemoveFromWhitelist(ByVal rule As String)
-            m_Whitelist = UpdateNameList(m_Whitelist, rule, false)
+            If (Not (m_Whitelist) Is Nothing) Then
+                m_Whitelist.Remove(rule)
+            End If
         End Sub
         
+        Public Function RuleInWhitelist(ByVal rule As String) As Boolean
+            Return ((m_Whitelist Is Nothing) OrElse m_Whitelist.Contains(rule))
+        End Function
+        
         Protected Sub AddToBlacklist(ByVal rule As String)
-            m_Blacklist = UpdateNameList(m_Blacklist, rule, true)
+            If (m_Blacklist Is Nothing) Then
+                m_Blacklist = New List(Of String)()
+            End If
+            If Not (m_Blacklist.Contains(rule)) Then
+                m_Blacklist.Add(rule)
+            End If
         End Sub
         
         Protected Sub RemoveFromBlacklist(ByVal rule As String)
-            m_Blacklist = UpdateNameList(m_Blacklist, rule, false)
+            If (Not (m_Blacklist) Is Nothing) Then
+                m_Blacklist.Remove(rule)
+            End If
         End Sub
         
-        Private Function UpdateNameList(ByVal listOfNames As String, ByVal name As String, ByVal add As Boolean) As String
-            If (listOfNames Is Nothing) Then
-                listOfNames = String.Empty
-            End If
-            Dim nameList As List(Of String) = New List(Of String)(Regex.Split(listOfNames, "(\s*(,|;)\s*)"))
-            If Not (add) Then
-                nameList.Remove(name)
-            Else
-                If Not (nameList.Contains(name)) Then
-                    nameList.Add(name)
-                End If
-            End If
-            Dim sb As StringBuilder = New StringBuilder()
-            For Each s As String in nameList
-                If Not (String.IsNullOrEmpty(s)) Then
-                    If (sb.Length > 0) Then
-                        sb.Append(",")
-                    End If
-                    sb.Append(s)
-                End If
-            Next
-            Return sb.ToString()
+        Public Function RuleInBlacklist(ByVal rule As String) As Boolean
+            Return ((Not (m_Blacklist) Is Nothing) AndAlso m_Blacklist.Contains(rule))
         End Function
         
         <System.Diagnostics.DebuggerStepThrough()>  _

@@ -52,12 +52,12 @@
     function drawData(pivot, placeholder) {
         var headerRow = $('<div class="app-chart-headerbar"></div>').appendTo(placeholder),
             miniChart = $('<div class="app-chart-mini"></div>').appendTo(headerRow).attr('title', resources.ShowChart),
-titleText = pivot.Properties["title"] || pivot.Title,
-    title = $('<span class="app-chart-header"></span>').appendTo(headerRow),
-    data = $('<div class="app-chart-data app-scrollable"></div>').appendTo(placeholder),
-    table = $('<table></table>').appendTo(data),
-    isHeaderRow = true,
-    showMiniChart = !pivot.ChartType.match(/map|table/);
+            titleText = pivot.Properties["title"] || pivot.Title,
+            title = $('<span class="app-chart-header"></span>').appendTo(headerRow),
+            data = $('<div class="app-chart-data app-scrollable"></div>').appendTo(placeholder),
+            table = $('<table></table>').appendTo(data),
+            isHeaderRow = true,
+            showMiniChart = !pivot.ChartType.match(/map|table/);
         if (!showMiniChart)
             miniChart.hide();
         placeholder.closest('.app-chart').addClass('app-chart-has-data');
@@ -113,22 +113,17 @@ titleText = pivot.Properties["title"] || pivot.Title,
         var isPie = isPieChart(pivot.ChartType),
             titleText = pivot.Properties["title"] || pivot.Title;
         if (!options)
-            options = {
-            };
+            options = {};
         if (!options.legend)
-            options.legend = {
-            };
+            options.legend = {};
         if (!options.hAxis)
-            options.hAxis = {
-            };
+            options.hAxis = {};
         if (!options.vAxis)
             options.vAxis = {};
         if (!options.chartArea)
-            options.chartArea = {
-            };
+            options.chartArea = {};
         if (!options.tooltip)
-            options.tooltip = {
-            };
+            options.tooltip = {};
         // place background colors here
         options.title = titleText.charAt(0).toUpperCase() + titleText.slice(1);
         options.width = Math.floor(selector.width()) - 1;
@@ -177,8 +172,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     case "vaxistitle":
                         options.vAxis.title = value;
                         break;
-                        // geo chart properties               
-                    case "region":
+                    case "region": // geo chart properties
                         options.region = value;
                         break;
                     case "displaymode":
@@ -187,15 +181,13 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     case "resolution":
                         options.resolution = value;
                         break;
-                        // line chart properties               
-                    case "curve":
+                    case "curve": // line chart properties
                         options.curveType = "function";
                         break;
                     case "explorer":
                         options.explorer = {};
                         break;
-                        // map chart properties               
-                    case "maptype":
+                    case "maptype": // map chart properties
                         options.mapType = value;
                         break;
                     case "enablescrollwheel":
@@ -204,8 +196,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     case "usemaptypecontrol":
                         options.useMapTypeControl = true;
                         break;
-                        // misc               
-                    case "pointshape":
+                    case "pointshape": // misc
                         options.pointShape = value;
                         break;
                     case "pointsize":
@@ -215,9 +206,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                         options.orientation = value;
                         break;
                     case "animation":
-                        options.animation = {
-                            startup: true, duration: 500, easing: 'out'
-                        };
+                        options.animation = { startup: true, duration: 500, easing: 'out' };
                         break;
                     case "colors":
                         var colors = value.split(',');
@@ -578,7 +567,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 var options = chartOptions(pivot, selector),
                     chart = new google.visualization.AreaChart($(selector).get(0));
                 draw(pivot, selector, chart, options);
-            })
+            });
         },
         areastacked: function (pivot, selector) {
             loadPackage('corechart', function () {
@@ -587,7 +576,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 }),
                     chart = new google.visualization.AreaChart($(selector).get(0));
                 draw(pivot, selector, chart, options);
-            })
+            });
         },
         bar: function (pivot, selector) {
             loadPackage('corechart', function () {
@@ -700,9 +689,9 @@ titleText = pivot.Properties["title"] || pivot.Title,
     // presenter implementation
     $app.touch.presenter('register', {
         name: 'Charts',
-        icon: function () { return 'chart' },
+        icon: function () { return 'chart'; },
         text: function () {
-            return resources.Text
+            return resources.Text;
         },
         supports: function (dataView) {
             var isSupported = false;
@@ -720,33 +709,25 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 if (dataView.AutoPivots && $.isEmptyObject(dataView.AutoPivots))
                     return true;
                 else {
+                    dataView.AutoPivots = {};
                     var pivotCount = 1,
                         firstField = dataView._fields[0].Label,
-                    lookups = [],
-                    lookupCount = 0,
-                    lookupChartCount = 0,
-                    lookupChartTypes = ['pie3d', 'column', 'donut', 'bar'],
-                    dates = [],
+                        lookups = [],
+                        lookupCount = 0,
+                        lookupChartCount = 0,
+                        lookupChartTypes = ['pie3d', 'column', 'donut', 'bar'],
+                        dates = [],
                         dateCount = 0,
-                    dateChartCount = 0,
-                    dateChartTypes = ['line', 'column', 'area'],
-                    lookupAndDateChartCount = 0,
-                    lookupAndDateChartTypes = ['columnstacked-top5', 'area-top7', 'column-top5', 'barstacked-top5'],
-                    currency = [],
-                    groupExpressions = dataView.groupExpression(),
-                    hasMap = false;
-
-                    dataView.AutoPivots = {};
-
-                    function getNextLookupChart() {
-                        return lookupChartTypes[lookupChartCount++ % lookupChartTypes.length];
-                    }
-                    function getNextDateChart() {
-                        return dateChartTypes[dateChartCount++ % dateChartTypes.length];
-                    }
-                    function getNextLookupAndDateChart() {
-                        return lookupAndDateChartTypes[lookupAndDateChartCount++ % lookupAndDateChartTypes.length];
-                    }
+                        dateChartCount = 0,
+                        dateChartTypes = ['line', 'column', 'area'],
+                        lookupAndDateChartCount = 0,
+                        lookupAndDateChartTypes = ['columnstacked-top5', 'area-top7', 'column-top5', 'barstacked-top5'],
+                        currency = [],
+                        groupExpressions = dataView.groupExpression(),
+                        hasMap = false,
+                        getNextLookupChart = function () { return lookupChartTypes[lookupChartCount++ % lookupChartTypes.length]; },
+                        getNextDateChart = function () { return dateChartTypes[dateChartCount++ % dateChartTypes.length]; },
+                        getNextLookupAndDateChart = function () { return lookupAndDateChartTypes[lookupAndDateChartCount++ % lookupAndDateChartTypes.length]; };
 
 
                     // enumerate fields
@@ -761,7 +742,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                         //    lookups.splice(0, 0, field.Name);
                         // date
                         if (field.Type == "DateTime")
-                            dates.push(field.Name)
+                            dates.push(field.Name);
                         // currency
                         if (field.DataFormatString == "c")
                             currency.push(field.Name);
@@ -872,7 +853,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 }
                 else {
                     var filterLink = $('<li data-icon="filter" class="ui-last-child"><a href="#app-filter" class="ui-btn ui-icon-filter ui-btn-icon-left"><p/></a></li>').appendTo(listview).find('a'),
-                        dataWarning = String.format(resources.DataWarning, __settings.maxPivotRowCount)
+                        dataWarning = String.format(resources.DataWarning, __settings.maxPivotRowCount);
                     filterLink.attr('title', resourcesMobile.Filter).find('p').text(dataWarning);
                 }
                 listview.listview();
@@ -895,7 +876,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                             i = 0;
                         while (i < row.length) {
                             row[i] = translateWord(row[i]);
-                            i++
+                            i++;
                         }
                     });
 
@@ -942,21 +923,21 @@ titleText = pivot.Properties["title"] || pivot.Title,
 
             function render() {
                 var w,
-                h,
-                maxHeight,
-                pivot,
+                    h,
+                    maxHeight,
+                    pivot,
                     pivotName,
-                chartContainers = [],
-                chartIndex = 0,
-                scrollable = chartList.closest('.app-wrapper'),
-                instruction,
-                numberOfPivots = 0,
-                numberOfColumns = 1,
-                testCharts,
-                oldCharts = chartList.find('.app-chart'),
-                resizedPlaceholder,
-                closestPlaceholder,
-                hasLargerChart = false;
+                    chartContainers = [],
+                    chartIndex = 0,
+                    scrollable = chartList.closest('.app-wrapper'),
+                    instruction,
+                    numberOfPivots = 0,
+                    numberOfColumns = 1,
+                    testCharts,
+                    oldCharts = chartList.find('.app-chart'),
+                    resizedPlaceholder,
+                    closestPlaceholder,
+                    hasLargerChart = false;
                 if (oldCharts.length > 0) {
                     var scrollableTop = scrollable.scrollTop();
                     $(oldCharts).each(function () {
@@ -969,7 +950,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 }
                 emptyChartList();
                 $('<div class="app-chart"><span class="app-chart-inner"/></div><div class="app-chart"><span class="app-chart-inner"/></div><div class="app-chart"><span class="app-chart-inner"/></div>').appendTo(chartList);
-                testCharts = chartList.find('.app-chart')
+                testCharts = chartList.find('.app-chart');
                 if ($(testCharts[0]).offset().left < $(testCharts[1]).offset().left)
                     numberOfColumns++;
                 if ($(testCharts[1]).offset().left < $(testCharts[2]).offset().left)
@@ -987,8 +968,8 @@ titleText = pivot.Properties["title"] || pivot.Title,
                             if (pivot.Properties["medium"] || pivot.Properties["large"])
                                 hasLargerChart = true;
                             else if (chartsConfig) {
-                                var config = chartsConfig[pivot.Id];
-                                if (config && config.size && (config.size.match(/medium|large/)))
+                                config = chartsConfig[pivot.Id];
+                                if (config && config.size && config.size.match(/medium|large/))
                                     hasLargerChart = true;
                             }
                         }
@@ -1037,10 +1018,9 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     var thisH = h;
 
                     // get configured height
-                    var config = chartsConfig[pivot.Id];
+                    config = chartsConfig[pivot.Id];
                     if (!config)
-                        config = chartsConfig[pivot.Id] = {
-                        };
+                        config = chartsConfig[pivot.Id] = {};
 
                     // read tags
                     if (!config.size) {
@@ -1105,7 +1085,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                             drawData(pivot, $(chartContainers[chartIndex++]));
                         }
                         else
-                            drawChart(pivot, chartContainers[chartIndex++])
+                            drawChart(pivot, chartContainers[chartIndex++]);
                     }
                 }, 10);
                 touch.syncEmbeddedViews(scrollable);
@@ -1258,12 +1238,12 @@ titleText = pivot.Properties["title"] || pivot.Title,
     for (var i = 0; i < 7; i++) {
         dtfDayOfWeek[i] = (7 + i - dtf.FirstDayOfWeek) % 7;
         dayOfWeekDtf[i] = (i + dtf.FirstDayOfWeek) % 7;
-    };
+    }
 
     // check if point is touch or mouse
     function isNotTouch() {
         // return touch.desktop();
-        return (navigator.platform.match(/Win\d+|Mac/i) != null) && (!navigator.maxTouchPoints || navigator.maxTouchPoints == 0);
+        return navigator.platform.match(/Win\d+|Mac/i) != null && (!navigator.maxTouchPoints || navigator.maxTouchPoints == 0);
     }
 
     function validateDate(date) {
@@ -1318,7 +1298,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
             timeLines = $('.app-calendar-weekview .current-time-line, .app-calendar-dayview .current-time-line');
         else if (mode == 'week') {
             $('.app-calendar').addClass('app-has-time-prompt');
-            timeLines = $mobile.activePage.find('.app-calendar-weekview .current-time-line')
+            timeLines = $mobile.activePage.find('.app-calendar-weekview .current-time-line');
         }
         else
             timeLines = $('.app-calendar-dayview .current-time-line');
@@ -1413,7 +1393,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
             day: {
             }, month: {}, year: {}, agenda: {}
         };
-    }
+    };
 
     Cache.prototype = {
         select: function (start) {
@@ -1499,13 +1479,10 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     year = this.data[mode][date.getFullYear()] = {};
                 var month = year[date.getMonth()];
                 if (!month)
-                    month = year[date.getMonth()] = {
-                    };
+                    month = year[date.getMonth()] = {};
                 var day = month[date.getDate()];
                 if (!day)
-                    day = month[date.getDate()] = {
-                        rows: [], count: 0
-                    };
+                    day = month[date.getDate()] = { rows: [], count: 0 };
                 if (mode == 'year') {
                     day.count = row[1];
                 }
@@ -1520,18 +1497,13 @@ titleText = pivot.Properties["title"] || pivot.Title,
         },
         // clears the cached data and reloads data in the visible view
         clear: function () {
-            this.data = {
-                day: {}, month: {
-                }, year: {
-                }, agenda: {}
-            };
+            this.data = { day: {}, month: {}, year: {}, agenda: {} };
 
         },
         clearAgenda: function () {
-            this.data.agenda = {
-            };
+            this.data.agenda = {};
         }
-    }
+    };
 
     // get data view's combined filter with specified additional between
     function getDateFilter(dataView, startField, endField, start, end, excluded) {
@@ -1570,7 +1542,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
 
         var newFilter = dataView.combinedFilter().filter(function (f) {
             var fn = f.split(':')[0];
-            return !fn.startsWith(startField.Name) && (excluded == null || excluded.indexOf(fn) == -1)
+            return !fn.startsWith(startField.Name) && (excluded == null || excluded.indexOf(fn) == -1);
         }),
             dateString1 = dataView.convertFieldValueToString(startField, start),
             dateString2 = end && dataView.convertFieldValueToString(startField, end),
@@ -1756,7 +1728,8 @@ titleText = pivot.Properties["title"] || pivot.Title,
             calendars = [],
             firstString,
             firstLookup, secondLookup,
-            firstDate;
+            firstDate,
+            i;
 
         $(dataView._allFields).each(function () {
             var field = this;
@@ -1765,7 +1738,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
             if (field.Tag) {
                 var tags = field.Tag.split(' '),
                     length = tags.length;
-                for (var i = 0; i < length; i++) {
+                for (i = 0; i < length; i++) {
                     match = tagRegex.exec(tags[i]);
                     if (match != null) {
                         var id = match[1] ? parseInt(match[1]) : 0,
@@ -1787,7 +1760,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                                 calendar.date = field;
                                 break;
                             default:
-                                calendar[prop] = !!val ? val : field;
+                                calendar[prop] = val || field;
                                 break;
                         }
                     }
@@ -1812,7 +1785,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 if (!field.tagged('calendar-disabled')) {
                     if (!firstDate)
                         firstDate = field;
-                    var i = 0;
+                    i = 0;
                     while (autoCalendars[i])
                         i++;
                     autoCalendars[i] = {
@@ -2001,20 +1974,20 @@ titleText = pivot.Properties["title"] || pivot.Title,
             else if (target.is('.app-tabs')) {
                 return false;
                 // handle 8 pixel inaccuracy
-                var btns = target.find('.ui-btn'),
-                    x = lastTouch && lastTouch.x || event.clientX,
-                    result = false;
-                btns.each(function () {
-                    var btn = $(this),
-                        left = btn.offset().left;
-                    if ((left - 8) <= x && x <= (left + btn.outerWidth() + 8)) {
-                        btn.trigger('vclick');
-                        result = true;
-                        return false;
-                    }
-                });
-                if (result)
-                    return false;
+                //var btns = target.find('.ui-btn'),
+                //    x = lastTouch && lastTouch.x || event.clientX,
+                //    result = false;
+                //btns.each(function () {
+                //    var btn = $(this),
+                //        left = btn.offset().left;
+                //    if ((left - 8) <= x && x <= (left + btn.outerWidth() + 8)) {
+                //        btn.trigger('vclick');
+                //        result = true;
+                //        return false;
+                //    }
+                //});
+                //if (result)
+                //    return false;
             }
 
             // validate permitted events
@@ -2052,11 +2025,10 @@ titleText = pivot.Properties["title"] || pivot.Title,
                         addedHeight = 0,
                         year = Number(firstPlaceholder.data('cal-year')),
                         month = firstPlaceholder.data('cal-month') != null ? Number(firstPlaceholder.data('cal-month')) : 1,
-                        testDate = getDateOfBlock(firstPlaceholder),
                         oldScrollTop = scrollable.scrollTop(),
                         topGap = target.outerHeight(true) - scrollable.find('.app-presenter-instruction').outerHeight(true), //-scrollable.find('.app-presenter-instruction').outerHeight(true),//-target.height() - 3, // target.height();// (target.outerHeight(true) + scrollable.find('.app-presenter-instruction').outerHeight(true)); //
                         newContent = [];
-
+                    testDate = getDateOfBlock(firstPlaceholder);
 
                     // add blocks to beginning
                     for (var drawCount = 0; drawCount < modeDrawDistance[calendar.mode]; drawCount++) {
@@ -2113,7 +2085,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     }
 
                     // add blocks to end
-                    for (var drawCount = 0; drawCount < modeDrawDistance[calendar.mode]; drawCount++) {
+                    for (drawCount = 0; drawCount < modeDrawDistance[calendar.mode]; drawCount++) {
                         switch (calendar.mode) {
                             case "month":
                                 testDate.setMonth(testDate.getMonth() + 1);
@@ -2126,7 +2098,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                                 break;
                             case "agenda":
                                 target.text(resourcesHeaderFilter.Loading);
-                                handler.loadData(scrollable.find('.app-calendar-agendaview'), null, handler.maxPage + 1)
+                                handler.loadData(scrollable.find('.app-calendar-agendaview'), null, handler.maxPage + 1);
                                 break;
                         }
                         if (newPlaceholder) {
@@ -2163,11 +2135,11 @@ titleText = pivot.Properties["title"] || pivot.Title,
 
                 var moreBtn = target.closest('.app-calendar-month-more'),
                     td = target.closest('td'),
-            visibleEvents = td.find('.app-event'),
-        visibleEventIDs = [],
-        month = target.closest('.app-calendar-month'),
-        day = td.attr('data-cal-day'),
-        startDate = getDateOfBlock(month);
+                    visibleEvents = td.find('.app-event'),
+                    visibleEventIDs = [],
+                    month = target.closest('.app-calendar-month'),
+                    day = td.attr('data-cal-day'),
+                    startDate = getDateOfBlock(month);
                 startDate.setDate(day);
 
                 visibleEvents.each(function () {
@@ -2301,9 +2273,9 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 }
                     //go to month 
                 else if (button.is('.app-calendar-month-header')) {
-                    var date,
-                        header = presenter.data('cal-header'),
-                        link = findTab(header, resourcesCalendar.Month);
+                    date = null;
+                    header = presenter.data('cal-header');
+                    var link = findTab(header, resourcesCalendar.Month);
 
                     switch (calendar.mode) {
                         case 'year':
@@ -2326,12 +2298,12 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 }
                 else if (button.parent().attr('data-cal-day') || target.is('h2')) {
                     if (calendar.mode == "month") {
-                        var month = target.closest('.app-calendar-month'),
-                            header = presenter.data('cal-header'),
-                            link = findTab(header, resourcesCalendar.Day),
-                            date = getDateOfBlock(month);
                         if (target.is('td'))
                             return;
+                        var header = presenter.data('cal-header'),
+                            month = target.closest('.app-calendar-month'),
+                            link = findTab(header, resourcesCalendar.Day);
+                        date = getDateOfBlock(month);
                         date.setDate(button.parent().attr('data-cal-day'));
                         calendar.navigateDate = date;
                         touch.callWithFeedback(button, function () {
@@ -2341,10 +2313,10 @@ titleText = pivot.Properties["title"] || pivot.Title,
                         return false;
                     }
                     else if (calendar.mode == 'agenda' && !echo.length) {
-                        var date = getDateOfBlock(target.closest('li')),
-                            header = presenter.data('cal-header'),
-                            link = findTab(header, resourcesCalendar.Day);
+                        date = getDateOfBlock(target.closest('li'));
                         if (date) {
+                            var header = presenter.data('cal-header'),
+                                link = findTab(header, resourcesCalendar.Day);
                             calendar.navigateDate = date;
                             touch.callWithFeedback(button, function () {
                                 if (link)
@@ -2360,15 +2332,14 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     if (target.height() < 20 && !isNotTouch())
                         target.closest('.app-calendar-month').find('.app-calendar-month-header').trigger('vclick');
                     else {
-                        var day = parseInt(target.text());
+                        day = parseInt(target.text(), 10);
                         if (!day)
                             return;
                         var year = target.closest('.app-calendar-year').attr('data-cal-year'),
                             month = target.closest('.app-calendar-month').attr('data-cal-month'),
                             header = presenter.data('cal-header'),
-                            link = findTab(header, resourcesCalendar.Day),
-                            date = new Date(year, month, day);
-                        calendar.navigateDate = date;
+                            link = findTab(header, resourcesCalendar.Day);
+                        calendar.navigateDate = new Date(year, month, day);
                         target.addClass('ui-btn-active');
                         touch.callWithFeedback(target, function () {
                             if (link)
@@ -2380,11 +2351,12 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 }
                     // trigger "New" action
                 else {
+                    config = calendar.activeCalendar;
+                    date = null;
                     var context = [],
                         newActions = calendar.getActionsByName('New'),
-                        date, endDate,
+                        endDate,
                         calendarContainer = $('.app-calendar'),
-                        config = calendar.activeCalendar,
                         hasEnd = !!config.end,
                         isMonth = calendar.mode == 'month',
                         preview;
@@ -2393,8 +2365,8 @@ titleText = pivot.Properties["title"] || pivot.Title,
                         return;
 
                     if (isMonth) {
-                        var day = target.attr('data-cal-day'),
-                            month = target.closest('div.app-calendar-month');
+                        day = target.attr('data-cal-day');
+                        var month = target.closest('div.app-calendar-month');
                         if (!day)
                             return;
                         date = getDateOfBlock(month);
@@ -2406,8 +2378,8 @@ titleText = pivot.Properties["title"] || pivot.Title,
                         }
                     }
                     else { // mode == day || week
-                        var day = target.closest('div.app-calendar-day'),
-                            dayList = day.find('.app-calendar-eventlist'),
+                        day = target.closest('div.app-calendar-day');
+                        var dayList = day.find('.app-calendar-eventlist'),
                             y = event.clientY - target.offset().top,
                             height = target.height(),
                             frac = y / height;
@@ -2433,7 +2405,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
 
                     newActions.forEach(function (action) {
                         var oldCallback = action.callback;
-                        action.callback = function (arguments) {
+                        action.callback = function () {
                             $app.newValues = [{
                                 name: config.date.Name, value: date
                             }];
@@ -2442,7 +2414,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                                     name: config.end.Name, value: endDate
                                 });
                             oldCallback(arguments);
-                        }
+                        };
                     });
 
                     var options = {
@@ -2587,7 +2559,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
 
                     if (that.scrollingAnimationCallback != null)
                         that.scrollingAnimationFrame = requestAnimationFrame(that.scrollingAnimationCallback);
-                }
+                };
 
                 if (that.scrollingAnimationFrame == null)
                     that.scrollingAnimationFrame = requestAnimationFrame(that.scrollingAnimationCallback);
@@ -2604,7 +2576,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
             if (this._calFooter)
                 this._calFooter.css('visibility', '');
         }
-    }
+    };
 
     $app.dragMan['calendar'] = calendarDragManager;
     $app.dragMan['calendar-bar-week'] = calendarDragManager;
@@ -2707,17 +2679,18 @@ titleText = pivot.Properties["title"] || pivot.Title,
                                 dragScrollVertTimeout = null;
                                 var scrollTop = scrollable.scrollTop(),
                                     distFromTop = drag.y - scrollablePos.top,
-                                    distFromBottom = scrollable.height() - distFromTop;
+                                    distFromBottom = scrollable.height() - distFromTop,
+                                    diff;
                                 // scroll up/down
                                 if (distFromTop < 20) {
-                                    var diff = (20 - distFromTop);
+                                    diff = (20 - distFromTop);
                                     if (scrollTop < diff)
                                         return;
                                     that._diffY += diff;
                                     touch.scroll(scrollable, scrollable.scrollTop() - diff);
                                 }
                                 else if (distFromBottom < 20) {
-                                    var diff = (20 + distFromBottom);
+                                    diff = (20 + distFromBottom);
                                     if (scrollTop >= scrollable[0].scrollHeight - scrollable.height() - diff)
                                         return;
                                     that._diffY -= diff;
@@ -2790,7 +2763,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                         newDate = getDateOfBlock(month),
                         day = dayCell.attr('data-cal-day');
 
-                    if (!!day) {
+                    if (day) {
                         newDate.setDate(day);
                         var newDayList = dayCell.find('ul');
                         if (newDayList.length && (!this._previewDate || newDate.getTime() != this._previewDate.getTime())) {
@@ -2955,7 +2928,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
             touch.stickyHeaderBar().removeClass('app-disabled');
             calendar.preventNavigate = true;
         }
-    }
+    };
 
     $app.dragMan['calendar-event'] = eventDragManager;
     $app.dragMan['calendar-event-handle'] = eventDragManager;
@@ -2984,9 +2957,9 @@ titleText = pivot.Properties["title"] || pivot.Title,
             month: new Month(that),
             year: new Year(that),
             agenda: new Agenda(that)
-        }
+        };
         dataView.viewProp('calendarConfig', config);
-    }
+    };
 
     Calendar.prototype = {
         scrollable: function () {
@@ -3027,7 +3000,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 this.mode = 'agenda';
                 this.echoMaxHeight = options.maxHeight;
                 config.mode = 'agenda';
-                dataView.viewProp('calendarConfig', config)
+                dataView.viewProp('calendarConfig', config);
             }
             else if (config.mode)
                 this.mode = config.mode;
@@ -3134,7 +3107,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                                 that.navigateDate = new Date();
                             }
                             touch.presenter('show', options);
-                            CalendarInput('refresh', {
+                            CalendarControl('refresh', {
                                 container: touch.sidebar().find('.app-calendar-plugin')
                             });
                         },
@@ -3177,7 +3150,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
 
                                     if (scrollingAnimationCallback != null)
                                         requestAnimationFrame(scrollingAnimationCallback);
-                                }
+                                };
 
                                 if (wasNull)
                                     requestAnimationFrame(scrollingAnimationCallback);
@@ -3266,13 +3239,12 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 footer = options.container.data('cal-footer'),
                 sidebar = touch.sidebar(),
                 legend = sidebar.find('.app-calendar-color-legend'),
-                scrollable = this.scrollable(),
                 presenter = scrollable.find('.app-presenter[data-presenter="calendar"]');
             if (header)
                 $app.touch.bar('hide', header);
             if (footer)
                 $app.touch.bar('hide', footer);
-            CalendarInput('refresh', {
+            CalendarControl('refresh', {
                 container: sidebar.find('.app-calendar-plugin')
             });
             this.activeCalendar.colorMap.hide();
@@ -3281,7 +3253,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
             // dispose header
             var header = options.container.data('cal-header'),
                 dataView = this.dataView;
-            if (!!header) {
+            if (header) {
                 header.off();
                 $app.touch.tabs('destroy', {
                     container: header
@@ -3289,7 +3261,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 $app.touch.bar('remove', header);
             }
             // dispose footer
-            var footer = options.container.data('cal-footer')
+            var footer = options.container.data('cal-footer');
             if (footer) {
                 footer.off();
                 $app.touch.bar('remove', footer);
@@ -3730,7 +3702,6 @@ titleText = pivot.Properties["title"] || pivot.Title,
             switch (this.mode) {
                 case 'year':
                     return view.find(String.format('.app-calendar-year[data-cal-year="{0}"]', year));
-                    break;
                 case 'month':
                     return view.find(String.format('.app-calendar-month[data-cal-year="{0}"][data-cal-month="{1}"]', year, month));
                 case 'week':
@@ -3993,7 +3964,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                                     next();
                                 }
                                 scrollStopCallback = null;
-                            }
+                            };
 
                             if (isScrolling && !mode.match(/day|week/))
                                 scrollStopCallback = callback;
@@ -4064,9 +4035,9 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 executeOptions.fieldFilter.push(config.end.Name);
 
             if (options.mode) {
+                config = that.activeCalendar;
                 var date = options.date,
                     endDate = new Date(date),
-                    config = that.activeCalendar,
                     calendarPivots = {},
                     datePivots = calendarPivots[config.date.Name] = [
                         'calendar-date',
@@ -4206,10 +4177,10 @@ titleText = pivot.Properties["title"] || pivot.Title,
             }
 
             var drawText = String.format('<div class="app-event-data"><span class="app-event-time">{0}</span> {1} <div class="app-event-time-long">{2}</div></div>',
-                    timeText, text ? text : resources.Data.NullValueInForms, longTimeText),
-                li = $('<li class="app-event"></li>').data('data-context', context),
-            title = that.getEventTitle(date, end, text, color),
-            colorClass = that.activeCalendar.colorMap.className(color);
+                                timeText, text ? text : resources.Data.NullValueInForms, longTimeText),
+                    li = $('<li class="app-event"></li>').data('data-context', context),
+                    title = that.getEventTitle(date, end, text, color),
+                    colorClass = that.activeCalendar.colorMap.className(color);
 
             // enable drag
             if (touch.desktop() && !this.dataView.get_isTagged('calendar-drag-disabled')) {
@@ -4381,7 +4352,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 }
             });
         }
-    }
+    };
 
     // gets the appropriate event height 
     function getEventHeight(start, end) {
@@ -4390,7 +4361,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
 
     var Day = function (calendar) {
         this.calendar = calendar;
-    }
+    };
 
     Day.prototype = {
         // render a new Day presentation
@@ -4572,7 +4543,8 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     diff = distance % colWidth,
                     date,
                     drawDistance = modeDrawDistance.day * 7,
-                    maxRender = modeMaxRender.day * 7;
+                    maxRender = modeMaxRender.day * 7,
+                    oldLeft;
                 // scroll to next day if single event
                 if (dayScrollEventCount == 1 && diff != 0) {
                     // going left
@@ -4600,14 +4572,15 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 }
 
                 var rounded = distanceNeg - diff,
-                    roundedNeg = rounded * -1;
+                    roundedNeg = rounded * -1,
+                    firstVisibleColumn;
 
                 // draw day at left
                 if (distance < colWidth) {
                     // draw at left
-                    var firstVisibleColumn = columns.first(),
-                    oldLeft = firstVisibleColumn.position().left,
-                    removedHeadersWidth;
+                    firstVisibleColumn = columns.first();
+                    oldLeft = firstVisibleColumn.position().left;
+                    var removedHeadersWidth;
                     date = getDateOfBlock(firstVisibleColumn);
                     date.setDate(date.getDate() - drawDistance);
 
@@ -4632,8 +4605,8 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     // draw days at right
                 else if (distance > columns.width() * (columns.length - 2)) {
                     // draw at right
-                    var firstVisibleColumn = columns.last(),
-                        oldLeft = firstVisibleColumn.position().left;
+                    firstVisibleColumn = columns.last();
+                    oldLeft = firstVisibleColumn.position().left;
                     date = getDateOfBlock(firstVisibleColumn);
                     date.setDate(date.getDate() + 1);
 
@@ -4643,8 +4616,8 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     // remove extra columns
                     var headerLi = header.find('li'),
                         totalDayCount = columns.length + drawDistance,
-                        removedColumnsWidth = 0,
-                        removedHeadersWidth = 0;
+                        removedColumnsWidth = 0;
+                    removedHeadersWidth = 0;
                     if (totalDayCount > maxRender) {
                         var removedColumns = columns.slice(0, totalDayCount - maxRender),
                             removedHeaders = header.find('li').slice(0, totalDayCount - maxRender);
@@ -4670,13 +4643,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     }
 
                     if (diff != 0)
-                        view.animate(
-                    {
-                        marginLeft: rounded
-                    },
-                        {
-                            duration: animationSpeed, done: setScroller
-                        });
+                        view.animate({ marginLeft: rounded }, { duration: animationSpeed, done: setScroller });
                     else
                         setScroller();
 
@@ -4691,15 +4658,14 @@ titleText = pivot.Properties["title"] || pivot.Title,
             var columns = view.find('.app-calendar-day'),
                 firstVisibleCol = (focusColumn && focusColumn.length) ? focusColumn : getFirstVisiblePlaceholder(columns),
                 cDate = getDateOfBlock(firstVisibleCol),
-        firstVisibleHeader = getFirstVisiblePlaceholder(header.find('ul li')),
-        hDate = getDateOfBlock(firstVisibleHeader),
-        scrollToHeader = firstVisibleHeader;
+                firstVisibleHeader = getFirstVisiblePlaceholder(header.find('ul li')),
+                hDate = getDateOfBlock(firstVisibleHeader),
+                scrollToHeader = firstVisibleHeader;
 
             // highlight visible day
             header.find('li .visible-day').removeClass('visible-day');
             var visibleDayHeader = header.find(String.format('li[data-cal-year="{0}"][data-cal-month="{1}"][data-cal-day="{2}"] > a > div', cDate.getFullYear(), cDate.getMonth(), cDate.getDate()));
             visibleDayHeader.addClass('visible-day');
-
 
             // set to beginning of week
             cDate.setDate(cDate.getDate() - dtfDayOfWeek[cDate.getDay()]);
@@ -4756,19 +4722,18 @@ titleText = pivot.Properties["title"] || pivot.Title,
         },
         getNextDate: function (view, increment) {
             var visible = this.calendar.getMostVisibleBlock(),
-    date = getDateOfBlock(visible);
+                date = getDateOfBlock(visible);
             date.setDate(date.getDate() + increment);
             return date;
         },
         getBlocks: function () {
-            var scrollable = this.calendar.scrollable();
-            return scrollable.find('.app-calendar-dayview > .app-calendar-day-grid > .app-calendar-day');
+            return this.calendar.scrollable().find('.app-calendar-dayview > .app-calendar-day-grid > .app-calendar-day');
         }
-    }
+    };
 
     var Week = function (calendar) {
         this.calendar = calendar;
-    }
+    };
 
     Week.prototype = {
         draw: function (container, startDate) {
@@ -5234,11 +5199,11 @@ titleText = pivot.Properties["title"] || pivot.Title,
             var scrollable = this.calendar.scrollable();
             return scrollable.find('.app-calendar-weekview > .app-calendar-week-grid > .app-calendar-day');
         }
-    }
+    };
 
     var Month = function (calendar) {
         this.calendar = calendar;
-    }
+    };
 
     Month.prototype = {
         draw: function (container, startDate) {
@@ -5253,7 +5218,8 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 testDate = new Date(startDate.getFullYear(), startMonth),
                 activeMonth,
                 monthName,
-                monthBlock;
+                monthBlock,
+                i;
             testDate.setMonth(testDate.getMonth() - distance);
             activeMonth = testDate.getMonth();
 
@@ -5261,7 +5227,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
             header.find('.app-month-header').remove();
             var dayHeaders = $('<div class="app-month-header"></div>'),
                 dayHeaderList = $('<ul></ul>').appendTo(dayHeaders);
-            for (var i = 0; i < 7; i++) {
+            for (i = 0; i < 7; i++) {
                 var day = dayOfWeekDtf[i],
                     dayName = dtf.DayNames[day],
                     abbrDayName = dtf.AbbreviatedDayNames[day],
@@ -5288,7 +5254,7 @@ titleText = pivot.Properties["title"] || pivot.Title,
                 loadAtTopBlock.hide();
 
             // draw months
-            for (var i = distance * -1; i <= distance; i++) {
+            for (i = distance * -1; i <= distance; i++) {
                 var monthBlock = this.drawMonth(testDate).appendTo(view);
                 testDate.setMonth(activeMonth + 1);
                 activeMonth = testDate.getMonth();
@@ -5338,25 +5304,20 @@ titleText = pivot.Properties["title"] || pivot.Title,
             var that = this,
                 date = options.date,
                 calendar = that.calendar,
-                scrollable = calendar.scrollable(),
-        presenter = options.view.closest('div.app-presenter'),
-        header = presenter.data('cal-header'),
-        scrollToPlaceholder = calendar.getBlockByDate(options.view, options.date),
-        monthHeader = scrollToPlaceholder.find('.app-calendar-month-header');
-
+                scrollToPlaceholder = calendar.getBlockByDate(options.view, options.date);
             if (!scrollToPlaceholder)
                 return;
-            scrollToPlaceholder = scrollToPlaceholder.find('td[data-cal-day="' + date.getDate() + '"]');
 
-            var instruction = scrollable.find('.app-presenter-instruction'),
-                newScrollTop = Math.abs(scrollToPlaceholder.position().top),
-            // 40% of the month header ensures that "sticky header" will not cover the first rows
-                newScrollTop = monthHeader.offset().top - scrollable.offset().top + monthHeader.outerHeight(true) - instruction.outerHeight(true) + scrollable.scrollTop();
-
-            function complete() {
-                touch.fetchOnDemand();
-                fetchCalendarData(scrollable);
-            }
+            var scrollable = calendar.scrollable(),
+                presenter = options.view.closest('div.app-presenter'),
+                header = presenter.data('cal-header'),
+                monthHeader = scrollToPlaceholder.find('.app-calendar-month-header'),
+                instruction = scrollable.find('.app-presenter-instruction'),
+                newScrollTop = monthHeader.offset().top - scrollable.offset().top + monthHeader.outerHeight(true) - instruction.outerHeight(true) + scrollable.scrollTop(),
+                complete = function () {
+                    touch.fetchOnDemand();
+                    fetchCalendarData(scrollable);
+                };
 
             if (options.animate)
                 touch.animatedScroll(scrollable, newScrollTop, complete);
@@ -5470,8 +5431,8 @@ titleText = pivot.Properties["title"] || pivot.Title,
                     if (!row)
                         break;
 
+                    date = row[1];
                     var id = row[0],
-                        date = row[1],
                         end = row[2],
                         color = row[3],
                         text = row[4],
@@ -5553,11 +5514,11 @@ date = getDateOfBlock(visible);
             var scrollable = this.calendar.scrollable();
             return scrollable.find('.app-calendar-monthview > .app-calendar-month');
         }
-    }
+    };
 
     var Year = function (calendar) {
         this.calendar = calendar;
-    }
+    };
 
     Year.prototype = {
         draw: function (container, startDate) {
@@ -5709,11 +5670,11 @@ date = getDateOfBlock(visible);
             var scrollable = this.calendar.scrollable();
             return scrollable.find('.app-calendar-yearview > .app-calendar-year');
         }
-    }
+    };
 
     var Agenda = function (calendar) {
         this.calendar = calendar;
-    }
+    };
 
     Agenda.prototype = {
         draw: function (container, startDate) {
@@ -5890,12 +5851,12 @@ date = getDateOfBlock(visible);
 
             if (scrollTo.length) {
 
-                function complete() {
-                    touch.fetchOnDemand();
-                    fetchCalendarData(scrollable);
-                }
+                var newScrollTop = 0,
+                    complete = function () {
+                        touch.fetchOnDemand();
+                        fetchCalendarData(scrollable);
+                    };
 
-                var newScrollTop = 0;
                 if (!isSameDay(date, firstDate))
                     newScrollTop = scrollable.scrollTop() + scrollTo.offset().top - scrollable.offset().top - instruction.height();
 
@@ -6020,15 +5981,16 @@ date = getDateOfBlock(visible);
                 commandRow = calendar.dataView.extension().commandRow(),
                 key = commandRow ? commandRow[keyField.Index] : null,
                 mostVisible = calendar.getMostVisibleBlock(),
-                oldTop = mostVisible ? mostVisible.position().top : 0;
+                oldTop = mostVisible ? mostVisible.position().top : 0,
+                alias;
 
             if (config.text.AliasName && config.text.AliasName.length) {
-                var alias = dataView.findField(config.text.AliasName);
+                alias = dataView.findField(config.text.AliasName);
                 if (alias)
                     textName = alias.Name;
             }
             if (config.color && config.color.AliasName && config.color.AliasName.length) {
-                var alias = dataView.findField(config.color.AliasName);
+                alias = dataView.findField(config.color.AliasName);
                 if (alias)
                     colorName = alias.Name;
             }
@@ -6120,8 +6082,8 @@ date = getDateOfBlock(visible);
                     $('<h1/>').appendTo($('<li class="app-calendar-month-header" data-cal-year="' + firstYear + '" data-cal-month="' + firstLi.attr('data-cal-month') + '"/>').insertBefore(firstLi)).text(firstYear);
 
                 // remove extra events
+                firstLi = list.find('li.app-agenda-day-list').first();
                 var useLast = false,
-                    firstLi = list.find('li.app-agenda-day-list').first(),
                     inner = firstLi.find('li').first();
                 while (list.outerHeight(true) > maxHeight && count > 3) {
 
@@ -6365,7 +6327,7 @@ date = getDateOfBlock(visible);
         if (dataView._keyFields.length > 1)
             return false;
 
-        var calendars = [],
+        var calendars = composeCalendars(dataView),
             autoCalendars = [],
             doesSupport = false,
             sidebar = touch.sidebar();
@@ -6376,8 +6338,6 @@ date = getDateOfBlock(visible);
         // calendar1-text
         // calendar1-name:"My Calendar"
         // calendar1-color
-
-        var calendars = composeCalendars(dataView);
 
         if ($.isEmptyObject(calendars))
             return false;
@@ -6429,12 +6389,14 @@ date = getDateOfBlock(visible);
                     hiddenCallback();
                 to.removeClass('app-scale').show().css({ transform: 'scale(0.75)', opacity: 0 });
                 setTimeout(function () {
-                    to.addClass('app-scale').css({ transform: 'scale(1)', opacity: 1 })
-                    to.one('transitionend', function () {
-                        to.removeClass('app-scale');
-                        if (afterCallback)
-                            afterCallback();
-                    });
+                    to
+                        .addClass('app-scale')
+                        .css({ transform: 'scale(1)', opacity: 1 })
+                        .one('transitionend', function () {
+                            to.removeClass('app-scale');
+                            if (afterCallback)
+                                afterCallback();
+                        });
                 });
                 return false;
             }).css({ transform: 'scale(0.75)', opacity: 0 });
@@ -6450,7 +6412,7 @@ date = getDateOfBlock(visible);
             dataInput = outerContainer && outerContainer.data('data-input'),
             field = options.field = options.field || (dataInput && $app.input.elementToField(dataInput)),
             fieldName = field && field.Name,
-            touchPointer = ($app.touch.pointer() == 'touch');
+            touchPointer = $app.touch.pointer() == 'touch';
 
         if (input && input.length) {
             if (!input.parent().length && !touchPointer) {
@@ -6497,10 +6459,11 @@ date = getDateOfBlock(visible);
                 }
             }
 
-
             options.onselect = function (options) {
-                if (options.target.closest('.app-month-container').length) {
-                    outerContainer.find('.app-month-container .app-selected').removeClass('app-selected');
+                var monthContainer = options.target.closest('.app-month-container');
+                if (monthContainer.length) {
+                    setDateOfBlock(monthContainer, options.date);
+                    monthContainer.find('.app-selected').removeClass('app-selected');
                     findDayCell(outerContainer, options.date).addClass('app-selected');
                     vibrate();
                 }
@@ -6528,14 +6491,18 @@ date = getDateOfBlock(visible);
                         //else if (!touchPointer && input.parent().length)
                         //    input.trigger('input').focus();
                     }
+                    // hide input when final selection
+                    if (!options.mode && !outerContainer.find('.app-time-container:visible').length) {
+                        hide();
+                    }
                 }
-            }
+            };
             options.onrefresh = function (options) {
                 options.monthContainer.find('.app-selected').removeClass('app-selected');
                 var date = options.container.data('select-date') || options.date;
                 if (validateDate(date))
                     findDayCell(options.monthContainer, date).addClass('app-selected');
-            }
+            };
             options.attachCallbacks = true;
 
             // add handlers
@@ -6569,7 +6536,7 @@ date = getDateOfBlock(visible);
 
                             // position above
                             if (iOS || top + containerHeight > wrapperHeight + scrollTop) {
-                                top -= (containerHeight + inputHeight);
+                                top -= containerHeight + inputHeight;
                                 if (top < scrollTop) {
                                     top = scrollTop + 10;
                                     showToolbar = true;
@@ -6655,6 +6622,9 @@ date = getDateOfBlock(visible);
         function hide() {
             outerContainer.hide().removeData('select-date');
             $('.app-calendar-cover').hide();
+            $body.off('mousedown', calendarBodyClick);
+            if (input)
+                input.select();
         }
 
         options.renderTime = true;
@@ -6666,7 +6636,7 @@ date = getDateOfBlock(visible);
             if (field && field.Name != fieldName || !field && fieldName)
                 return false;
             return true;
-        }
+        };
         options.limitStart = false;
 
         if (field) {
@@ -6702,7 +6672,6 @@ date = getDateOfBlock(visible);
             case 'attach':
                 CalendarControl(method, options);
                 return !touchPointer;
-                break;
             default:
                 return CalendarControl(method, options);
         }
@@ -6712,6 +6681,10 @@ date = getDateOfBlock(visible);
 
     function findDayCell(table, date) {
         return table.find(String.format('td[data-cal-month="{0}"][data-cal-day="{1}"]:not(.app-day-hidden)', date.getMonth(), date.getDate()));
+    }
+
+    function findMonthByDate(monthContainer, date) {
+        return monthContainer.find(String.format('.app-scroll-column > div[data-cal-year="{0}"][data-cal-month="{1}"]', date.getFullYear(), date.getMonth()));
     }
 
     var CalendarControl = (function (method, options) {
@@ -6736,7 +6709,7 @@ date = getDateOfBlock(visible);
             oldLimitStart = outerContainer.data('calendar-limit-start'),
             limitStart = options.limitStart === undefined ? oldLimitStart : options.limitStart,
             showTime = options.showTime,
-            drawDate = options.date;
+            drawDate = new Date(options.date);
 
         if (!drawDate || !validateDate(drawDate)) {
             drawDate = getDateOfBlock(monthContainer);
@@ -6767,10 +6740,6 @@ date = getDateOfBlock(visible);
                 dtf.MonthNames[date.getMonth()] + ' ' + date.getFullYear(),
                 dtf.AbbreviatedMonthNames[date.getMonth()] + ' ' + date.getFullYear()
             ];
-        }
-
-        function findMonthByDate(date) {
-            return monthContainer.find(String.format('.app-scroll-column > div[data-cal-year="{0}"][data-cal-month="{1}"]', date.getFullYear(), date.getMonth()));
         }
 
         function getDate() {
@@ -6980,32 +6949,33 @@ date = getDateOfBlock(visible);
 
                     // set hieght
                     setTimeout(function () {
-                        var h = container.height();
-                        if (h > 0)
-                            container.height(h);
+                        var h = monthContainer.height();
+                        if (h > 0) {
+                            monthContainer.height(h);
+                            selectorContainer.height(h);
+                        }
                     });
                     break;
                 case 'selectmonth':
                     header.html(String.format('<a class="ui-btn app-year-picker">{0}</a>', tempDate.getFullYear()));
                     tempDate.setFullYear(tempDate.getFullYear() - 1);
-                    var monthHeight = Math.floor(monthContainer.height() / 3) - 10;
-
-                    function renderMonth() {
-                        selectorContainer.find('.app-scroll-column').each(function () {
-                            var column = $(this).empty();
-                            setDateOfBlock(column, tempDate);
-                            for (var i = 0; i < 12; i++) {
-                                var mon = $(String.format('<div class="app-select-month ui-btn" data-cal-month="{0}" title="{2}">{1}</div>', i, dtf.AbbreviatedMonthNames[i], dtf.MonthNames[i]))
-                                    .css({ height: monthHeight, lineHeight: monthHeight + 'px' })
-                                    .appendTo(column);
-                                if (viewingDate.getMonth() == i && viewingDate.getFullYear() == tempDate.getFullYear())
-                                    mon.addClass('app-selected');
-                            }
-                            appendClearFix(column);
-                            tempDate.setFullYear(tempDate.getFullYear() + 1);
-                        });
-                        selectorContainerInner.css('marginLeft', '');
-                    }
+                    var monthHeight = Math.floor(monthContainer.height() / 3) - 10,
+                        renderMonth = function () {
+                            selectorContainer.find('.app-scroll-column').each(function () {
+                                var column = $(this).empty();
+                                setDateOfBlock(column, tempDate);
+                                for (var i = 0; i < 12; i++) {
+                                    var mon = $(String.format('<div class="app-select-month ui-btn" data-cal-month="{0}" title="{2}">{1}</div>', i, dtf.AbbreviatedMonthNames[i], dtf.MonthNames[i]))
+                                        .css({ height: monthHeight, lineHeight: monthHeight + 'px' })
+                                        .appendTo(column);
+                                    if (viewingDate.getMonth() == i && viewingDate.getFullYear() == tempDate.getFullYear())
+                                        mon.addClass('app-selected');
+                                }
+                                appendClearFix(column);
+                                tempDate.setFullYear(tempDate.getFullYear() + 1);
+                            });
+                            selectorContainerInner.css('marginLeft', '');
+                        };
 
                     if (!oldMode || oldMode == '')
                         scaleTransition(monthContainer, selectorContainer, renderMonth);
@@ -7017,26 +6987,29 @@ date = getDateOfBlock(visible);
                     break;
                 case 'selectyear':
                     var fromYear = tempDate.getFullYear();
-                    header.html(String.format('<span>{0} - {1}</span>', fromYear, fromYear + 11));
                     tempDate.setFullYear(tempDate.getFullYear() - 12);
-                    var monthHeight = Math.floor(monthContainer.height() / 3) - 10;
+                    var monthHeight = Math.floor(monthContainer.height() / 3) - 10,
+                        renderYear = function () {
+                            selectorContainer.find('.app-scroll-column').each(function () {
+                                var column = $(this).empty(),
+                                    yearLink;
+                                setDateOfBlock(column, tempDate);
+                                for (var i = 0; i < 12; i++) {
+                                    yearLink = $(String.format('<div class="app-select-year ui-btn" data-cal-year="{0}">{0}</div>', tempDate.getFullYear()))
+                                        .css({ height: monthHeight, lineHeight: monthHeight + 'px' })
+                                        .appendTo(column);
 
-                    function renderYear() {
-                        selectorContainer.find('.app-scroll-column').each(function () {
-                            var column = $(this).empty(), yearLink;
-                            setDateOfBlock(column, tempDate);
-                            for (var i = 0; i < 12; i++) {
-                                yearLink = $(String.format('<div class="app-select-year ui-btn" data-cal-year="{0}">{0}</div>', tempDate.getFullYear()))
-                                    .css({ height: monthHeight, lineHeight: monthHeight + 'px' })
-                                    .appendTo(column);
-                                if (tempDate.getFullYear() == viewingDate.getFullYear())
-                                    yearLink.addClass('app-selected');
-                                tempDate.setFullYear(tempDate.getFullYear() + 1);
-                            }
-                            appendClearFix(column);
-                        });
-                        selectorContainerInner.css('marginLeft', -container.width());
-                    }
+                                    if (tempDate.getFullYear() == viewingDate.getFullYear())
+                                        yearLink.addClass('app-selected');
+
+                                    tempDate.setFullYear(tempDate.getFullYear() + 1);
+                                }
+                                appendClearFix(column);
+                            });
+                            selectorContainerInner.css('marginLeft', -container.width());
+                        };
+
+                    header.html(String.format('<span>{0} - {1}</span>', fromYear, fromYear + 11));
 
                     if (oldMode != 'selectyear')
                         scaleTransition(selectorContainer, selectorContainer, renderYear);
@@ -7080,7 +7053,7 @@ date = getDateOfBlock(visible);
             }
 
             // get values in month
-            if (reloadData && !options.hideDate && !dataView._survey) {
+            if (reloadData && !options.hideDate && !dataView._survey && field.AllowQBE) {
 
                 // load from cache
                 var queryDate = new Date(drawDate.getFullYear(), drawDate.getMonth()),
@@ -7108,7 +7081,7 @@ date = getDateOfBlock(visible);
                             startDayOfWeek = dtfDayOfWeek[startDate.getDay()],
                             endDate,
                             calendarPivots = {},
-                            keyFieldNames = dataView._keyFields.map(function (f) { return f.Name });
+                            keyFieldNames = dataView._keyFields.map(function (f) { return f.Name; });
 
                         if (startDayOfWeek != 0)
                             startDate.setDate(startDate.getDate() - startDayOfWeek);
@@ -7192,31 +7165,28 @@ date = getDateOfBlock(visible);
                         h2Odd = dtf.AMDesignator == '' ? d * 0.55 : h2,
                         hours = timeContainer.find('.app-hour-list li'),
                         minutes = timeContainer.find('.app-minute-list li'),
-                        numHours = dtf.AMDesignator ? 12 : 24;
+                        numHours = dtf.AMDesignator ? 12 : 24,
+                        a;
 
                     // position hours
                     for (var i = 0; i < numHours; i++) {
-                        var hour = hours.eq(i),
-                            a = i / 12 * 360 / 57.2958 - Math.PI / 2,
-                            h = i >= 12 ? h2 : h2Odd,
-                            css = {
-                                top: d + h * Math.sin(a),
-                                left: d + h * Math.cos(a)
-                            };
+                        a = i / 12 * 360 / 57.2958 - Math.PI / 2;
+                        var h = i >= 12 ? h2 : h2Odd;
 
-                        hour.css(css);
+                        hours.eq(i).css({
+                            top: d + h * Math.sin(a),
+                            left: d + h * Math.cos(a)
+                        });
                     }
 
                     // position min
                     for (var i = 0; i < 12; i++) {
-                        var min = minutes.eq(i),
-                            a = i / 12 * 360 / 57.2958 - Math.PI / 2,
-                            css = {
-                                top: d + h2 * Math.sin(a),
-                                left: d + h2 * Math.cos(a)
-                            };
+                        a = i / 12 * 360 / 57.2958 - Math.PI / 2;
 
-                        min.css(css);
+                        minutes.eq(i).css({
+                            top: d + h2 * Math.sin(a),
+                            left: d + h2 * Math.cos(a)
+                        });
                     }
 
                     if (dtf.AMDesignator)
@@ -7236,7 +7206,7 @@ date = getDateOfBlock(visible);
                 drawDate.setMonth(drawDate.getMonth() - showMonths);
 
                 // draw month
-                function drawMonths(elem) {
+                var drawMonths = function (elem) {
                     for (var i = 0; i < showMonths; i++) {
                         var month = $('<div></div>').appendTo(elem);
                         if (i == 0)
@@ -7245,7 +7215,7 @@ date = getDateOfBlock(visible);
                             month.addClass('app-last-month');
                         drawDate.setMonth(drawDate.getMonth() + 1);
                     }
-                }
+                };
 
                 drawMonths(beforeMonths);
                 drawMonths(duringMonths);
@@ -7291,7 +7261,7 @@ date = getDateOfBlock(visible);
                 target;
 
             if (mode == '') {
-                target = findMonthByDate(drawDate);
+                target = findMonthByDate(monthContainer, drawDate);
                 setDateOfBlock(monthContainer, drawDate);
             }
             else if (mode == 'selectmonth') {
@@ -7325,9 +7295,6 @@ date = getDateOfBlock(visible);
                 date = options.date,
                 day = target && target.closest('td');
 
-            if (options.beforeClick)
-                options.beforeClick(date);
-
             if (day && day.length) {
                 date = mode == '' ? getDateOfBlock(monthContainer) : getDateOfBlock(selectorContainer);
                 if (day)
@@ -7335,8 +7302,6 @@ date = getDateOfBlock(visible);
 
                 if (container.closest('.app-calendar-show-time').length)
                     getTimeOfBlock(timeContainer, date);
-
-                //setDateOfBlock(monthContainer, date);
             }
 
             if (onselectcallback) {
@@ -7370,7 +7335,6 @@ date = getDateOfBlock(visible);
 
         function clearCache() {
             dataView.session('calendar-input-cache', null);
-            delete cache;
             cache = {};
             options.reloadData = true;
             refresh();
@@ -7379,10 +7343,8 @@ date = getDateOfBlock(visible);
         function destroy() {
             dataView.session('calendar-input-cache', null);
             container.removeData();
-            delete cache;
             cache = null;
             outerContainer.remove();
-
         }
 
         var result;
@@ -7419,7 +7381,7 @@ date = getDateOfBlock(visible);
         this.dataView = dataView;
         this.calendar = dataView.calendar;
         this.calendars = calendars;
-    }
+    };
 
     CalendarPlugin.prototype = {
         attach: function (sidebar) {
@@ -7608,7 +7570,7 @@ date = getDateOfBlock(visible);
                                     if (!visible)
                                         return;
                                     var mostVisibleDate = getDateOfBlock(visible),
-                                    month = that.findMonthByDate(monthContainer, mostVisibleDate);
+                                    month = findMonthByDate(monthContainer, mostVisibleDate);
                                     if (!month || !month.length)
                                         return;
 
@@ -7620,10 +7582,10 @@ date = getDateOfBlock(visible);
                                             }).addClass('app-selected');
                                             break;
                                         case 'week':
-                                            that.findDayCell(month, mostVisibleDate).parent().addClass('app-selected');
+                                            findDayCell(month, mostVisibleDate).parent().addClass('app-selected');
                                             break;
                                         case 'day':
-                                            that.findDayCell(month, mostVisibleDate).addClass('app-selected');
+                                            findDayCell(month, mostVisibleDate).addClass('app-selected');
                                             break;
                                     }
                                 }
@@ -7644,17 +7606,17 @@ date = getDateOfBlock(visible);
                                             that.filtered = true;
 
                                             var startDate = dataView.convertStringToFieldValue(activeField, res[3]),
-                                            startMonth = that.findMonthByDate(monthContainer, startDate),
+                                            startMonth = findMonthByDate(monthContainer, startDate),
                                             endDate = new Date(startDate),
                                             daySelect = res[2] == '=';
                                             endDate.setDate(startDate.getDate() + (daySelect ? 1 : 7));
                                             endDate.setSeconds(-1);
 
-                                            var endMonth = that.findMonthByDate(monthContainer, endDate);
+                                            var endMonth = findMonthByDate(monthContainer, endDate);
                                             if (!startMonth.length && !endMonth.length)
                                                 return true;
 
-                                            var td = that.findDayCell(monthContainer, startDate).add(that.findDayCell(monthContainer, endDate));
+                                            var td = findDayCell(monthContainer, startDate).add(findDayCell(monthContainer, endDate));
 
                                             if (td && td.length) {
                                                 if (daySelect)
@@ -7700,12 +7662,6 @@ date = getDateOfBlock(visible);
         getActiveCalendar: function () {
             return this.calendar ? this.calendar.activeCalendar : this.calendars[Object.keys(this.calendars)[0]];
         },
-        findDayCell: function (table, date) {
-            return table.find(String.format('td[data-cal-month="{0}"][data-cal-day="{1}"]:not(.app-day-hidden)', date.getMonth(), date.getDate()));
-        },
-        findMonthByDate: function (monthContainer, date) {
-            return monthContainer.find(String.format('.app-scroll-column > div[data-cal-year="{0}"][data-cal-month="{1}"]', date.getFullYear(), date.getMonth()));
-        },
         clearCache: function () {
             CalendarControl('clearCache', {
                 container: touch.sidebar().find('.app-calendar-plugin'),
@@ -7744,9 +7700,6 @@ date = getDateOfBlock(visible);
                 container: touch.sidebar().find('.ui-panel-inner'),
                 dataView: this.dataView
             });
-        },
-        detach: function (sidebar) {
-            detachPlugin(sidebar);
         }
     };
 
@@ -7762,6 +7715,7 @@ date = getDateOfBlock(visible);
                 sidebar = touch.sidebar();
             // handle color filter
             if (target.is('.app-calendar-color-legend ol li, .app-calendar-color-legend ol li span')) {
+                event = target.is('.app-event') ? target : target.find('.app-event');
                 var dataView = touch.dataView(),
                     calendar = dataView.calendar,
                     colorMap = calendar.activeCalendar.colorMap,
@@ -7769,7 +7723,6 @@ date = getDateOfBlock(visible);
                         return colorMap.color(x);
                     }),
                     body = $('body'),
-                    event = target.is('.app-event') ? target : target.find('.app-event'),
                     colorClass = event.attr('class').match(/app-event-color-(\d+)/),
                     bodyColorClass = body.attr('class').match(/app-event-filter-color-(\d+)/),
                     oldColorVisible = true;
@@ -7882,8 +7835,7 @@ date = getDateOfBlock(visible);
                     callback: function () {
                         that.filter('clear');
                     }
-                }, {
-                });
+                }, {});
 
             // add fields
             $(that.calendars).each(function () {
@@ -7924,16 +7876,14 @@ date = getDateOfBlock(visible);
             });
 
             // sync button
-            var dataView = touch.dataView(),
-                scrollable = $.mobile.activePage.find('.app-wrapper'),
+            var scrollable = $.mobile.activePage.find('.app-wrapper'),
                 calendarView = scrollable.find('.app-calendar'),
                 calendarActive = calendarView.length && calendarView.is(':visible'),
                 syncDate,
                 label = resourcesCalendar.Sync;
 
             if (calendarActive) {
-                var calendar = dataView.calendar,
-                    block = calendar.getMostVisibleBlock(scrollable);
+                var block = dataView.calendar.getMostVisibleBlock(scrollable);
                 syncDate = getDateOfBlock(block);
             }
             else {
@@ -8023,7 +7973,7 @@ date = getDateOfBlock(visible);
                     return;
                 if (container.is(':animated'))
                     return;
-                CalendarInput('click', {
+                CalendarControl('click', {
                     container: outerContainer,
                     dataView: dataView,
                     target: target,
@@ -8101,7 +8051,7 @@ date = getDateOfBlock(visible);
                 // switch date
             else if (target.is('.app-select-month')) {
                 touch.callWithFeedback(target, function () {
-                    date.setMonth(parseInt(target.attr('data-cal-month'), 10))
+                    date.setMonth(parseInt(target.attr('data-cal-month'), 10));
                     CalendarControl('setDate', {
                         container: outerContainer,
                         date: date,
@@ -8132,7 +8082,7 @@ date = getDateOfBlock(visible);
                     showTime: true,
                     dataView: dataView
                 });
-                setTimeout(function () { hand.addClass('app-transition') });
+                setTimeout(function () { hand.addClass('app-transition'); });
                 vibrate();
             }
             else if (target.is('.app-time-minute')) {
@@ -8144,7 +8094,7 @@ date = getDateOfBlock(visible);
                     showTime: true,
                     dataView: dataView
                 });
-                setTimeout(function () { hand.addClass('app-transition') });
+                setTimeout(function () { hand.addClass('app-transition'); });
                 vibrate();
             }
                 /*else if (target.is('.app-time-second')) {
@@ -8157,6 +8107,7 @@ date = getDateOfBlock(visible);
                 });
                 }*/
             else if (target.closest('.app-time-ampm').length) {
+                date = outerContainer.data('select-date') || date;
                 var hours = date.getHours();
                 date.setHours(hours + (hours < 12 ? 12 : -12));
                 setTimeOfBlock(timeContainer, date);
@@ -8340,42 +8291,39 @@ date = getDateOfBlock(visible);
         },
         end: function (drag) {
             // complete scroll
+            var isFlick = new Date() - this._startTime < 200;
+            if (isFlick && Math.abs(this._startX - drag.x) < 10) {
+                this._inner.css('margin-left', this._originalMarginLeft);
+                return; // probably was a click
+            }
             var container = drag.target.closest('.app-calendar-plugin'),
                 outerContainer = container.parent(),
-                showMonths = outerContainer.data('calendar-show-months'),
                 mode = outerContainer.data('calendar-mode'),
-                showTime = outerContainer.hasClass('app-calendar-show-time')
-            columns = this._inner.find('.app-scroll-column'),
-            columnIndex = 0;
+                showTime = outerContainer.hasClass('app-calendar-show-time');
+                columns = this._inner.find('.app-scroll-column'),
+                columnIndex = 0;
 
-            if (new Date() - this._startTime < 200) {
-                if (drag.swipeRight)
-                    columnIndex = 0;
-                else
+            if (isFlick) {
+                if (!drag.swipeRight)
                     columnIndex = 2;
             }
             else {
+                // closest column
                 var cWidth = columns.first().width(),
                     left = -parseInt(this._inner.css('marginLeft'), 10);
                 columnIndex = Math.round(left / cWidth);
             }
 
             var column = columns.eq(columnIndex),
-                date;
-
-            if (mode == '')
-                date = getDateOfBlock(column.children(":first"));
-            else
-                date = getDateOfBlock(column);
+                date = getDateOfBlock(mode == '' ? column.children(":first") : column);
 
             if (showTime)
                 getTimeOfBlock(outerContainer.find('.app-time-container'), date);
 
-
             CalendarControl('setDate', {
                 container: outerContainer,
                 date: date
-            })
+            });
 
             skipClick = true;
             setTimeout(function () {
@@ -8387,7 +8335,7 @@ date = getDateOfBlock(visible);
                 marginLeft: this._cancelMarginLeft
             });
         }
-    }
+    };
 
     $app.dragMan['calendar-mini-hand'] = {
         start: function (drag) {
@@ -8401,7 +8349,8 @@ date = getDateOfBlock(visible);
             drag._timeMode = drag._outerContainer.data('calendar-time-mode');
             drag._height = drag._timeSelector.height() / 2;
             drag._is24hour = dtf.AMDesignator == '';
-            drag._date = getDateOfBlock(drag._outerContainer.find('.app-month-container'));
+            drag._date = drag._outerContainer.data('select-date');
+            drag._isPM = !drag._is24hour && drag._date.getHours() >= 12;
         },
         move: function (drag) {
             var x = drag.x - (drag._height + drag._timeSelectorPos.left),
@@ -8418,6 +8367,8 @@ date = getDateOfBlock(visible);
                     if (!drag._is24hour) {
                         if (hours == 12)
                             hours = 0;
+                        if (drag._isPM)
+                            hours += 12;
                     }
                     else {
                         var outerRing = dist > drag._height / 1.5;
@@ -8429,26 +8380,21 @@ date = getDateOfBlock(visible);
                             hours = 0;
                     }
                     drag._date.setHours(hours);
-                    setTimeOfBlock(drag.target, drag._date);
-                    CalendarControl('refresh', {
-                        container: drag._outerContainer,
-                        date: drag._date,
-                        showTime: true
-                    });
                     break;
                 case 'Minute':
                     var min = Math.round(angle * 60);
                     if (min == 60)
                         min = 0;
                     drag._date.setMinutes(min);
-                    CalendarControl('click', {
-                        container: drag._outerContainer,
-                        date: drag._date,
-                        target: drag.target,
-                        showTime: true
-                    });
                     break;
             }
+
+            CalendarControl('click', {
+                container: drag._outerContainer,
+                date: drag._date,
+                target: drag.target,
+                showTime: true
+            });
         },
         end: function (drag) {
             drag._hand.addClass('app-transition');
@@ -8457,7 +8403,7 @@ date = getDateOfBlock(visible);
         cancel: function (drag) {
             drag._hand.addClass('app-transition');
         }
-    }
+    };
 
     var ColorMap = function (dataView, calendar, map) {
         this.dataView = dataView;
@@ -8469,7 +8415,7 @@ date = getDateOfBlock(visible);
         for (var item in this.map)
             if (this.map.hasOwnProperty(item))
                 this.count++;
-    }
+    };
 
     ColorMap.prototype = {
         color: function (value) {
@@ -8592,9 +8538,9 @@ date = getDateOfBlock(visible);
                 calendar = this.dataView.calendar,
                 scrollable = calendar.scrollable(),
                 firstBlock = calendar.getFirstVisibleBlock(scrollable),
-        lastBlock = calendar.getLastVisibleBlock(scrollable),
-        isAgenda = calendar.mode == "agenda",
-        index = isAgenda ? (calendar.activeCalendar.color.AliasName || calendar.activeCalendar.color.Name) : 3;
+                lastBlock = calendar.getLastVisibleBlock(scrollable),
+                isAgenda = calendar.mode == "agenda",
+                index = isAgenda ? (calendar.activeCalendar.color.AliasName || calendar.activeCalendar.color.Name) : 3;
 
             if (calendar.mode != 'year')
                 while (firstBlock && firstBlock.length) {
@@ -8603,7 +8549,7 @@ date = getDateOfBlock(visible);
                     if (!blockColors && (firstBlock.hasClass('data-loaded') || isAgenda)) {
                         blockColors = [];
                         var date = getDateOfBlock(firstBlock),
-                    data;
+                            data;
 
                         // do not use data from cache
                         if (isAgenda) {
@@ -8687,7 +8633,7 @@ date = getDateOfBlock(visible);
         blur: function (target) {
             target.removeAttr('contentEditable').removeClass('app-rich-text-editor');
         }
-    }
+    };
 
     function findScrollable(child) {
         return child ? child.closest('.app-wrapper') : ($app.touch.activePage ? $app.touch.activePage.find('.app-wrapper') : $());

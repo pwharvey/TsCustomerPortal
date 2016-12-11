@@ -1925,15 +1925,13 @@ body.app-theme-light:not(.app-desktop) .app-day-header li a.ui-btn:hover:not(.ui
 
 .app-calendar-plugin table tr.app-selected,
 .app-calendar-plugin table td.app-selected {
-    background-color: #cfe9f3 !important;
+    background-color: #cfe9f3;
 }
 
 .app-calendar-plugin table tr.ui-btn-active,
 .app-calendar-plugin table tr.ui-btn-active td,
-.app-calendar-plugin table tr.ui-btn-active td:hover,
-.app-calendar-plugin table td.ui-btn-active,
-.app-calendar-plugin table td.ui-btn-active:hover {
-    background-color: #38c !important;
+.app-calendar-plugin table td.ui-btn-active {
+    background-color: #38c;
 }
 
     .app-calendar-plugin table tr.ui-btn-active td,
@@ -2233,6 +2231,7 @@ body:not(.app-desktop) .app-calendar-plugin .ui-btn:not(.ui-btn-icon-notext):not
     box-shadow: 0 0 16px rgba(0,0,0,0.4);
     overflow: hidden;
     background-color: #fff;
+    color: #000;
 }
 
     .app-calendar-plugin-container > .app-calendar-plugin {
@@ -2242,6 +2241,7 @@ body:not(.app-desktop) .app-calendar-plugin .ui-btn:not(.ui-btn-icon-notext):not
         display: inline-block;
         position: relative;
         width: 100%;
+        background-color: #fff;
     }
 
 .app-time-container {

@@ -214,13 +214,17 @@ Namespace TimberSmart.Web
                 If ApplicationServices.IsContentEditor Then
                     siteContent = String.Format(",siteContent:""{0}"",siteContentPK:""{1}"",rootUrl:""{2}""", ApplicationServices.SiteContentControllerName, ApplicationServices.Create().SiteContentFieldName(SiteContentFields.SiteContentId), p.ResolveUrl("~"))
                 End If
+                Dim designerPort As String = ApplicationServices.DesignerPort
+                If (Not (String.IsNullOrEmpty(designerPort)) AndAlso Not (Controller.UserIsInRole(ApplicationServices.SiteContentDevelopers))) Then
+                    designerPort = String.Empty
+                End If
                 p.ClientScript.RegisterStartupScript(GetType(AquariumExtenderBase), "TargetFramework", String.Format("var __targetFramework=""4.6"",__tf=4.0,__servicePath=""{0}"",__baseUrl=""{1}"",__design"& _ 
-                            "erPort=""{2}"";", p.ResolveClientUrl(AquariumExtenderBase.DefaultServicePath), p.ResolveClientUrl("~"), ApplicationServices.DesignerPort), true)
+                            "erPort=""{2}"";", p.ResolveClientUrl(AquariumExtenderBase.DefaultServicePath), p.ResolveClientUrl("~"), designerPort), true)
                 p.ClientScript.RegisterStartupScript(GetType(AquariumExtenderBase), "TouchUI", String.Format("var __settings={{appInfo:""TsCustomerPortal|{0}"",mobileDisplayDensity:""Auto"",deskt"& _ 
-                            "opDisplayDensity:""Condensed"",mapApiIdentifier:"""",labelsInList:""DisplayedBelow"",l"& _ 
-                            "abelsInForm:""AlignedLeft"",initialListMode:""SeeAll"",buttonShapes:true,sidebar:""La"& _ 
-                            "ndscape"",promoteActions:true,transitions:"""",theme:""Aquarium"",maxPivotRowCount: {"& _ 
-                            "1},help:true,ui:""TouchUI""{2}}};", BusinessRules.JavaScriptString(HttpContext.Current.User.Identity.Name), ApplicationServices.Create().MaxPivotRowCount, siteContent), true)
+                            "opDisplayDensity:""Condensed"",mapApiIdentifier:""{1}"",labelsInList:""DisplayedBelow"& _ 
+                            """,initialListMode:""SeeAll"",buttonShapes:true,smartDates:true,sidebar:""Landscape"""& _ 
+                            ",promoteActions:true,transitions:"""",theme:""Aquarium"",maxPivotRowCount: {2},help:"& _ 
+                            "true,ui:""TouchUI""{3}}};", BusinessRules.JavaScriptString(HttpContext.Current.User.Identity.Name), ApplicationServices.MapsApiIdentifier, ApplicationServices.Create().MaxPivotRowCount, siteContent), true)
             End If
         End Sub
         

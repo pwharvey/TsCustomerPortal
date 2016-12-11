@@ -1,13 +1,4 @@
-﻿/*black dots*/
-.app-theme-simple .ui-btn:not(.ui-btn-active).app-btn-icon-transparent.ui-icon-dots::after {
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0D%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20300%20100%22%20enable-background%3D%22new%200%200%20300%20100%22%20xml%3Aspace%3D%22preserve%22%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%22150%22%20cy%3D%2248%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%22250%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3C/svg%3E%0D%0A');
-}
-
-/* black vdots*/
-.app-android.app-theme-simple .ui-btn:not(.ui-btn-active).app-btn-icon-transparent.ui-icon-dots::after {
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0D%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20100%20300%22%20enable-background%3D%22new%200%200%20100%20300%22%20xml%3Aspace%3D%22preserve%22%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2249%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2251%22%20cy%3D%22150%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2249%22%20cy%3D%22250%22%20r%3D%2225%22/%3E%0D%0A%3C/svg%3E%0D%0A');
-}
-/*********************************/
+﻿/*********************************/
 /* THEME: simple                */
 /*******************************/
 .app-theme-simple,
@@ -25,7 +16,8 @@
 
     .app-theme-simple .ui-page-theme-a .ui-panel-wrapper,
     .app-theme-simple .ui-panel,
-    .app-theme-simple .app-status-bar {
+    .app-theme-simple .app-status-bar,
+    .app-bar-footer.ui-bar-inherit {
         background-color: #f2f1ee;
         border-color: #bfbfbf;
     }
@@ -199,6 +191,7 @@ body:not(.app-sidebar-undocked).app-theme-simple .app-sidebar,
     .app-theme-simple .ui-listview .app-frozen-spacer,
     .app-theme-simple .app-grid-header,
     .app-theme-simple .app-echo .dv-item, 
+    .app-echo .app-grid .ui-last-child,
     .app-theme-simple .app-echo .app-listview,
     .app-theme-simple [data-container],
     .app-theme-simple [data-layout="form"] {
@@ -238,8 +231,8 @@ body.app-desktop.app-theme-simple .app-grid.app-listview :not(.app-selected):not
 .app-theme-simple .app-map-info .ui-popup-arrow,
 .app-theme-simple .ui-listview .app-frozen-spacer,
 .app-theme-simple [data-container="toggle"],
-.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected), 
-body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
+.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected):not(.ui-btn-active):not(.app-checked), 
+body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected):not(.ui-btn-active):not(.app-checked) {
     /*color: #000;*/
     background-color: #fff;
 }
@@ -259,7 +252,8 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 .app-theme-simple .app-field-label-before,
 .app-theme-simple .app-field-label,
 .app-theme-simple .ui-panel .app-item-desc,
-.app-theme-simple .app-item-number {
+.app-theme-simple .app-item-number,
+.app-data-input-popup li:not(.app-selected) span.app-text-normal {
     color: #003399 !important;
 }
 
@@ -329,9 +323,11 @@ html head + body.app-desktop.app-theme-simple .ui-btn-a.ui-btn:hover:not(.app-se
 
 /*selected button*/
 .app-theme-simple .ui-btn.app-selected:not(.ui-btn-active),
+.app-theme-simple .ui-btn.app-checked:not(.ui-btn-active),
 .app-theme-simple .ui-btn.app-selected:hover:not(.ui-btn-active),
 .app-theme-simple .app-selected:visited,
-.app-theme-simple .app-selected .app-frozen-spacer {
+.app-theme-simple .app-selected .app-frozen-spacer,
+.app-theme-simple .app-checked .app-frozen-spacer {
     background: linear-gradient(to bottom, #ffffff 0%,#e2e6ef 100%) !important;
     border-color: #bfbfbf !important;
     color: #000 !important;
@@ -344,9 +340,11 @@ html head + body.app-desktop.app-theme-simple .ui-btn-a.ui-btn:hover:not(.app-se
 
 /* selected hover*/
 html body.app-desktop.app-theme-simple .ui-btn.app-selected:hover:not(.ui-btn-active),
+html body.app-desktop.app-theme-simple .ui-btn.app-checked:hover:not(.ui-btn-active),
 .app-theme-simple .app-echo-toolbar .app-selected:not(.ui-btn-active),
 .app-theme-simple .app-echo-toolbar .app-selected:not(.ui-btn-active):hover,
-.app-theme-simple .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer {
+.app-theme-simple .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer,
+.app-theme-simple .app-listview .app-checked:not(.ui-btn-active):hover .app-frozen-spacer {
     background: none !important;
     background-color: #e2e6ef !important;
     border-color: #bfbfbf !important;
@@ -355,7 +353,7 @@ html body.app-desktop.app-theme-simple .ui-btn.app-selected:hover:not(.ui-btn-ac
 
 /* click */
 
-.app-theme-simple .app-grid-header .ui-btn-active,
+    .app-theme-simple .app-grid-header .ui-btn-active,
     [data-container="collapsible"] [data-container="toggle"].ui-btn-active {
     background: none !important;
     background-color: #003399 !important;
@@ -367,14 +365,15 @@ html body.app-desktop.app-theme-simple .ui-btn.app-selected:hover:not(.ui-btn-ac
     background-color: #003399;
 }
 
+    .ui-btn.ui-btn-active::after,
+    .app-btn-more.ui-btn-active::after {
+        color: #003399;
+    }
+
 .app-theme-simple [data-input] .app-data-list li.app-selected,
 .app-theme-simple [data-input] .app-data-list li::before,
 .app-theme-simple [data-input] .app-data-list li.app-selected::after {
     border-color: #003399;
-}
-
-.app-theme-simple .dv-item .app-btn-more.ui-btn-active {
-    background-color: #003399 !important;
 }
 
 .app-theme-simple .ui-title.ui-btn-active,
@@ -396,12 +395,12 @@ html body.app-theme-simple .ui-btn.ui-btn-active,
     color: #fff !important;
 }
 
-.app-theme-simple .ui-btn.ui-btn-icon-notext.ui-btn-active {
+.app-theme-simple .ui-btn.ui-btn-icon-notext:not(.ui-icon-dots).ui-btn-active {
     background-color: #f2f2f2 !important;
 }
 
 
-.app-theme-simple .ui-btn.ui-btn-active.ui-btn-icon-notext::after {
+.app-theme-simple .ui-btn.ui-btn-active.ui-btn-icon-notext:not(.ui-icon-dots)::after {
     background-color: #003399 !important;
 }
 
@@ -429,6 +428,13 @@ html body.app-theme-simple .ui-btn.ui-btn-active,
     border-color: #003399 !important;
     background-color: #003399 !important;
 }
+
+    [data-input] .app-control-helper ul li.ui-btn-active,
+    [data-input].app-has-focus .app-control-helper ul li.app-focus {
+        border-color: #003399 !important;
+        background-color: #003399 !important;
+        color: #fff!important;
+    }
 
 .app-theme-simple .app-btn-check .app-icon-themed {
     fill: #fff;
@@ -577,6 +583,8 @@ html body.app-theme-simple .ui-group-theme-b .ui-bar-inherit {
     border-color: #00268b;
 }
 
+.app-calendar-plugin-container .app-time-container .app-selected,
+.app-calendar-plugin-container .app-time-header .app-cal-selected,
 .app-theme-simple .app-day-header :not(.ui-btn-active).ui-btn .app-current-day,
 .app-theme-simple .app-has-current-day .app-current-time,
 .app-theme-simple .app-calendar-agenda-list > li.app-has-current-day h2:not(.ui-btn-active) > span,
@@ -584,10 +592,14 @@ html body.app-theme-simple .ui-group-theme-b .ui-bar-inherit {
 .app-theme-simple .app-calendar-plugin .app-date-selector-container .app-current:not(.ui-btn-active) {
     color: #00268b;
 }
-
-.app-theme-simple .app-calendar-plugin table tr.ui-btn-active td,
-.app-theme-simple .app-calendar-plugin table td.ui-btn-active,
-.app-theme-simple .app-calendar-yearview .app-calendar-month td.ui-btn-active {
+    
+.app-calendar-plugin-container .app-time-selector .app-time-hand,
+.app-calendar-plugin-container .app-time-hand > span,
+.app-calendar-plugin table tr.ui-btn-active td,
+.app-calendar-plugin table tr.ui-btn-active td:hover,
+.app-calendar-plugin table td.ui-btn-active,
+.app-calendar-plugin table td.ui-btn-active:hover,
+.app-calendar-yearview .app-calendar-month td.ui-btn-active {
     background-color: #00268b !important;
 }
 

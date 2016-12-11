@@ -47,6 +47,8 @@ generation library.
 
 ^AddConditionText^Add search condition^AddConditionText^
 
+^AddItem^Add Item^AddItem^
+
 ^AddMatchingGroup^Add matching group^AddMatchingGroup^
 
 ^AddSearchBarField^More Search Fields^AddSearchBarField^
@@ -201,9 +203,35 @@ generation library.
 
 ^DateIsExpected^A date is expected.^DateIsExpected^
 
+^DatesAMinAgo^a minute ago^DatesAMinAgo^
+
+^DatesInAMin^in a minute^DatesInAMin^
+
+^DatesInHour^in an hour^DatesInHour^
+
+^DatesInMin^in {0} min^DatesInMin^
+
+^DatesLast^Last^DatesLast^
+
+^DatesMinAgo^{0} min ago^DatesMinAgo^
+
+^DatesNext^Next^DatesNext^
+
+^DatesNow^Now^DatesNow^
+
+^DatesOneHour^an hour ago^DatesOneHour^
+
 ^DateSortAscending^Earliest on Top^DateSortAscending^
 
 ^DateSortDescending^Latest on Top^DateSortDescending^
+
+^DatesSmart^Smart Dates^DatesSmart^
+
+^DatesToday^Today^DatesToday^
+
+^DatesTomorrow^Tomorrow^DatesTomorrow^
+
+^DatesYesterday^Yesterday^DatesYesterday^
 
 ^Day^Day^Day^
 
@@ -481,6 +509,8 @@ generation library.
 
 ^ItemsSelectedOne^{0} item selected^ItemsSelectedOne^
 
+^JustDatesNow^Just now^JustDatesNow^
+
 ^JustifyCenter^Justify Center^JustifyCenter^
 
 ^JustifyFull^Justify Full^JustifyFull^
@@ -488,6 +518,8 @@ generation library.
 ^JustifyLeft^Justify Left^JustifyLeft^
 
 ^JustifyRight^Justify Right^JustifyRight^
+
+^LabelsInList^Labels In List^LabelsInList^
 
 ^Lacquer^Lacquer^Lacquer^
 

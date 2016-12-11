@@ -104,7 +104,15 @@ Namespace TimberSmart.Web
             MyBase.Render(tempWriter)
             tempWriter.Flush()
             tempWriter.Close()
-            writer.Write(HideUnauthorizedDataViews(TimberSmart.Data.Localizer.Replace("Pages", Path.GetFileName(Request.PhysicalPath), sb.ToString())))
+            Dim page As String = TimberSmart.Data.Localizer.Replace("Pages", Path.GetFileName(Request.PhysicalPath), sb.ToString())
+            If page.Contains("data-content-framework=""bootstrap""") Then
+                If ApplicationServices.EnableMinifiedCss Then
+                    page = Regex.Replace(page, "_cf=""", "_cf=bootstrap""")
+                Else
+                    page = Regex.Replace(page, "\/>\s*<title>", "/><link href=""../touch/bootstrap.css"" type=""text/css"" rel=""stylesheet"" /><title>")
+                End If
+            End If
+            writer.Write(HideUnauthorizedDataViews(page))
         End Sub
         
         Protected Overridable Sub ValidateUrlParameters()

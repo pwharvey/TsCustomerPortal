@@ -13,6 +13,9 @@
         resources = _web.DataViewResources,
         resourcesMobile = resources.Mobile,
         resourcesFiles = resourcesMobile.Files,
+        resourcesValidator = resources.Validator,
+        resourcesActionsScopes = resources.Actions.Scopes,
+        resourcesWhenLastCommandBatchEdit = resourcesActionsScopes.Form.Update.WhenLastCommandName.BatchEdit,
         fieldPropertiesWithTrueDefault = ['AllowQBE', 'AllowSorting', 'FormatOnClient', 'HtmlEncode'],
         fieldPropertiesWithZeroDefault = ['Len', 'Rows', 'Columns', 'Search', 'ItemsPageSize', 'Aggregate', 'OnDemandStyle', 'TextMode', 'MaskType', 'AutoCompletePrefixLength', 'CategoryIndex'],
         getPagePropertiesWithEmptyArrayDefault = ['Fields', 'Views', 'Categories', 'ActionGroups', 'Filter'];
@@ -323,6 +326,12 @@
         set_confirmContext: function (value) {
             this._confirmContext = value;
         },
+        get_startPage: function () {
+            return this._startPage;
+        },
+        set_startPage: function (value) {
+            this._startPage = value;
+        },
         get_startCommandName: function () {
             return this._startCommandName;
         },
@@ -355,8 +364,8 @@
         },
         get_showActionButtons: function () {
             var buttonLocation = this._showActionButtons;
-            if (buttonLocation == null) {
-                buttonLocation = 'TopAndBottom';
+            if (!buttonLocation) {
+                buttonLocation = _app.touch ? 'Auto' : 'TopAndBottom';
                 this._showActionButtons = buttonLocation;
             }
             return buttonLocation;
@@ -541,7 +550,7 @@
                             this._modalPopup.show();
                         }
                         _body_performResize();
-                        if (this.get_isEditing()) {
+                        if (this.editing()) {
                             this._focusedFieldName = null;
                             this._focus();
                         }
@@ -820,14 +829,14 @@
                 row = that._editRow,
                 originalRow, masterRow;
             if (!row) {
-                if (that.get_isInserting()) {
+                if (that.inserting()) {
                     row = (that._newRow || []).slice(0);
                     $(that._externalFilter).each(function () {
                         var fv = this,
                             field;
                         if (fv) {
                             field = that.findField(fv.name || fv.Name);
-                            if (field && row[field.Index] == null)
+                            if (field && !(field.IsPrimaryKey && field.ReadOnly) && row[field.Index] == null)
                                 row[field.Index] = fv.name ? fv.value : fv.Value;
                         }
                     });
@@ -1061,25 +1070,23 @@
                 var batchEditNotAllowed = [],
                     batchEditAllowed = [],
                     editFields = [],
-                    resourcesBatchEdit = resources.Actions.Scopes.Form.Update.WhenLastCommandName.BatchEdit,
                     fieldQuestions = [
                     ],
                     survey = {
                         dynamic: true,
-                        text: resources.Actions.Scopes.Grid.BatchEdit.HeaderText,
+                        text: resourcesActionsScopes.Grid.BatchEdit.HeaderText,
                         description: resources.Mobile.MultiSelection,
                         parent: that._id,
                         controller: that._id + '_' + view + '_BatchEdit',
                         context: { controller: that._controller, view: view },
                         topics: [
                             {
-                                text2: 'Fields', description: String.format(resources.Views.DefaultCategoryDescriptions.$DefaultEditDescription, that.get_view().Label),
+                                description: String.format(resourcesMobile.ItemsSelectedMany, that._selectedKeyList.length) + '. ' + String.format(resources.Views.DefaultCategoryDescriptions.$DefaultEditDescription, that.get_view().Label),
                                 questions: fieldQuestions
                             }
                         ],
                         submit: 'batcheditsubmit.dataview.app',
-                        submitText: resourcesBatchEdit.HeaderText,
-                        submitConfirmation: resourcesBatchEdit.Confirmation
+                        submitText: resourcesWhenLastCommandBatchEdit.HeaderText
                     };
                 // enumerate batch-editable fields
                 $(result.fields).each(function () {
@@ -1106,12 +1113,51 @@
                 }
                 // continue with the configuration of the survey
                 if (editFields.length) {
+                    // build out a cascading dependency map
+                    var fieldMap = {},
+                        dependencyMap = {};
+
+                    $(editFields).each(function () {
+                        var f = this;
+                        fieldMap[f.Name] = f;
+                    });
+
+                    function enumerateCascadeParents(f, list) {
+                        var context = f.ContextFields,
+                            m, matches = [], f2;
+                        if (context) {
+                            while (m = _app._fieldMapRegex.exec(context))
+                                matches.push(m);
+                            $(matches).each(function () {
+                                var m = this;
+                                f2 = fieldMap[m[2]];
+                                if (f2 && !f2._depends) {
+                                    f2._depends = true;
+                                    list.push(f2);
+                                    enumerateCascadeParents(f2, list);
+                                }
+                            });
+                        }
+                    }
+
+                    $(editFields.slice(0).reverse()).each(function () {
+                        var f = this,
+                            list;
+                        if (f.ContextFields && !f._depends) {
+                            list = dependencyMap[f.Name] = [];
+                            enumerateCascadeParents(f, list);
+                            list = list.reverse();
+                        }
+                    });
+                    // create questions for each field
                     $(editFields).each(function () {
                         var f = this,
-                            qcb = { name: f.Name + '_BatchEdit', type: 'bool', value: false, text: f.Label, items: { style: 'CheckBox' } },
+                            allowNulls = f.AllowNulls == true,
+                            qcb = { name: f.Name + '_BatchEdit', type: 'bool', value: false, required: true, text: f.HeaderText || f.Label, items: { style: 'CheckBox' } },
                             q = {
-                                name: f.Name, type: f.Type, len: f.Len, placeholder: resources.Validator.Required, text: false, columns: f.Columns, rows: f.Rows,
-                                visibleWhen: '$row.' + f.Name + '_BatchEdit == true', extended: { AllowNulls: f.AllowNulls }
+                                name: f.Name, type: f.Type, len: f.Len, placeholder: allowNulls ? resourcesValidator.Optional : resourcesValidator.Required, text: false, columns: f.Columns, rows: f.Rows,
+                                visibleWhen: '$row.' + f.Name + '_BatchEdit == true', extended: { allowNulls: allowNulls },
+                                format: f.DataFormatString, context: f.ContextFields
                             },
                             itemsStyle = f.ItemsStyle;
                         if (itemsStyle) {
@@ -1137,15 +1183,37 @@
                                 $(result.fields).each(function () {
                                     var af = this;
                                     if (af.Name == f.AliasName) {
-                                        qcb.text = af.Label;
+                                        qcb.text = af.Label || af.HeaderText;
                                         return false;
                                     }
                                 });
                         }
-
-
-                        fieldQuestions.push(qcb, q);
+                        if (f._depends) {
+                            q.placeholder = qcb.text;
+                            f._question = q;
+                        }
+                        else
+                            fieldQuestions.push(qcb, q);
                     });
+                    // extend fields with cascading depedencies
+                    var i = 1;
+                    while (i < fieldQuestions.length) {
+                        var q = fieldQuestions[i],
+                            dependency = dependencyMap[q.name];
+                        if (dependency) {
+                            q.placeholder = fieldQuestions[i - 1].text;
+                            q.text = false;
+                            q.extended.dependency = dependency;
+                            $(dependency).each(function () {
+                                var q2 = this._question;
+                                q2.visibleWhen = q.visibleWhen;
+                                q2.text = '';
+                                fieldQuestions.splice(i++, 0, q2);
+                            });
+                        }
+                        i += 2;
+                    }
+                    // show the batch edit survey
                     _app.survey('show', survey);
                 }
             }
@@ -1270,16 +1338,20 @@
         set_lastCommandArgument: function (value) {
             this._lastCommandArgument = value;
         },
-        editing: function () {
-            return this.get_isEditing();
-        },
         get_isEditing: function () {
+            return this.editing();
+        },
+        editing: function () {
             var that = this,
                 lastCommandName = that._lastCommandName,
                 editing = that._editing;
-            return (lastCommandName == 'New' || lastCommandName == 'Edit' || lastCommandName == 'BatchEdit' || lastCommandName == 'Duplicate') && editing == null || editing == true;
+            return editing == null && (lastCommandName == 'Edit' || lastCommandName == 'New' || /*lastCommandName == 'BatchEdit' || */lastCommandName == 'Duplicate') || editing == true;
         },
         get_isInserting: function () {
+            return this.inserting();
+        },
+        inserting: function () {
+            var lastCommandName = this._lastCommandName;
             return this._lastCommandName == 'New' || this._lastCommandName == 'Duplicate';
         },
         get_lookupField: function () {
@@ -1470,7 +1542,7 @@
                     if (this.get_transaction() == 'Supported')
                         if (!String.isNullOrEmpty(source.get_transaction())) {
                             this.set_transaction(source.get_transaction() != 'Supported' ? source.get_transaction() : null);
-                            this._forceVisible = this.get_transaction() && source.get_isInserting();
+                            this._forceVisible = this.get_transaction() && source.inserting();
                         }
                     if (source._pendingSelectedEvent && !$app.mobile) {
                         this._source = source;
@@ -1933,7 +2005,7 @@
                 for (var i = 0; i < inputList.length; i++) {
                     var input = inputList[i];
                     if (String.isBlank(input.value)) {
-                        alert(Web.DataViewResources.Validator.RequiredField);
+                        alert(resourcesValidator.RequiredField);
                         Sys.UI.DomElement.setFocus(input);
                         //input.focus();
                         return;
@@ -1992,7 +2064,9 @@
                 this.showCustomFilter(fieldIndex);
         },
         _appendModalPanel: function (elem) {
-            this.get_element().appendChild(elem);
+            var element = this.get_element();
+            if (element)
+                element.appendChild(elem);
         },
         showCustomFilter: function (fieldIndex) {
             var field = this._allFields[fieldIndex];
@@ -2541,7 +2615,7 @@
             //    }
             //};
             primaryDataView = that.delegateCommand(command, argument);
-            if (primaryDataView)
+            if (primaryDataView && primaryDataView != that)
                 primaryDataView.executeRowCommand(rowIndex, command, argument, causesValidation, path);
             else {
                 extension = that.extension();
@@ -2834,7 +2908,7 @@
                 });
             this.set_ditto(null);
             this._savePosition();
-            if (dataView && !dataView.get_isInserting())
+            if (dataView && !dataView.inserting())
                 dataView._position = this._position;
             this._restorePosition();
         },
@@ -2881,7 +2955,7 @@
                 else {
                     this.set_lastCommandName('Cancel');
                     this._pendingSelectedEvent = true;
-                    if (this.get_isForm()/*this.get_view().Type == 'Form'*/ || this.get_isInserting()) {
+                    if (this.get_isForm()/*this.get_view().Type == 'Form'*/ || this.inserting()) {
                         this._forceSync();
                         this.goToView(this._lastViewId);
                     }
@@ -2940,26 +3014,28 @@
         executeCommand: function (args) {
             if (this._isBusy) return;
             var rules = new Web.BusinessRules(this),
-                mobile = $app.mobile;
+                mobile = $app.mobile,
+                commandName = args.commandName,
+                commandArgument = args.commandArgument;
             rules.before(args);
             if (rules.canceled()) {
                 rules.dispose();
-                this._valid = args.commandName == 'Calculate';
+                this._valid = commandName == 'Calculate';
                 return this._valid;
             }
-            switch (args.commandName) {
+            switch (commandName) {
                 case 'Select':
                 case '':
-                    this.set_lastCommandName(args.commandName);
-                    this.set_lastCommandArgument(args.commandArgument);
-                    if (this.get_lookupField() && args.commandArgument == '') this._processSelectedLookupValues();
+                    this.set_lastCommandName(commandName);
+                    this.set_lastCommandArgument(commandArgument);
+                    if (this.get_lookupField() && commandArgument == '') this._processSelectedLookupValues();
                     else {
-                        if (!String.isBlank(args.commandArgument)) {
+                        if (!String.isBlank(commandArgument)) {
                             this._savePosition();
-                            if (this.get_showModalForms() && this.get_isForm(args.commandArgument) /*this.get_viewType(args.commandArgument) == 'Form'*/)
+                            if (this.get_showModalForms() && this.get_isForm(commandArgument) /*this.get_viewType(args.commandArgument) == 'Form'*/)
                                 this._showModal(args);
                             else
-                                this.goToView(args.commandArgument);
+                                this.goToView(commandArgument);
                         }
                         else
                             this._render();
@@ -2968,7 +3044,7 @@
                     }
                     break;
                 case 'BatchEdit':
-                    this.batchEdit(args.commandArgument);
+                    this.batchEdit(commandArgument);
                     break;
                 case 'Edit':
                 case 'New':
@@ -2976,9 +3052,9 @@
                     if (!mobile) {
                         this._allowModalAutoSize();
                         this._fixHeightOfRow(false);
-                        if (args.commandName == 'Edit') this._savePosition(); else this._restorePosition();
+                        if (commandName == 'Edit') this._savePosition(); else this._restorePosition();
                     }
-                    if (args.commandName == 'Duplicate') {
+                    if (commandName == 'Duplicate') {
                         var r = this.get_selectedRow();
                         if (r) {
                             var dv = []
@@ -2991,23 +3067,24 @@
                     }
                     var fc = this._get_focusedCell(),
                         extension = this.extension();
-                    if (args.commandName == 'New' || args.commandName == 'Duplicate') {
-                        if (String.isNullOrEmpty(args.commandArgument))
-                            args.commandArgument = this.get_viewId();
+                    if (commandName == 'New' || commandName == 'Duplicate') {
+                        if (String.isNullOrEmpty(commandArgument))
+                            commandArgument = args.commandArgument = this.get_viewId();
                         if (extension && extension.clearSelection)
                             extension.clearSelection(true);
                         else
                             this._forgetSelectedRow(false, fc);
-                        if (args.commandName == 'New') this._copyExternalLookupValues();
+                        if (commandName == 'New') this._copyExternalLookupValues();
                     }
-                    this.set_lastCommandName(args.commandName);
-                    this.set_lastCommandArgument(args.commandArgument);
+                    var stateChanged = commandName == 'Edit' && commandArgument == this.get_viewId() && !this.editing();
+                    this.set_lastCommandName(commandName);
+                    this.set_lastCommandArgument(commandArgument);
                     this._clearDynamicItems();
-                    if (!String.isBlank(args.commandArgument))
-                        if (mobile || this.get_showModalForms() && this.get_isForm(args.commandArgument) && !this.get_isModal())
+                    if (!String.isBlank(commandArgument) && !stateChanged)
+                        if (mobile || this.get_showModalForms() && this.get_isForm(commandArgument) && !this.get_isModal())
                             this._showModal(args);
                         else
-                            this.goToView(args.commandArgument);
+                            this.goToView(commandArgument);
                     else {
                         if (extension && extension.stateChanged) {
                             extension.stateChanged();
@@ -3024,7 +3101,7 @@
                         __designer_notifySelected(this);
                     break;
                 case 'Navigate':
-                    this.navigate(args.commandArgument);
+                    this.navigate(commandArgument);
                     break;
                 case 'Cancel':
                     this.cancel();
@@ -3033,7 +3110,7 @@
                     this._actionConfirmed(args);
                     break;
                 case 'Back':
-                    history.go(!String.isNullOrEmpty(args.commandArgument) ? parseInteger(args.commandArgument) : -1);
+                    history.go(!String.isNullOrEmpty(commandArgument) ? parseInteger(commandArgument) : -1);
                     break;
                 case 'Report':
                 case 'ReportAsPdf':
@@ -3048,23 +3125,23 @@
                     this.executeExport(args);
                     break;
                 case '_ViewDetails':
-                    this._viewDetails(args.commandArgument);
+                    this._viewDetails(commandArgument);
                     break;
                 case 'ClientScript':
                     closeHoverMonitorInstance();
-                    eval(args.commandArgument);
+                    eval(commandArgument);
                     break;
                 case 'SelectModal':
                 case 'EditModal':
                     this.set_lastCommandName(null);
                     this.set_lastCommandArgument(null);
                     this._render();
-                    var modalCmd = args.commandName.match(/^(\w+)Modal$/);
+                    var modalCmd = commandName.match(/^(\w+)Modal$/);
                     //this.set_lastCommandName(modalCmd[1]);
                     //this.set_lastCommandArgument(args.commandArgument);
-                    var modalArg = args.commandArgument.split(',');
+                    var modalArg = commandArgument.split(',');
                     var modalController = modalArg.length == 1 ? this.get_controller() : modalArg[0];
-                    var modalView = modalArg.length == 1 ? args.commandArgument : modalArg[1];
+                    var modalView = modalArg.length == 1 ? commandArgument : modalArg[1];
                     var filter = [];
                     for (i = 0; i < this.get_selectedKey().length; i++)
                         Array.add(filter, { Name: this._keyFields[i].Name, Value: this.get_selectedKey()[i] });
@@ -3072,7 +3149,7 @@
                     dataView._parentDataViewId = this.get_id();
                     break;
                 case 'Import':
-                    this._showImport(args.commandArgument);
+                    this._showImport(commandArgument);
                     break;
                 case 'DataSheet':
                     this.writeContext('GridType', 'DataSheet');
@@ -3098,9 +3175,9 @@
                     return true;
                 default:
                     var view = null,
-                        m = args.commandArgument.match(/^view:(.+)$/),
+                        m = commandArgument.match(/^view:(.+)$/),
                         actionArgs;
-                    if (args.commandName == 'Insert' && m) {
+                    if (commandName == 'Insert' && m) {
                         view = m[1];
                         Array.clear(this._selectedKey);
                         this.updateSummary();
@@ -3141,7 +3218,7 @@
             }
             var statusField = this.findField('Status');
             if (!statusField) return;
-            if (this.get_isEditing()) {
+            if (this.editing()) {
                 var statusElem = this._get('_Item', statusField.Index);
                 if (!statusElem) {
                     statusElem = document.createElement('input');
@@ -3748,7 +3825,7 @@
             return true;
         },
         updateSummary: function () {
-            if (!this.get_showInSummary()) return;
+            if (!this.get_showInSummary() || _app.touch) return;
             var summaryBox = null;
             if (!this._summaryId) {
                 var sideBar = $getSideBar();
@@ -3772,7 +3849,7 @@
                     }
                 }
             }
-            if (this._summaryId.length > 0) {
+            if (this._summaryId) {
                 if (!summaryBox) summaryBox = $get('PageSummaryBox');
                 if (!this._rows || this._rows.length == 0) {
                     if (!this._filterSource)
@@ -3887,7 +3964,7 @@
                 return extension.collect();
             values = new Array();
             selectedRow = this.get_selectedRow();
-            inserting = this.get_isInserting();
+            inserting = this.inserting();
             if (!selectedRow && !inserting) return values;
             for (var i = 0; i < this._allFields.length; i++) {
                 var field = this._allFields[i],
@@ -4089,8 +4166,7 @@
             return result;
         },
         _validateFieldValueFormat: function (field, v, skipDateAdjustment) {
-            var error = null,
-                resourcesValidator = Web.DataViewResources.Validator;
+            var error = null;
             switch (field.Type) {
                 case 'SByte':
                 case 'Byte':
@@ -4150,7 +4226,6 @@
         _validateFieldValues: function (values, displayErrors, focusedCell, skipDateAdjustment) {
             var that = this,
                 valid = true,
-                resourcesValidator = Web.DataViewResources.Validator,
                 sb = new Sys.StringBuilder(),
                 i,
                 newValue, oldValue,
@@ -4338,7 +4413,7 @@
                 }
             }
             var cell = this._get_focusedCell();
-            if (cell && this.get_isEditing() && this._id == _app._activeDataSheetId) {
+            if (cell && this.editing() && this._id == _app._activeDataSheetId) {
                 if (!String.isNullOrEmpty(fieldName)) {
                     var field = null;
                     var cellChanged = false;
@@ -4535,7 +4610,7 @@
         },
         _raisePopulateDynamicLookups: function () {
             var that = this;
-            if (that._hasDynamicLookups && that.get_isEditing() && that._skipPopulateDynamicLookups != true)
+            if (that._hasDynamicLookups && that.editing() && that._skipPopulateDynamicLookups != true)
                 if (that._survey)
                     _app.survey('populateItems', {
                         dataView: that, callback: function () {
@@ -4556,9 +4631,14 @@
             this.executeCommand({ 'commandName': 'Calculate', 'commandArgument': field.Name, 'causesValidation': false, 'trigger': triggerField.Name });
         },
         get_currentRow: function () {
-            return this.get_isInserting() ? (this._newRow ? this._newRow : []) : this.get_selectedRow();
+            return this.inserting() ? (this._newRow ? this._newRow : []) : this.get_selectedRow();
         },
         fieldValue: function (fieldName, source) {
+            if (fieldName == '_wizard') {
+                var layout = $('#' + this._id + ' [data-layout]'),
+                    config = layout.data('wizard-config');
+                return config ? config.active : 0;
+            }
             var dataView = !source || source.length == 0 ? this : (source.match(/^master$/i) ? this.get_master() : $find(source));
             if (!dataView) return null;
             if (!dataView._allFields)
@@ -4708,7 +4788,7 @@
                 }
                 if (this.get_isDataSheet()) {
                     var fc = this._get_focusedCell();
-                    if (this.get_isInserting() && !fc) {
+                    if (this.inserting() && !fc) {
                         this._startInputListenerOnCell(0, 0);
                     }
                     else if (fc && this._id == _app._activeDataSheetId) {
@@ -4749,7 +4829,7 @@
             }
             this._originalRow = null;
             this._useLEVs(row);
-            if (this.get_isEditing() && this._ditto) {
+            if (this.editing() && this._ditto) {
                 this._originalRow = Array.clone(row);
                 for (var i = 0; i < this._ditto.length; i++) {
                     var d = this._ditto[i];
@@ -4800,7 +4880,7 @@
                 sb.append('</table>');
                 if (this._mergedRow) {
                     var cell = this._get_focusedCell();
-                    var inserting = this.get_isInserting();
+                    var inserting = this.inserting();
                     var isDataSheet = this.get_isDataSheet();
                     for (var i = 0; i < this._allFields.length; i++) {
                         var f = this._allFields[i];
@@ -4817,7 +4897,7 @@
                     $get(this.get_id() + '_ToggleButton').checked = true;
                 this._attachBehaviors();
                 this._updateVisibility();
-                if (this.get_isEditing()) {
+                if (this.editing()) {
                     if (this._lastCommandName == 'BatchEdit')
                         $(this._element).find('div.BatchSelect input:checkbox:checked').each(function () {
                             _app._updateBatchSelectStatus(this, isForm);
@@ -4900,7 +4980,7 @@
             }
         },
         _fixHeightOfRow: function (apply) {
-            if ((this.get_isDataSheet() || this.get_isGrid()) && (!apply || this.get_isEditing())) {
+            if ((this.get_isDataSheet() || this.get_isGrid()) && (!apply || this.editing())) {
                 var headerRow = this._get_headerRowElement();
                 if (!headerRow) return;
                 var fc = this._get_focusedCell();
@@ -5013,14 +5093,14 @@
             return this._tabs.length > 0 ? this._tabs[this.get_categoryTabIndex()] : null;
         },
         _renderFormView: function (sb) {
-            var isEditing = this.get_isEditing();
+            var isEditing = this.editing();
             this._renderStatusBar(sb);
             this._renderViewDescription(sb);
             if (Web.DataViewResources.Form.ShowActionBar) this._renderActionBar(sb);
             var row = this.get_currentRow();
             this._mergeRowUpdates(row);
             this._updateVisibility(row);
-            if (this.get_isInserting() && this._expressions) {
+            if (this.inserting() && this._expressions) {
                 for (i = 0; i < this._expressions.length; i++) {
                     var exp = this._expressions[i];
                     if (exp.Scope == Web.DynamicExpressionScope.DefaultValues && exp.Type == Web.DynamicExpressionType.ClientScript) {
@@ -5163,7 +5243,7 @@
             if (v != null) v = v.toString();
             var checkBox = null,
                 isCheckBoxList = field.ItemsStyle == 'CheckBoxList',
-                isEditing = this.get_isEditing(),
+                isEditing = this.editing(),
                 hasAlias = field.Index != field.AliasIndex,
                 undefinedLookup = hasAlias && !field.ItemsStyle;
             if (isEditing && field.ItemsStyle == 'CheckBox' && field.Items.length == 2) {
@@ -5509,7 +5589,7 @@
                         sb.append(isForm ? dvrd.NullValueInForms : dvrd.NullValue);
                 }
                 if (isSelected && !isNull) sb.append('</a>');
-                if (!field.ReadOnly && (this.get_isEditing() && isSelected))
+                if (!field.ReadOnly && (this.editing() && isSelected))
                     if ($app.upload())
                         sb.appendFormat('<div class="drop-box-{0}"></div>', field.Index);
                     else
@@ -5523,7 +5603,7 @@
                 var inputFile = $(blobForm).find('input:file');
                 var fileName = inputFile.val().split(/(\\|\/)/);
                 fileName = fileName.length > 0 ? fileName[fileName.length - 1] : null;
-                var inserting = this.get_isInserting();
+                var inserting = this.inserting();
                 var $p = $(p).show().text(fileName).focus();
                 var padding = $common.getPaddingBox(p);
                 var border = $common.getBorderBox(p);
@@ -5615,14 +5695,14 @@
 
             if (scope == 'Form') {
                 var p = this._position;
-                var allowNav = p && p.count > 1 && !this.get_isInserting();
+                var allowNav = p && p.count > 1 && !this.inserting();
                 var allowPrevious = p && p.index > 0;
                 var allowNext = p && p.index < p.count - 1;
                 var printAction = this._get_specialAction('Print');
                 var annotateAction = this.get_isModal() ? this._get_specialAction('Annotate') : null;
                 sb.appendFormat('<td class="Left"><table class="FormNav"><tr><td class="Previous{5}{7}"><a href="javascript:" onclick="$find(\'{2}\')._advance(-1);return false;" title="{3}"><span></span></a></td><td class="Next{6}{7}"><a href="javascript:" onclick="$find(\'{2}\')._advance(1);return false;" title="{4}"><span></span></a></td><td class="Print{9}"><a href="javascript:" onclick="{10};return false;" title="{8}"><span></span></a></td><td class="Annotate{12}"><a href="javascript:" onclick="{13};return false;" title="{11}"><span></span></a></td><td class="Instruction" id="{0}_Wait" align="left">{1}</td></tr></table></td><td class="Right" align="right"{14}>&nbsp;',
                     location == 'Bottom' ? this.get_id() : '',
-                    this.get_isEditing() && Web.DataViewResources.Form.RequiredFieldMarker ? Web.DataViewResources.Form.RequiredFiledMarkerFootnote : '',
+                    this.editing() && Web.DataViewResources.Form.RequiredFieldMarker ? Web.DataViewResources.Form.RequiredFiledMarkerFootnote : '',
                     this.get_id(), Web.DataViewResources.Pager.Previous, Web.DataViewResources.Pager.Next,
                     allowPrevious ? '' : ' Disabled', allowNext ? '' : ' Disabled', allowNav ? '' : ' Hidden',
                     printAction ? printAction.text : '', printAction ? '' : ' Hidden', printAction ? printAction.script : null,
@@ -5660,7 +5740,7 @@
             var lastArgument = action.WhenLastCommandArgument ? action.WhenLastCommandArgument : '';
             var available = lastCommand.length == 0 || (lastCommand == this.get_lastCommandName() && (lastArgument.length == 0 || lastArgument == this.get_lastCommandArgument()));
             if (available) {
-                var editing = this.get_isEditing();
+                var editing = this.editing();
                 if (action.CommandName == 'DataSheet')
                     return !editing && this.get_isGrid() && /*!this.get_isTree() &&*/this.get_viewType() != 'DataSheet' && this._isActionMatched(action);
                 else if (action.CommandName == 'Grid')
@@ -5740,7 +5820,7 @@
             if (lastIndex < s.length) sb.append(s.substring(lastIndex));
         },
         _renderNewRow: function (sb) {
-            if (this.get_isInserting()) {
+            if (this.inserting()) {
                 var isDataSheet = this.get_isDataSheet();
                 var hasActionColumn = this._actionColumn && !isDataSheet;
                 var cell = this._get_focusedCell();
@@ -5837,8 +5917,8 @@
             }
             sb.append('</tr>');
             var cell = this._get_focusedCell();
-            var isEditing = this.get_isEditing();
-            var isInserting = this.get_isInserting();
+            var isEditing = this.editing();
+            var isInserting = this.inserting();
             var newRowIndex = this._lastSelectedRowIndex;
             if (!this._gridTemplates) {
                 var gt = { 'Default': this._get_template(), 'Edit': this._get_template('edit'), 'New': this._get_template('new') };
@@ -6191,7 +6271,7 @@
         },
         _attachFieldBehaviors: function () {
             var that = this;
-            if (that.get_isEditing()) {
+            if (that.editing()) {
                 for (var i = 0; i < this.get_fields().length; i++) {
                     var field = this.get_fields()[i];
                     var element = this._get('_Item', field.Index); // $get(this.get_id() + '_Item' + field.Index);
@@ -6330,7 +6410,7 @@
             var e = this.get_quickFindElement();
             if (e) $clearHandlers(e);
             // detach row header drop downs and field behaviors
-            //var editing = this.get_isEditing();
+            //var editing = this.editing();
             if (this.get_fields() != null) {
                 for (i = 0; i < this.get_fields().length; i++) {
                     var field = this.get_fields()[i];
@@ -6939,7 +7019,7 @@
                         if (silent)
                             continue;
                         else {
-                            alert(Web.DataViewResources.Validator.RequiredField);
+                            alert(resourcesValidator.RequiredField);
                             Sys.UI.DomElement.setFocus(valElem);
                             //valElem.focus();
                             //valElem.select();
@@ -6968,7 +7048,7 @@
                             if (silent)
                                 continue;
                             else {
-                                alert(Web.DataViewResources.Validator.RequiredField);
+                                alert(resourcesValidator.RequiredField);
                                 Sys.UI.DomElement.setFocus(val2Elem);
                                 //val2Elem.focus();
                                 //val2Elem.select();
@@ -7276,7 +7356,11 @@
             sb.append('</td></tr>');
         },
         get_statusBar: function () {
-            return this._statusBar;
+            var that = this,
+                statusBar = that._statusBar || that._statusBarAuto;
+            if (!statusBar && that._isWizard && !that.tagged('status-bar-disabled'))
+                statusBar = that._statusBarAuto = that._controller + '.' + that._viewId + '._wizard: 0\n' + resources.HeaderFilter.Loading + '>\n';
+            return statusBar;
         },
         _renderStatusBar: function (sb) {
             sb.appendFormat('<tr class="StatusBarRow" style="display:none"><td colspan="{1}" class="StatusBar" id="{0}$StatusBar"></td></tr>', this.get_id(), this._get_colSpan());
@@ -7460,6 +7544,14 @@
                         return resourcesMobile.Matched;
             }
 
+            function compressValue(value, text, isSecondValue) {
+                // remove time if 12:00AM or 11:59:59PM
+                if (value.getHours)
+                    if ((value.getHours() == 0 && value.getMinutes() == 0 && value.getSeconds() == 0) || (isSecondValue && value.getHours() == 23 && value.getMinutes() == 59 && value.getSeconds() == 59))
+                        return String.format('{0:d}', value);
+                return text;
+            }
+
             //var checkRecursive = true;
             for (i = 0; i < currentFilter.length; i++) {
                 var filter = currentFilter[i].match(_app._fieldFilterRegex),
@@ -7502,7 +7594,8 @@
                 }
                 var aliasField = field && this._allFields[field.AliasIndex],
                     m = _app._filterIteratorRegex.exec(filter[2]), //var m = filter[2].match(_app._filterRegex);
-                    first = true;
+                    first = true,
+                    compressDate = false;
                 while (m && (m[1].startsWith('~') || !(field.Index == field.AliasIndex && field.IsPrimaryKey && field.Hidden))) {
                     if (!first)
                         sb.append(', ');
@@ -7589,7 +7682,7 @@
                                 if (vm) values[0] = vm[1];
                                 v = this.convertStringToFieldValue(field, values[0]);
                                 item = this._findItemByValue(field, v);
-                                sb.appendFormat('<b>{0}</b>', String.htmlEncode(item ? item[1] : field.format(v)));
+                                sb.appendFormat('<b>{0}</b>', String.htmlEncode(item ? item[1] : compressValue(v, field.format(v))));
                                 for (var j = 1; j < values.length; j++) {
                                     sb.appendFormat('{0} ', m[1] == '$between$' ? ' ' + Web.DataViewResources.Data.Filters.Labels.And : ', ');
                                     v = this.convertStringToFieldValue(field, values[j]);
@@ -7597,7 +7690,7 @@
                                         v = Web.DataViewResources.HeaderFilter.EmptyValue;
                                     else {
                                         item = this._findItemByValue(field, v);
-                                        v = item ? item[1] : field.format(v);
+                                        v = item ? item[1] : compressValue(v, field.format(v), true);
                                     }
                                     sb.appendFormat('<b class="{1}">{0}</b>', String.htmlEncode(v));
                                     if (j > 5) {
@@ -7727,7 +7820,7 @@
             this._loadPage();
         },
         _dittoCollectedValues: function (newValues, fieldToIgnore) {
-            if (this.get_isEditing()) {
+            if (this.editing()) {
                 var ignoreRegex = fieldToIgnore ? new RegExp(String.format('^{0}(Length|ContentType|FileName|FullFileName)?$', fieldToIgnore)) : null;
                 var values = this._collectFieldValues(true);
                 var ditto = [];
@@ -7944,7 +8037,7 @@
                     PageIndex: that.get_pageIndex(), PageSize: that.get_pageSize(), PageOffset: that.get_pageOffset(), SortExpression: that.get_sortExpression(), GroupExpression: that.get_groupExpression(),
                     Filter: that._combinedFilter(that.get_filter()), ContextKey: that.get_id(), Cookie: that.get_cookie(), FilterIsExternal: that._externalFilter.length > 0,
                     LookupContextFieldName: lc ? lc.FieldName : null, LookupContextController: lc ? lc.Controller : null, LookupContextView: lc ? lc.View : null,
-                    LookupContext: lc, Inserting: that.get_isInserting(), LastCommandName: that.get_lastCommandName(), LastCommandArgument: that.get_lastCommandArgument(),
+                    LookupContext: lc, Inserting: that.inserting(), LastCommandName: that.get_lastCommandName(), LastCommandArgument: that.get_lastCommandArgument(),
                     /*SelectedValues: that.get_selectedValues(),*/ExternalFilter: that.get_externalFilter(), Transaction: that.get_transaction(),
                     DoesNotRequireData: that.get_searchOnStart(), LastView: that.get_lastViewId(), Tag: that.get_tag(), RequiresFirstLetters: that.get_showFirstLetters(),
                     ViewType: viewType, SupportsCaching: Sys.Browser.agent != Sys.Browser.InternetExplorer || Sys.Browser.version > 7,
@@ -8042,6 +8135,10 @@
                 if (survey && survey.result) {
                     that._onGetPageComplete(survey.result, null);
                     survey.result = null;
+                }
+                else if (that._startPage) {
+                    that._onGetPageComplete(that._startPage, null);
+                    that._startPage = null;
                 }
                 else
                     that._invoke('GetPage', pageArgs, Function.createDelegate(that, that._onGetPageComplete));
@@ -8401,7 +8498,7 @@
                             if (displayFieldList && Array.indexOfCaseInsensitive(displayFieldList[1].split(','), field.Name) != -1) {
                                 if (!isHidden)
                                     field.Hidden = false;
-                                if (this.get_isInserting()) {
+                                if (this.inserting()) {
                                     var valueRegex = new RegExp(String.format('\\W{0}=(.*?)(&|$)', field.Name));
                                     var valueMatch = _app._commandLine.match(valueRegex);
                                     if (valueMatch) {
@@ -8537,18 +8634,20 @@
                             this.Tag = (this.Tag || '') + ',' + t;
                         };
                         _field_prepareDataFormatString(this, field);
+                        var itemsStyle = field.ItemsStyle,
+                            itemsDataController = field.ItemsDataController;
                         if (field.Type == 'Boolean' && field.Items.length == 0) {
                             field.Items = Array.clone(field.AllowNulls ? Web.DataViewResources.Data.BooleanOptionalDefaultItems : Web.DataViewResources.Data.BooleanDefaultItems);
-                            if (!field.ItemsStyle) field.ItemsStyle = Web.DataViewResources.Data.BooleanDefaultStyle;
+                            if (!itemsStyle) field.ItemsStyle = Web.DataViewResources.Data.BooleanDefaultStyle;
                         }
-                        if (field.Items && field.Items.length > 0 && (field.AllowNulls || field.ItemsStyle == 'DropDownList') && !String.isNullOrEmpty(field.Items[0][0]) && field.ItemsStyle != 'CheckBoxList')
+                        if (field.Items && field.Items.length > 0 && (field.AllowNulls && !field.ItemsTargetController || itemsStyle == 'DropDownList' && !itemsDataController) && !String.isNullOrEmpty(field.Items[0][0]) && itemsStyle != 'CheckBoxList')
                             Array.insert(field.Items, 0, [null, Web.DataViewResources.Data.NullValueInForms]);
-                        if (!String.isNullOrEmpty(field.ItemsStyle))
-                            if (!String.isNullOrEmpty(field.ContextFields) && field.ItemsStyle != 'Lookup' && field.ItemsStyle != 'AutoComplete' && !String.isNullOrEmpty(field.ItemsDataController)) {
+                        if (!String.isNullOrEmpty(itemsStyle))
+                            if (!String.isNullOrEmpty(field.ContextFields) && itemsStyle != 'Lookup' && field.ItemsStyle != 'AutoComplete' && !String.isNullOrEmpty(itemsDataController)) {
                                 this._hasDynamicLookups = true;
                                 field.ItemsAreDynamic = true;
                             }
-                            else if (field.ItemsStyle == 'UserNameLookup') {
+                            else if (itemsStyle == 'UserNameLookup') {
                                 field.ItemsStyle = 'Lookup';
                                 field.ItemsDataController = 'aspnet_Membership';
                                 field.ItemsDataTextField = 'UserUserName';
@@ -8559,7 +8658,7 @@
                                 //if (Web.Menu.findNode('/Membership.aspx'))
                                 //    field.ItemsNewDataView = 'createForm1';
                             }
-                            else if (field.ItemsStyle == 'UserIdLookup') {
+                            else if (itemsStyle == 'UserIdLookup') {
                                 field.ItemsStyle = 'Lookup';
                                 field.ItemsDataController = 'aspnet_Membership';
                                 field.ItemsDataTextField = 'UserUserName';
@@ -8572,7 +8671,7 @@
                         if (!String.isNullOrEmpty(field.ToolTip))
                             field.ToolTip = _app.htmlAttributeEncode(field.ToolTip);
                         if (!field.Watermark && !field.AllowNulls && (!field.Items || !field.Items.length))
-                            field.Watermark = Web.DataViewResources.Validator.Required;
+                            field.Watermark = resourcesValidator.Required;
                         if (!String.isNullOrEmpty(field.Configuration))
                             this._requiresConfiguration = true;
                         if (field.AllowLEV) this._allowLEVs = true;
@@ -8661,7 +8760,7 @@
                         ag.groupText = [];
                         //if (ag.Scope == 'Grid' && this.get_isTree())
                         //    Array.insert(ag.Actions, 0, { 'CommandName': 'Open' });
-                        var agt = Web.DataViewResources.Actions.Scopes[ag.Scope];
+                        var agt = resourcesActionsScopes[ag.Scope];
                         if (agt && agt._Self) {
                             var ast = agt._Self[ag.HeaderText];
                             if (ast) ag.HeaderText = ast.HeaderText;
@@ -8829,7 +8928,7 @@
                     aliasField.AllowMultipleValues = false;
             }
             this._icons = result.Icons;
-            if (!this.get_isInserting()) {
+            if (!this.inserting()) {
                 var identifySelectedRow = false;
                 if (this._rows) {
                     if (this._rows.length == 0 || result.Rows.length == 0)
@@ -9011,12 +9110,12 @@
         },
         _dataSheetCellFocus: function (event, rowIndex, colIndex) {
             var fc = this._get_focusedCell();
-            var inserting = this.get_isInserting();
+            var inserting = this.inserting();
             if (inserting && rowIndex != -1)
                 rowIndex = -1;
             if (colIndex == -1)
                 colIndex = fc != null ? fc.colIndex : 0;
-            if (this.get_isEditing() && fc) {
+            if (this.editing() && fc) {
                 this._focusCell(-1, -1, false);
                 this._focusCell(rowIndex, colIndex);
                 var thisRow = rowIndex == fc.rowIndex || inserting && rowIndex == -1;
@@ -9033,7 +9132,7 @@
                 this._skipNextInputListenerClickEvent();
             else if (!this._gridViewCellFocus(event, rowIndex, colIndex))
                 return;
-            if (fc != null && fc.rowIndex == rowIndex && fc.colIndex == colIndex && !this.get_isEditing() && !this.get_lookupField()) {
+            if (fc != null && fc.rowIndex == rowIndex && fc.colIndex == colIndex && !this.editing() && !this.get_lookupField()) {
                 if (document.selection)
                     document.selection.clear();
                 if (this._skipEditOnClick != true && this._allowEdit())
@@ -9131,7 +9230,7 @@
                 return;
             if (this._lostFocus) return;
 
-            if (this.get_isEditing()) {
+            if (this.editing()) {
                 if (this._pendingChars)
                     this._pendingChars += String.fromCharCode(e.charCode);
                 return;
@@ -9162,7 +9261,7 @@
             }
         },
         _inputListenerKeyDown: function (e) {
-            //if (this.get_isEditing()) return;
+            //if (this.editing()) return;
             if (this._lookupIsActive) return;
             if (this._lostFocus) return;
             if (_web.HoverMonitor._instance.get_isOpen()) return;
@@ -9186,7 +9285,7 @@
                 case 83: // Ctrl+S
                 case Sys.UI.Key.enter:
                     if (e.keyCode == 83 && !e.ctrlKey) return;
-                    if (this.get_isEditing()) {
+                    if (this.editing()) {
                         var tagName = e.target && e.target.tagName;
                         if ((tagName == 'TEXTAREA' || tagName == 'A') && !e.ctrlKey)
                             return;
@@ -9204,7 +9303,7 @@
                         //                        return;
                         //                    }
                     }
-                    if (e.ctrlKey && !this.get_isEditing() || this.get_lookupField()) {
+                    if (e.ctrlKey && !this.editing() || this.get_lookupField()) {
                         handled = true;
                         this.executeRowCommand(fc.rowIndex, 'Select');
                     }
@@ -9220,12 +9319,12 @@
                     }
                     break;
                 case Sys.UI.Key.down:
-                    if (this.get_isEditing() || e.ctrlKey) return;
+                    if (this.editing() || e.ctrlKey) return;
                     if (this._moveFocusToNextRow(fc2, pageSize))
                         handled = true;
                     break;
                 case Sys.UI.Key.up:
-                    if (this.get_isEditing() || e.ctrlKey) return;
+                    if (this.editing() || e.ctrlKey) return;
                     if (fc2.rowIndex > 0)
                         fc2.rowIndex--;
                     else {
@@ -9253,7 +9352,7 @@
                 case Sys.UI.Key.right:
                 case Sys.UI.Key.left:
                     var allowRefresh = true;
-                    if ((e.keyCode == Sys.UI.Key.right || e.keyCode == Sys.UI.Key.left) && this.get_isEditing()) return;
+                    if ((e.keyCode == Sys.UI.Key.right || e.keyCode == Sys.UI.Key.left) && this.editing()) return;
                     if (!e.shiftKey && e.target.parentNode.className == 'Date')
                         return;
                     if (e.shiftKey && e.target.id && e.target.id.match(/\$Time\d+/))
@@ -9266,7 +9365,7 @@
                                 while (fc2.colIndex > 0 && this._fields[fc2.colIndex].isReadOnly())
                                     fc2.colIndex--;
                         }
-                        else if (this.get_isEditing())
+                        else if (this.editing())
                             handled = true;
                     }
                     else if (fc2.colIndex < this._fields.length - 1) {
@@ -9276,7 +9375,7 @@
                                 fc2.colIndex++;
                     }
                     else {
-                        if (this.get_isEditing()) {
+                        if (this.editing()) {
                             if (!this._updateFocusedRow(fc, e.keyCode == Sys.UI.Key.tab)) {
                                 e.preventDefault();
                                 e.stopPropagation();
@@ -9293,11 +9392,11 @@
                             handled = false;
                         }
                     }
-                    if (allowRefresh && this.get_isEditing())
+                    if (allowRefresh && this.editing())
                         causesRender = true;
                     break;
                 case Sys.UI.Key.home:
-                    if (this.get_isEditing()) return;
+                    if (this.editing()) return;
                     if (e.ctrlKey) {
                         if (this.get_pageIndex() > 0) {
                             handled = true;
@@ -9315,7 +9414,7 @@
                         fc2.colIndex = 0;
                     break;
                 case Sys.UI.Key.end:
-                    if (this.get_isEditing()) return;
+                    if (this.editing()) return;
                     if (e.ctrlKey) {
                         handled = true;
                         fc.colIndex = this._fields.length - 1;
@@ -9329,7 +9428,7 @@
                         fc2.colIndex = this._fields.length - 1;
                     break;
                 case Sys.UI.Key.pageUp:
-                    if (this.get_isEditing()) return;
+                    if (this.editing()) return;
                     handled = true;
                     if (this.get_pageIndex() > 0) {
                         this.goToPage(this.get_pageIndex() - 1);
@@ -9340,7 +9439,7 @@
                     }
                     break;
                 case Sys.UI.Key.pageDown:
-                    if (this.get_isEditing()) return;
+                    if (this.editing()) return;
                     handled = true;
                     if (this.get_pageIndex() < this.get_pageCount() - 1)
                         this.goToPage(this.get_pageIndex() + 1);
@@ -9351,7 +9450,7 @@
                     handled = true;
                     break;
                 case Sys.UI.Key.del:
-                    if (this.get_isEditing() || e.shiftKey || e.altKey) return;
+                    if (this.editing() || e.shiftKey || e.altKey) return;
                     handled = true;
                     if (e.ctrlKey)
                         this.deleteDataSheetRow();
@@ -9361,14 +9460,14 @@
                     }
                     break;
                 case 45: /* Insert */
-                    if (!this.get_isEditing()) {
+                    if (!this.editing()) {
                         handled = true;
                         if (this._allowNew())
                             this.newDataSheetRow();
                     }
                     break;
                 case 32: /* space */
-                    if (e.ctrlKey && this.multiSelect() && !this.get_isInserting()) {
+                    if (e.ctrlKey && this.multiSelect() && !this.inserting()) {
                         handled = true;
                         this.toggleSelectedRow(fc.rowIndex);
                     }
@@ -9376,7 +9475,7 @@
                         return;
                     break;
                 case 113: /* F2 */
-                    if (this.get_isEditing()) return;
+                    if (this.editing()) return;
                     handled = true;
                     if (this._allowEdit())
                         this.editDataSheetRow(fc.rowIndex);
@@ -9421,7 +9520,7 @@
         },
         _updateFocusedRow: function (fc, saveAndNew) {
             _app.showMessage();
-            this._syncFocusedCell = this.get_isInserting();
+            this._syncFocusedCell = this.inserting();
             this._lastFocusedCell = fc;
             this._skipSync = true;
             this.executeRowCommand(fc.rowIndex, this._syncFocusedCell ? 'Insert' : 'Update', null, true);
@@ -9494,7 +9593,7 @@
                 else
                     this.goToPage(this.get_pageIndex());
             }
-            if (originalDataRowIndex == this._get_selectedDataRowIndex(fc2.rowIndex) && !this.get_isEditing() && this._allowNew()) {
+            if (originalDataRowIndex == this._get_selectedDataRowIndex(fc2.rowIndex) && !this.editing() && this._allowNew()) {
                 this._ignoreSelectedKey = true;
                 this.newDataSheetRow();
                 handled = true;
@@ -9511,7 +9610,7 @@
             }
         },
         cancelDataSheetEdit: function () {
-            if (this.get_isEditing()) {
+            if (this.editing()) {
                 var fc = this._get_focusedCell();
                 if (fc != null)
                     this.executeRowCommand(fc.rowIndex, 'Cancel', null, false);
@@ -9559,7 +9658,7 @@
         _inputListenerDblClick: function (e) {
             if (this._lostFocus) return;
             var fc = this._get_focusedCell();
-            if (!fc || this.get_isEditing() || !this._allowEdit()) return;
+            if (!fc || this.editing() || !this._allowEdit()) return;
             //this.executeRowCommand(fc.rowIndex, 'Edit', this.get_viewId(), false);
             if (document.selection)
                 document.selection.clear();
@@ -9573,7 +9672,7 @@
                 this._focusedCell = null;
                 return null;
             }
-            var inserting = this.get_isInserting();
+            var inserting = this.inserting();
             if (highlight == null)
                 highlight = true;
             if (rowIndex == -1 && colIndex == -1) {
@@ -9627,7 +9726,7 @@
                         cell.scrollIntoView(false);
                     else if (scrolling.x > cellBounds.x || scrolling.x + clientBounds.width - 1 <= cellBounds.x || scrolling.x + clientBounds.width - 1 <= cellBounds.x + cellBounds.width)
                         cell.scrollIntoView(false);
-                    if (Sys.Browser.agent == Sys.Browser.InternetExplorer/* && this.get_isEditing()*/) {
+                    if (Sys.Browser.agent == Sys.Browser.InternetExplorer/* && this.editing()*/) {
                         var rb = $common.getBounds(headerRow);
                         headerRow.style.height = rb.height + 'px';
                     }
@@ -9771,7 +9870,7 @@
                 confirmContext && confirmContext.WindowTitle ? confirmContext.WindowTitle : _app.htmlEncode(this.get_view().Label),
                 Web.DataViewResources.ModalPopup.Close,
                 $nextTabIndex());
-            //if (Sys.Browser.agent === Sys.Browser.InternetExplorer && this.get_isEditing()) this._focus();
+            //if (Sys.Browser.agent === Sys.Browser.InternetExplorer && this.editing()) this._focus();
             this._modalPopup.show();
             if (this._modalAutoSized && !this._modalWidthFixed) {
                 this._modalWidthFixed = true;
@@ -9887,7 +9986,7 @@
             if (this._wsRequest == null) return;
             _app.showMessage(String.format('<pre style="word-wrap:break-word;margin:0px">Component: {4}\r\nController: {5}; View: {6}; Timed out: {0}; Status Code: {7};\r\nException: {1}\r\nMessage: {2}\r\nStack:\r\n{3}</pre>',
                 err.get_timedOut(), err.get_exceptionType(), err.get_message(), err.get_stackTrace(), this.get_id(), this.get_controller(), this.get_viewId(), err.get_statusCode()));
-            this.get_element().style.border = '1px red solid';
+            $(this.get_element()).css('border', '1px red solid');
         },
         _createArgsForListOfValues: function (distinctFieldName) {
             var lc = this.get_lookupContext(),
@@ -10177,7 +10276,7 @@
             var isCustom = lastCommandName == 'Custom';
             if (noErrors)
                 if (that._confirmDataViewId && mobile) {
-                    $(document).one('pagecontainershow', function () {
+                    /*$(document).one('pagecontainershow', */mobile.pageShown(function () {
                         that._onExecuteComplete(result, context);
                     });
                     that._cancelConfirmation();
@@ -10198,7 +10297,7 @@
             }
             else
                 if (lastCommandName.match(/Custom|SQL|Email/)) {
-                    stopFlow = !isCustom && that.get_isEditing();
+                    stopFlow = !isCustom && that.editing();
                     if (resultValues.length > 0) {
                         if ($app.touch)
                             //if (that.get_view().Layout)
@@ -10682,7 +10781,7 @@
             }
         },
         _cloneChangedRow: function () {
-            if (this.get_isEditing()) {
+            if (this.editing()) {
                 var values = this._collectFieldValues();
                 var selectedRow = this.get_currentRow();
                 var row = selectedRow ? Array.clone(selectedRow) : null;
@@ -10810,7 +10909,7 @@
                     this._modalPopup.show();
                 _body_performResize();
             }
-            if (this.get_isEditing() && !this._lookupIsActive) {
+            if (this.editing() && !this._lookupIsActive) {
                 var cell = this._get_focusedCell();
                 for (i = 0; i < this._fields.length; i++) {
                     f = this._fields[i];
@@ -10847,7 +10946,7 @@
                 allFields = that._allFields,
                 fieldName = field && field.Name ? field.Name : field;
             if (field && field.CausesCalculate) {
-                if (!that.get_isEditing()) {
+                if (!that.editing()) {
                     that.refresh();
                     return true;
                 }
@@ -10863,7 +10962,7 @@
                         var m = iterator.exec(f.ContextFields);
                         while (m) {
                             if (f.ItemsAreDynamic && (field == null || m[3] == /*field.Name*/fieldName)) {
-                                if (!that.get_isEditing()) {
+                                if (!that.editing()) {
                                     that.refresh();
                                     return true;
                                 }
@@ -10871,7 +10970,7 @@
                                 done = true;
                             }
                                 //else if (f.Calculated && m[1] == /*field.Name*/fieldName) {
-                                //    if (!that.get_isEditing()) {
+                                //    if (!that.editing()) {
                                 //        that.refresh();
                                 //        return true;
                                 //    }
@@ -10884,7 +10983,7 @@
                                     return;
                                 }
                                 else {
-                                    if (!that.get_isEditing()) {
+                                    if (!that.editing()) {
                                         that.refresh();
                                         return true;
                                     }
@@ -11022,7 +11121,7 @@
             var r1 = this._copyStaticLookupValues(field);
             this._updateVisibility();
             var r2 = this._updateDynamicValues(field);
-            if (processReadOnly && this._readOnlyChanged && this.get_isEditing()) {
+            if (processReadOnly && this._readOnlyChanged && this.editing()) {
                 this.refresh(true);
                 this._focus();
             }
@@ -11720,7 +11819,7 @@
     }
 
     _app.execute = function (args) {
-        var placeholder = $('<div/>').appendTo($('body')).hide(),
+        var placeholder = $('<p>'),
             externalFilter = args.externalFilter,
             dataView = $create(Web.DataView, {
                 controller: args.controller, viewId: args.view || 'grid1',
@@ -11756,9 +11855,9 @@
             cleanup();
         }
 
-        if (args.batchSelect) {
+        if (args.batch) {
             dataView._busy(true);
-            $(args.batchSelect).each(function () {
+            $(args.batch).each(function () {
                 var r = this;
                 // adjust each request if needed
                 if (r.pageIndex == null)
@@ -11768,7 +11867,7 @@
                 if (r.metadataFilter)
                     r.RequiresMetaData = true;
             });
-            dataView._invoke('GetPageList', { requests: args.batchSelect }, function (result) {
+            dataView._invoke('GetPageList', { requests: args.batch }, function (result) {
                 done();
                 if (args.success)
                     args.success(result);
@@ -11986,14 +12085,13 @@
         if (!baseUrl) baseUrl = _app._baseUrl;
         if (!servicePath) servicePath = _app._servicePath;
         var placeholder = this._placeholder = document.createElement('div'),
-            applicationComponentCount = Sys.Application.getComponents().length,
-            id = controller.toLowerCase();
-        for (var cid in Sys.Application._components)
-            if (cid.toLowerCase() == id) {
-                id += applicationComponentCount;
-                break;
-            }
-        placeholder.id = String.format('{0}_{1}_Placeholder{2}', controller, view, applicationComponentCount);
+            loweredController = controller.toLowerCase(),
+            id = loweredController,
+            instanceIndex = 1;
+        while (Sys.Application._components[id])
+            id = loweredController + (instanceIndex++);
+
+        placeholder.id = String.format('{0}_{1}_Placeholder{2}', controller, view, Sys.Application.getComponents().length);
         if (parentIsDataView)
             parent._appendModalPanel(placeholder);
         else
@@ -12116,7 +12214,7 @@
 
 
     _app._invoke = function (methodName, args, success, error) {
-        var placeholder = $('<div/>').appendTo($('body')).hide(),
+        var placeholder = $('<p>'),
             dataView = $create(Web.DataView, { servicePath: __servicePath, baseUrl: __baseUrl, useCase: '$app' }, null, null, placeholder.get(0));
         dataView._busy(true);
         dataView._invoke(methodName, args, function (result) {
@@ -12937,7 +13035,7 @@
                     { name: 'searchOnStart', type: 'bool' },
                     { name: 'selectionMode', aliases: ['single', 'multiple'], values: ['Single', 'Multiple'] },
                     { name: 'showActionBar', type: 'bool' },
-                    { name: 'showActionButtons', aliases: ['none', 'top', 'bottom', 'top-and-bottom'], values: ['None', 'Top', 'Bottom', 'TopAndBottom'] },
+                    { name: 'showActionButtons', aliases: ['', 'none', 'top', 'bottom', 'top-and-bottom'], values: ['Auto', 'None', 'Top', 'Bottom', 'TopAndBottom'] },
                     { name: 'showDetailsInListMode', type: 'bool' },
                     { name: 'showDescription', type: 'bool' },
                     { name: 'showInSummary', type: 'bool' },
@@ -13652,7 +13750,7 @@
             if (!this._actionArgs) {
                 var dataView = this._dataView;
                 this._actionArgs = dataView._createArguments(this._args, null);
-                if (dataView.get_isEditing()) {
+                if (dataView.editing()) {
                     dataView._validateFieldValues(this._actionArgs.Values, /*this._args.causesValidation == null || */this._args.causesValidation, false, true);
                     this._valid = dataView.validate(this._actionArgs.Values);
                 }
@@ -14454,6 +14552,10 @@
     _app.surveyLibrary = {
     }
 
+    /*
+    * Survey API
+    */
+
     _app.survey = function (method, options) {
         var controller = options.controller;
 
@@ -14524,7 +14626,56 @@
 
         function populateItems(list, fields, callback) {
             var batch = [],
+                unresolvedBatch = [],
                 row;
+            // scan the list to ensure that DataValueField and DataTextField are defined
+            $(list).each(function (index) {
+                var f = this;
+                if (!f.ItemsDataValueField)
+                    f.ItemsDataValueField = _app.cache[f.ItemsDataController + '_' + f.ItemsDataView + '_DataValueField'];
+                if (!f.ItemsDataTextField)
+                    f.ItemsDataTextField = _app.cache[f.ItemsDataController + '_' + f.ItemsDataView + '_DataTextField'];
+                if (!f.ItemsDataValueField || !f.ItemsDataTextField) {
+                    unresolvedBatch.push({
+                        controller: f.ItemsDataController,
+                        view: f.ItemsDataView,
+                        requiresData: false,
+                        metadataFilter: ['fields'],
+                        _fieldIndex: index
+                    });
+                }
+            });
+            if (unresolvedBatch.length) {
+                busy(true);
+                _app.execute({
+                    batch: unresolvedBatch,
+                    success: function (result) {
+                        $(result).each(function (index) {
+                            var f = list[unresolvedBatch[index]._fieldIndex],
+                                r = this;
+                            if (!f.ItemsDataValueField)
+                                $(r.Fields).each(function () {
+                                    var f2 = this;
+                                    if (f2.IsPrimaryKey) {
+                                        f.ItemsDataValueField = f2.Name;
+                                        _app.cache[f.ItemsDataController + '_' + f.ItemsDataView + '_DataValueField'] = f2.Name;
+                                        return false;
+                                    }
+                                });
+                            if (!f.ItemsDataTextField) {
+                                f.ItemsDataTextField = r.Fields[0].Name;
+                                _app.cache[f.ItemsDataController + '_' + f.ItemsDataView + '_DataTextField'] = f.ItemsDataTextField;
+                            }
+                        });
+                        populateItems(list, fields, callback);
+                    },
+                    error: function (error) {
+                        busy(false);
+                    }
+                });
+                return;
+            }
+            // request item values
             $(list).each(function () {
                 var f = this, m,
                     dataView = f._dataView,
@@ -14534,6 +14685,7 @@
                     selectRequest = {
                         controller: f.ItemsDataController,
                         view: f.ItemsDataView,
+                        sortExpression: f.ItemsDataTextField,
                         fieldFilter: fieldFilter,
                         metadataFilter: ['fields'],
                         pageSize: 1000
@@ -14559,7 +14711,7 @@
             });
             busy(true);
             _app.execute({
-                batchSelect: batch,
+                batch: batch,
                 success: function (result) {
                     busy(false);
                     $(list).each(function (index) {
@@ -14605,9 +14757,9 @@
                             Actions: [
                                 { "Id": "a1", "CommandName": "Confirm", "WhenLastCommandName": "New", HeaderText: options.submitText, Confirmation: options.submitConfirmation },
                                 { "Id": "a2", "CommandName": "Cancel", "WhenLastCommandName": "New" }
-                                //{ "Id": "a3", "CommandName": "Confirm", "WhenLastCommandName": "Edit" },
-                                //{ "Id": "a4", "CommandName": "Cancel", "WhenLastCommandName": "Edit" },
-                                //{ "Id": "a5", "CommandName": "Edit" }
+                            //{ "Id": "a3", "CommandName": "Confirm", "WhenLastCommandName": "Edit" },
+                            //{ "Id": "a4", "CommandName": "Cancel", "WhenLastCommandName": "Edit" },
+                            //{ "Id": "a5", "CommandName": "Edit" }
                             ]
                         }
                     ],
@@ -14621,6 +14773,7 @@
                     category = {
                         "Id": "c" + categoryIndex, "Index": categoryIndex,
                         HeaderText: topic.text, Description: topic.description,
+                        Wizard: topic.wizard,
                         "NewColumn": topic.newColumn != null ? topic.newColumn : (index == 0), Collapsed: topic.collapsed == true,
                         Tab: topic.tab
                     };
@@ -14774,7 +14927,7 @@
                                 f._autoAlias = true;
                         }
                     }
-                    if (fd.visibleWhen) 
+                    if (fd.visibleWhen)
                         result.Expressions.push({ Scope: 3, Target: fd.name, Test: fd.visibleWhen, Type: 1, ViewId: 'form1' });
                     result.Fields.push(f);
                     if (typeof fdValue !== 'function')
@@ -14846,6 +14999,10 @@
             _app.alert('Unsupported survey method: ' + method);
     }
 
+    //
+    // Survey: Batch Edit 
+    // 
+
     $(document).on('batcheditsubmit.dataview.app', function (e) {
         var rules = e.rules;
         if (rules.busy()) {
@@ -14854,30 +15011,47 @@
         }
         var dataView = rules.dataView(),
             row = dataView.surveyRow(),
-            survey = dataView._survey,
+            surveyContext = dataView._survey.context,
             values = [],
             focusField;
         $(dataView._allFields).each(function () {
             var f = this,
                 fieldName = f.Name.match(/^(.+?)\_BatchEdit$/),
-                bf;
+                bf, dependency, v;
             if (fieldName && f.Type == 'Boolean') {
                 bf = dataView.findField(f.Name);
                 if (bf && row[bf.Index]) {
                     bf = dataView.findField(fieldName[1]);
                     if (bf)
-                        if ((!bf.Extended || !bf.Extended.AllowNulls) && row[bf.Index] !== null) {
-                            focusField = bf;
-                            return false;
+                        v = row[bf.Index];
+                    if (bf.Extended && !bf.Extended.allowNulls && v == null) {
+                        focusField = bf;
+                        return false;
+                    }
+                    else {
+                        dependency = bf.Extended.dependency;
+                        if (dependency) {
+                            $(dependency).each(function () {
+                                var fi = this,
+                                    pf = dataView.findField(fi.Name),
+                                    pv = row[pf.Index];
+                                if (v == null & pv != null) {
+                                    focusField = bf;
+                                    return false;
+                                }
+                                values.push({ name: pf.Name, newValue: pv });
+                            });
                         }
-                        else
-                            values.push({ name: bf.Name, newValue: row[bf.Index] });
+                        if (focusField)
+                            return false;
+                        values.push({ name: bf.Name, newValue: v });
+                    }
                 }
             }
         });
         if (focusField) {
             rules.preventDefault();
-            rules.result.focus(focusField.Name, resources.Validator.RequiredField);
+            rules.result.focus(focusField.Name, resourcesValidator.RequiredField);
         }
         else if (values.length) {
             rules.preventDefault();
@@ -14887,30 +15061,31 @@
                 var pk = this;
                 values.push({ name: pk.Name });
             });
-            _app.execute({
-                controller: survey.context.controller, view: survey.context.view, command: 'Update', lastCommand: 'BatchEdit',
-                values: values, selectedKeys: parentDataView._selectedKeyList,
-                success: function (result) {
-                    busy(false);
-                    if (_app.touch) {
-                        $(document).one('pagecontainershow', function () {
-                            parentDataView._keepKeyList = true;
+            $app.confirm(resourcesWhenLastCommandBatchEdit.Confirmation, function () {
+                _app.execute({
+                    controller: surveyContext.controller, view: surveyContext.view, command: 'Update', lastCommand: 'BatchEdit',
+                    values: values, selectedKeys: parentDataView._selectedKeyList,
+                    success: function (result) {
+                        busy(false);
+                        if (_app.touch) {
+                            _app.touch.pageShown(function () {
+                                parentDataView._keepKeyList = true;
+                                parentDataView.sync();
+                            });
+                            dataView.cancel();
+                        }
+                        else {
+                            dataView.cancel();
                             parentDataView.sync();
-                        });
-                        dataView.cancel();
+                        }
+                    },
+                    error: function () {
+                        busy(false);
                     }
-                    else {
-                        dataView.cancel();
-                        parentDataView.sync();
-                    }
-                },
-                error: function () {
-                    busy(false);
-                }
+                });
             });
         }
-    }
-);
+    });
 
     if (typeof (Sys) !== 'undefined') Sys.Application.notifyScriptLoaded();
 

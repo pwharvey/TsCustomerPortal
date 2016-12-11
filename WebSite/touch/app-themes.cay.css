@@ -1,12 +1,4 @@
-﻿/*****************************/
-/*   Shared                  */
-/*****************************/
-
-.app-theme-cay #app-bar-tools .ui-btn.ui-btn-icon-notext.ui-icon-bars:not(.ui-icon-refresh):not(.ui-btn-active):after {
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2014%2014%22%20style%3D%22enable-background%3Anew%200%200%2014%2014%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20style%3D%22fill%3A%23FFFFFF%3B%22%20d%3D%22M1%2C4h12c0.553%2C0%2C1-0.447%2C1-1s-0.447-1-1-1H1C0.447%2C2%2C0%2C2.447%2C0%2C3S0.447%2C4%2C1%2C4z%20M13%2C6H1%20C0.447%2C6%2C0%2C6.447%2C0%2C7c0%2C0.553%2C0.447%2C1%2C1%2C1h12c0.553%2C0%2C1-0.447%2C1-1C14%2C6.447%2C13.553%2C6%2C13%2C6z%20M13%2C10H1c-0.553%2C0-1%2C0.447-1%2C1%20s0.447%2C1%2C1%2C1h12c0.553%2C0%2C1-0.447%2C1-1S13.553%2C10%2C13%2C10z%22%2F%3E%3C%2Fsvg%3E");
-}
-
-/* grey drop icon - #cccccc */
+﻿/* grey drop icon - #cccccc */
 .app-theme-cay .app-menu-strip a.ui-btn.app-has-children:not(.ui-btn-active)::after {
     border-top-color: #ccc;
 }
@@ -42,7 +34,8 @@
     .app-theme-cay .app-status-bar,
     .app-theme-cay .app-bar-actions,
     .app-theme-cay .app-bar-header,
-    .app-theme-cay .app-bar-footer {
+    .app-theme-cay .app-bar-footer,
+    .app-bar-footer.ui-bar-inherit {
         background-color: #f4f4e7;
         border-color: #d1d193;
     }
@@ -228,6 +221,7 @@ body:not(.app-sidebar-undocked).app-theme-cay .ui-header-fixed .ui-title {
     .app-theme-cay .ui-listview .app-frozen-spacer,
     .app-theme-cay .app-grid-header,
     .app-theme-cay .app-echo .dv-item, 
+    .app-echo .app-grid .ui-last-child,
     .app-theme-cay .app-echo .app-listview,
     .app-theme-cay [data-container],
     .app-theme-cay [data-layout="form"] {
@@ -267,8 +261,8 @@ body.app-desktop.app-theme-cay .app-grid.app-listview :not(.app-selected):not(:h
 .app-theme-cay .app-map-info .ui-popup-arrow,
 .app-theme-cay .ui-listview .app-frozen-spacer,
 .app-theme-cay [data-container="toggle"],
-.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected), 
-body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
+.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected):not(.ui-btn-active):not(.app-checked), 
+body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected):not(.ui-btn-active):not(.app-checked) {
     color: #000;
     background-color: #fbfbf5;
 }
@@ -295,7 +289,8 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 .app-theme-cay .app-filter,
 .app-theme-cay a:not(.ui-btn):not(.btn),
 .app-theme-cay .app-calculated .app-static-text,
-.app-theme-cay .app-item-number {
+.app-theme-cay .app-item-number,
+.app-data-input-popup li:not(.app-selected) span.app-text-normal {
     color: #2c8e00 !important;
 }
 
@@ -343,9 +338,11 @@ html head + body.app-desktop.app-theme-cay .ui-btn-a.ui-btn:hover:not(.app-selec
 
 /*selected button*/
 .app-theme-cay .app-selected:not(.ui-btn-active),
+.app-theme-cay .app-checked:not(.ui-btn-active),
 .app-theme-cay .app-selected:hover,
 .app-theme-cay .app-selected:visited,
-.app-theme-cay .app-selected .app-frozen-spacer {
+.app-theme-cay .app-selected .app-frozen-spacer,
+.app-theme-cay .app-checked .app-frozen-spacer {
     background-color: #edede1 !important;
     border-color: #d2d2b4 !important;
     color: #000 !important;
@@ -357,9 +354,11 @@ html head + body.app-desktop.app-theme-cay .ui-btn-a.ui-btn:hover:not(.app-selec
 
 /* selected hover*/
 html body.app-desktop.app-theme-cay .ui-btn.app-selected:hover:not(.ui-btn-active),
+html body.app-desktop.app-theme-cay .ui-btn.app-checked:hover:not(.ui-btn-active),
 .app-theme-cay .app-echo-toolbar .app-selected:not(.ui-btn-active),
 .app-theme-cay .app-echo-toolbar .app-selected:not(.ui-btn-active):hover,
-.app-theme-cay .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer {
+.app-theme-cay .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer,
+.app-theme-cay .app-listview .app-checked:not(.ui-btn-active):hover .app-frozen-spacer {
     background-color: #e9e9df !important;
     border-color: #d2d2b4;
     color: #000 !important;
@@ -368,7 +367,6 @@ html body.app-desktop.app-theme-cay .ui-btn.app-selected:hover:not(.ui-btn-activ
 /* click */
 
 .app-theme-cay .app-grid-header .ui-btn-active,
-.app-theme-cay .dv-item .app-btn-more.ui-btn-active,
     [data-container="collapsible"] [data-container="toggle"].ui-btn-active {
     background-color: #00c5db !important;
     color: #fff !important;
@@ -378,6 +376,11 @@ html body.app-desktop.app-theme-cay .ui-btn.app-selected:hover:not(.ui-btn-activ
 .app-theme-cay [data-input="checkboxlist"] .app-data-list li.app-selected::after {
     background-color: #00c5db;
 }
+
+    .ui-btn.ui-btn-active::after,
+    .app-btn-more.ui-btn-active::after {
+        color: #00c5db;
+    }
 
 .app-theme-cay [data-input] .app-data-list li.app-selected,
 .app-theme-cay [data-input] .app-data-list li::before,
@@ -428,6 +431,13 @@ html body.app-theme-cay .ui-btn.ui-btn-active,
     background-color: #00C5DB !important;
 }
 
+    [data-input] .app-control-helper ul li.ui-btn-active,
+    [data-input].app-has-focus .app-control-helper ul li.app-focus {
+        border-color: #00C5DB !important;
+        background-color: #00C5DB !important;
+        color: #fff!important;
+    }
+
 .app-theme-cay .app-btn-check .app-icon-themed {
     fill: #fff;
 }
@@ -459,14 +469,14 @@ html body.app-theme-cay .ui-btn.ui-btn-active,
         border-color: #000 !important;
     }
 
-.app-theme-cay.app-desktop .ui-btn.ui-btn-icon-notext:hover,
-.app-theme-cay.app-desktop .ui-btn.ui-btn-icon-notext.ui-btn-active {
+.app-theme-cay.app-desktop .ui-btn.ui-btn-icon-notext:not(.ui-icon-dots):hover,
+.app-theme-cay.app-desktop .ui-btn.ui-btn-icon-notext:not(.ui-icon-dots).ui-btn-active {
     border-color: #293247 !important;
     background-color: #CFCFC6 !important;
 }
 
 
-.app-theme-cay .ui-btn.ui-btn-icon-notext:not(.ui-radio-on)::after,
+.app-theme-cay .ui-btn.ui-btn-icon-notext:not(.ui-radio-on):not(.ui-icon-dots)::after,
 .app-theme-cay .ui-btn.ui-btn-icon-left:not(.ui-radio-on)::after,
 .app-theme-cay .ui-btn.ui-btn-icon-right:not(.ui-radio-on):not(.app-btn-icon-transparent)::after,
 .app-theme-cay .ui-btn.ui-btn-icon-top:not(.ui-radio-on)::after,
@@ -492,7 +502,7 @@ html body.app-theme-cay .ui-btn.ui-btn-active,
 }
 
 
-.app-theme-cay .ui-btn.ui-btn-active.ui-btn-icon-notext::after,
+.app-theme-cay .ui-btn.ui-btn-active.ui-btn-icon-notext:not(.ui-icon-dots)::after,
 .app-theme-cay .ui-btn.ui-btn-active.ui-btn-icon-left::after,
 .app-theme-cay .ui-btn.ui-btn-active.ui-btn-icon-right:not(.app-btn-icon-transparent)::after,
 .app-theme-cay .ui-btn.ui-btn-active.ui-btn-icon-top::after,
@@ -622,10 +632,15 @@ html body.app-theme-cay .ui-group-theme-b .ui-bar-inherit {
     background-color: #00c5db;
 }
 
-.app-theme-cay .ui-bar-a .app-menu-strip .ui-btn:not(.ui-btn-active), .app-theme-cay .ui-bar-a .app-user-name {
+.app-bar-tools .ui-btn:not(.ui-btn-active)::after,
+.app-map-info-toolbar .ui-btn:not(.ui-btn-active)::after,
+.app-theme-cay .ui-bar-a .app-menu-strip .ui-btn:not(.ui-btn-active), 
+.app-theme-cay .ui-bar-a .app-user-name {
     color: #ccc !important;
 }
 
+.app-desktop .app-bar-tools .ui-btn:hover:not(.ui-btn-active)::after,
+.app-desktop .app-map-info-toolbar .ui-btn:hover:not(.ui-btn-active)::after,
 .app-theme-cay .ui-bar-a .app-menu-strip .ui-btn:hover:not(.ui-btn-active),
 .app-theme-cay .ui-bar-a .app-menu-strip .ui-btn.app-selected:not(.ui-btn-active),
 .app-theme-cay .ui-bar-a .app-menu-strip .ui-btn.app-selected:hover:not(.ui-btn-active) {
@@ -674,6 +689,8 @@ html body.app-theme-cay .ui-group-theme-b .ui-bar-inherit {
     border-color: #848da5;
 }
 
+    .app-calendar-plugin-container .app-time-container .app-selected,
+    .app-calendar-plugin-container .app-time-header .app-cal-selected,
 .app-theme-cay .app-day-header :not(.ui-btn-active).ui-btn .app-current-day,
 .app-theme-cay .app-has-current-day .app-current-time,
 .app-theme-cay .app-calendar-agenda-list > li.app-has-current-day h2:not(.ui-btn-active) > span,
@@ -681,10 +698,14 @@ html body.app-theme-cay .ui-group-theme-b .ui-bar-inherit {
 .app-theme-cay .app-calendar-plugin .app-date-selector-container .app-current:not(.ui-btn-active) {
     color: #848da5;
 }
-
-.app-theme-cay .app-calendar-plugin table tr.ui-btn-active td,
-.app-theme-cay .app-calendar-plugin table td.ui-btn-active,
-.app-theme-cay .app-calendar-yearview .app-calendar-month td.ui-btn-active {
+    
+.app-calendar-plugin-container .app-time-selector .app-time-hand,
+.app-calendar-plugin-container .app-time-hand > span,
+.app-calendar-plugin table tr.ui-btn-active td,
+.app-calendar-plugin table tr.ui-btn-active td:hover,
+.app-calendar-plugin table td.ui-btn-active,
+.app-calendar-plugin table td.ui-btn-active:hover,
+.app-calendar-yearview .app-calendar-month td.ui-btn-active {
     background-color: #12a4b4 !important;
 }
 

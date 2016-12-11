@@ -10,23 +10,6 @@
     border-top-color: #000;
 }
 
-
-/*black dots*/
-.app-theme-citrus .ui-btn.app-btn-icon-transparent.ui-icon-dots::after,
-.app-theme-citrus .ui-btn.ui-btn-active .app-btn-more,
-.app-theme-citrus .ui-btn .app-btn-more.ui-btn-active,
-.app-theme-citrus .ui-btn.app-btn-more.ui-btn-active::after {
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0D%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20300%20100%22%20enable-background%3D%22new%200%200%20300%20100%22%20xml%3Aspace%3D%22preserve%22%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%22150%22%20cy%3D%2248%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%22250%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3C/svg%3E%0D%0A');
-}
-
-/* black vdots*/
-.app-android.app-theme-citrus .ui-btn.app-btn-icon-transparent.ui-icon-dots::after,
-.app-android.app-theme-citrus .ui-btn.ui-btn-active .app-btn-more,
-.app-android.app-theme-citrus .ui-btn .app-btn-more.ui-btn-active,
-.app-android.app-theme-citrus .ui-btn.app-btn-more.ui-btn-active::after {
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0D%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20100%20300%22%20enable-background%3D%22new%200%200%20100%20300%22%20xml%3Aspace%3D%22preserve%22%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2249%22%20cy%3D%2250%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2251%22%20cy%3D%22150%22%20r%3D%2225%22/%3E%0D%0A%3Ccircle%20fill%3D%22%23000000%22%20stroke%3D%22%23000000%22%20stroke-miterlimit%3D%2210%22%20cx%3D%2249%22%20cy%3D%22250%22%20r%3D%2225%22/%3E%0D%0A%3C/svg%3E%0D%0A');
-}
-
 /*********************************/
 /* THEME: CITRUS                */
 /*******************************/
@@ -56,7 +39,8 @@
     .app-theme-citrus .ui-page-theme-a .ui-panel-wrapper,
     .app-theme-citrus .ui-panel,
     .app-theme-citrus .app-page-header,
-    .app-theme-citrus .app-status-bar {
+    .app-theme-citrus .app-status-bar,
+    .app-bar-footer.ui-bar-inherit {
         background-color: rgb(242, 96, 0);
         border-color: #a8551c;
     }
@@ -252,6 +236,7 @@
     .app-theme-citrus .ui-listview .app-frozen-spacer,
     .app-theme-citrus .app-grid-header,
     .app-theme-citrus .app-echo .dv-item, 
+    .app-echo .app-grid .ui-last-child,
     .app-theme-citrus .app-echo .app-listview,
     .app-theme-citrus [data-container],
     .app-theme-citrus [data-layout="form"] {
@@ -263,6 +248,7 @@
             background-color: rgb(215, 232, 167);
         }
 
+    .app-theme-citrus .app-bar-footer.ui-footer-fixed .ui-btn,
     .app-theme-citrus .app-tabs.ui-header {
         border-color: #ACBA82 !important;
     }
@@ -293,13 +279,14 @@
     .app-theme-citrus .app-map-info .ui-popup-arrow,
     .app-theme-citrus .ui-listview .app-frozen-spacer,
     .app-theme-citrus [data-container="toggle"],
-.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected), 
-body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
+.app-listview.app-grid .ui-btn:not(:hover):not(.app-selected):not(.ui-btn-active):not(.app-checked), 
+body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected):not(.ui-btn-active):not(.app-checked) {
         color: #000;
         background-color: rgb(246, 250, 225);
     }
 
     /* top border of Info button in sidebar */
+    .app-theme-citrus .app-bar-footer.ui-footer-fixed .ui-btn,
     .app-theme-citrus .app-sidebar .ui-btn.ui-icon-info {
         border-color: #ACBA82 !important;
     }
@@ -315,7 +302,8 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     .app-theme-citrus .app-field-label-before,
     .app-theme-citrus .app-field-label,
     .app-theme-citrus .ui-panel .app-item-desc,
-    .app-theme-citrus .app-item-number {
+    .app-theme-citrus .app-item-number,
+    .app-data-input-popup li:not(.app-selected) span.app-text-normal {
         color: #98a473 !important;
     }
 
@@ -358,9 +346,11 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 
     /*selected button*/
     .app-theme-citrus .app-selected:not(.ui-btn-active),
+    .app-theme-citrus .app-checked:not(.ui-btn-active),
     .app-theme-citrus .app-selected:hover,
     .app-theme-citrus .app-selected:visited,
-    .app-theme-citrus .app-selected .app-frozen-spacer {
+    .app-theme-citrus .app-selected .app-frozen-spacer,
+    .app-theme-citrus .app-checked .app-frozen-spacer {
         background-color: #eafdb1 !important;
         border-color: rgb(215, 232, 167) !important;
         color: #000 !important;
@@ -389,9 +379,11 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
 
     /* selected hover*/
     html body.app-desktop.app-theme-citrus .ui-btn.app-selected:hover:not(.ui-btn-active),
+    html body.app-desktop.app-theme-citrus .ui-btn.app-checked:hover:not(.ui-btn-active),
     .app-theme-citrus .app-echo-toolbar .app-selected:not(.ui-btn-active),
     .app-theme-citrus .app-echo-toolbar .app-selected:not(.ui-btn-active):hover,
-    .app-theme-citrus .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer {
+    .app-theme-citrus .app-listview .app-selected:not(.ui-btn-active):hover .app-frozen-spacer,
+    .app-theme-citrus .app-listview .app-checked:not(.ui-btn-active):hover .app-frozen-spacer {
         background-color: #E6FCA4 !important;
         border-color: rgb(215, 232, 167) !important;
         color: #000 !important;
@@ -400,15 +392,27 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     /* click */
 
     .app-theme-citrus .app-grid-header .ui-btn-active,
-    .app-theme-citrus .dv-item .app-btn-more.ui-btn-active,
     [data-container="collapsible"] [data-container="toggle"].ui-btn-active {
         background-color: #FFD253 !important;
         color: #000 !important;
     }
 
     .app-theme-citrus .app-listview .ui-btn.app-selected::before,
-.app-theme-citrus [data-input="checkboxlist"] .app-data-list li.app-selected::after {
+    .app-theme-citrus [data-input="checkboxlist"] .app-data-list li.app-selected::after {
         background-color: #FFD253;
+    }
+
+    .ui-btn.ui-btn-active::after,
+    .app-btn-more.ui-btn-active::after {
+        color: #FFD253;
+    }
+
+    .dv-item .ui-btn-active .app-btn-more::after {
+        color: #000!important;
+    }
+
+    .dv-item .ui-btn-active .app-btn-check.app-btn-check-selected {
+        border-color: #000!important;
     }
 
 .app-theme-citrus [data-input] .app-data-list li.app-selected,
@@ -448,6 +452,18 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     .app-theme-citrus .app-btn-check.app-btn-check-selected {
         border-color: #FFD253 !important;
         background-color: #FFD253 !important;
+    }
+
+    [data-input] .app-control-helper ul li.ui-btn-active,
+    [data-input].app-has-focus .app-control-helper ul li.app-focus {
+        border-color: #FFD253 !important;
+        background-color: #FFD253 !important;
+    }
+
+    [data-input].app-has-focus .app-control-helper ul li.app-focus,
+    [data-input] .app-control-helper ul li.app-focus::after {
+        color: #000;
+        border-top-color: #000;
     }
 
     .app-theme-citrus .app-btn-check .app-icon-themed {
@@ -509,8 +525,8 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
             border-color: #ACBA82 !important;
         }
 
-    .app-theme-citrus.app-desktop .ui-btn.ui-btn-icon-notext:hover,
-    .app-theme-citrus .ui-btn.ui-btn-icon-notext.ui-btn-active {
+    .app-theme-citrus.app-desktop .ui-btn.ui-btn-icon-notext:not(.ui-icon-dots):hover,
+    .app-theme-citrus .ui-btn.ui-btn-icon-notext:not(.ui-icon-dots).ui-btn-active {
         border-color: #ACBA82 !important;
     }
 
@@ -518,7 +534,7 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
         background-color: transparent !important;
     }
 
-    .app-theme-citrus .ui-btn.ui-btn-icon-notext:not(.ui-radio-on)::after,
+    .app-theme-citrus .ui-btn.ui-btn-icon-notext:not(.ui-radio-on):not(.ui-icon-dots)::after,
     .app-theme-citrus .ui-btn.ui-btn-icon-left:not(.ui-radio-on)::after,
     .app-theme-citrus .ui-btn.ui-btn-icon-right:not(.ui-radio-on):not(.app-btn-icon-transparent)::after,
     .app-theme-citrus .ui-btn.ui-btn-icon-top:not(.ui-radio-on)::after,
@@ -547,7 +563,7 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
         border-color: #ACBA82 !important;
     }
 
-    .app-theme-citrus .ui-btn.ui-btn-icon-notext.ui-btn-active::after,
+    .app-theme-citrus .ui-btn.ui-btn-icon-notext.ui-btn-active:not(.ui-icon-dots)::after,
     .app-theme-citrus .ui-btn.ui-btn-icon-left.ui-btn-active::after,
     .app-theme-citrus .ui-btn.ui-btn-icon-right.ui-btn-active:not(.app-btn-icon-transparent)::after,
     .app-theme-citrus .ui-btn.ui-btn-icon-top.ui-btn-active::after,
@@ -716,6 +732,8 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     border-color: #ACBA82;
 }
 
+.app-calendar-plugin-container .app-time-container .app-selected,
+.app-calendar-plugin-container .app-time-header .app-cal-selected,
 .app-theme-citrus .app-day-header :not(.ui-btn-active).ui-btn .app-current-day,
 .app-theme-citrus .app-has-current-day .app-current-time,
 .app-theme-citrus .app-calendar-agenda-list > li.app-has-current-day h2:not(.ui-btn-active) > span,
@@ -724,9 +742,13 @@ body:not(.app-desktop) .app-listview.app-grid .ui-btn:hover:not(.app-selected) {
     color: #ACBA82;
 }
 
-.app-theme-citrus .app-calendar-plugin table tr.ui-btn-active td,
-.app-theme-citrus .app-calendar-plugin table td.ui-btn-active,
-.app-theme-citrus .app-calendar-yearview .app-calendar-month td.ui-btn-active {
+.app-calendar-plugin-container .app-time-selector .app-time-hand,
+.app-calendar-plugin-container .app-time-hand > span,
+.app-calendar-plugin table tr.ui-btn-active td,
+.app-calendar-plugin table tr.ui-btn-active td:hover,
+.app-calendar-plugin table td.ui-btn-active,
+.app-calendar-plugin table td.ui-btn-active:hover,
+.app-calendar-yearview .app-calendar-month td.ui-btn-active {
     background-color: #ACBA82 !important;
 }
 

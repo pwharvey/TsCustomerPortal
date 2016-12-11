@@ -10,8 +10,9 @@
     -webkit-text-size-adjust: 100%;
 }
 
-.app-bootstrap {
+.app-content-framework.app-bootstrap {
     margin: 0;
+    padding: 0;
 }
 
     .app-bootstrap article,
@@ -1209,7 +1210,7 @@ blockquote.pull-right {
 }
 
 .col-xs-offset-0 {
-    margin-left: 0%;
+    margin-left: 0;
 }
 
 @media (min-width: 60em) {
@@ -1429,7 +1430,7 @@ blockquote.pull-right {
     }
 
     body:not(.app-sidebar-undocked) .col-sm-offset-0 {
-        margin-left: 0%;
+        margin-left: 0;
     }
 }
 
@@ -1650,7 +1651,7 @@ blockquote.pull-right {
     }
 
     .app-sidebar-undocked .col-sm-offset-0 {
-        margin-left: 0%;
+        margin-left: 0;
     }
 }
 
@@ -1871,7 +1872,7 @@ blockquote.pull-right {
     }
 
     body:not(.app-sidebar-undocked) .col-md-offset-0 {
-        margin-left: 0%;
+        margin-left: 0;
     }
 }
 
@@ -2092,7 +2093,7 @@ blockquote.pull-right {
     }
 
     .app-sidebar-undocked .col-md-offset-0 {
-        margin-left: 0%;
+        margin-left: 0;
     }
 }
 
@@ -2313,7 +2314,7 @@ blockquote.pull-right {
     }
 
     .app-sidebar-undocked .col-lg-offset-0 {
-        margin-left: 0%;
+        margin-left: 0;
     }
 }
 
@@ -2534,7 +2535,7 @@ blockquote.pull-right {
     }
 
     body:not(.app-sidebar-undocked) .col-lg-offset-0 {
-        margin-left: 0%;
+        margin-left: 0;
     }
 }
 
@@ -6166,7 +6167,7 @@ a.thumbnail.active {
 
 .progress-bar {
     float: left;
-    width: 0%;
+    width: 0;
     height: 100%;
     font-size: 12px;
     line-height: 20px;
@@ -8021,7 +8022,7 @@ button.close {
 /********************************************/
 /* Custom Styles For Default Page Templates */
 /********************************************/
-.app-bootstrap {
+.app-page-content.app-bootstrap {
     padding-bottom: 50px;
 }
 

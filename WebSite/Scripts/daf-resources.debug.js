@@ -1,3 +1,4 @@
+
 /*!
 * Data Aquarium Framework - Resources
 * Copyright 2008-2016 Code On Time LLC; Licensed MIT; http://codeontime.com/license
@@ -85,7 +86,8 @@
         ShowActionBar: true,
         DetailsToolTip: 'View details for {0}',
         ShowDetailsInPopup: true,
-        GenericNewToolTip: 'Create New'
+        GenericNewToolTip: 'Create New',
+         AddItem: 'Add Item'
     }
 
     _dvr.Validator = {
@@ -296,8 +298,8 @@
     _dvr.Views = {
         DefaultDescriptions: {
             '$DefaultGridViewDescription': 'This is a list of {0}.',
-            '$DefaultEditViewDescription': 'Please review {0} information below. Click Edit to change this record, click Delete to delete the record, or click Cancel/Close to return back.',
-            '$DefaultCreateViewDescription': 'Please fill this form and click OK button to create a new {0} record. Click Cancel to return to the previous screen.'
+            '$DefaultEditViewDescription': 'Please review {0} information below. Press Edit to change this record, press Delete to delete the record, or press Cancel/Close to return back.',
+            '$DefaultCreateViewDescription': 'Please fill this form and press Save button to create a new {0} record. Press Cancel to return to the previous screen.'
         },
         DefaultCategoryDescriptions: {
             '$DefaultEditDescription': 'These are the fields of the {0} record that can be edited.',
@@ -731,19 +733,28 @@
                 DisplayedBelow: 'Displayed Below'
             }
         },
-        LabelsInForm: {
-            Label: 'Labels In Form',
-            List: {
-                AlignedLeft: 'Aligned Left',
-                AlignedRight: 'Aligned Right'
-            }
-        },
         InitialListMode: {
             Label: 'Initial List Mode',
             List: {
                 SeeAll: 'See All',
                 Summary: 'Summary'
             }
+        },
+        Dates: {
+            SmartDates: 'Smart Dates',
+            Yesterday: 'Yesterday',
+            Last: 'Last',
+            Today: 'Today',
+            OneHour: 'an hour ago',
+            MinAgo: '{0} min ago',
+            AMinAgo: 'a minute ago',
+            InHour: 'in an hour',
+            InMin: 'in {0} min',
+            InAMin: 'in a minute',
+            Now: 'Now',
+            JustNow: 'Just now',
+            Tomorrow: 'Tomorrow',
+            Next: 'Next'
         }
     }
 

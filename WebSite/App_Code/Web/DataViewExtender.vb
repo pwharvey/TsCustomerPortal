@@ -22,6 +22,8 @@ Namespace TimberSmart.Web
     
     Public Enum ActionButtonLocation
         
+        [Auto]
+        
         None
         
         Top

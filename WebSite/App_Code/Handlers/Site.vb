@@ -54,8 +54,6 @@ Namespace TimberSmart.Handlers
         
         Private m_PageSideBarContent As LiteralContainer
         
-        Private m_ContentFramework As String
-        
         Public Shared MicrosoftJavaScript() As String = New String() {"MicrosoftAjax.js", "MicrosoftAjaxWebForms.js"}
         
         Public Overrides ReadOnly Property Device() As String
@@ -181,9 +179,6 @@ Namespace TimberSmart.Handlers
                     End If
                 Else
                     m_PageContent.Text = s
-                End If
-                If s.Contains("data-content-framework=""bootstrap""") Then
-                    m_ContentFramework = "bootstrap"
                 End If
             Else
                 If m_IsTouchUI Then
@@ -437,7 +432,7 @@ Namespace TimberSmart.Handlers
         End Sub
         
         Protected Overrides Sub OnPreRender(ByVal e As EventArgs)
-            ApplicationServices.RegisterCssLinks(Me, m_ContentFramework)
+            ApplicationServices.RegisterCssLinks(Me)
             If m_IsTouchUI Then
                 'hide top-level literals
                 For Each c As Control in Form.Controls

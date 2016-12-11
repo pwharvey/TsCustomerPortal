@@ -199,6 +199,13 @@ Namespace TimberSmart.Data
             Dim matchListCount As Integer = 0
             Dim firstDoNotMatch As Boolean = true
             Dim logicalConcat As String = "and "
+            Dim useExclusiveQuickFind As Boolean = false
+            For Each f As DataField in page.Fields
+                If (Not (String.IsNullOrEmpty(f.SearchOptions)) AndAlso Regex.IsMatch(f.SearchOptions, "\$quickfind(?!disabled)")) Then
+                    useExclusiveQuickFind = true
+                    Exit For
+                End If
+            Next
             If (Not (page.Filter) Is Nothing) Then
                 For Each filterExpression As String in page.Filter
                     Dim matchingMode As Match = MatchingModeRegex.Match(filterExpression)
@@ -364,82 +371,84 @@ Namespace TimberSmart.Data
                                                     If (String.IsNullOrEmpty(quickFindHint) OrElse Not (quickFindHint.StartsWith(";"))) Then
                                                         For Each tf As DataField in page.Fields
                                                             If ((tf.AllowQBE AndAlso String.IsNullOrEmpty(tf.AliasName)) AndAlso (Not ((tf.IsPrimaryKey AndAlso tf.Hidden)) AndAlso (Not (tf.Type.StartsWith("Date")) OrElse paramValueIsDate))) Then
-                                                                hasTests = true
-                                                                If ((parameter Is Nothing) OrElse command.GetType().FullName.Contains("ManagedDataAccess")) Then
-                                                                    parameter = command.CreateParameter()
-                                                                    parameter.ParameterName = String.Format("{0}p{1}", m_ParameterMarker, command.Parameters.Count)
-                                                                    parameter.DbType = DbType.String
-                                                                    command.Parameters.Add(parameter)
-                                                                    parameter.Value = pv
-                                                                    If (exactFlag AndAlso paramValueIsNumber) Then
-                                                                        parameter.DbType = DbType.Double
-                                                                        parameter.Value = paramValueAsNumber
-                                                                    End If
-                                                                End If
-                                                                If Not ((exactFlag AndAlso ((Not (tf.Type.Contains("String")) AndAlso Not (paramValueIsNumber)) OrElse (tf.Type.Contains("String") AndAlso paramValueIsNumber)))) Then
-                                                                    If firstTry Then
-                                                                        firstTry = false
-                                                                    Else
-                                                                        sb.Append(" or ")
-                                                                    End If
-                                                                    If tf.Type.StartsWith("Date") Then
-                                                                        Dim dateParameter As DbParameter = command.CreateParameter()
-                                                                        dateParameter.ParameterName = String.Format("{0}p{1}", m_ParameterMarker, command.Parameters.Count)
-                                                                        dateParameter.DbType = DbType.DateTime
-                                                                        command.Parameters.Add(dateParameter)
-                                                                        dateParameter.Value = paramValueAsDate
-                                                                        If negativeFlag Then
-                                                                            sb.AppendFormat("({0} is not null)and", expressions(tf.ExpressionName()))
+                                                                If ((Not (useExclusiveQuickFind) AndAlso (String.IsNullOrEmpty(tf.SearchOptions) OrElse Not (tf.SearchOptions.Contains("$quickfinddisabled")))) OrElse (useExclusiveQuickFind AndAlso (Not (String.IsNullOrEmpty(tf.SearchOptions)) AndAlso tf.SearchOptions.Contains("$quickfind")))) Then
+                                                                    hasTests = true
+                                                                    If ((parameter Is Nothing) OrElse command.GetType().FullName.Contains("ManagedDataAccess")) Then
+                                                                        parameter = command.CreateParameter()
+                                                                        parameter.ParameterName = String.Format("{0}p{1}", m_ParameterMarker, command.Parameters.Count)
+                                                                        parameter.DbType = DbType.String
+                                                                        command.Parameters.Add(parameter)
+                                                                        parameter.Value = pv
+                                                                        If (exactFlag AndAlso paramValueIsNumber) Then
+                                                                            parameter.DbType = DbType.Double
+                                                                            parameter.Value = paramValueAsNumber
                                                                         End If
-                                                                        sb.AppendFormat("({0} = {1})", expressions(tf.ExpressionName()), dateParameter.ParameterName)
-                                                                    Else
-                                                                        Dim skipLike As Boolean = false
-                                                                        If (Not ((comparisonOperator = "=")) AndAlso ((tf.Type = "String") AndAlso ((tf.Len > 0) AndAlso (tf.Len < pv.Length)))) Then
-                                                                            Dim pv2 As String = pv
-                                                                            pv2 = pv2.Substring(1)
-                                                                            If (tf.Len < pv2.Length) Then
-                                                                                pv2 = pv2.Substring(0, (pv2.Length - 1))
-                                                                            End If
-                                                                            If (pv2.Length > tf.Len) Then
-                                                                                skipLike = true
-                                                                            Else
-                                                                                originalParameter = parameter
-                                                                                parameter = command.CreateParameter()
-                                                                                parameter.ParameterName = String.Format("{0}p{1}", m_ParameterMarker, command.Parameters.Count)
-                                                                                parameter.DbType = DbType.String
-                                                                                command.Parameters.Add(parameter)
-                                                                                parameter.Value = pv2
-                                                                            End If
-                                                                        End If
-                                                                        If m_ServerRules.EnableResultSet Then
-                                                                            Dim fieldNameExpression As String = expressions(tf.ExpressionName())
-                                                                            If ((Not ((tf.Type = "String")) AndAlso Not (exactFlag)) OrElse (tf.Type = "Boolean")) Then
-                                                                                fieldNameExpression = String.Format("convert({0}, 'System.String')", fieldNameExpression)
-                                                                            End If
-                                                                            If negativeFlag Then
-                                                                                sb.AppendFormat("({0} is not null)and", fieldNameExpression)
-                                                                            End If
-                                                                            sb.AppendFormat("({0} {2} {1})", fieldNameExpression, parameter.ParameterName, comparisonOperator)
+                                                                    End If
+                                                                    If Not ((exactFlag AndAlso ((Not (tf.Type.Contains("String")) AndAlso Not (paramValueIsNumber)) OrElse (tf.Type.Contains("String") AndAlso paramValueIsNumber)))) Then
+                                                                        If firstTry Then
+                                                                            firstTry = false
                                                                         Else
-                                                                            If skipLike Then
-                                                                                sb.Append("1=0")
-                                                                            Else
-                                                                                If negativeFlag Then
-                                                                                    sb.AppendFormat("({0} is not null)and", expressions(tf.ExpressionName()))
+                                                                            sb.Append(" or ")
+                                                                        End If
+                                                                        If tf.Type.StartsWith("Date") Then
+                                                                            Dim dateParameter As DbParameter = command.CreateParameter()
+                                                                            dateParameter.ParameterName = String.Format("{0}p{1}", m_ParameterMarker, command.Parameters.Count)
+                                                                            dateParameter.DbType = DbType.DateTime
+                                                                            command.Parameters.Add(dateParameter)
+                                                                            dateParameter.Value = paramValueAsDate
+                                                                            If negativeFlag Then
+                                                                                sb.AppendFormat("({0} is not null)and", expressions(tf.ExpressionName()))
+                                                                            End If
+                                                                            sb.AppendFormat("({0} = {1})", expressions(tf.ExpressionName()), dateParameter.ParameterName)
+                                                                        Else
+                                                                            Dim skipLike As Boolean = false
+                                                                            If (Not ((comparisonOperator = "=")) AndAlso ((tf.Type = "String") AndAlso ((tf.Len > 0) AndAlso (tf.Len < pv.Length)))) Then
+                                                                                Dim pv2 As String = pv
+                                                                                pv2 = pv2.Substring(1)
+                                                                                If (tf.Len < pv2.Length) Then
+                                                                                    pv2 = pv2.Substring(0, (pv2.Length - 1))
                                                                                 End If
-                                                                                If DatabaseEngineIs(command, "Oracle", "DB2", "Firebird") Then
-                                                                                    sb.AppendFormat("(upper({0}) {2} {1})", expressions(tf.ExpressionName()), parameter.ParameterName, comparisonOperator)
-                                                                                    parameter.Value = Convert.ToString(parameter.Value).ToUpper()
+                                                                                If (pv2.Length > tf.Len) Then
+                                                                                    skipLike = true
                                                                                 Else
-                                                                                    sb.AppendFormat("({0} {2} {1})", expressions(tf.ExpressionName()), parameter.ParameterName, comparisonOperator)
+                                                                                    originalParameter = parameter
+                                                                                    parameter = command.CreateParameter()
+                                                                                    parameter.ParameterName = String.Format("{0}p{1}", m_ParameterMarker, command.Parameters.Count)
+                                                                                    parameter.DbType = DbType.String
+                                                                                    command.Parameters.Add(parameter)
+                                                                                    parameter.Value = pv2
+                                                                                End If
+                                                                            End If
+                                                                            If m_ServerRules.EnableResultSet Then
+                                                                                Dim fieldNameExpression As String = expressions(tf.ExpressionName())
+                                                                                If ((Not ((tf.Type = "String")) AndAlso Not (exactFlag)) OrElse (tf.Type = "Boolean")) Then
+                                                                                    fieldNameExpression = String.Format("convert({0}, 'System.String')", fieldNameExpression)
+                                                                                End If
+                                                                                If negativeFlag Then
+                                                                                    sb.AppendFormat("({0} is not null)and", fieldNameExpression)
+                                                                                End If
+                                                                                sb.AppendFormat("({0} {2} {1})", fieldNameExpression, parameter.ParameterName, comparisonOperator)
+                                                                            Else
+                                                                                If skipLike Then
+                                                                                    sb.Append("1=0")
+                                                                                Else
+                                                                                    If negativeFlag Then
+                                                                                        sb.AppendFormat("({0} is not null)and", expressions(tf.ExpressionName()))
+                                                                                    End If
+                                                                                    If DatabaseEngineIs(command, "Oracle", "DB2", "Firebird") Then
+                                                                                        sb.AppendFormat("(upper({0}) {2} {1})", expressions(tf.ExpressionName()), parameter.ParameterName, comparisonOperator)
+                                                                                        parameter.Value = Convert.ToString(parameter.Value).ToUpper()
+                                                                                    Else
+                                                                                        sb.AppendFormat("({0} {2} {1})", expressions(tf.ExpressionName()), parameter.ParameterName, comparisonOperator)
+                                                                                    End If
                                                                                 End If
                                                                             End If
                                                                         End If
                                                                     End If
-                                                                End If
-                                                                If (Not (originalParameter) Is Nothing) Then
-                                                                    parameter = originalParameter
-                                                                    originalParameter = Nothing
+                                                                    If (Not (originalParameter) Is Nothing) Then
+                                                                        parameter = originalParameter
+                                                                        originalParameter = Nothing
+                                                                    End If
                                                                 End If
                                                             End If
                                                         Next
