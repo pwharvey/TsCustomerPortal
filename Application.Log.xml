@@ -1617,4 +1617,9 @@ view-style-charts-disabled</Tag>
 </c><c y="NodeSet" t="2016-09-08T18:58:06">
   <page name="Document" />
   <delete />
+</c><c y="NodeSet" t="2017-02-15T10:56:55">
+  <page name="Security" />
+  <update>
+    <Roles>Administrators</Roles>
+  </update>
 </c></log>

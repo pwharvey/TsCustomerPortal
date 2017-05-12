@@ -90,7 +90,7 @@
       <controls />
       <about />
     </page>
-    <page name="Security" path="Security" index="1170" title="Security" useExtenders="false" generate="Always" roles="Admins">
+    <page name="Security" path="Security" index="1170" title="Security" useExtenders="false" generate="Always" roles="Administrators">
       <containers></containers>
       <dataViews></dataViews>
     </page>

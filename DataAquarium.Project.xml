@@ -2,11 +2,11 @@
   This file is provided to store the settings for your Data Aquarium project. 
   You can safely delete this file if no further code generation is planned.
 -->
-<project compatibility="20111118" dataModel="required" subscriptionLevel="Unlimited" name="TsCustomerPortal" prettyName="Ts Customer Portal" type="Web Site Factory" codeDomProvider="VisualBasic" targetFramework="4.6" userInterface="TouchUI" pageImplementation="html" sourceControl="git" xmlns="urn:schemas-codeontime-com:data-aquarium-project">
-  <connectionString hostDatabaseSharing="false" sessionStateMode="None">Data Source=localhost;Initial Catalog=timbersmartwebportal;Persist Security Info=True;User ID=timbersmartwebcustomer;Password=t1mber;</connectionString>
+<project compatibility="20111118" dataModel="required" subscriptionLevel="Unlimited" name="TsCustomerPortal-master" prettyName="Ts Customer Portal-master" type="Web Site Factory" codeDomProvider="VisualBasic" targetFramework="4.6" userInterface="TouchUI" pageImplementation="html" sourceControl="git" xmlns="urn:schemas-codeontime-com:data-aquarium-project">
+  <connectionString hostDatabaseSharing="false" sessionStateMode="None">Data Source=tsmel02;Initial Catalog=TimberSmartITIWebPortal;Persist Security Info=True;User ID=timbersmart;Password=T1mberSm@rt;</connectionString>
   <providerName>System.Data.SqlClient</providerName>
   <namespace>TimberSmart</namespace>
-  <webServer run="true" port="9201">
+  <webServer run="true" port="9211">
     <webConfig></webConfig>
   </webServer>
   <features pageHeader="" copyright="" annotations="false" annotationsPath="" newColumn="true" floating="false" maxGridFields="100" multiSelect="true" batchEdit="false" advancedSearch="false" advancedLookup="false" relationshipExplorer="true" enablePermalinks="false" enableHistory="false" enableTransactions="false" showModalForms="true" tabViewSelection="6" useSaveAndNew="true">
@@ -68,7 +68,7 @@ column [int|uiid] UserID = UserID
 column [int|uiid] RoleID =  RoleID
 </config>
   </membership>
-  <globalization uiCulture="en-NZ" culture="en-NZ" enableClientBasedCulture="false" supportedCultures="en-NZ,en-NZ; en-NZ,en-GB; " googleTranslateApiKey="" />
+  <globalization uiCulture="en-NZ" culture="en-NZ" enableClientBasedCulture="false" supportedCultures="en-NZ,en-NZ; " googleTranslateApiKey="" />
   <layout name="Classic" menuStyle="MultiLevel" />
   <theme name="Aquarium" />
 </project>

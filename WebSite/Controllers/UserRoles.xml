@@ -29,7 +29,7 @@ from "dbo"."UserRoles" "UserRoles"
       <headerText />
       <dataFields>
         <dataField fieldName="UserID" aliasFieldName="UserName" />
-        <dataField fieldName="RoleID" aliasFieldName="RoleName" />
+        <dataField fieldName="RoleID" aliasFieldName="RoleName" hyperlinkFormatString="~/pages/Roles?RoleID={RoleID}&amp;_controller=Roles&amp;_command=Select&amp;_argument=editForm1" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review User Role">
@@ -38,8 +38,8 @@ from "dbo"."UserRoles" "UserRoles"
         <category id="c1" headerText="User Role" newColumn="true">
           <description />
           <dataFields>
-            <dataField fieldName="UserID" aliasFieldName="UserName" />
-            <dataField fieldName="RoleID" aliasFieldName="RoleName" />
+            <dataField fieldName="UserID" aliasFieldName="UserName" hyperlinkFormatString="~/pages/Users?UserID={UserID}&amp;_controller=Users&amp;_command=Select&amp;_argument=editForm1" />
+            <dataField fieldName="RoleID" aliasFieldName="RoleName" hyperlinkFormatString="~/pages/Roles?RoleID={RoleID}&amp;_controller=Roles&amp;_command=Select&amp;_argument=editForm1" />
           </dataFields>
         </category>
       </categories>

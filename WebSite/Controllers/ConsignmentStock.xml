@@ -42,9 +42,9 @@ from "dbo"."tConsignmentStock" "tConsignmentStock"
       <items style="Lookup" dataController="Product" dataValueField="ProductID" dataTextField="ProductCode" copy="ProductName=ProductName, ProductCategoryCode=CategoryCode, ProductCategoryName=CategoryName, ProductWidth=Width, ProductThickness=Thickness, ProductLength=Length" />
     </field>
     <field name="ProductCode" type="String" readOnly="true" label="Product Code" length="50" />
-    <field name="ProductName" type="String" readOnly="true" label="Product Name" length="100" showInSummary="true" />
-    <field name="ProductCategoryCode" type="String" readOnly="true" label="Category Code" length="50" />
-    <field name="ProductCategoryName" type="String" readOnly="true" label="Category Name" length="100" />
+    <field name="ProductName" type="String" readOnly="true" label="Product Name" length="70" showInSummary="true" />
+    <field name="ProductCategoryCode" type="String" readOnly="true" label="Category Code" length="5" />
+    <field name="ProductCategoryName" type="String" readOnly="true" label="Category Name" length="50" />
     <field name="ProductWidth" type="Decimal" readOnly="true" label="Width" />
     <field name="ProductThickness" type="Decimal" readOnly="true" label="Thickness" />
     <field name="ProductLength" type="Decimal" readOnly="true" label="Length" />
@@ -61,7 +61,7 @@ from "dbo"."tConsignmentStock" "tConsignmentStock"
     <view id="grid1" type="Grid" commandId="command1" label="Consignment Stock" sortExpression="ProductCategoryName, ProductWidth, ProductThickness, ProductName, PacketNo">
       <headerText />
       <dataFields>
-        <dataField fieldName="ProductCategoryName" tag="pivot1-row1-column &#xD;&#xA;pivot2-row1-pie&#xD;&#xA;" />
+        <dataField fieldName="ProductCategoryName" columns="50" tag="pivot1-row1-column &#xD;&#xA;pivot2-row1-pie&#xD;&#xA;" />
         <dataField fieldName="ProductName" tag="pivot3-row1-column-top20-sortascbyvalue" />
         <dataField fieldName="PacketNo" columns="10" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count&#xD;&#xA;pivot3-val1-count&#xD;&#xA;" />
         <dataField fieldName="Pieces" columns="15" />
@@ -72,8 +72,8 @@ from "dbo"."tConsignmentStock" "tConsignmentStock"
         <dataField fieldName="TransferDate" columns="20" />
         <dataField fieldName="Price" columns="15" />
         <dataField fieldName="PriceUom" columns="50" />
-        <dataField fieldName="ProductCategoryCode" columns="50" />
-        <dataField fieldName="ProductID" aliasFieldName="ProductCode" />
+        <dataField fieldName="ProductCategoryCode" columns="5" />
+        <dataField fieldName="ProductID" aliasFieldName="ProductCode" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" />
         <dataField fieldName="ProductWidth" columns="15" />
         <dataField fieldName="ProductThickness" columns="15" />
         <dataField fieldName="ProductLength" columns="15" />
@@ -119,9 +119,9 @@ from "dbo"."tConsignmentStock" "tConsignmentStock"
         </category>
         <category headerText="Codes" id="c3">
           <dataFields>
-            <dataField fieldName="ProductID" aliasFieldName="ProductCode" />
-            <dataField fieldName="ProductCategoryCode" columns="50" />
-            <dataField fieldName="ProductCategoryName" />
+            <dataField fieldName="ProductID" aliasFieldName="ProductCode" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" />
+            <dataField fieldName="ProductCategoryCode" columns="5" />
+            <dataField fieldName="ProductCategoryName" columns="50" />
           </dataFields>
         </category>
       </categories>

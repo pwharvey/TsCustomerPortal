@@ -62,7 +62,7 @@ from "dbo"."tCustomer" "tCustomer"
         <category id="c1" headerText="Customer" newColumn="true">
           <description />
           <dataFields>
-            <dataField fieldName="CompanyID" aliasFieldName="CompanyName" />
+            <dataField fieldName="CompanyID" aliasFieldName="CompanyName" hyperlinkFormatString="~/pages/Company?CompanyID={CompanyID}&amp;_controller=Company&amp;_command=Select&amp;_argument=editForm1" />
             <dataField fieldName="CustomerCode" columns="50" />
             <dataField fieldName="CustomerName" />
             <dataField fieldName="Enabled" />

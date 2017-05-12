@@ -67,12 +67,12 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
       <items style="Lookup" dataController="ConsignmentPurchaseOrder" dataValueField="ConsignmentPurchaseOrderID" dataTextField="ConsignmentPurchaseOrderID" />
     </field>
     <field name="ConsignmentPurchaseOrderCustomerRef" type="String" readOnly="true" label="Customer Ref" length="50" />
-    <field name="ProductName" type="String" readOnly="true" label="Product Name" length="100" showInSummary="true" />
-    <field name="ProductCategoryCode" type="String" readOnly="true" label="Category Code" length="50" />
+    <field name="ProductName" type="String" readOnly="true" label="Product Name" length="70" showInSummary="true" />
+    <field name="ProductCategoryCode" type="String" readOnly="true" label="Category Code" length="5" />
     <field name="ProductWidth" type="Decimal" readOnly="true" label="Width" />
     <field name="ProductThickness" type="Decimal" readOnly="true" label="Thickness" />
     <field name="ProductLength" type="Decimal" readOnly="true" label="Length" />
-    <field name="ProductCategoryName" type="String" readOnly="true" label="Category Name" length="100" />
+    <field name="ProductCategoryName" type="String" readOnly="true" label="Category Name" length="50" />
     <field name="LastPacketNo" type="String" label="Last Packet No" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="20" />
     <field name="LastError" type="String" label="Last Error" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="100" />
     <field name="LastProductName" type="String" label="Last Product" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="100" />
@@ -86,7 +86,7 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
       <headerText />
       <dataFields>
         <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count" />
-        <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100" />
+        <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" columns="100" />
         <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-columnstacked-date" />
         <dataField fieldName="SentOn" columns="20" />
         <dataField fieldName="Errors" />
@@ -97,8 +97,8 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
         <dataField fieldName="Lineal" columns="15" />
         <dataField fieldName="PriceUom" columns="50" />
         <dataField fieldName="Price" columns="15" />
-        <dataField fieldName="ProductCategoryCode" columns="50" hidden="true" />
-        <dataField fieldName="ProductCategoryName" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
+        <dataField fieldName="ProductCategoryCode" columns="5" hidden="true" />
+        <dataField fieldName="ProductCategoryName" columns="50" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
         <dataField fieldName="ProductWidth" columns="15" />
         <dataField fieldName="ProductThickness" columns="15" />
         <dataField fieldName="ProductLength" columns="15" />
@@ -108,12 +108,12 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
     </view>
     <view id="gridSent" commandId="command1" type="Grid" label="Usage Sent" filter="NOT SentOn IS NULL" sortExpression="ConsignmentUsageID desc" reportTemplate="true">
       <dataFields>
-        <dataField fieldName="ProductCategoryCode" columns="50" tag="pivot1-col1" hidden="true" />
-        <dataField fieldName="ProductCategoryName" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
+        <dataField fieldName="ProductCategoryCode" columns="5" tag="pivot1-col1" hidden="true" />
+        <dataField fieldName="ProductCategoryName" columns="50" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
         <dataField fieldName="ProductWidth" columns="15" />
         <dataField fieldName="ProductLength" columns="15" />
         <dataField fieldName="ProductThickness" columns="15" />
-        <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100" />
+        <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" columns="100" />
         <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count" />
         <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-columnstacked-date" />
         <dataField fieldName="Price" columns="15" />
@@ -129,12 +129,12 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
     </view>
     <view id="gridErrors" commandId="command1" type="Grid" label="Usage Errors" filter="NOT Errors IS NULL" sortExpression="ConsignmentUsageID desc" reportTemplate="true">
       <dataFields>
-        <dataField fieldName="ProductCategoryCode" columns="50" />
+        <dataField fieldName="ProductCategoryCode" columns="5" />
         <dataField fieldName="SentOn" columns="20" />
         <dataField fieldName="ProductWidth" columns="15" />
         <dataField fieldName="ProductLength" columns="15" />
         <dataField fieldName="ProductThickness" columns="15" />
-        <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100" />
+        <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" columns="100" />
         <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count" />
         <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-column-date" />
         <dataField fieldName="Errors" />
@@ -148,7 +148,7 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
           <description />
           <dataFields>
             <dataField fieldName="PacketNo" columns="50" />
-            <dataField fieldName="ProductID" aliasFieldName="ProductName" textMode="Static" />
+            <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" textMode="Static" />
             <dataField fieldName="ConsumedOn" columns="10" textMode="Static" />
           </dataFields>
         </category>
@@ -174,7 +174,7 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
         </category>
         <category headerText="Purchase Order" id="c6">
           <dataFields>
-            <dataField fieldName="ConsignmentPurchaseOrderID" />
+            <dataField fieldName="ConsignmentPurchaseOrderID" hyperlinkFormatString="~/pages/ConsignmentPurchaseOrder?ConsignmentPurchaseOrderID={ConsignmentPurchaseOrderID}&amp;_controller=ConsignmentPurchaseOrder&amp;_command=Select&amp;_argument=editForm1" />
             <dataField fieldName="ConsignmentPurchaseOrderCustomerRef" columns="50" />
             <dataField fieldName="SentOn" columns="20" textMode="Static" />
           </dataFields>
@@ -204,16 +204,17 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
             <dataField fieldName="Cube" columns="15" hidden="true" />
             <dataField fieldName="Area" columns="15" hidden="true" />
             <dataField fieldName="Lineal" columns="15" hidden="true" />
-            <dataField fieldName="ProductCategoryCode" columns="50" />
+            <dataField fieldName="ProductCategoryCode" columns="5" />
             <dataField fieldName="ProductWidth" columns="15" />
             <dataField fieldName="ProductThickness" columns="15" />
             <dataField fieldName="ProductLength" columns="15" />
-            <dataField fieldName="ProductCategoryName" />
+            <dataField fieldName="ProductCategoryName" columns="50" />
             <dataField fieldName="Errors" rows="5" hidden="true" />
             <dataField fieldName="InStock" hidden="true" />
+            <dataField fieldName="CustomerID" columns="15" hidden="true" />
           </dataFields>
         </category>
-        <category headerText="Last Entered" id="c3" collapsed="true" newColumn="true">
+        <category headerText="Last Entered" id="c3" newColumn="true">
           <dataFields>
             <dataField fieldName="LastPacketNo" textMode="Static" />
             <dataField fieldName="LastProductName" textMode="Static" />

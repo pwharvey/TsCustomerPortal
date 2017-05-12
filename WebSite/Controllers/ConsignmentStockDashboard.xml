@@ -22,11 +22,11 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
   </commands>
   <fields>
     <field name="CustomerID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Customer ID">
-      <items style="Lookup" dataController="Customer" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CompanyID" />
+      <items style="Lookup" dataController="Customer" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CustomerName" />
     </field>
     <field name="CustomerCustomerName" type="String" readOnly="true" label="Customer Name" length="100" roles="Admins" showInSummary="true" />
-    <field name="ProductCategoryCode" type="String" allowNulls="false" isPrimaryKey="true" label="Product Category Code" length="50" showInSummary="true" hidden="true" />
-    <field name="CategoryName" type="String" allowNulls="false" label="Category Name" length="100" showInSummary="true" hidden="false" />
+    <field name="ProductCategoryCode" type="String" allowNulls="false" isPrimaryKey="true" label="Product Category Code" length="5" showInSummary="true" hidden="true" />
+    <field name="CategoryName" type="String" allowNulls="false" label="Category Name" length="50" showInSummary="true" hidden="false" />
     <field name="ProductWidth" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Width" showInSummary="true" />
     <field name="ProductThickness" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Thickness" showInSummary="true" />
     <field name="ProductLength" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Length" showInSummary="true" />
@@ -40,7 +40,7 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
       <headerText />
       <dataFields>
         <dataField fieldName="CustomerCustomerName" />
-        <dataField fieldName="CategoryName" tag="pivot1-row1-column &#xD;&#xA;pivot2-row1-columnstacked&#xD;&#xA;" />
+        <dataField fieldName="CategoryName" columns="50" tag="pivot1-row1-column &#xD;&#xA;pivot2-row1-columnstacked&#xD;&#xA;" />
         <dataField fieldName="ProductWidth" columns="15" />
         <dataField fieldName="ProductThickness" columns="15" />
         <dataField fieldName="ProductLength" columns="15" tag="pivot2-col1" />
@@ -48,7 +48,7 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
         <dataField fieldName="Cube" columns="15" />
         <dataField fieldName="Lineal" columns="15" />
         <dataField fieldName="Pieces" columns="15" />
-        <dataField fieldName="ProductCategoryCode" columns="50" hidden="true" />
+        <dataField fieldName="ProductCategoryCode" columns="5" hidden="true" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Consignment Stock Dashboard">
@@ -57,7 +57,7 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
         <category id="c1" headerText="Consignment Stock Dashboard" newColumn="true">
           <description />
           <dataFields>
-            <dataField fieldName="CategoryName" />
+            <dataField fieldName="CategoryName" columns="50" />
             <dataField fieldName="ProductWidth" columns="15" />
             <dataField fieldName="ProductThickness" columns="15" />
             <dataField fieldName="ProductLength" columns="15" />
@@ -65,7 +65,7 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
             <dataField fieldName="Cube" columns="15" />
             <dataField fieldName="Lineal" columns="15" />
             <dataField fieldName="Pieces" columns="15" />
-            <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" />
+            <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
           </dataFields>
         </category>
         <category headerText="Customer" id="c2" newColumn="true">

@@ -25,9 +25,9 @@ from "dbo"."tProduct" "tProduct"
   <fields>
     <field name="ProductID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Product ID" readOnly="true" />
     <field name="ProductCode" type="String" allowNulls="false" label="Product Code" length="50" showInSummary="true" />
-    <field name="ProductName" type="String" allowNulls="false" label="Product Name" length="100" showInSummary="true" />
-    <field name="CategoryCode" type="String" allowNulls="false" label="Category Code" length="50" showInSummary="true" />
-    <field name="CategoryName" type="String" allowNulls="false" label="Category Name" length="100" showInSummary="true" />
+    <field name="ProductName" type="String" allowNulls="false" label="Product Name" length="70" showInSummary="true" />
+    <field name="CategoryCode" type="String" allowNulls="false" label="Category Code" length="5" showInSummary="true" />
+    <field name="CategoryName" type="String" allowNulls="false" label="Category Name" length="50" showInSummary="true" />
     <field name="Width" type="Decimal" allowNulls="false" label="Width" showInSummary="true" />
     <field name="Thickness" type="Decimal" allowNulls="false" label="Thickness" />
     <field name="Length" type="Decimal" allowNulls="false" label="Length" />
@@ -38,8 +38,8 @@ from "dbo"."tProduct" "tProduct"
       <dataFields>
         <dataField fieldName="ProductCode" columns="50" />
         <dataField fieldName="ProductName" />
-        <dataField fieldName="CategoryCode" columns="50" />
-        <dataField fieldName="CategoryName" />
+        <dataField fieldName="CategoryCode" columns="5" />
+        <dataField fieldName="CategoryName" columns="50" />
         <dataField fieldName="Width" columns="15" />
         <dataField fieldName="Thickness" columns="15" />
         <dataField fieldName="Length" columns="15" />
@@ -53,8 +53,8 @@ from "dbo"."tProduct" "tProduct"
           <dataFields>
             <dataField fieldName="ProductCode" columns="50" />
             <dataField fieldName="ProductName" />
-            <dataField fieldName="CategoryCode" columns="50" />
-            <dataField fieldName="CategoryName" />
+            <dataField fieldName="CategoryCode" columns="5" />
+            <dataField fieldName="CategoryName" columns="50" />
             <dataField fieldName="Width" columns="15" />
             <dataField fieldName="Thickness" columns="15" />
             <dataField fieldName="Length" columns="15" />

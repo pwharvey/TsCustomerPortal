@@ -15,7 +15,7 @@
       <siteMapNode title="Company" description="View Company" url="~/pages/company" roles="Admins,ITI" />
       <siteMapNode title="Customer" description="View Customer" url="~/pages/customer" roles="Admins,ITI" />
     </siteMapNode>
-    <siteMapNode title="Security" description="" url="~/pages/security" roles="Admins">
+    <siteMapNode title="Security" description="" url="~/pages/security" roles="Administrators">
       <siteMapNode title="Users" description="View Users" url="~/pages/users" roles="Admins,ITI" />
       <siteMapNode title="Roles" description="View Roles" url="~/pages/roles" roles="Admins" />
     </siteMapNode>

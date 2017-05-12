@@ -64,7 +64,7 @@ from "dbo"."Users" "Users"
       <headerText />
       <dataFields>
         <dataField fieldName="UserName" />
-        <dataField fieldName="CustomerID" aliasFieldName="CustomerName" />
+        <dataField fieldName="CustomerID" aliasFieldName="CustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review User">
@@ -82,7 +82,7 @@ from "dbo"."Users" "Users"
         </category>
         <category headerText="Customer" id="c4">
           <dataFields>
-            <dataField fieldName="CustomerID" aliasFieldName="CustomerName" />
+            <dataField fieldName="CustomerID" aliasFieldName="CustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
           </dataFields>
         </category>
         <category headerText="Password" id="c2" newColumn="true">

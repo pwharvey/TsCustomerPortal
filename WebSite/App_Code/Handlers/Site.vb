@@ -184,7 +184,7 @@ Namespace TimberSmart.Handlers
                 If m_IsTouchUI Then
                     m_PageContent.Text = "<div id=""PageContent"" style=""display:none""><div data-app-role=""page"">404 Not Foun"& _ 
                         "d</div></div>"
-                    Me.Title = "Ts Customer Portal"
+                    Me.Title = "Ts Customer Portal-master"
                 Else
                     m_PageContent.Text = "404 Not Found"
                 End If

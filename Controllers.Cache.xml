@@ -404,9 +404,9 @@ from "dbo"."tConsignmentStock" "tConsignmentStock"
         <items style="Lookup" dataController="Product" dataValueField="ProductID" dataTextField="ProductCode" copy="ProductName=ProductName, ProductCategoryCode=CategoryCode, ProductCategoryName=CategoryName, ProductWidth=Width, ProductThickness=Thickness, ProductLength=Length" />
       </field>
       <field name="ProductCode" type="String" readOnly="true" label="Product Code" length="50" />
-      <field name="ProductName" type="String" readOnly="true" label="Product Name" length="100" showInSummary="true" />
-      <field name="ProductCategoryCode" type="String" readOnly="true" label="Category Code" length="50" />
-      <field name="ProductCategoryName" type="String" readOnly="true" label="Category Name" length="100" />
+      <field name="ProductName" type="String" readOnly="true" label="Product Name" length="70" showInSummary="true" />
+      <field name="ProductCategoryCode" type="String" readOnly="true" label="Category Code" length="5" />
+      <field name="ProductCategoryName" type="String" readOnly="true" label="Category Name" length="50" />
       <field name="ProductWidth" type="Decimal" readOnly="true" label="Width" />
       <field name="ProductThickness" type="Decimal" readOnly="true" label="Thickness" />
       <field name="ProductLength" type="Decimal" readOnly="true" label="Length" />
@@ -423,7 +423,7 @@ from "dbo"."tConsignmentStock" "tConsignmentStock"
       <view id="grid1" type="Grid" commandId="command1" label="Consignment Stock" sortExpression="ProductCategoryName, ProductWidth, ProductThickness, ProductName, PacketNo">
         <headerText />
         <dataFields>
-          <dataField fieldName="ProductCategoryName" tag="pivot1-row1-column &#xD;&#xA;pivot2-row1-pie&#xD;&#xA;" />
+          <dataField fieldName="ProductCategoryName" columns="50" tag="pivot1-row1-column &#xD;&#xA;pivot2-row1-pie&#xD;&#xA;" />
           <dataField fieldName="ProductName" tag="pivot3-row1-column-top20-sortascbyvalue" />
           <dataField fieldName="PacketNo" columns="10" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count&#xD;&#xA;pivot3-val1-count&#xD;&#xA;" />
           <dataField fieldName="Pieces" columns="15" />
@@ -434,8 +434,8 @@ from "dbo"."tConsignmentStock" "tConsignmentStock"
           <dataField fieldName="TransferDate" columns="20" />
           <dataField fieldName="Price" columns="15" />
           <dataField fieldName="PriceUom" columns="50" />
-          <dataField fieldName="ProductCategoryCode" columns="50" />
-          <dataField fieldName="ProductID" aliasFieldName="ProductCode" />
+          <dataField fieldName="ProductCategoryCode" columns="5" />
+          <dataField fieldName="ProductID" aliasFieldName="ProductCode" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" />
           <dataField fieldName="ProductWidth" columns="15" />
           <dataField fieldName="ProductThickness" columns="15" />
           <dataField fieldName="ProductLength" columns="15" />
@@ -481,9 +481,9 @@ from "dbo"."tConsignmentStock" "tConsignmentStock"
           </category>
           <category headerText="Codes" id="c3">
             <dataFields>
-              <dataField fieldName="ProductID" aliasFieldName="ProductCode" />
-              <dataField fieldName="ProductCategoryCode" columns="50" />
-              <dataField fieldName="ProductCategoryName" />
+              <dataField fieldName="ProductID" aliasFieldName="ProductCode" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" />
+              <dataField fieldName="ProductCategoryCode" columns="5" />
+              <dataField fieldName="ProductCategoryName" columns="50" />
             </dataFields>
           </category>
         </categories>
@@ -591,12 +591,12 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
         <items style="Lookup" dataController="ConsignmentPurchaseOrder" dataValueField="ConsignmentPurchaseOrderID" dataTextField="ConsignmentPurchaseOrderID" />
       </field>
       <field name="ConsignmentPurchaseOrderCustomerRef" type="String" readOnly="true" label="Customer Ref" length="50" />
-      <field name="ProductName" type="String" readOnly="true" label="Product Name" length="100" showInSummary="true" />
-      <field name="ProductCategoryCode" type="String" readOnly="true" label="Category Code" length="50" />
+      <field name="ProductName" type="String" readOnly="true" label="Product Name" length="70" showInSummary="true" />
+      <field name="ProductCategoryCode" type="String" readOnly="true" label="Category Code" length="5" />
       <field name="ProductWidth" type="Decimal" readOnly="true" label="Width" />
       <field name="ProductThickness" type="Decimal" readOnly="true" label="Thickness" />
       <field name="ProductLength" type="Decimal" readOnly="true" label="Length" />
-      <field name="ProductCategoryName" type="String" readOnly="true" label="Category Name" length="100" />
+      <field name="ProductCategoryName" type="String" readOnly="true" label="Category Name" length="50" />
       <field name="LastPacketNo" type="String" label="Last Packet No" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="20" />
       <field name="LastError" type="String" label="Last Error" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="100" />
       <field name="LastProductName" type="String" label="Last Product" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="100" />
@@ -610,7 +610,7 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
         <headerText />
         <dataFields>
           <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count" />
-          <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100" />
+          <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" columns="100" />
           <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-columnstacked-date" />
           <dataField fieldName="SentOn" columns="20" />
           <dataField fieldName="Errors" />
@@ -621,8 +621,8 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
           <dataField fieldName="Lineal" columns="15" />
           <dataField fieldName="PriceUom" columns="50" />
           <dataField fieldName="Price" columns="15" />
-          <dataField fieldName="ProductCategoryCode" columns="50" hidden="true" />
-          <dataField fieldName="ProductCategoryName" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
+          <dataField fieldName="ProductCategoryCode" columns="5" hidden="true" />
+          <dataField fieldName="ProductCategoryName" columns="50" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
           <dataField fieldName="ProductWidth" columns="15" />
           <dataField fieldName="ProductThickness" columns="15" />
           <dataField fieldName="ProductLength" columns="15" />
@@ -632,12 +632,12 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
       </view>
       <view id="gridSent" commandId="command1" type="Grid" label="Usage Sent" filter="NOT SentOn IS NULL" sortExpression="ConsignmentUsageID desc" reportTemplate="true">
         <dataFields>
-          <dataField fieldName="ProductCategoryCode" columns="50" tag="pivot1-col1" hidden="true" />
-          <dataField fieldName="ProductCategoryName" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
+          <dataField fieldName="ProductCategoryCode" columns="5" tag="pivot1-col1" hidden="true" />
+          <dataField fieldName="ProductCategoryName" columns="50" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
           <dataField fieldName="ProductWidth" columns="15" />
           <dataField fieldName="ProductLength" columns="15" />
           <dataField fieldName="ProductThickness" columns="15" />
-          <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100" />
+          <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" columns="100" />
           <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count" />
           <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-columnstacked-date" />
           <dataField fieldName="Price" columns="15" />
@@ -653,12 +653,12 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
       </view>
       <view id="gridErrors" commandId="command1" type="Grid" label="Usage Errors" filter="NOT Errors IS NULL" sortExpression="ConsignmentUsageID desc" reportTemplate="true">
         <dataFields>
-          <dataField fieldName="ProductCategoryCode" columns="50" />
+          <dataField fieldName="ProductCategoryCode" columns="5" />
           <dataField fieldName="SentOn" columns="20" />
           <dataField fieldName="ProductWidth" columns="15" />
           <dataField fieldName="ProductLength" columns="15" />
           <dataField fieldName="ProductThickness" columns="15" />
-          <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100" />
+          <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" columns="100" />
           <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count" />
           <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-column-date" />
           <dataField fieldName="Errors" />
@@ -672,7 +672,7 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
             <description />
             <dataFields>
               <dataField fieldName="PacketNo" columns="50" />
-              <dataField fieldName="ProductID" aliasFieldName="ProductName" textMode="Static" />
+              <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" textMode="Static" />
               <dataField fieldName="ConsumedOn" columns="10" textMode="Static" />
             </dataFields>
           </category>
@@ -698,7 +698,7 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
           </category>
           <category headerText="Purchase Order" id="c6">
             <dataFields>
-              <dataField fieldName="ConsignmentPurchaseOrderID" />
+              <dataField fieldName="ConsignmentPurchaseOrderID" hyperlinkFormatString="~/pages/ConsignmentPurchaseOrder?ConsignmentPurchaseOrderID={ConsignmentPurchaseOrderID}&amp;_controller=ConsignmentPurchaseOrder&amp;_command=Select&amp;_argument=editForm1" />
               <dataField fieldName="ConsignmentPurchaseOrderCustomerRef" columns="50" />
               <dataField fieldName="SentOn" columns="20" textMode="Static" />
             </dataFields>
@@ -728,16 +728,17 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
               <dataField fieldName="Cube" columns="15" hidden="true" />
               <dataField fieldName="Area" columns="15" hidden="true" />
               <dataField fieldName="Lineal" columns="15" hidden="true" />
-              <dataField fieldName="ProductCategoryCode" columns="50" />
+              <dataField fieldName="ProductCategoryCode" columns="5" />
               <dataField fieldName="ProductWidth" columns="15" />
               <dataField fieldName="ProductThickness" columns="15" />
               <dataField fieldName="ProductLength" columns="15" />
-              <dataField fieldName="ProductCategoryName" />
+              <dataField fieldName="ProductCategoryName" columns="50" />
               <dataField fieldName="Errors" rows="5" hidden="true" />
               <dataField fieldName="InStock" hidden="true" />
+              <dataField fieldName="CustomerID" columns="15" hidden="true"></dataField>
             </dataFields>
           </category>
-          <category headerText="Last Entered" id="c3" newColumn="true" collapsed="true">
+          <category headerText="Last Entered" id="c3" newColumn="true">
             <dataFields>
               <dataField fieldName="LastPacketNo" textMode="Static" />
               <dataField fieldName="LastProductName" textMode="Static" />
@@ -1020,7 +1021,7 @@ from "dbo"."tCustomer" "tCustomer"
           <category id="c1" headerText="Customer">
             <description />
             <dataFields>
-              <dataField fieldName="CompanyID" aliasFieldName="CompanyName" />
+              <dataField fieldName="CompanyID" aliasFieldName="CompanyName" hyperlinkFormatString="~/pages/Company?CompanyID={CompanyID}&amp;_controller=Company&amp;_command=Select&amp;_argument=editForm1" />
               <dataField fieldName="CustomerCode" columns="50" />
               <dataField fieldName="CustomerName" />
               <dataField fieldName="Enabled" />
@@ -1108,306 +1109,6 @@ from "dbo"."tCustomer" "tCustomer"
       </actionGroup>
     </actions>
   </dataController>
-  <dataController name="Document" conflictDetection="overwriteChanges" label="Document" nativeSchema="dbo" nativeTableName="tDocument">
-    <commands>
-      <command id="command1" type="Text">
-        <text>
-select
-	"tDocument"."DocumentID" "DocumentID"
-	,"tDocument"."DocumentTypeID" "DocumentTypeID"
-	,"DocumentType"."DocumentTypeName" "DocumentTypeName"
-	,"DocumentType"."SourceReferenceName" "DocumentTypeSourceReferenceName"
-	,"DocumentType"."DocumentReferenceName" "DocumentReferenceName"
-	,"tDocument"."CustomerID" "CustomerID"
-	,"tDocument"."SourceID" "SourceID"
-	,"tDocument"."SourceReference" "SourceReference"
-	,"tDocument"."DocumentReference" "DocumentReference"
-	,"tDocument"."DocumentDate" "DocumentDate"
-	,"tDocument"."DocumentFileName" "DocumentFileName"
-	,"tDocument"."DocumentLength" "DocumentLength"
-	,"tDocument"."DocumentContentType" "DocumentContentType"
-	,"tDocument"."Notes" "Notes"
-from "dbo"."tDocument" "tDocument"
-	left join "dbo"."tDocumentType" "DocumentType" on "tDocument"."DocumentTypeID" = "DocumentType"."DocumentTypeID"
-</text>
-      </command>
-      <command id="DocumentIDIdentityCommand" type="Text" event="Inserted">
-        <text>select @@identity</text>
-        <output>
-          <fieldOutput fieldName="DocumentID" />
-        </output>
-      </command>
-    </commands>
-    <fields>
-      <field name="DocumentID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Document ID" readOnly="true" />
-      <field name="DocumentTypeID" type="Int32" allowNulls="false" label="Document Type ID" showInSummary="true">
-        <items style="Lookup" dataController="DocumentType" newDataView="createForm1" dataValueField="DocumentTypeID" dataTextField="DocumentTypeName" copy="DocumentTypeSourceReferenceName=SourceReferenceName, DocumentReferenceName=DocumentReferenceName" />
-      </field>
-      <field name="DocumentTypeName" type="String" readOnly="true" label="Document Type Name" length="50" />
-      <field name="DocumentTypeSourceReferenceName" type="String" readOnly="true" label="Document Type Source Reference Name" length="50" />
-      <field name="DocumentReferenceName" type="String" readOnly="true" label="Document Reference Name" length="50" />
-      <field name="CustomerID" type="Int32" allowNulls="false" label="Customer ID" showInSummary="true" />
-      <field name="SourceID" type="Int32" label="Source ID" showInSummary="true" />
-      <field name="SourceReference" type="String" label="Source Reference" length="50" showInSummary="true" />
-      <field name="DocumentReference" type="String" label="Document Reference" length="50" showInSummary="true" />
-      <field name="DocumentDate" type="DateTime" allowNulls="false" label="Document Date" />
-      <field name="DocumentFileName" type="String" label="Document File Name" length="250" />
-      <field name="DocumentLength" type="Int32" label="Document Length" />
-      <field name="DocumentContentType" type="String" label="Document Content Type" length="50" />
-      <field name="Notes" type="String" allowQBE="false" allowSorting="false" label="Notes" />
-    </fields>
-    <views>
-      <view id="grid1" type="Grid" commandId="command1" label="Document">
-        <headerText>$DefaultGridViewDescription</headerText>
-        <dataFields>
-          <dataField fieldName="DocumentTypeID" aliasFieldName="DocumentTypeName" />
-          <dataField fieldName="DocumentTypeSourceReferenceName" columns="50" />
-          <dataField fieldName="DocumentReferenceName" columns="50" />
-          <dataField fieldName="CustomerID" columns="15" />
-          <dataField fieldName="SourceID" columns="15" />
-          <dataField fieldName="SourceReference" columns="50" />
-          <dataField fieldName="DocumentReference" columns="50" />
-          <dataField fieldName="DocumentDate" columns="10" />
-          <dataField fieldName="DocumentFileName" />
-          <dataField fieldName="DocumentLength" columns="15" />
-          <dataField fieldName="DocumentContentType" columns="50" />
-          <dataField fieldName="Notes" rows="5" />
-        </dataFields>
-      </view>
-      <view id="editForm1" type="Form" commandId="command1" label="Review Document">
-        <headerText>$DefaultEditViewDescription</headerText>
-        <categories>
-          <category id="c1" headerText="Document">
-            <description>$DefaultEditDescription</description>
-            <dataFields>
-              <dataField fieldName="DocumentTypeID" aliasFieldName="DocumentTypeName" />
-              <dataField fieldName="DocumentTypeSourceReferenceName" columns="50" />
-              <dataField fieldName="DocumentReferenceName" columns="50" />
-              <dataField fieldName="CustomerID" columns="15" />
-              <dataField fieldName="SourceID" columns="15" />
-              <dataField fieldName="SourceReference" columns="50" />
-              <dataField fieldName="DocumentReference" columns="50" />
-              <dataField fieldName="DocumentDate" columns="10" />
-              <dataField fieldName="DocumentFileName" />
-              <dataField fieldName="DocumentLength" columns="15" />
-              <dataField fieldName="DocumentContentType" columns="50" />
-              <dataField fieldName="Notes" rows="5" />
-            </dataFields>
-          </category>
-        </categories>
-      </view>
-      <view id="createForm1" type="Form" commandId="command1" label="New Document">
-        <headerText>$DefaultCreateViewDescription</headerText>
-        <categories>
-          <category id="c1" headerText="New Document">
-            <description>$DefaultNewDescription</description>
-            <dataFields>
-              <dataField fieldName="DocumentTypeID" aliasFieldName="DocumentTypeName" />
-              <dataField fieldName="DocumentTypeSourceReferenceName" columns="50" />
-              <dataField fieldName="DocumentReferenceName" columns="50" />
-              <dataField fieldName="CustomerID" columns="15" />
-              <dataField fieldName="SourceID" columns="15" />
-              <dataField fieldName="SourceReference" columns="50" />
-              <dataField fieldName="DocumentReference" columns="50" />
-              <dataField fieldName="DocumentDate" columns="10" />
-              <dataField fieldName="DocumentFileName" />
-              <dataField fieldName="DocumentLength" columns="15" />
-              <dataField fieldName="DocumentContentType" columns="50" />
-              <dataField fieldName="Notes" rows="5" />
-            </dataFields>
-          </category>
-        </categories>
-      </view>
-    </views>
-    <actions>
-      <actionGroup id="ag1" scope="Grid">
-        <action id="a1" commandName="Select" commandArgument="editForm1" />
-        <action id="a2" commandName="Edit" />
-        <action id="a3" commandName="Delete" />
-        <action id="a6" />
-        <action id="a7" commandName="New" commandArgument="grid1" />
-        <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
-      </actionGroup>
-      <actionGroup id="ag2" scope="Form">
-        <action id="a1" commandName="Edit" />
-        <action id="a2" commandName="Delete" />
-        <action id="a3" commandName="Cancel" />
-        <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
-        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
-        <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
-        <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
-        <action id="a8" whenLastCommandName="New" commandName="Cancel" />
-        <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
-        <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
-        <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
-        <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
-      </actionGroup>
-      <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
-        <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
-      </actionGroup>
-      <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
-        <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
-        <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
-      </actionGroup>
-      <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
-        <action id="a1" commandName="ExportCsv" />
-        <action id="a2" />
-        <action id="a3" commandName="ExportRowset" />
-        <action id="a4" commandName="ExportRss" />
-        <action id="a5" />
-        <action id="a6" commandName="Import" commandArgument="createForm1" />
-        <action id="a7" commandName="DataSheet" />
-        <action id="a8" commandName="Grid" />
-      </actionGroup>
-      <actionGroup id="ag6" scope="ActionBar" headerText="Record">
-        <action id="a1" whenLastCommandName="Edit" commandName="Update" />
-        <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
-        <action id="a3" whenLastCommandName="New" commandName="Insert" />
-        <action id="a4" whenLastCommandName="New" commandName="Cancel" />
-      </actionGroup>
-      <actionGroup id="ag7" scope="ActionBar" headerText="Report">
-        <action id="a1" commandName="ReportAsPdf" />
-        <action id="a2" commandName="ReportAsImage" />
-        <action id="a3" commandName="ReportAsExcel" />
-        <action id="a4" commandName="ReportAsWord" />
-      </actionGroup>
-      <actionGroup id="ag8" scope="Row">
-        <action id="a4" whenLastCommandName="Edit" commandName="Update" />
-        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
-        <action id="a6" whenLastCommandName="New" commandName="Insert" />
-        <action id="a7" whenLastCommandName="New" commandName="Cancel" />
-      </actionGroup>
-      <actionGroup id="ag9" scope="ActionColumn">
-        <action id="a1" commandName="Edit" commandArgument="editForm1" />
-        <action id="a2" commandName="Delete" />
-      </actionGroup>
-    </actions>
-  </dataController>
-  <dataController name="DocumentType" conflictDetection="overwriteChanges" label="Document Type" nativeSchema="dbo" nativeTableName="tDocumentType">
-    <commands>
-      <command id="command1" type="Text">
-        <text>
-select
-	"tDocumentType"."DocumentTypeID" "DocumentTypeID"
-	,"tDocumentType"."DocumentTypeName" "DocumentTypeName"
-	,"tDocumentType"."SourceReferenceName" "SourceReferenceName"
-	,"tDocumentType"."DocumentReferenceName" "DocumentReferenceName"
-from "dbo"."tDocumentType" "tDocumentType"
-</text>
-      </command>
-      <command id="DocumentTypeIDIdentityCommand" type="Text" event="Inserted">
-        <text>select @@identity</text>
-        <output>
-          <fieldOutput fieldName="DocumentTypeID" />
-        </output>
-      </command>
-    </commands>
-    <fields>
-      <field name="DocumentTypeID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Document Type ID" readOnly="true" />
-      <field name="DocumentTypeName" type="String" allowNulls="false" label="Document Type Name" length="50" showInSummary="true" />
-      <field name="SourceReferenceName" type="String" label="Source Reference Name" length="50" showInSummary="true" />
-      <field name="DocumentReferenceName" type="String" label="Document Reference Name" length="50" showInSummary="true" />
-    </fields>
-    <views>
-      <view id="grid1" type="Grid" commandId="command1" label="Document Type">
-        <headerText>$DefaultGridViewDescription</headerText>
-        <dataFields>
-          <dataField fieldName="DocumentTypeName" columns="50" />
-          <dataField fieldName="SourceReferenceName" columns="50" />
-          <dataField fieldName="DocumentReferenceName" columns="50" />
-        </dataFields>
-      </view>
-      <view id="editForm1" type="Form" commandId="command1" label="Review Document Type">
-        <headerText>$DefaultEditViewDescription</headerText>
-        <categories>
-          <category id="c1" headerText="Document Type">
-            <description>$DefaultEditDescription</description>
-            <dataFields>
-              <dataField fieldName="DocumentTypeName" columns="50" />
-              <dataField fieldName="SourceReferenceName" columns="50" />
-              <dataField fieldName="DocumentReferenceName" columns="50" />
-            </dataFields>
-          </category>
-        </categories>
-      </view>
-      <view id="createForm1" type="Form" commandId="command1" label="New Document Type">
-        <headerText>$DefaultCreateViewDescription</headerText>
-        <categories>
-          <category id="c1" headerText="New Document Type">
-            <description>$DefaultNewDescription</description>
-            <dataFields>
-              <dataField fieldName="DocumentTypeName" columns="50" />
-              <dataField fieldName="SourceReferenceName" columns="50" />
-              <dataField fieldName="DocumentReferenceName" columns="50" />
-            </dataFields>
-          </category>
-        </categories>
-      </view>
-    </views>
-    <actions>
-      <actionGroup id="ag1" scope="Grid">
-        <action id="a1" commandName="Select" commandArgument="editForm1" />
-        <action id="a2" commandName="Edit" />
-        <action id="a3" commandName="Delete" />
-        <action id="a6" />
-        <action id="a7" commandName="New" commandArgument="grid1" />
-        <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
-      </actionGroup>
-      <actionGroup id="ag2" scope="Form">
-        <action id="a1" commandName="Edit" />
-        <action id="a2" commandName="Delete" />
-        <action id="a3" commandName="Cancel" />
-        <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
-        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
-        <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
-        <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
-        <action id="a8" whenLastCommandName="New" commandName="Cancel" />
-        <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
-        <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
-        <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
-        <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
-      </actionGroup>
-      <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
-        <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
-      </actionGroup>
-      <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
-        <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
-        <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
-      </actionGroup>
-      <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
-        <action id="a1" commandName="ExportCsv" />
-        <action id="a2" />
-        <action id="a3" commandName="ExportRowset" />
-        <action id="a4" commandName="ExportRss" />
-        <action id="a5" />
-        <action id="a6" commandName="Import" commandArgument="createForm1" />
-        <action id="a7" commandName="DataSheet" />
-        <action id="a8" commandName="Grid" />
-      </actionGroup>
-      <actionGroup id="ag6" scope="ActionBar" headerText="Record">
-        <action id="a1" whenLastCommandName="Edit" commandName="Update" />
-        <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
-        <action id="a3" whenLastCommandName="New" commandName="Insert" />
-        <action id="a4" whenLastCommandName="New" commandName="Cancel" />
-      </actionGroup>
-      <actionGroup id="ag7" scope="ActionBar" headerText="Report">
-        <action id="a1" commandName="ReportAsPdf" />
-        <action id="a2" commandName="ReportAsImage" />
-        <action id="a3" commandName="ReportAsExcel" />
-        <action id="a4" commandName="ReportAsWord" />
-      </actionGroup>
-      <actionGroup id="ag8" scope="Row">
-        <action id="a4" whenLastCommandName="Edit" commandName="Update" />
-        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
-        <action id="a6" whenLastCommandName="New" commandName="Insert" />
-        <action id="a7" whenLastCommandName="New" commandName="Cancel" />
-      </actionGroup>
-      <actionGroup id="ag9" scope="ActionColumn">
-        <action id="a1" commandName="Edit" commandArgument="editForm1" />
-        <action id="a2" commandName="Delete" />
-      </actionGroup>
-    </actions>
-  </dataController>
   <dataController name="Product" conflictDetection="overwriteChanges" label="Product" nativeSchema="dbo" nativeTableName="tProduct">
     <commands>
       <command id="command1" type="Text">
@@ -1434,9 +1135,9 @@ from "dbo"."tProduct" "tProduct"
     <fields>
       <field name="ProductID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Product ID" readOnly="true" />
       <field name="ProductCode" type="String" allowNulls="false" label="Product Code" length="50" showInSummary="true" />
-      <field name="ProductName" type="String" allowNulls="false" label="Product Name" length="100" showInSummary="true" />
-      <field name="CategoryCode" type="String" allowNulls="false" label="Category Code" length="50" showInSummary="true" />
-      <field name="CategoryName" type="String" allowNulls="false" label="Category Name" length="100" showInSummary="true" />
+      <field name="ProductName" type="String" allowNulls="false" label="Product Name" length="70" showInSummary="true" />
+      <field name="CategoryCode" type="String" allowNulls="false" label="Category Code" length="5" showInSummary="true" />
+      <field name="CategoryName" type="String" allowNulls="false" label="Category Name" length="50" showInSummary="true" />
       <field name="Width" type="Decimal" allowNulls="false" label="Width" showInSummary="true" />
       <field name="Thickness" type="Decimal" allowNulls="false" label="Thickness" />
       <field name="Length" type="Decimal" allowNulls="false" label="Length" />
@@ -1447,8 +1148,8 @@ from "dbo"."tProduct" "tProduct"
         <dataFields>
           <dataField fieldName="ProductCode" columns="50" />
           <dataField fieldName="ProductName" />
-          <dataField fieldName="CategoryCode" columns="50" />
-          <dataField fieldName="CategoryName" />
+          <dataField fieldName="CategoryCode" columns="5" />
+          <dataField fieldName="CategoryName" columns="50" />
           <dataField fieldName="Width" columns="15" />
           <dataField fieldName="Thickness" columns="15" />
           <dataField fieldName="Length" columns="15" />
@@ -1462,8 +1163,8 @@ from "dbo"."tProduct" "tProduct"
             <dataFields>
               <dataField fieldName="ProductCode" columns="50" />
               <dataField fieldName="ProductName" />
-              <dataField fieldName="CategoryCode" columns="50" />
-              <dataField fieldName="CategoryName" />
+              <dataField fieldName="CategoryCode" columns="5" />
+              <dataField fieldName="CategoryName" columns="50" />
               <dataField fieldName="Width" columns="15" />
               <dataField fieldName="Thickness" columns="15" />
               <dataField fieldName="Length" columns="15" />
@@ -1545,7 +1246,7 @@ from "dbo"."UserRoles" "UserRoles"
         <headerText />
         <dataFields>
           <dataField fieldName="UserID" aliasFieldName="UserName" />
-          <dataField fieldName="RoleID" aliasFieldName="RoleName" />
+          <dataField fieldName="RoleID" aliasFieldName="RoleName" hyperlinkFormatString="~/pages/Roles?RoleID={RoleID}&amp;_controller=Roles&amp;_command=Select&amp;_argument=editForm1" />
         </dataFields>
       </view>
       <view id="editForm1" type="Form" commandId="command1" label="Review User Role">
@@ -1554,8 +1255,8 @@ from "dbo"."UserRoles" "UserRoles"
           <category id="c1" headerText="User Role">
             <description />
             <dataFields>
-              <dataField fieldName="UserID" aliasFieldName="UserName" />
-              <dataField fieldName="RoleID" aliasFieldName="RoleName" />
+              <dataField fieldName="UserID" aliasFieldName="UserName" hyperlinkFormatString="~/pages/Users?UserID={UserID}&amp;_controller=Users&amp;_command=Select&amp;_argument=editForm1" />
+              <dataField fieldName="RoleID" aliasFieldName="RoleName" hyperlinkFormatString="~/pages/Roles?RoleID={RoleID}&amp;_controller=Roles&amp;_command=Select&amp;_argument=editForm1" />
             </dataFields>
           </category>
         </categories>
@@ -1694,7 +1395,7 @@ from "dbo"."Users" "Users"
         <headerText />
         <dataFields>
           <dataField fieldName="UserName" />
-          <dataField fieldName="CustomerID" aliasFieldName="CustomerName" />
+          <dataField fieldName="CustomerID" aliasFieldName="CustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
         </dataFields>
       </view>
       <view id="editForm1" type="Form" commandId="command1" label="Review User">
@@ -1712,7 +1413,7 @@ from "dbo"."Users" "Users"
           </category>
           <category headerText="Customer" id="c4">
             <dataFields>
-              <dataField fieldName="CustomerID" aliasFieldName="CustomerName" />
+              <dataField fieldName="CustomerID" aliasFieldName="CustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
             </dataFields>
           </category>
           <category headerText="Password" id="c2" newColumn="true">
@@ -1843,11 +1544,11 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
     </commands>
     <fields>
       <field name="CustomerID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Customer ID">
-        <items style="Lookup" dataController="Customer" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CompanyID" />
+        <items style="Lookup" dataController="Customer" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CustomerName" />
       </field>
       <field name="CustomerCustomerName" type="String" readOnly="true" label="Customer Name" length="100" roles="Admins" showInSummary="true" />
-      <field name="ProductCategoryCode" type="String" allowNulls="false" isPrimaryKey="true" label="Product Category Code" length="50" showInSummary="true" hidden="true" />
-      <field name="CategoryName" type="String" allowNulls="false" label="Category Name" length="100" showInSummary="true" hidden="false" />
+      <field name="ProductCategoryCode" type="String" allowNulls="false" isPrimaryKey="true" label="Product Category Code" length="5" showInSummary="true" hidden="true" />
+      <field name="CategoryName" type="String" allowNulls="false" label="Category Name" length="50" showInSummary="true" hidden="false" />
       <field name="ProductWidth" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Width" showInSummary="true" />
       <field name="ProductThickness" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Thickness" showInSummary="true" />
       <field name="ProductLength" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Length" showInSummary="true" />
@@ -1861,7 +1562,7 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
         <headerText />
         <dataFields>
           <dataField fieldName="CustomerCustomerName" />
-          <dataField fieldName="CategoryName" tag="pivot1-row1-column &#xD;&#xA;pivot2-row1-columnstacked&#xD;&#xA;" />
+          <dataField fieldName="CategoryName" columns="50" tag="pivot1-row1-column &#xD;&#xA;pivot2-row1-columnstacked&#xD;&#xA;" />
           <dataField fieldName="ProductWidth" columns="15" />
           <dataField fieldName="ProductThickness" columns="15" />
           <dataField fieldName="ProductLength" columns="15" tag="pivot2-col1" />
@@ -1869,7 +1570,7 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
           <dataField fieldName="Cube" columns="15" />
           <dataField fieldName="Lineal" columns="15" />
           <dataField fieldName="Pieces" columns="15" />
-          <dataField fieldName="ProductCategoryCode" columns="50" hidden="true" />
+          <dataField fieldName="ProductCategoryCode" columns="5" hidden="true" />
         </dataFields>
       </view>
       <view id="editForm1" type="Form" commandId="command1" label="Review Consignment Stock Dashboard">
@@ -1878,7 +1579,7 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
           <category id="c1" headerText="Consignment Stock Dashboard">
             <description />
             <dataFields>
-              <dataField fieldName="CategoryName" />
+              <dataField fieldName="CategoryName" columns="50" />
               <dataField fieldName="ProductWidth" columns="15" />
               <dataField fieldName="ProductThickness" columns="15" />
               <dataField fieldName="ProductLength" columns="15" />
@@ -1886,7 +1587,7 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
               <dataField fieldName="Cube" columns="15" />
               <dataField fieldName="Lineal" columns="15" />
               <dataField fieldName="Pieces" columns="15" />
-              <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" />
+              <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
             </dataFields>
           </category>
           <category headerText="Customer" newColumn="true" id="c2">
@@ -1963,11 +1664,11 @@ from "dbo"."vConsignmentUsageDashboard" "vConsignmentUsageDashboard"
     </commands>
     <fields>
       <field name="CustomerID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Customer ID" showInSummary="true">
-        <items style="Lookup" dataController="Customer" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CompanyID" />
+        <items style="Lookup" dataController="Customer" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CustomerName" />
       </field>
       <field name="CustomerCustomerName" type="String" readOnly="true" label="Customer Name" length="100" roles="Admins" showInSummary="true" />
-      <field name="ProductCategoryCode" type="String" isPrimaryKey="true" label="Product Category Code" length="50" showInSummary="true" hidden="true" />
-      <field name="CategoryName" type="String" label="Category Name" length="100" showInSummary="true" />
+      <field name="ProductCategoryCode" type="String" isPrimaryKey="true" label="Product Category Code" length="5" showInSummary="true" hidden="true" />
+      <field name="CategoryName" type="String" label="Category Name" length="50" showInSummary="true" />
       <field name="ProductWidth" type="Decimal" isPrimaryKey="true" label="Width" showInSummary="true" />
       <field name="ProductThickness" type="Decimal" isPrimaryKey="true" label="Thickness" showInSummary="true" />
       <field name="ProductLength" type="Decimal" isPrimaryKey="true" label="Length" showInSummary="true" />
@@ -1984,12 +1685,12 @@ from "dbo"."vConsignmentUsageDashboard" "vConsignmentUsageDashboard"
           <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" />
           <dataField fieldName="CustomerCustomerName" />
           <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-year-columnstacked&#xD;&#xA;pivot1-row2-quarter-all&#xD;&#xA;pivot2-row1-year-columnstacked&#xD;&#xA;pivot2-row2-week-all&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
-          <dataField fieldName="CategoryName" tag="pivot1-col1&#xD;&#xA;pivot2-col1&#xD;&#xA;pivot3-pie-row1" />
+          <dataField fieldName="CategoryName" columns="50" tag="pivot1-col1&#xD;&#xA;pivot2-col1&#xD;&#xA;pivot3-pie-row1" />
           <dataField fieldName="ProductWidth" columns="15" />
           <dataField fieldName="ProductThickness" columns="15" />
           <dataField fieldName="ProductLength" columns="15" />
           <dataField fieldName="Packets" columns="15" tag="pivot1-val1-sum&#xD;&#xA;pivot2-val1-sum&#xD;&#xA;pivot3-val1-sum" />
-          <dataField fieldName="ProductCategoryCode" columns="50" hidden="true" />
+          <dataField fieldName="ProductCategoryCode" columns="5" hidden="true" />
         </dataFields>
       </view>
       <view id="editForm1" type="Form" commandId="command1" label="Review Consignment Usage Dashboard">
@@ -1998,9 +1699,9 @@ from "dbo"."vConsignmentUsageDashboard" "vConsignmentUsageDashboard"
           <category id="c1" headerText="Consignment Usage Dashboard">
             <description />
             <dataFields>
-              <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" />
+              <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
               <dataField fieldName="ConsumedOn" columns="10" />
-              <dataField fieldName="CategoryName" />
+              <dataField fieldName="CategoryName" columns="50" />
               <dataField fieldName="ProductWidth" columns="15" />
               <dataField fieldName="ProductThickness" columns="15" />
               <dataField fieldName="ProductLength" columns="15" />

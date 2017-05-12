@@ -328,7 +328,7 @@ Namespace TimberSmart.Services
                 Catch __exception As Exception
                 End Try
                 sb.AppendFormat("var __targetFramework='4.6';__tf=4.0;__cothost='appfactory';__appInfo='TsCustomer"& _ 
-                        "Portal|{0}';", BusinessRules.JavaScriptString(context.User.Identity.Name))
+                        "Portal-master|{0}';", BusinessRules.JavaScriptString(context.User.Identity.Name))
                 sb.AppendFormat("Sys.Application.add_init(function() {{ Web.DataView._run('{0}','{0}/Services/Data"& _ 
                         "ControllerService.asmx', {1}) }});", baseUrl, context.User.Identity.IsAuthenticated.ToString().ToLower())
             End If

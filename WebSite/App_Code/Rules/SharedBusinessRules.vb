@@ -13,13 +13,13 @@ Namespace TimberSmart.Rules
 
         Protected Overrides Sub EnumerateDynamicAccessControlRules(controllerName As String)
             If controllerName <> "Users" And controllerName <> "Customer" Then
-                'If Not UserIsInRole("Admins") Then
-                RegisterAccessControlRule(
+                If Not UserIsInRole("Admins") Then
+                    RegisterAccessControlRule(
                         "CustomerID",
                         "select CustomerID from Users where UserID = @UserID",
                         AccessPermission.Allow,
                         New SqlParam("@UserID", UserId))
-                'End If
+                End If
             End If
         End Sub
 
