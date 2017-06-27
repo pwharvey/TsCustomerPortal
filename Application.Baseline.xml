@@ -150,6 +150,176 @@
       <controls />
       <about>This page allows document type management.</about>
     </page>
+    <page name="t_DM_CONTENT" title="t DM CONTENT" description="View t DM CONTENT" index="1010" path="t DM CONTENT" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="t_DM_CONTENT" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t dm content management.</about>
+    </page>
+    <page name="t_DM_msg_handler" title="t DM msg handler" description="View t DM msg handler" index="1020" path="t DM msg handler" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="t_DM_msg_handler" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t dm msg handler management.</about>
+    </page>
+    <page name="t_DM_msg_subscribe" title="t DM msg subscribe" description="View t DM msg subscribe" index="1030" path="t DM msg subscribe" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="t_DM_msg_subscribe" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t dm msg subscribe management.</about>
+    </page>
+    <page name="t_DM_REF_EG_SETTINGS" title="t DM REF EG SETTINGS" description="View t DM REF EG SETTINGS" index="1040" path="t DM REF EG SETTINGS" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="t_DM_REF_EG_SETTINGS" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t dm ref eg settings management.</about>
+    </page>
+    <page name="t_DM_REF_DOC_TYPE" title="t DM REF DOC TYPE" description="View t DM REF DOC TYPE" index="1050" path="t DM REF DOC TYPE" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="t_DM_REF_DOC_TYPE" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t dm ref doc type management.</about>
+    </page>
+    <page name="t_DM_msg_monitor" title="t DM msg monitor" description="View t DM msg monitor" index="1180" path="t DM msg monitor" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="t_DM_msg_monitor" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t dm msg monitor management.</about>
+    </page>
+    <page name="t_EG_COMMAND" title="t EG COMMAND" description="View t EG COMMAND" index="1170" path="t EG COMMAND" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="t_EG_COMMAND" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t eg command management.</about>
+    </page>
+    <page name="tContent" title="t Content" description="View t Content" index="1120" path="t Content" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="tContent" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t content management.</about>
+    </page>
+    <page name="tContentDocumentType" title="t Content Document Type" description="View t Content Document Type" index="1130" path="t Content Document Type" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="tContentDocumentType" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t content document type management.</about>
+    </page>
+    <page name="tContentMessageCommands" title="t Content Message Commands" description="View t Content Message Commands" index="1140" path="t Content Message Commands" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="tContentMessageCommands" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t content message commands management.</about>
+    </page>
+    <page name="tContentMessageHandler" title="t Content Message Handler" description="View t Content Message Handler" index="1150" path="t Content Message Handler" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="tContentMessageHandler" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t content message handler management.</about>
+    </page>
+    <page name="tContentMessageMonitor" title="t Content Message Monitor" description="View t Content Message Monitor" index="1160" path="t Content Message Monitor" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="tContentMessageMonitor" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t content message monitor management.</about>
+    </page>
+    <page name="tContentMessageSettings" title="t Content Message Settings" description="View t Content Message Settings" index="1170" path="t Content Message Settings" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="tContentMessageSettings" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t content message settings management.</about>
+    </page>
+    <page name="tContentMessageSubscribe" title="t Content Message Subscribe" description="View t Content Message Subscribe" index="1180" path="t Content Message Subscribe" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="tContentMessageSubscribe" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t content message subscribe management.</about>
+    </page>
+    <page name="Content" title="Content" description="View Content" index="1120" path="Content" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Content" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows content management.</about>
+    </page>
+    <page name="ContentMessageCommandLookup" title="Content Message Command Lookup" description="View Content Message Command Lookup" index="1190" path="Content Message Command Lookup" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ContentMessageCommandLookup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows content message command lookup management.</about>
+    </page>
+    <page name="tContentDocumentTypeGroup" title="t Content Document Type Group" description="View t Content Document Type Group" index="1200" path="t Content Document Type Group" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="tContentDocumentTypeGroup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" searchOnStart="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows t content document type group management.</about>
+    </page>
   </pages>
   <userControls>
     <userControl name="TableOfContents" prefix="uc" generate="Always">

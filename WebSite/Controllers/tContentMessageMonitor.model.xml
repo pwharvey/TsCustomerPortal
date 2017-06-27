@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tContentMessageMonitor" alias="tContentMessageMonitor" created="2016-12-20T13:10:41" modified="2016-12-20T13:10:43" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="MSG_TYPE" fieldName="MSG_TYPE" label="Msg Type" />
+    <column name="EG_NAME" fieldName="EG_NAME" label="Eg Name" />
+    <column name="DATE" fieldName="DATE" label="Date" />
+    <column name="INSTANCE" fieldName="INSTANCE" label="Instance" />
+    <column name="MESSAGES_CURR_HANDLED" fieldName="MESSAGES_CURR_HANDLED" label="Messages Curr Handled" />
+    <column name="MESSAGES_CURR_FAILED" fieldName="MESSAGES_CURR_FAILED" label="Messages Curr Failed" />
+    <column name="MESSAGES_CURR_UNHANDLED" fieldName="MESSAGES_CURR_UNHANDLED" label="Messages Curr Unhandled" />
+    <column name="DM_EG_STATUS" fieldName="DM_EG_STATUS" label="Dm Eg Status" />
+    <column name="TIME_LAST_MESSAGE" fieldName="TIME_LAST_MESSAGE" label="Time Last Message" format="g" />
+    <column name="TIME_EG_STARTED" fieldName="TIME_EG_STARTED" label="Time Eg Started" format="g" />
+    <column name="TIME_EG_ENDED" fieldName="TIME_EG_ENDED" label="Time Eg Ended" format="g" />
+  </columns>
+</dataModel>

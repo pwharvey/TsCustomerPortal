@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tContentDocumentTypeGroup" alias="tContentDocumentTypeGroup" created="2017-04-24T12:34:04" modified="2017-04-24T12:34:10" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="CONTENT_TYPE_GROUP" fieldName="CONTENT_TYPE_GROUP" label="Content Type Group" />
+    <column name="CONTENT_TYPE_GROUP_NAME" fieldName="CONTENT_TYPE_GROUP_NAME" label="Content Type Group Name" />
+  </columns>
+</dataModel>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tConsignmentUsage" alias="tConsignmentUsage" created="2016-12-22T16:51:35" modified="2016-12-22T17:09:13" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Product" parentTableSchema="dbo" parentTableName="tProduct" x="763" y="159">
+      <foreignKeyColumn columnName="ProductID" parentColumnName="ProductID" />
+    </foreignKey>
+    <foreignKey id="ConsignmentPurchaseOrder" parentTableSchema="dbo" parentTableName="tConsignmentPurchaseOrder" x="399" y="364">
+      <foreignKeyColumn columnName="ConsignmentPurchaseOrderID" parentColumnName="ConsignmentPurchaseOrderID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ConsignmentUsageID" fieldName="ConsignmentUsageID" label="Consignment Usage ID" />
+    <column name="CustomerID" fieldName="CustomerID" label="Customer ID" />
+    <column name="PacketNo" fieldName="PacketNo" label="Packet No" />
+    <column name="ConsumedOn" fieldName="ConsumedOn" label="Consumed On" format="g" />
+    <column name="ProductID" fieldName="ProductID" label="Product ID" aliasColumnName="ProductName" aliasForeignKey="Product" />
+    <column name="ProductName" fieldName="ProductName" label="Product Name" foreignKey="Product" />
+    <column name="CategoryCode" fieldName="ProductCategoryCode" label="Product Category Code" foreignKey="Product" />
+    <column name="CategoryName" fieldName="ProductCategoryName" label="Product Category Name" foreignKey="Product" />
+    <column name="Width" fieldName="ProductWidth" label="Product Width" foreignKey="Product" />
+    <column name="Thickness" fieldName="ProductThickness" label="Product Thickness" foreignKey="Product" />
+    <column name="Length" fieldName="ProductLength" label="Product Length" foreignKey="Product" />
+    <column name="InStock" fieldName="InStock" label="In Stock" />
+    <column name="Errors" fieldName="Errors" label="Errors" />
+    <column name="SentOn" fieldName="SentOn" label="Sent On" format="g" />
+    <column name="CreatedBy" fieldName="CreatedBy" label="Created By" />
+    <column name="CreatedOn" fieldName="CreatedOn" label="Created On" format="g" />
+    <column name="ModifiedBy" fieldName="ModifiedBy" label="Modified By" />
+    <column name="ModifiedOn" fieldName="ModifiedOn" label="Modified On" format="g" />
+    <column name="Price" fieldName="Price" label="Price" format="c" />
+    <column name="PriceUOM" fieldName="PriceUOM" label="Price UOM" />
+    <column name="Pieces" fieldName="Pieces" label="Pieces" />
+    <column name="Cube" fieldName="Cube" label="Cube" />
+    <column name="Area" fieldName="Area" label="Area" />
+    <column name="Lineal" fieldName="Lineal" label="Lineal" />
+    <column name="ConsignmentPurchaseOrderID" fieldName="ConsignmentPurchaseOrderID" label="Consignment Purchase Order ID" aliasColumnName="CustomerRef" aliasForeignKey="ConsignmentPurchaseOrder" />
+    <column name="CustomerRef" fieldName="ConsignmentPurchaseOrderCustomerRef" label="Consignment Purchase Order Customer Ref" foreignKey="ConsignmentPurchaseOrder" />
+  </columns>
+</dataModel>

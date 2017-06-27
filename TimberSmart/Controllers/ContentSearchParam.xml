@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="ContentSearchParam" label="ContentSearchParam" conflictDetection="overwriteChanges" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="CONTENT_DOC_TYPE" type="String" label="CONTENT DOCUMENT TYPE" length="15">
+      <items style="Lookup" dataController="ContentDocumentType" dataTextField="CONTENT_DOC_TYPE_NAME" dataValueField="CONTENT_DOC_TYPE" letters="true" description="Lookup Document Type" />
+    </field>
+  </fields>
+</dataController>

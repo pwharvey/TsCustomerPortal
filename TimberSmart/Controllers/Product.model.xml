@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tProduct" alias="tProduct" created="2016-12-22T17:06:29" modified="2016-12-22T17:13:07" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="ProductID" fieldName="ProductID" label="Product ID" />
+    <column name="ProductCode" fieldName="ProductCode" label="Product Code" />
+    <column name="ProductName" fieldName="ProductName" label="Product Name" />
+    <column name="CategoryCode" fieldName="CategoryCode" label="Category Code" />
+    <column name="CategoryName" fieldName="CategoryName" label="Category Name" />
+    <column name="Width" fieldName="Width" label="Width" />
+    <column name="Thickness" fieldName="Thickness" label="Thickness" />
+    <column name="Length" fieldName="Length" label="Length" />
+  </columns>
+</dataModel>

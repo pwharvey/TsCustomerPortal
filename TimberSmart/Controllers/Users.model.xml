@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="Users" alias="Users" created="2016-12-22T17:03:52" modified="2016-12-22T17:11:56" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="tCustomer" parentTableSchema="dbo" parentTableName="tCustomer" x="484" y="20">
+      <foreignKeyColumn columnName="CustomerID" parentColumnName="CustomerID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="UserID" fieldName="UserID" label="User ID" />
+    <column name="UserName" fieldName="UserName" label="User Name" />
+    <column name="Password" fieldName="Password" label="Password" />
+    <column name="Email" fieldName="Email" label="Email" />
+    <column name="Comment" fieldName="Comment" label="Comment" />
+    <column name="PasswordQuestion" fieldName="PasswordQuestion" label="Password Question" />
+    <column name="PasswordAnswer" fieldName="PasswordAnswer" label="Password Answer" />
+    <column name="IsApproved" fieldName="IsApproved" label="Is Approved" />
+    <column name="LastActivityDate" fieldName="LastActivityDate" label="Last Activity Date" format="g" />
+    <column name="LastLoginDate" fieldName="LastLoginDate" label="Last Login Date" format="g" />
+    <column name="LastPasswordChangedDate" fieldName="LastPasswordChangedDate" label="Last Password Changed Date" format="g" />
+    <column name="CreationDate" fieldName="CreationDate" label="Creation Date" format="g" />
+    <column name="IsLockedOut" fieldName="IsLockedOut" label="Is Locked Out" />
+    <column name="LastLockedOutDate" fieldName="LastLockedOutDate" label="Last Locked Out Date" format="g" />
+    <column name="FailedPasswordAttemptCount" fieldName="FailedPasswordAttemptCount" label="Failed Password Attempt Count" />
+    <column name="FailedPasswordAttemptWindowStart" fieldName="FailedPasswordAttemptWindowStart" label="Failed Password Attempt Window Start" format="g" />
+    <column name="FailedPasswordAnswerAttemptCount" fieldName="FailedPasswordAnswerAttemptCount" label="Failed Password Answer Attempt Count" />
+    <column name="FailedPasswordAnswerAttemptWindowStart" fieldName="FailedPasswordAnswerAttemptWindowStart" label="Failed Password Answer Attempt Window Start" format="g" />
+    <column name="CustomerID" fieldName="CustomerID" label="Customer ID" aliasColumnName="CustomerName" aliasForeignKey="tCustomer" />
+    <column name="CustomerName" fieldName="CustomerName" label="Customer Name" foreignKey="tCustomer" />
+  </columns>
+</dataModel>

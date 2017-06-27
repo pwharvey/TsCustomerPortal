@@ -20,5 +20,14 @@
       <siteMapNode title="Roles" description="View Roles" url="~/pages/roles" roles="Admins" />
     </siteMapNode>
     <siteMapNode title="My Details" description="" url="~/pages/me" roles="*" />
+    <siteMapNode title="Content Management System" description="" url="~/pages/content-management-system" roles="Content">
+      <siteMapNode title="Content" description="View Content" url="~/pages/content" roles="Content" />
+      <siteMapNode title="Content Document Type" description="View Content Document Type" url="~/pages/content-document-type" roles="Content Admin" />
+      <siteMapNode title="Content Message Commands" description="View Content Message Commands" url="~/pages/content-message-commands" roles="Content Admin" />
+      <siteMapNode title="Content Message Handler" description="View Content Message Handler" url="~/pages/content-message-handler" roles="Content Admin" />
+      <siteMapNode title="Content Message Monitor" description="View Content Message Monitor" url="~/pages/content-message-monitor" roles="Content Admin" />
+      <siteMapNode title="Content Message Settings" description="View Content Message Settings" url="~/pages/content-message-settings" roles="Content Admin" />
+      <siteMapNode title="Content Message Subscribe" description="View Content Message Subscribe" url="~/pages/content-message-subscribe" roles="Content Admin" />
+    </siteMapNode>
   </siteMapNode>
 </siteMap>

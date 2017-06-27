@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="vConsignmentStockDashboard" alias="vConsignmentStockDashboard" created="2016-12-22T17:01:23" modified="2016-12-22T17:23:13" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="tCustomer" parentTableSchema="dbo" parentTableName="tCustomer" x="317" y="20">
+      <foreignKeyColumn columnName="CustomerID" parentColumnName="CustomerID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="CustomerID" fieldName="CustomerID" label="Customer ID" primaryKey="true" aliasColumnName="CustomerName" aliasForeignKey="tCustomer" />
+    <column name="CustomerName" fieldName="CustomerCustomerName" label="Customer Name" foreignKey="tCustomer" />
+    <column name="CategoryCode" fieldName="CategoryCode" label="Category Code" primaryKey="true" />
+    <column name="CategoryName" fieldName="CategoryName" label="Category Name" />
+    <column name="Width" fieldName="Width" label="Width" primaryKey="true" />
+    <column name="Thickness" fieldName="Thickness" label="Thickness" primaryKey="true" />
+    <column name="Length" fieldName="Length" label="Length" primaryKey="true" />
+    <column name="Packets" fieldName="Packets" label="Packets" />
+    <column name="Cube" fieldName="Cube" label="Cube" />
+    <column name="Lineal" fieldName="Lineal" label="Lineal" />
+    <column name="Pieces" fieldName="Pieces" label="Pieces" />
+  </columns>
+</dataModel>

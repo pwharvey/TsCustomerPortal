@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode title="^SiteHome^Home^SiteHome^" description="" url="~/index.html">
+    <siteMapNode title="^HomePath^Home^HomePath^" description="^HomeDesc^Application home page^HomeDesc^" url="~/pages/home" roles="*" cssClass="Wide" />
+    <siteMapNode title="Consignment" description="" url="~/pages/consignment" roles="Consignment Stock,Consignment Usage" device="touch">
+      <siteMapNode title="Consignment Stock" description="View Consignment Stock" url="~/pages/consignment-stock" roles="Consignment Stock" />
+      <siteMapNode title="Consignment Usage" description="View Consignment Usage" url="~/pages/consignment-usage" roles="Consignment Usage" />
+      <siteMapNode title="Consignment Purchase Order" description="View Consignment Purchase Order" url="~/pages/consignment-purchase-order" roles="Consignment Usage" />
+    </siteMapNode>
+    <siteMapNode title="Dashboard" description="" url="~/pages/dashboard" roles="Consignment Stock,Consignment Usage,Admins">
+      <siteMapNode title="Dashboard Consignment Stock" description="" url="~/pages/dashboard-consignment-stock" roles="Consignment Stock,Admins" />
+      <siteMapNode title="Dashboard Consignment Usage" description="" url="~/pages/dashboard-consignment-usage" roles="Consignment Stock,Admins" />
+    </siteMapNode>
+    <siteMapNode title="Setup" description="" url="~/pages/setup" roles="Admins">
+      <siteMapNode title="Company" description="View Company" url="~/pages/company" roles="Admins,ITI" />
+      <siteMapNode title="Customer" description="View Customer" url="~/pages/customer" roles="Admins,ITI" />
+    </siteMapNode>
+    <siteMapNode title="Security" description="" url="~/pages/security" roles="Admins">
+      <siteMapNode title="Users" description="View Users" url="~/pages/users" roles="Admins,ITI" />
+      <siteMapNode title="Roles" description="View Roles" url="~/pages/roles" roles="Admins" />
+    </siteMapNode>
+    <siteMapNode title="My Details" description="" url="~/pages/me" roles="*" />
+    <siteMapNode title="Document Management" description="" url="~/pages/document-management" roles="Content Admin">
+      <siteMapNode title="Content Document Type" description="" url="~/pages/content-document-type" roles="Content Admin" />
+      <siteMapNode title="Content Document Type Group" description="View Content Document Type Group" url="~/pages/content-document-type-group" />
+      <siteMapNode title="Content Message Monitor" description="" url="~/pages/content-message-monitor" roles="Content Admin" />
+      <siteMapNode title="Content Message Settings" description="" url="~/pages/content-message-settings" roles="Content Admin" />
+      <siteMapNode title="Content Message Subscribe" description="" url="~/pages/content-message-subscribe" roles="Content Admin" />
+      <siteMapNode title="Content Message Handler" description="" url="~/pages/content-message-handler" roles="Content Admin" />
+      <siteMapNode title="Content Message Commands" description="" url="~/pages/content-message-commands" roles="XXX" />
+    </siteMapNode>
+    <siteMapNode title="Documents" description="" url="~/pages/documents" roles="Content">
+      <siteMapNode title="Document Search" description="" url="~/pages/document-search" roles="*" />
+      <siteMapNode title="All Documents" description="" url="~/pages/all-documents" roles="*" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="ConsignmentUsageDashboard" conflictDetection="overwriteChanges" label="Consignment Usage Dashboard" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"vConsignmentUsageDashboard"."CustomerID" "CustomerID"
+	,"tCustomer"."CustomerName" "CustomerCustomerName"
+	,"vConsignmentUsageDashboard"."ProductCategoryCode" "ProductCategoryCode"
+	,"vConsignmentUsageDashboard"."CategoryName" "CategoryName"
+	,"vConsignmentUsageDashboard"."ProductWidth" "ProductWidth"
+	,"vConsignmentUsageDashboard"."ProductThickness" "ProductThickness"
+	,"vConsignmentUsageDashboard"."ProductLength" "ProductLength"
+	,"vConsignmentUsageDashboard"."ConsumedOn" "ConsumedOn"
+	,"vConsignmentUsageDashboard"."Packets" "Packets"
+from "dbo"."vConsignmentUsageDashboard" "vConsignmentUsageDashboard"
+	left join "dbo"."tCustomer" "tCustomer" on "vConsignmentUsageDashboard"."CustomerID" = "tCustomer"."CustomerID"
+]]></text>
+    </command>
+  </commands>
+  <fields>
+    <field name="CustomerID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Customer ID" showInSummary="true">
+      <items style="Lookup" dataController="Customer" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CustomerName" />
+    </field>
+    <field name="CustomerCustomerName" type="String" readOnly="true" label="Customer Name" length="100" roles="Admins" showInSummary="true" />
+    <field name="ProductCategoryCode" type="String" isPrimaryKey="true" label="Product Category Code" length="5" showInSummary="true" hidden="true" />
+    <field name="CategoryName" type="String" label="Category Name" length="50" showInSummary="true" />
+    <field name="ProductWidth" type="Decimal" isPrimaryKey="true" label="Width" showInSummary="true" />
+    <field name="ProductThickness" type="Decimal" isPrimaryKey="true" label="Thickness" showInSummary="true" />
+    <field name="ProductLength" type="Decimal" isPrimaryKey="true" label="Length" showInSummary="true" />
+    <field name="ConsumedOn" type="DateTime" allowNulls="false" isPrimaryKey="true" label="Consumed On" showInSummary="true" />
+    <field name="Packets" type="Decimal" label="Packets" showInSummary="true" />
+    <field name="WidthAndThickness" type="String" allowNulls="false" label="Width And Thickness" allowQBE="false" allowSorting="false" computed="true" htmlEncode="false" hidden="true">
+      <formula>Cast(Cast([ProductWidth] as int) as nvarchar(10)) + Cast(Cast([ProductThickness] as int) as nvarchar(10))</formula>
+    </field>
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Consignment Usage Dashboard" sortExpression="ConsumedOn Desc, CategoryName, ProductWidth, ProductThickness, ProductLength">
+      <headerText />
+      <dataFields>
+        <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" />
+        <dataField fieldName="CustomerCustomerName" />
+        <dataField fieldName="ConsumedOn" columns="10" tag="pivot1-row1-year-columnstacked&#xD;&#xA;pivot1-row2-quarter-all&#xD;&#xA;pivot2-row1-year-columnstacked&#xD;&#xA;pivot2-row2-week-all&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+        <dataField fieldName="CategoryName" columns="50" tag="pivot1-col1&#xD;&#xA;pivot2-col1&#xD;&#xA;pivot3-pie-row1" />
+        <dataField fieldName="ProductWidth" columns="15" />
+        <dataField fieldName="ProductThickness" columns="15" />
+        <dataField fieldName="ProductLength" columns="15" />
+        <dataField fieldName="Packets" columns="15" tag="pivot1-val1-sum&#xD;&#xA;pivot2-val1-sum&#xD;&#xA;pivot3-val1-sum" />
+        <dataField fieldName="ProductCategoryCode" columns="5" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Consignment Usage Dashboard">
+      <headerText />
+      <categories>
+        <category id="c1" headerText="Consignment Usage Dashboard" newColumn="true">
+          <description />
+          <dataFields>
+            <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
+            <dataField fieldName="ConsumedOn" columns="10" />
+            <dataField fieldName="CategoryName" columns="50" />
+            <dataField fieldName="ProductWidth" columns="15" />
+            <dataField fieldName="ProductThickness" columns="15" />
+            <dataField fieldName="ProductLength" columns="15" />
+            <dataField fieldName="Packets" columns="15" />
+          </dataFields>
+        </category>
+        <category headerText="Customer" id="c2" newColumn="true">
+          <dataFields>
+            <dataField fieldName="CustomerCustomerName" />
+            <dataField fieldName="WidthAndThickness" rows="5" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag9" scope="ActionColumn">
+      <action id="a1" commandName="Edit" commandArgument="editForm1" />
+      <action id="a2" commandName="Delete" />
+    </actionGroup>
+  </actions>
+</dataController>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tContentMessageSubscribe" alias="tContentMessageSubscribe" created="2016-12-20T13:10:48" modified="2016-12-23T10:23:48" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="msg_id" fieldName="msg_id" label="Msg Id" />
+    <column name="msg_type" fieldName="msg_type" label="Msg Type" />
+    <column name="msg_content" fieldName="msg_content" label="Msg Content" />
+    <column name="msg_status" fieldName="msg_status" label="Msg Status" />
+    <column name="error_msg" fieldName="error_msg" label="Error Msg" />
+    <column name="customer_id" fieldName="customer_id" label="Customer Id" />
+    <column name="content_id" fieldName="content_id" label="Content Id" />
+    <column name="content_ver" fieldName="content_ver" label="Content Ver" />
+    <column name="ctrl_cre_date" fieldName="ctrl_cre_date" label="Ctrl Cre Date" format="g" />
+    <column name="ctrl_upd_date" fieldName="ctrl_upd_date" label="Ctrl Upd Date" format="g" />
+    <column name="ctrl_app_name" fieldName="ctrl_app_name" label="Ctrl App Name" />
+    <column name="ctrl_user_id" fieldName="ctrl_user_id" label="Ctrl User Id" />
+  </columns>
+</dataModel>

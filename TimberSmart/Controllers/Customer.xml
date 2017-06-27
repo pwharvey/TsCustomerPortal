@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="Customer" conflictDetection="overwriteChanges" label="Customer" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"tCustomer"."CustomerID" "CustomerID"
+	,"tCustomer"."CompanyID" "CompanyID"
+	,"Company"."CompanyName" "CompanyName"
+	,"tCustomer"."CustomerCode" "CustomerCode"
+	,"tCustomer"."CustomerName" "CustomerName"
+	,"tCustomer"."Enabled" "Enabled"
+	,"tCustomer"."Consignment" "Consignment"
+	,"tCustomer"."CreatedBy" "CreatedBy"
+	,"tCustomer"."CreatedOn" "CreatedOn"
+	,"tCustomer"."ModifiedBy" "ModifiedBy"
+	,"tCustomer"."ModifiedOn" "ModifiedOn"
+from "dbo"."tCustomer" "tCustomer"
+	left join "dbo"."tCompany" "Company" on "tCustomer"."CompanyID" = "Company"."CompanyID"
+]]></text>
+    </command>
+    <command id="CustomerIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="CustomerID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="CustomerID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Customer ID" readOnly="true" />
+    <field name="CompanyID" type="Int32" allowNulls="false" label="Company ID" showInSummary="true">
+      <items style="Lookup" dataController="Company" newDataView="createForm1" dataValueField="CompanyID" dataTextField="CompanyName" />
+    </field>
+    <field name="CompanyName" type="String" readOnly="true" label="Company Name" length="50" />
+    <field name="CustomerCode" type="String" allowNulls="false" label="Customer Code" length="50" showInSummary="true" />
+    <field name="CustomerName" type="String" allowNulls="false" label="Customer Name" length="100" showInSummary="true" />
+    <field name="Enabled" type="Boolean" allowNulls="false" default="((0))" label="Enabled" showInSummary="true" />
+    <field name="Consignment" type="Boolean" allowNulls="false" default="((0))" label="Consignment" showInSummary="true" />
+    <field name="CreatedBy" type="String" label="Created By" length="50" />
+    <field name="CreatedOn" type="DateTime" dataFormatString="g" label="Created On" />
+    <field name="ModifiedBy" type="String" label="Modified By" length="50" />
+    <field name="ModifiedOn" type="DateTime" dataFormatString="g" label="Modified On" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Customers">
+      <headerText />
+      <dataFields>
+        <dataField fieldName="CompanyID" aliasFieldName="CompanyName" />
+        <dataField fieldName="CustomerCode" columns="50" />
+        <dataField fieldName="CustomerName" />
+        <dataField fieldName="Consignment" />
+        <dataField fieldName="Enabled" />
+        <dataField fieldName="CreatedBy" columns="50" />
+        <dataField fieldName="CreatedOn" columns="20" />
+        <dataField fieldName="ModifiedBy" columns="50" />
+        <dataField fieldName="ModifiedOn" columns="20" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Customer">
+      <headerText />
+      <categories>
+        <category id="c1" headerText="Customer" newColumn="true">
+          <description />
+          <dataFields>
+            <dataField fieldName="CompanyID" aliasFieldName="CompanyName" hyperlinkFormatString="~/pages/Company?CompanyID={CompanyID}&amp;_controller=Company&amp;_command=Select&amp;_argument=editForm1" />
+            <dataField fieldName="CustomerCode" columns="50" />
+            <dataField fieldName="CustomerName" />
+            <dataField fieldName="Enabled" />
+            <dataField fieldName="CustomerID" columns="15" hidden="true" />
+          </dataFields>
+        </category>
+        <category headerText="Options" id="c3">
+          <dataFields>
+            <dataField fieldName="Consignment" />
+          </dataFields>
+        </category>
+        <category headerText="Last Modified" id="c2" newColumn="true">
+          <dataFields>
+            <dataField fieldName="ModifiedBy" columns="50" />
+            <dataField fieldName="ModifiedOn" columns="20" />
+            <dataField fieldName="CreatedBy" columns="50" />
+            <dataField fieldName="CreatedOn" columns="20" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Customer">
+      <headerText />
+      <categories>
+        <category id="c1" headerText="Customer" newColumn="true">
+          <description />
+          <dataFields>
+            <dataField fieldName="CompanyID" aliasFieldName="CompanyName" />
+            <dataField fieldName="CustomerCode" columns="50" />
+            <dataField fieldName="CustomerName" />
+            <dataField fieldName="Enabled" />
+          </dataFields>
+        </category>
+        <category headerText="Options" id="c2">
+          <dataFields>
+            <dataField fieldName="Consignment" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a3" commandName="Cancel" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+      <action commandName="SQL" id="a100" headerText="Get History">
+        <data><![CDATA[[dbo].[pConsignmentStockConsumeGet] 
+	@BusinessRules_UserId,
+	@CustomerID]]></data>
+      </action>
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag9" scope="ActionColumn">
+      <action id="a1" commandName="Edit" commandArgument="editForm1" />
+      <action id="a2" commandName="Delete" />
+    </actionGroup>
+    <actionGroup id="ag100" scope="ActionBar" headerText="Action Flat" flat="true">
+      <action commandName="SQL" whenKeySelected="true" id="a100" headerText="Get History">
+        <data><![CDATA[EXEC [TimberSmartWebPortal].[dbo].[pConsignmentStockConsumeGet] @BusinessRules_UserId, @CustomerID
+   ]]></data>
+      </action>
+    </actionGroup>
+  </actions>
+</dataController>

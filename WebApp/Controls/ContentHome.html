@@ -1,0 +1,80 @@
+﻿                
+<!doctype html>
+<html>
+<body>
+    <div class="ParaHeader">
+        ^TocHeader^Content Landing Page^TocHeader^
+    </div>
+    <div data-role="placeholder" data-placeholder="site-map"></div>
+
+    <div id="app-sitemap" data-app-role="page" data-activator="Button|^TocHeader^Content Landing Page^TocHeader^">
+        <p>
+            <span>^TocInstruction^Please select a page link in the table of contents below.^TocInstruction^</span>
+        </p>
+        <div class="app-site-map">
+		  <ul class="ui-listview" data-inset="false">
+			<li class="app-depth1 ui-first-child">
+			    <a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content" rel="external"> View All Documents</a>
+			    <a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=DES" rel="external"> View Despatch Documents</a>
+			    <a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=COC" rel="external"> View Consignment Order Confirmation Documents</a>
+			    <a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=INV" rel="external"> View Invoice Documents</a>
+			    <a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=PO"  rel="external"> View Purchase Order Documents</a>
+			    <a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=POD" rel="external"> View Proof of Delivery Documents</a>
+			    <a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=RA"  rel="external"> View Remittance Advice Documents</a>
+			    <a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=SOC" rel="external"> View Sales Order Confirmation Documents</a>		
+			  <br/><br/><br/><br/>
+			  <table title="" class="RadioButtonList" cellspacing="0" cellpadding="0">
+			  <tbody>
+			  <tr>
+				<td class="Button">
+				  <input name="view1_Item2" tabindex="177" id="view1_Item2_0" type="radio" checked="" value="S">
+				</td><td class="Option">
+				<label for="view1_Item2_0">Search by Source ID<label></label></label>
+				</td>
+				
+				<td class="Button">
+				  <input name="view1_Item2" tabindex="178" id="view1_Item2_1" type="radio" checked="" value="C">
+				</td><td class="Option">
+				<label for="view1_Item2_1">Search by Document ID<label></label></label>
+				</td>
+			  </tr>
+			</tbody>
+			</table>
+			  
+			  
+			  
+			  <span data-control="label" data-field="SourceID"> <span class="app-control-inner"><b>Enter ID to Search:</b></span> </span> 
+			  <input tabindex="179" title="" class="TextInput" id="textID" type="text" size="50" maxlength="250" placeholder="ID Required for search" value="">			  
+			  <a id="SourceIDLink"  class="ui-btn ui-mini ui-corner-all ui-icon-carat-r" href="~/pages/content?SOURCE_ID=" rel="external" onClick="Search_Click();"> Search </a> 			  
+			  <br/><br/><br/><br/>
+			  
+			  
+			  
+			</li>
+		  </ul>
+	    </div>
+        <p>
+            <br />
+        </p>
+    </div>
+    <script> 
+		  function Search_Click()
+		  { 
+			 if (view1_Item2_0.checked) 
+			 {
+			 	alert(" Value in Text Box =" + textID.value );
+			 	SourceIDLink.href = "content?SOURCE_ID=" + textID.value;
+			 }
+			 else if (view1_Item2_1.checked) 
+			 {
+			 	alert(" Value in Text Box =" + textID.value );
+			 	SourceIDLink.href = "content?CONTENT_ID=" + textID.value;
+			 }
+	         
+		  }
+	  
+
+    </script>
+</body>
+</html>
+              

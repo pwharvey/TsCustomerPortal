@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tContentMessageHandler" alias="tContentMessageHandler" created="2016-12-20T13:10:36" modified="2016-12-20T13:10:39" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="msg_type" fieldName="msg_type" label="Msg Type" />
+    <column name="msg_template" fieldName="msg_template" label="Msg Template" />
+    <column name="error_template" fieldName="error_template" label="Error Template" />
+    <column name="msg_handler_name" fieldName="msg_handler_name" label="Msg Handler Name" />
+    <column name="ctrl_cre_date" fieldName="ctrl_cre_date" label="Ctrl Cre Date" format="g" />
+    <column name="ctrl_upd_date" fieldName="ctrl_upd_date" label="Ctrl Upd Date" format="g" />
+    <column name="ctrl_user" fieldName="ctrl_user" label="Ctrl User" />
+  </columns>
+</dataModel>

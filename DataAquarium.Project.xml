@@ -2,19 +2,19 @@
   This file is provided to store the settings for your Data Aquarium project. 
   You can safely delete this file if no further code generation is planned.
 -->
-<project compatibility="20111118" dataModel="required" subscriptionLevel="Unlimited" name="TsCustomerPortal" prettyName="Ts Customer Portal" type="Web Site Factory" codeDomProvider="VisualBasic" targetFramework="4.6" userInterface="TouchUI" pageImplementation="html" sourceControl="git" xmlns="urn:schemas-codeontime-com:data-aquarium-project">
-  <connectionString hostDatabaseSharing="false" sessionStateMode="None">Data Source=localhost;Initial Catalog=timbersmartwebportal;Persist Security Info=True;User ID=timbersmartwebcustomer;Password=t1mber;</connectionString>
+<project compatibility="20111118" dataModel="required" subscriptionLevel="Unlimited" name="TsCustomerPortal" prettyName="Ts Customer Portal" type="Web App Factory" codeDomProvider="VisualBasic" targetFramework="4.6" userInterface="TouchUI" pageImplementation="html" sourceControl="tfs" xmlns="urn:schemas-codeontime-com:data-aquarium-project">
+  <connectionString hostDatabaseSharing="false" sessionStateMode="None">Data Source=tsmel02;Initial Catalog=TimberSmartITIWebPortal;Persist Security Info=True;User ID=timbersmart;Password=T1mberSm@rt;</connectionString>
   <providerName>System.Data.SqlClient</providerName>
   <namespace>TimberSmart</namespace>
   <webServer run="true" port="9201">
     <webConfig></webConfig>
   </webServer>
-  <features pageHeader="" copyright="" annotations="false" annotationsPath="" newColumn="true" floating="false" maxGridFields="100" multiSelect="true" batchEdit="false" advancedSearch="false" advancedLookup="false" relationshipExplorer="true" enablePermalinks="false" enableHistory="false" enableTransactions="false" showModalForms="true" tabViewSelection="6" useSaveAndNew="true">
+  <features pageHeader="" copyright="" annotations="false" annotationsPath="" newColumn="true" floating="false" maxGridFields="100" multiSelect="true" batchEdit="true" advancedSearch="false" advancedLookup="false" relationshipExplorer="true" enablePermalinks="false" enableHistory="false" enableTransactions="false" showModalForms="false" tabViewSelection="5" useSaveAndNew="true">
     <navigation detectUnderscoreSeparatedSchema="" />
     <blob allowUploadOnInsert="true" />
     <framework scriptOnly="true" useExtenders="false" />
-    <grid actionColumn="true" />
-    <touch desktopDisplayDensity="Condensed" mobileDisplayDensity="Auto" transitions="" sidebar="Landscape" labelsInForm="AlignedLeft" buttonShapes="true" labelsInList="DisplayedBelow" initialListMode="SeeAll" promoteActions="true" mapApiIdentifier="" smartDates="true" />
+    <grid actionColumn="false" />
+    <touch desktopDisplayDensity="Condensed" mobileDisplayDensity="Auto" transitions="" sidebar="Landscape" labelsInForm="AlignedLeft" buttonShapes="true" labelsInList="DisplayedAbove" initialListMode="SeeAll" promoteActions="true" mapApiIdentifier="" smartDates="false" />
     <cms searchEngine="" analysisEngine="" analysisOnDataPages="false" />
     <ease urlHashing="false">
       <auditing>Modified By User Name = ModifiedBy|updated_by
@@ -30,7 +30,7 @@ Created On Date           = CreatedOn|create_date</auditing>
   <reports enabled="true" />
   <host path="" url="" />
   <databaseObjectFilter generate="ControllersAndPages"></databaseObjectFilter>
-  <bll discoveryDepth="3" labelFormatExpression="" generate="false" selectMethod="Select" selectSingleMethod="SelectSingle" insertMethod="Insert" updateMethod="Update" deleteMethod="Delete" generateSharedBusinessRules="true" includeViews="true" tabViewSelection="0" normalizeModelNames="true">
+  <bll discoveryDepth="3" labelFormatExpression="" generate="false" selectMethod="Select" selectSingleMethod="SelectSingle" insertMethod="Insert" updateMethod="Update" deleteMethod="Delete" generateSharedBusinessRules="true" includeViews="true" tabViewSelection="7" normalizeModelNames="false">
     <fieldMap></fieldMap>
     <keys></keys>
     <fieldsToIgnore></fieldsToIgnore>
@@ -69,6 +69,6 @@ column [int|uiid] RoleID =  RoleID
 </config>
   </membership>
   <globalization uiCulture="en-NZ" culture="en-NZ" enableClientBasedCulture="false" supportedCultures="en-NZ,en-NZ; en-NZ,en-GB; " googleTranslateApiKey="" />
-  <layout name="Classic" menuStyle="MultiLevel" />
+  <layout name="Classic" menuStyle="TwoLevel" />
   <theme name="Aquarium" />
 </project>

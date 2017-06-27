@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tContent" alias="tContent" created="2016-12-20T13:10:11" modified="2017-04-24T13:31:41" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="tContentDocumentType" parentTableSchema="dbo" parentTableName="tContentDocumentType" x="354" y="20">
+      <foreignKeyColumn columnName="CONTENT_DOC_TYPE" parentColumnName="CONTENT_DOC_TYPE" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="CUSTOMER_ID" fieldName="CUSTOMER_ID" label="Customer Id" />
+    <column name="CONTENT_ID" fieldName="CONTENT_ID" label="Content Id" />
+    <column name="CONTENT_VER" fieldName="CONTENT_VER" label="Content Ver" />
+    <column name="CONTENT_DOC_TYPE" fieldName="CONTENT_DOC_TYPE" label="Content Doc Type" aliasColumnName="CONTENT_TYPE_GROUP" aliasForeignKey="tContentDocumentType" />
+    <column name="CONTENT_TYPE_GROUP" fieldName="TcontentdocumenttypecontentTypeGroup" label="Tcontentdocumenttypecontent Type Group" foreignKey="tContentDocumentType" />
+    <column name="CONTENT_DOC_TYPE_NAME" fieldName="TcontentdocumenttypecontentDocTypeName" label="Tcontentdocumenttypecontent Doc Type Name" foreignKey="tContentDocumentType" />
+    <column name="CONTENT_NAME" fieldName="CONTENT_NAME" label="Content Name" />
+    <column name="CONTENT_PATH" fieldName="CONTENT_PATH" label="Content Path" />
+    <column name="EFFECTIVE_IND" fieldName="EFFECTIVE_IND" label="Effective Ind" />
+    <column name="LAST_VERSION_IND" fieldName="LAST_VERSION_IND" label="Last Version Ind" />
+    <column name="CTRL_USER_ID" fieldName="CTRL_USER_ID" label="Ctrl User Id" />
+    <column name="CTRL_CRE_DATE" fieldName="CTRL_CRE_DATE" label="Ctrl Cre Date" format="g" />
+    <column name="CTRL_UPD_DATE" fieldName="CTRL_UPD_DATE" label="Ctrl Upd Date" format="g" />
+    <column name="CTRL_APP_NAME" fieldName="CTRL_APP_NAME" label="Ctrl App Name" />
+    <column name="SECURITY_PROF" fieldName="SECURITY_PROF" label="Security Prof" />
+    <column name="NOTES" fieldName="NOTES" label="Notes" />
+    <column name="SOURCE_ID" fieldName="SourceID" label="Source ID" />
+  </columns>
+</dataModel>

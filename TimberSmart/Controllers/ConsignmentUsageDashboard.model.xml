@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="vConsignmentUsageDashboard" alias="vConsignmentUsageDashboard" created="2016-12-22T16:48:51" modified="2016-12-22T16:50:54" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="tCustomer" parentTableSchema="dbo" parentTableName="tCustomer" x="351" y="20">
+      <foreignKeyColumn columnName="CustomerID" parentColumnName="CustomerID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="CustomerID" fieldName="CustomerID" label="Customer ID" primaryKey="true" aliasColumnName="CustomerName" aliasForeignKey="tCustomer" />
+    <column name="CustomerName" fieldName="CustomerCustomerName" label="Customer Name" foreignKey="tCustomer" />
+    <column name="ProductCategoryCode" fieldName="ProductCategoryCode" label="Product Category Code" primaryKey="true" />
+    <column name="CategoryName" fieldName="CategoryName" label="Category Name" />
+    <column name="ProductWidth" fieldName="ProductWidth" label="Product Width" primaryKey="true" />
+    <column name="ProductThickness" fieldName="ProductThickness" label="Product Thickness" primaryKey="true" />
+    <column name="ProductLength" fieldName="ProductLength" label="Product Length" primaryKey="true" />
+    <column name="ConsumedOn" fieldName="ConsumedOn" label="Consumed On" primaryKey="true" />
+    <column name="Packets" fieldName="Packets" label="Packets" />
+  </columns>
+</dataModel>

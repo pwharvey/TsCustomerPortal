@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="ContentParam" label="ContentParam" conflictDetection="overwriteChanges" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="ContentID" type="String" label="Content ID" />
+    <field name="SourceID" type="String" label="Number Reference" />
+  </fields>
+</dataController>

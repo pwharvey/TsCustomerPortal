@@ -411,6 +411,8 @@ generation library.
 
 ^GridActionHeaderText^Show in Standard View^GridActionHeaderText^
 
+^GridViewStyle^Grid^GridViewStyle^
+
 ^Group^Group^Group^
 
 ^GroupByField^Select a field to group <b>{0}</b>.^GroupByField^

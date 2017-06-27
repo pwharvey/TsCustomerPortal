@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="ConsignmentUsage" conflictDetection="overwriteChanges" label="Consignment Usage" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"tConsignmentUsage"."ConsignmentUsageID" "ConsignmentUsageID"
+	,"tConsignmentUsage"."CustomerID" "CustomerID"
+	,"tConsignmentUsage"."PacketNo" "PacketNo"
+	,"tConsignmentUsage"."ConsumedOn" "ConsumedOn"
+	,"tConsignmentUsage"."ProductID" "ProductID"
+	,"Product"."ProductName" "ProductName"
+	,"Product"."CategoryCode" "ProductCategoryCode"
+	,"Product"."CategoryName" "ProductCategoryName"
+	,"Product"."Width" "ProductWidth"
+	,"Product"."Thickness" "ProductThickness"
+	,"Product"."Length" "ProductLength"
+	,"tConsignmentUsage"."InStock" "InStock"
+	,"tConsignmentUsage"."Errors" "Errors"
+	,"tConsignmentUsage"."SentOn" "SentOn"
+	,"tConsignmentUsage"."CreatedBy" "CreatedBy"
+	,"tConsignmentUsage"."CreatedOn" "CreatedOn"
+	,"tConsignmentUsage"."ModifiedBy" "ModifiedBy"
+	,"tConsignmentUsage"."ModifiedOn" "ModifiedOn"
+	,"tConsignmentUsage"."Price" "Price"
+	,"tConsignmentUsage"."PriceUOM" "PriceUOM"
+	,"tConsignmentUsage"."Pieces" "Pieces"
+	,"tConsignmentUsage"."Cube" "Cube"
+	,"tConsignmentUsage"."Area" "Area"
+	,"tConsignmentUsage"."Lineal" "Lineal"
+	,"tConsignmentUsage"."ConsignmentPurchaseOrderID" "ConsignmentPurchaseOrderID"
+	,"ConsignmentPurchaseOrder"."CustomerRef" "ConsignmentPurchaseOrderCustomerRef"
+from "dbo"."tConsignmentUsage" "tConsignmentUsage"
+	left join "dbo"."tProduct" "Product" on "tConsignmentUsage"."ProductID" = "Product"."ProductID"
+	left join "dbo"."tConsignmentPurchaseOrder" "ConsignmentPurchaseOrder" on "tConsignmentUsage"."ConsignmentPurchaseOrderID" = "ConsignmentPurchaseOrder"."ConsignmentPurchaseOrderID"
+]]></text>
+    </command>
+    <command id="ConsignmentUsageIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="ConsignmentUsageID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="ConsignmentUsageID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Consignment Usage ID" readOnly="true" />
+    <field name="CustomerID" type="Int32" allowNulls="false" label="Customer ID" showInSummary="true" />
+    <field name="PacketNo" type="String" label="Packet No" length="50" showInSummary="true" causesCalculate="true" />
+    <field name="ConsumedOn" type="DateTime" allowNulls="false" dataFormatString="g" label="Consumed On" showInSummary="true" />
+    <field name="Cube" type="Decimal" label="Cube" />
+    <field name="Area" type="Decimal" label="Area" />
+    <field name="Lineal" type="Decimal" label="Lineal" />
+    <field name="Price" type="Decimal" dataFormatString="c" label="Price" roles="Consignment Pricing" />
+    <field name="Pieces" type="Int32" label="Pieces" />
+    <field name="ProductID" type="Int32" label="Product ID" showInSummary="true">
+      <items style="Lookup" dataController="Product" dataValueField="ProductID" dataTextField="ProductName" copy="ProductCategoryCode=CategoryCode, ProductCategoryName=CategoryName, ProductWidth=Width, ProductThickness=Thickness, ProductLength=Length" />
+    </field>
+    <field name="ProductName" type="String" label="Product Name" length="70" showInSummary="true" readOnly="true" />
+    <field name="ProductCategoryCode" type="String" readOnly="true" label="Category Code" length="5" />
+    <field name="ProductCategoryName" type="String" readOnly="true" label="Category Name" length="50" />
+    <field name="ProductWidth" type="Decimal" readOnly="true" label="Width" />
+    <field name="ProductThickness" type="Decimal" readOnly="true" label="Thickness" />
+    <field name="ProductLength" type="Decimal" readOnly="true" label="Length" />
+    <field name="InStock" type="Boolean" default="((0))" label="In Stock" showInSummary="true" />
+    <field name="Errors" type="String" label="Errors" length="250" />
+    <field name="SentOn" type="DateTime" dataFormatString="g" label="Sent On" />
+    <field name="CreatedBy" type="String" label="Created By" length="50" />
+    <field name="CreatedOn" type="DateTime" dataFormatString="g" label="Created On" />
+    <field name="ModifiedBy" type="String" label="Modified By" length="50" />
+    <field name="ModifiedOn" type="DateTime" dataFormatString="g" label="Modified On" />
+    <field name="PriceUOM" type="String" label="Price UOM" length="50" />
+    <field name="ConsignmentPurchaseOrderID" type="Int32" label="Purchase Order No">
+      <items style="Lookup" dataController="ConsignmentPurchaseOrder" dataValueField="ConsignmentPurchaseOrderID" dataTextField="ConsignmentPurchaseOrderID" />
+    </field>
+    <field name="ConsignmentPurchaseOrderCustomerRef" type="String" readOnly="true" label="Customer Ref" length="50" />
+    <field name="LastPacketNo" type="String" label="Last Packet No" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="20" />
+    <field name="LastError" type="String" label="Last Error" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="100" />
+    <field name="LastProductName" type="String" label="Last Product" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" length="100" />
+    <field name="WidthAndThickness" type="String" allowNulls="false" label="Width And Thickness" allowQBE="false" allowSorting="false" computed="true" htmlEncode="false" hidden="false">
+      <formula>Cast(Cast([Width] as int) as nvarchar(10)) + Cast(Cast([Thickness] as int) as nvarchar(10)) </formula>
+    </field>
+    <field name="Empty" type="String" label="Empty" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" />
+  </fields>
+  <views>
+    <view id="gridEntered" type="Grid" commandId="command1" label="Usage Entered" filter="SentOn IS NULL" sortExpression="ConsignmentUsageID desc" reportTemplate="true">
+      <headerText />
+      <dataFields>
+        <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count" />
+        <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" columns="100" />
+        <dataField fieldName="ConsumedOn" columns="20" tag="pivot1-row1-columnstacked-date" />
+        <dataField fieldName="InStock" />
+        <dataField fieldName="Errors" />
+        <dataField fieldName="SentOn" columns="20" />
+        <dataField fieldName="Pieces" columns="15" />
+        <dataField fieldName="Cube" columns="15" />
+        <dataField fieldName="Area" columns="15" />
+        <dataField fieldName="Lineal" columns="15" />
+        <dataField fieldName="Price" columns="15" />
+        <dataField fieldName="PriceUOM" columns="50" />
+        <dataField fieldName="ProductCategoryCode" columns="5" hidden="true" />
+        <dataField fieldName="ProductCategoryName" columns="50" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
+        <dataField fieldName="ProductWidth" columns="15" />
+        <dataField fieldName="ProductThickness" columns="15" />
+        <dataField fieldName="ProductLength" columns="15" />
+        <dataField fieldName="CustomerID" columns="15" hidden="true" />
+        <dataField fieldName="WidthAndThickness" rows="5" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="gridSent" commandId="command1" type="Grid" label="Usage Sent" filter="NOT SentOn IS NULL" sortExpression="ConsignmentUsageID desc" reportTemplate="true">
+      <dataFields>
+        <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count" />
+        <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" columns="100" />
+        <dataField fieldName="ConsumedOn" columns="20" tag="pivot1-row1-columnstacked-date" />
+        <dataField fieldName="Price" columns="15" />
+        <dataField fieldName="PriceUOM" columns="50" />
+        <dataField fieldName="ConsignmentPurchaseOrderID" columns="15" />
+        <dataField fieldName="ConsignmentPurchaseOrderCustomerRef" columns="50" />
+        <dataField fieldName="SentOn" columns="20" />
+        <dataField fieldName="Pieces" columns="15" />
+        <dataField fieldName="Cube" columns="15" />
+        <dataField fieldName="Area" columns="15" />
+        <dataField fieldName="Lineal" columns="15" />
+        <dataField fieldName="ProductCategoryCode" columns="5" tag="pivot1-col1" hidden="true" />
+        <dataField fieldName="ProductCategoryName" columns="50" tag="pivot1-col11&#xD;&#xA;pivot2-row1-pie" />
+        <dataField fieldName="ProductWidth" columns="15" />
+        <dataField fieldName="ProductThickness" columns="15" />
+        <dataField fieldName="ProductLength" columns="15" />
+      </dataFields>
+    </view>
+    <view id="gridErrors" commandId="command1" type="Grid" label="Usage Errors" filter="NOT Errors IS NULL" sortExpression="ConsignmentUsageID desc" reportTemplate="true">
+      <dataFields>
+        <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count" />
+        <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" columns="100" />
+        <dataField fieldName="ConsumedOn" columns="20" tag="pivot1-row1-column-date" />
+        <dataField fieldName="InStock" />
+        <dataField fieldName="Errors" />
+        <dataField fieldName="SentOn" columns="20" />
+        <dataField fieldName="ProductCategoryCode" columns="5" />
+        <dataField fieldName="ProductWidth" columns="15" />
+        <dataField fieldName="ProductThickness" columns="15" />
+        <dataField fieldName="ProductLength" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Consignment Usage">
+      <headerText />
+      <categories>
+        <category id="c1" headerText="Consignment Usage" newColumn="true">
+          <description />
+          <dataFields>
+            <dataField fieldName="PacketNo" columns="50" />
+            <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" textMode="Static" />
+            <dataField fieldName="ConsumedOn" columns="20" textMode="Static" />
+            <dataField fieldName="PriceUOM" columns="50" />
+          </dataFields>
+        </category>
+        <category headerText="Measures" id="c4">
+          <dataFields>
+            <dataField fieldName="Area" columns="15" />
+            <dataField fieldName="Lineal" columns="15" />
+            <dataField fieldName="Pieces" columns="15" />
+            <dataField fieldName="Cube" columns="15" />
+          </dataFields>
+        </category>
+        <category headerText="Pricing" id="c5" newColumn="true">
+          <dataFields>
+            <dataField fieldName="Price" columns="15" />
+          </dataFields>
+        </category>
+        <category headerText="Stock Status" id="c3">
+          <dataFields>
+            <dataField fieldName="InStock" textMode="Static" />
+            <dataField fieldName="Errors" textMode="Static" />
+          </dataFields>
+        </category>
+        <category headerText="Purchase Order" id="c6">
+          <dataFields>
+            <dataField fieldName="ConsignmentPurchaseOrderID" hyperlinkFormatString="~/pages/ConsignmentPurchaseOrder?ConsignmentPurchaseOrderID={ConsignmentPurchaseOrderID}&amp;_controller=ConsignmentPurchaseOrder&amp;_command=Select&amp;_argument=editForm1" />
+            <dataField fieldName="ConsignmentPurchaseOrderCustomerRef" columns="50" />
+            <dataField fieldName="SentOn" columns="20" textMode="Static" />
+          </dataFields>
+        </category>
+        <category headerText="Modification History" id="c2" collapsed="true">
+          <dataFields>
+            <dataField fieldName="CreatedBy" columns="50" textMode="Static" />
+            <dataField fieldName="CreatedOn" columns="20" textMode="Static" />
+            <dataField fieldName="ModifiedBy" columns="50" textMode="Static" />
+            <dataField fieldName="ModifiedOn" columns="20" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Consignment Usage">
+      <headerText>This form is designed for quick entry of packets consumed by scanning or entering packets.  When a packet is scanned or entered the record will be added without the need to click an OK button. </headerText>
+      <categories>
+        <category id="c1" headerText="Consignment Usage" newColumn="true">
+          <description />
+          <dataFields>
+            <dataField fieldName="PacketNo" columns="50" />
+            <dataField fieldName="ProductID" aliasFieldName="ProductName" textMode="Text" />
+            <dataField fieldName="ConsumedOn" columns="20" textMode="Text" />
+            <dataField fieldName="ProductCategoryCode" columns="5" hidden="true" />
+            <dataField fieldName="ProductCategoryName" columns="50" hidden="true" />
+            <dataField fieldName="ProductWidth" columns="15" hidden="true" />
+            <dataField fieldName="ProductThickness" columns="15" hidden="true" />
+            <dataField fieldName="ProductLength" columns="15" hidden="true" />
+            <dataField fieldName="Price" columns="15" hidden="true" />
+            <dataField fieldName="PriceUOM" columns="50" hidden="true" />
+            <dataField fieldName="Pieces" columns="15" hidden="true" />
+            <dataField fieldName="Cube" columns="15" hidden="true" />
+            <dataField fieldName="Area" columns="15" hidden="true" />
+            <dataField fieldName="Lineal" columns="15" hidden="true" />
+            <dataField fieldName="Errors" rows="5" hidden="true" />
+            <dataField fieldName="InStock" hidden="true" />
+            <dataField fieldName="CustomerID" columns="15" hidden="true" />
+          </dataFields>
+        </category>
+        <category headerText="Last Entered" id="c3" newColumn="true">
+          <dataFields>
+            <dataField fieldName="LastPacketNo" textMode="Static" />
+            <dataField fieldName="LastProductName" textMode="Static" />
+            <dataField fieldName="LastError" textMode="Static" />
+          </dataFields>
+          <description><![CDATA[Details of the last packet scanned or entered]]></description>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="createForm1" headerText="New Usage" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action commandName="Insert" commandArgument="CANCEL" headerText="Close" whenLastCommandName="New" id="a100" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" headerText="New Usage" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="gridEntered" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag9" scope="ActionColumn">
+      <action id="a1" commandName="Edit" commandArgument="editForm1" />
+      <action id="a2" commandName="Delete" />
+    </actionGroup>
+    <actionGroup id="ag100" scope="ActionBar" headerText="Actions Flat" flat="true">
+      <action commandName="SQL" id="a100" headerText="Send To Supplier" roles="Consignment Edit" confirmation="_controller=ConsignmentUsageSend&#xD;&#xA;_title=Send Usage">
+        <data><![CDATA[EXEC	[dbo].[pConsignmentStockConsume] @BusinessRules_UserId, @Parameters_CustomerRef
+SET @Result_Refresh = 1]]></data>
+      </action>
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="New" type="Sql" phase="Execute"><![CDATA[SELECT @CustomerID = (SELECT CustomerID FROM Users WHERE Users.UserID = @BusinessRules_UserId)
+SELECT @ConsumedOn = GetDate()	
+]]></rule>
+    <rule id="r101" commandName="Calculate" type="Sql" phase="Execute"><![CDATA[DECLARE @ExistingPacketNo nvarchar(50)
+DECLARE @ExistingProductID int
+DECLARE @ExistingProductName nvarchar(100)
+DECLARE @ExistingPieces int
+DECLARE @ExistingCube decimal(18,3)
+DECLARE @ExistingArea decimal(18,3)
+DECLARE @ExistingLineal decimal(18,3)
+DECLARE @ExistingPrice decimal(18,2)
+DECLARE @ExistingUOM nvarchar(50)
+DECLARE @Success as bit
+DECLARE @PacketCount as int 
+DECLARE @PreviouslyConsumedOn date
+BEGIN
+    SET @Success = 1
+	SET @Errors = null
+	SELECT
+	  @PacketCount = count(*),
+	  @PreviouslyConsumedOn = min(ConsumedOn)
+    FROM
+	  tConsignmentUsage
+    WHERE
+	  tConsignmentUsage.CustomerID = @CustomerID and
+	  tConsignmentUsage.PacketNo = @PacketNo and 
+	  tConsignmentUsage.ConsignmentUsageID <> ISNULL(@ConsignmentUsageID,0)
+     		
+	IF @PacketCount > 0
+	BEGIN			
+		SET @ProductID = null
+		SET @ProductName = null
+		SET @Errors = 'Packet already consumed on ' + Convert(nvarchar(30), @PreviouslyConsumedOn,103)
+		SET @InStock = 0
+		SET @Pieces = null
+		SET @Cube = null
+		SET @Area = null
+		SET @Lineal = null
+		SET @Price = null
+		SET @PriceUom = null
+	END
+	ELSE
+	BEGIN	
+		SELECT
+			@ExistingPacketNo = PacketNo,
+			@ExistingProductID = tConsignmentStock.ProductID,
+			@ExistingProductName = ProductName,
+			@ExistingPieces = Pieces,
+			@ExistingCube = Cube,			
+			@ExistingArea = Area,
+			@ExistingLineal = Lineal,
+			@ExistingPrice = Price,
+			@ExistingUOM = PriceUOM 
+	  	FROM
+			tConsignmentStock
+		INNER JOIN
+			tProduct
+		ON
+			tProduct.ProductID = tConsignmentStock.ProductID		
+	  WHERE
+		tConsignmentStock.CustomerID = @CustomerID and
+		tConsignmentStock.PacketNo = @PacketNo	  
+
+	  IF @ExistingPacketNo IS NULL 
+	  BEGIN	  	   
+		SET @ProductID = null
+		SET @ProductName = null
+		SET @Errors = 'Packet is not on consignment'
+		SET @InStock = 0		
+		SET @Pieces = null
+		SET @Cube = null
+		SET @Area = null
+		SET @Lineal = null
+		SET @Price = null
+		SET @PriceUom = null
+	  END
+	  ELSE
+	  BEGIN
+		  SET @ProductID = @ExistingProductID
+		  SET @ProductName = @ExistingProductName
+		  SET @InStock = 1
+		  SET @Errors = null
+		  SET @Pieces = @ExistingPieces
+		SET @Cube = @ExistingCube
+		SET @Area = @ExistingArea
+		SET @Lineal = @ExistingLineal
+		SET @Price = @ExistingPrice
+		SET @PriceUom = @ExistingUOM
+		
+	  END
+	END
+	  
+	INSERT INTO tConsignmentUsage
+		([CustomerID]
+		,[PacketNo]
+		,[ProductID]
+		,[ConsumedOn]
+		,[Pieces]
+		,[Cube] 
+		,[Area]
+		,[Lineal] 
+		,[Price]
+		,[PriceUOM]
+		,[InStock]
+		,[Errors]
+		,[SentOn]
+		,[CreatedBy]
+		,[CreatedOn]
+		,[ModifiedBy]
+		,[ModifiedOn])           
+	SELECT
+		@CustomerID,
+		@PacketNo,
+		@ProductID,
+		@ConsumedOn,
+		@Pieces,
+		@Cube,
+		@Area,
+		@Lineal, 
+		@Price,
+		@PriceUom, 	
+		@InStock,
+		@Errors,
+		null,
+		@BusinessRules_UserName,
+		GetDate(),
+		@BusinessRules_UserName,
+		GetDate();
+
+	SET @LastPacketNo = @PacketNo;
+	SET @LastError = @Errors;
+	SET @LastProductName = @ProductName;
+	SET @PacketNo = null
+	SET @Errors = null
+	SET @InStock = 0
+	SET @ProductID = null
+	SET @ProductName = null
+	SET @Pieces = null
+	SET @Cube = null
+	SET @Area = null
+	SET @Lineal = null
+	SET @Price = null
+	SET @PriceUom = null
+	SET @ConsumedOn = GetDate()	
+
+	
+	SET @Result_Focus = 'PacketNo';
+
+	  	
+	
+	
+END]]></rule>
+    <rule id="r102" commandName="Insert" commandArgument="CANCEL" type="Sql" phase="Before"><![CDATA[SET @BusinessRules_PreventDefault = 1
+]]></rule>
+  </businessRules>
+</dataController>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tContentMessageCommandLookup" alias="tContentMessageCommandLookup" created="2017-01-05T10:54:02" modified="2017-01-05T12:06:02" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="COMMAND_DESCRIPTION" fieldName="COMMAND_DESCRIPTION" label="Command Description" />
+    <column name="COMMAND" fieldName="Command" label="Command" />
+  </columns>
+</dataModel>

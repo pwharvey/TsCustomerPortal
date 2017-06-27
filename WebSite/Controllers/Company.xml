@@ -34,45 +34,45 @@ from "dbo"."tCompany" "tCompany"
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Company">
-      <headerText />
+      <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
         <dataField fieldName="CompanyName" columns="50" />
-        <dataField fieldName="LinkedServerName" columns="50" />
-        <dataField fieldName="DatabaseName" columns="50" />
         <dataField fieldName="CreatedBy" columns="50" />
         <dataField fieldName="CreatedOn" columns="20" />
         <dataField fieldName="ModifiedBy" columns="50" />
         <dataField fieldName="ModifiedOn" columns="20" />
+        <dataField fieldName="LinkedServerName" columns="50" />
+        <dataField fieldName="DatabaseName" columns="50" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Company">
-      <headerText />
+      <headerText>$DefaultEditViewDescription</headerText>
       <categories>
         <category id="c1" headerText="Company" newColumn="true">
-          <description />
+          <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
             <dataField fieldName="CompanyName" columns="50" />
-            <dataField fieldName="LinkedServerName" columns="50" />
-            <dataField fieldName="DatabaseName" columns="50" />
-          </dataFields>
-        </category>
-        <category headerText="Modified By" id="c2" newColumn="true">
-          <dataFields>
-            <dataField fieldName="ModifiedBy" columns="50" />
-            <dataField fieldName="ModifiedOn" columns="20" />
             <dataField fieldName="CreatedBy" columns="50" />
             <dataField fieldName="CreatedOn" columns="20" />
+            <dataField fieldName="ModifiedBy" columns="50" />
+            <dataField fieldName="ModifiedOn" columns="20" />
+            <dataField fieldName="LinkedServerName" columns="50" />
+            <dataField fieldName="DatabaseName" columns="50" />
           </dataFields>
         </category>
       </categories>
     </view>
     <view id="createForm1" type="Form" commandId="command1" label="New Company">
-      <headerText />
+      <headerText>$DefaultCreateViewDescription</headerText>
       <categories>
         <category id="c1" headerText="New Company" newColumn="true">
-          <description />
+          <description><![CDATA[$DefaultNewDescription]]></description>
           <dataFields>
             <dataField fieldName="CompanyName" columns="50" />
+            <dataField fieldName="CreatedBy" columns="50" />
+            <dataField fieldName="CreatedOn" columns="20" />
+            <dataField fieldName="ModifiedBy" columns="50" />
+            <dataField fieldName="ModifiedOn" columns="20" />
             <dataField fieldName="LinkedServerName" columns="50" />
             <dataField fieldName="DatabaseName" columns="50" />
           </dataFields>
@@ -86,7 +86,8 @@ from "dbo"."tCompany" "tCompany"
       <action id="a2" commandName="Edit" />
       <action id="a3" commandName="Delete" />
       <action id="a6" />
-      <action id="a7" commandName="New" commandArgument="createForm1" headerText="New Company" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
     </actionGroup>
     <actionGroup id="ag2" scope="Form">
       <action id="a1" commandName="Edit" />
@@ -97,14 +98,13 @@ from "dbo"."tCompany" "tCompany"
       <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
       <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
       <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
       <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
       <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
-      <action commandName="SQL" headerText="Get Customers" id="a100">
-        <data><![CDATA[EXEC pCustomerGet @CompanyID, @BusinessRules_UserId]]></data>
-      </action>
     </actionGroup>
     <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
-      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" headerText="New Company" />
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
     </actionGroup>
     <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
       <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
@@ -112,6 +112,13 @@ from "dbo"."tCompany" "tCompany"
     </actionGroup>
     <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
       <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
     </actionGroup>
     <actionGroup id="ag6" scope="ActionBar" headerText="Record">
       <action id="a1" whenLastCommandName="Edit" commandName="Update" />
@@ -134,11 +141,6 @@ from "dbo"."tCompany" "tCompany"
     <actionGroup id="ag9" scope="ActionColumn">
       <action id="a1" commandName="Edit" commandArgument="editForm1" />
       <action id="a2" commandName="Delete" />
-    </actionGroup>
-    <actionGroup id="ag100" scope="ActionBar" headerText="Action Flat" flat="true">
-      <action commandName="SQL" headerText="Get Customers" whenKeySelected="true" id="a100">
-        <data><![CDATA[EXEC pCustomerGet @CompanyID, @BusinessRules_UserId]]></data>
-      </action>
     </actionGroup>
   </actions>
 </dataController>

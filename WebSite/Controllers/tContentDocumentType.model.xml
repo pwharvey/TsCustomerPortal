@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tContentDocumentType" alias="tContentDocumentType" created="2016-12-20T13:10:29" modified="2016-12-20T13:10:30" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="CONTENT_DOC_TYPE" fieldName="CONTENT_DOC_TYPE" label="Content Doc Type" />
+    <column name="CONTENT_DOC_TYPE_NAME" fieldName="CONTENT_DOC_TYPE_NAME" label="Content Doc Type Name" />
+  </columns>
+</dataModel>

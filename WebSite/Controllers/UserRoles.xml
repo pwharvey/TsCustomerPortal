@@ -16,39 +16,39 @@ from "dbo"."UserRoles" "UserRoles"
   </commands>
   <fields>
     <field name="UserID" type="Int32" allowNulls="false" isPrimaryKey="true" label="User ID" showInSummary="true">
-      <items style="Lookup" dataController="Users" newDataView="createForm1" dataValueField="UserID" dataTextField="UserName" dataView="grid1" />
+      <items style="Lookup" dataController="Users" newDataView="createForm1" dataValueField="UserID" dataTextField="UserName" />
     </field>
     <field name="UserName" type="String" readOnly="true" label="User Name" length="128" />
     <field name="RoleID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Role ID" showInSummary="true">
-      <items style="Lookup" dataController="Roles" newDataView="createForm1" dataValueField="RoleID" dataTextField="RoleName" dataView="grid1" />
+      <items style="Lookup" dataController="Roles" newDataView="createForm1" dataValueField="RoleID" dataTextField="RoleName" />
     </field>
     <field name="RoleName" type="String" readOnly="true" label="Role Name" length="50" />
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="User Roles">
-      <headerText />
+      <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
         <dataField fieldName="UserID" aliasFieldName="UserName" />
-        <dataField fieldName="RoleID" aliasFieldName="RoleName" />
+        <dataField fieldName="RoleID" aliasFieldName="RoleName" hyperlinkFormatString="~/pages/Roles?RoleID={RoleID}&amp;_controller=Roles&amp;_command=Select&amp;_argument=editForm1" />
       </dataFields>
     </view>
-    <view id="editForm1" type="Form" commandId="command1" label="Review User Role">
-      <headerText />
+    <view id="editForm1" type="Form" commandId="command1" label="Review User Roles">
+      <headerText>$DefaultEditViewDescription</headerText>
       <categories>
-        <category id="c1" headerText="User Role" newColumn="true">
-          <description />
+        <category id="c1" headerText="User Roles" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
-            <dataField fieldName="UserID" aliasFieldName="UserName" />
-            <dataField fieldName="RoleID" aliasFieldName="RoleName" />
+            <dataField fieldName="UserID" aliasFieldName="UserName" hyperlinkFormatString="~/pages/Users?UserID={UserID}&amp;_controller=Users&amp;_command=Select&amp;_argument=editForm1" />
+            <dataField fieldName="RoleID" aliasFieldName="RoleName" hyperlinkFormatString="~/pages/Roles?RoleID={RoleID}&amp;_controller=Roles&amp;_command=Select&amp;_argument=editForm1" />
           </dataFields>
         </category>
       </categories>
     </view>
-    <view id="createForm1" type="Form" commandId="command1" label="New User Role">
-      <headerText />
+    <view id="createForm1" type="Form" commandId="command1" label="New User Roles">
+      <headerText>$DefaultCreateViewDescription</headerText>
       <categories>
-        <category id="c1" headerText="User Role" newColumn="true">
-          <description />
+        <category id="c1" headerText="New User Roles" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
           <dataFields>
             <dataField fieldName="UserID" aliasFieldName="UserName" />
             <dataField fieldName="RoleID" aliasFieldName="RoleName" />
@@ -63,7 +63,8 @@ from "dbo"."UserRoles" "UserRoles"
       <action id="a2" commandName="Edit" />
       <action id="a3" commandName="Delete" />
       <action id="a6" />
-      <action id="a7" commandName="New" commandArgument="createForm1" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
     </actionGroup>
     <actionGroup id="ag2" scope="Form">
       <action id="a1" commandName="Edit" />
@@ -88,6 +89,13 @@ from "dbo"."UserRoles" "UserRoles"
     </actionGroup>
     <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
       <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
     </actionGroup>
     <actionGroup id="ag6" scope="ActionBar" headerText="Record">
       <action id="a1" whenLastCommandName="Edit" commandName="Update" />

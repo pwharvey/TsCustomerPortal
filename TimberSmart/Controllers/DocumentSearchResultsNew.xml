@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="DocumentSearchResultsNew" conflictDetection="overwriteChanges" label="DocumentSearchResultsNew" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands />
+  <fields>
+    <field name="CustomerID" type="Int32" allowNulls="false" label="Customer#" showInSummary="true" />
+    <field name="ContentID" type="Int32" allowNulls="false" label="Content#" showInSummary="true" />
+    <field name="ContentVer" type="Int32" allowNulls="false" label="Content Ver" showInSummary="true" />
+    <field name="ContentDocType" type="String" label="Content Doc Type" length="6" showInSummary="true" />
+    <field name="TcontentDocumentTypeContentTypeGroup" type="String" label="Tcontent Document Type Content Type Group" length="12" showInSummary="true" />
+    <field name="TcontentDocumentTypeContentDocTypeName" type="String" label="Document Type " length="100" />
+    <field name="ContentName" type="String" label="Content Name" length="100" />
+    <field name="ContentPath" type="String" label="Content Path" length="2000" />
+    <field name="EffectiveInd" type="String" label="Effective Ind" length="1" />
+    <field name="LastVersionInd" type="String" label="Last Version Ind" length="1" />
+    <field name="CtrlUserID" type="String" label="Ctrl User#" length="50" />
+    <field name="CtrlCreDate" type="DateTime" label="Ctrl Cre Date" />
+    <field name="CtrlUpdDate" type="DateTime" label="Ctrl Upd Date" />
+    <field name="CtrlAppName" type="String" label="Ctrl App Name" length="50" />
+    <field name="SecurityProf" type="String" label="Security Prof" length="50" />
+    <field name="Notes" type="String" allowQBE="false" allowSorting="false" label="Notes" />
+    <field name="SourceID" type="String" label="Source#" length="25" />
+    <field name="CustomerRef" type="String" label="Customer Ref" length="50" />
+    <field name="CustomerOrderNum" type="String" label="Customer Order Num" length="50" />
+    <field name="DownloadLinkNew" type="String" label="Download Link New" readOnly="true" length="131" />
+    <field name="DownloadLinkFromSummary" type="String" allowNulls="false" label="Download Link From Summary" readOnly="true" length="4" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Document Search Results New" groupExpression="ContentDocType, ctrlCreDate" group="TcontentDocumentTypeContentDocTypeName">
+      <headerText />
+      <dataFields>
+        <dataField fieldName="CustomerID" columns="15" />
+        <dataField fieldName="ContentID" columns="15" />
+        <dataField fieldName="ContentVer" columns="15" />
+        <dataField fieldName="ContentDocType" columns="6" />
+        <dataField fieldName="TcontentDocumentTypeContentTypeGroup" columns="12" />
+        <dataField fieldName="TcontentDocumentTypeContentDocTypeName" />
+        <dataField fieldName="ContentName" />
+        <dataField fieldName="ContentPath" />
+        <dataField fieldName="EffectiveInd" columns="1" />
+        <dataField fieldName="LastVersionInd" columns="1" />
+        <dataField fieldName="CtrlUserID" columns="50" />
+        <dataField fieldName="CtrlCreDate" columns="10" />
+        <dataField fieldName="CtrlUpdDate" columns="10" />
+        <dataField fieldName="CtrlAppName" columns="50" />
+        <dataField fieldName="SecurityProf" columns="50" />
+        <dataField fieldName="Notes" rows="5" />
+        <dataField fieldName="SourceID" columns="25" />
+        <dataField fieldName="CustomerRef" columns="50" />
+        <dataField fieldName="CustomerOrderNum" columns="50" />
+        <dataField fieldName="DownloadLinkNew" />
+        <dataField fieldName="DownloadLinkFromSummary" columns="4" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Document Search Results New">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Document Search Results New" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="CustomerID" columns="15" />
+            <dataField fieldName="ContentID" columns="15" />
+            <dataField fieldName="ContentVer" columns="15" />
+            <dataField fieldName="ContentDocType" columns="6" />
+            <dataField fieldName="TcontentDocumentTypeContentTypeGroup" columns="12" />
+            <dataField fieldName="TcontentDocumentTypeContentDocTypeName" />
+            <dataField fieldName="ContentName" />
+            <dataField fieldName="ContentPath" />
+            <dataField fieldName="EffectiveInd" columns="1" />
+            <dataField fieldName="LastVersionInd" columns="1" />
+            <dataField fieldName="CtrlUserID" columns="50" />
+            <dataField fieldName="CtrlCreDate" columns="10" />
+            <dataField fieldName="CtrlUpdDate" columns="10" />
+            <dataField fieldName="CtrlAppName" columns="50" />
+            <dataField fieldName="SecurityProf" columns="50" />
+            <dataField fieldName="Notes" rows="5" />
+            <dataField fieldName="SourceID" columns="25" />
+            <dataField fieldName="CustomerRef" columns="50" />
+            <dataField fieldName="CustomerOrderNum" columns="50" />
+            <dataField fieldName="DownloadLinkNew" />
+            <dataField fieldName="DownloadLinkFromSummary" columns="4" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Document Search Results New">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Document Search Results New" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="CustomerID" columns="15" />
+            <dataField fieldName="ContentID" columns="15" />
+            <dataField fieldName="ContentVer" columns="15" />
+            <dataField fieldName="ContentDocType" columns="6" />
+            <dataField fieldName="TcontentDocumentTypeContentTypeGroup" columns="12" />
+            <dataField fieldName="TcontentDocumentTypeContentDocTypeName" />
+            <dataField fieldName="ContentName" />
+            <dataField fieldName="ContentPath" />
+            <dataField fieldName="EffectiveInd" columns="1" />
+            <dataField fieldName="LastVersionInd" columns="1" />
+            <dataField fieldName="CtrlUserID" columns="50" />
+            <dataField fieldName="CtrlCreDate" columns="10" />
+            <dataField fieldName="CtrlUpdDate" columns="10" />
+            <dataField fieldName="CtrlAppName" columns="50" />
+            <dataField fieldName="SecurityProf" columns="50" />
+            <dataField fieldName="Notes" rows="5" />
+            <dataField fieldName="SourceID" columns="25" />
+            <dataField fieldName="CustomerRef" columns="50" />
+            <dataField fieldName="CustomerOrderNum" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag9" scope="ActionColumn">
+      <action id="a1" commandName="Edit" commandArgument="editForm1" />
+      <action id="a2" commandName="Delete" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule type="Sql" id="enableResultSet" commandName="Select" phase="Before"><![CDATA[set @BusinessRules_EnableResultSet = 1
+-- Enable caching of the result set. Duration is specified in seconds.
+-- set @BusinessRules_ResultSetCacheDuration = 30 ]]></rule>
+    <rule type="Sql" id="getData" commandName="Select" phase="Before"><![CDATA[select @Session_CustomerID = max(CustomerID)
+from timbersmartITIwebportal.dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@Session_SourceID;]]></rule>
+    <rule type="Sql" id="insert" commandName="Insert" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement insert here]]></rule>
+    <rule type="Sql" id="update" commandName="Update" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement update here]]></rule>
+    <rule type="Sql" id="delete" commandName="Delete" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement delete here]]></rule>
+  </businessRules>
+</dataController>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="tContent" alias="tContent" created="2016-12-20T13:10:11" modified="2016-12-20T13:10:25" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="CUSTOMER_ID" fieldName="CUSTOMER_ID" label="Customer Id" />
+    <column name="CONTENT_ID" fieldName="CONTENT_ID" label="Content Id" />
+    <column name="CONTENT_VER" fieldName="CONTENT_VER" label="Content Ver" />
+    <column name="CONTENT_DOC_TYPE" fieldName="CONTENT_DOC_TYPE" label="Content Doc Type" />
+    <column name="CONTENT_NAME" fieldName="CONTENT_NAME" label="Content Name" />
+    <column name="CONTENT_PATH" fieldName="CONTENT_PATH" label="Content Path" />
+    <column name="EFFECTIVE_IND" fieldName="EFFECTIVE_IND" label="Effective Ind" />
+    <column name="LAST_VERSION_IND" fieldName="LAST_VERSION_IND" label="Last Version Ind" />
+    <column name="CTRL_USER_ID" fieldName="CTRL_USER_ID" label="Ctrl User Id" />
+    <column name="CTRL_CRE_DATE" fieldName="CTRL_CRE_DATE" label="Ctrl Cre Date" format="g" />
+    <column name="CTRL_UPD_DATE" fieldName="CTRL_UPD_DATE" label="Ctrl Upd Date" format="g" />
+    <column name="CTRL_APP_NAME" fieldName="CTRL_APP_NAME" label="Ctrl App Name" />
+    <column name="SECURITY_PROF" fieldName="SECURITY_PROF" label="Security Prof" />
+    <column name="NOTES" fieldName="NOTES" label="Notes" />
+  </columns>
+</dataModel>

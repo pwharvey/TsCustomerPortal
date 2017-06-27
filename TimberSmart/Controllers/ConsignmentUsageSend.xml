@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="ConsignmentUsageSend" label="ConsignmentUsageSend" conflictDetection="overwriteChanges" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="CustomerRef" type="String" label="Purchase Order No" allowQBE="false" allowSorting="false" htmlEncode="false" hidden="false" />
+  </fields>
+</dataController>

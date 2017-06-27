@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataController name="Users" conflictDetection="overwriteChanges" label="Users" handler="TimberSmart.Rules.UsersBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+<dataController name="Users" conflictDetection="overwriteChanges" label="Users" xmlns="urn:schemas-codeontime-com:data-aquarium">
   <commands>
     <command id="command1" type="Text">
       <text><![CDATA[
@@ -44,88 +44,97 @@ from "dbo"."Users" "Users"
     <field name="PasswordQuestion" type="String" label="Password Question" length="256" />
     <field name="PasswordAnswer" type="String" label="Password Answer" length="128" />
     <field name="IsApproved" type="Boolean" allowNulls="false" default="((0))" label="Is Approved" showInSummary="true" />
-    <field name="LastActivityDate" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Last Activity Date" showInSummary="true" readOnly="true" />
-    <field name="LastLoginDate" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Last Login Date" readOnly="true" />
-    <field name="LastPasswordChangedDate" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Last Password Changed Date" readOnly="true" />
-    <field name="CreationDate" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Creation Date" readOnly="true" />
+    <field name="LastActivityDate" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Last Activity Date" showInSummary="true" />
+    <field name="LastLoginDate" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Last Login Date" />
+    <field name="LastPasswordChangedDate" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Last Password Changed Date" />
+    <field name="CreationDate" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Creation Date" />
     <field name="IsLockedOut" type="Boolean" allowNulls="false" default="((0))" label="Is Locked Out" />
-    <field name="LastLockedOutDate" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Last Locked Out Date" readOnly="true" />
+    <field name="LastLockedOutDate" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Last Locked Out Date" />
     <field name="FailedPasswordAttemptCount" type="Int32" allowNulls="false" default="((0))" label="Failed Password Attempt Count" />
     <field name="FailedPasswordAttemptWindowStart" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Failed Password Attempt Window Start" />
     <field name="FailedPasswordAnswerAttemptCount" type="Int32" allowNulls="false" default="((0))" label="Failed Password Answer Attempt Count" />
     <field name="FailedPasswordAnswerAttemptWindowStart" type="DateTime" allowNulls="false" dataFormatString="g" default="(getdate())" label="Failed Password Answer Attempt Window Start" />
-    <field name="CustomerID" type="Int32" label="Customer">
-      <items style="Lookup" dataController="Customer" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CustomerName" dataView="grid1" />
+    <field name="CustomerID" type="Int32" label="Customer ID">
+      <items style="Lookup" dataController="Customer" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CustomerName" />
     </field>
     <field name="CustomerName" type="String" readOnly="true" label="Customer Name" length="100" />
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Users">
-      <headerText />
+      <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
         <dataField fieldName="UserName" />
-        <dataField fieldName="CustomerID" aliasFieldName="CustomerName" />
+        <dataField fieldName="Password" textMode="Password" />
+        <dataField fieldName="Email" />
+        <dataField fieldName="Comment" rows="5" />
+        <dataField fieldName="PasswordQuestion" />
+        <dataField fieldName="PasswordAnswer" />
+        <dataField fieldName="IsApproved" />
+        <dataField fieldName="LastActivityDate" columns="20" />
+        <dataField fieldName="LastLoginDate" columns="20" />
+        <dataField fieldName="LastPasswordChangedDate" columns="20" />
+        <dataField fieldName="CreationDate" columns="20" />
+        <dataField fieldName="IsLockedOut" />
+        <dataField fieldName="LastLockedOutDate" columns="20" />
+        <dataField fieldName="FailedPasswordAttemptCount" columns="15" />
+        <dataField fieldName="FailedPasswordAttemptWindowStart" columns="20" />
+        <dataField fieldName="FailedPasswordAnswerAttemptCount" columns="15" />
+        <dataField fieldName="FailedPasswordAnswerAttemptWindowStart" columns="20" />
+        <dataField fieldName="CustomerID" aliasFieldName="CustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
       </dataFields>
     </view>
-    <view id="editForm1" type="Form" commandId="command1" label="Review User">
-      <headerText />
+    <view id="editForm1" type="Form" commandId="command1" label="Review Users">
+      <headerText>$DefaultEditViewDescription</headerText>
       <categories>
-        <category id="c1" headerText="User" newColumn="true">
-          <description />
+        <category id="c1" headerText="Users" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
             <dataField fieldName="UserName" />
-            <dataField fieldName="Email" />
-            <dataField fieldName="IsApproved" />
-            <dataField fieldName="IsLockedOut" />
-            <dataField fieldName="Comment" rows="5" />
-          </dataFields>
-        </category>
-        <category headerText="Customer" id="c4">
-          <dataFields>
-            <dataField fieldName="CustomerID" aliasFieldName="CustomerName" />
-          </dataFields>
-        </category>
-        <category headerText="Password" id="c2" newColumn="true">
-          <dataFields>
             <dataField fieldName="Password" textMode="Password" />
-            <dataField fieldName="PasswordQuestion" hidden="true" />
-            <dataField fieldName="PasswordAnswer" textMode="Password" hidden="true" />
-          </dataFields>
-        </category>
-        <category headerText="Last Modified" id="c3">
-          <dataFields>
-            <dataField fieldName="CreationDate" columns="20" />
-            <dataField fieldName="LastLoginDate" columns="20" />
+            <dataField fieldName="Email" />
+            <dataField fieldName="Comment" rows="5" />
+            <dataField fieldName="PasswordQuestion" />
+            <dataField fieldName="PasswordAnswer" />
+            <dataField fieldName="IsApproved" />
             <dataField fieldName="LastActivityDate" columns="20" />
+            <dataField fieldName="LastLoginDate" columns="20" />
             <dataField fieldName="LastPasswordChangedDate" columns="20" />
+            <dataField fieldName="CreationDate" columns="20" />
+            <dataField fieldName="IsLockedOut" />
             <dataField fieldName="LastLockedOutDate" columns="20" />
+            <dataField fieldName="FailedPasswordAttemptCount" columns="15" />
+            <dataField fieldName="FailedPasswordAttemptWindowStart" columns="20" />
+            <dataField fieldName="FailedPasswordAnswerAttemptCount" columns="15" />
+            <dataField fieldName="FailedPasswordAnswerAttemptWindowStart" columns="20" />
+            <dataField fieldName="CustomerID" aliasFieldName="CustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
           </dataFields>
         </category>
       </categories>
     </view>
-    <view id="createForm1" type="Form" commandId="command1" label="New User">
-      <headerText />
+    <view id="createForm1" type="Form" commandId="command1" label="New Users">
+      <headerText>$DefaultCreateViewDescription</headerText>
       <categories>
-        <category id="c1" headerText="User" newColumn="true">
-          <description />
+        <category id="c1" headerText="New Users" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
           <dataFields>
             <dataField fieldName="UserName" />
+            <dataField fieldName="Password" textMode="Password" />
             <dataField fieldName="Email" />
             <dataField fieldName="Comment" rows="5" />
+            <dataField fieldName="PasswordQuestion" />
+            <dataField fieldName="PasswordAnswer" />
             <dataField fieldName="IsApproved" />
+            <dataField fieldName="LastActivityDate" columns="20" />
+            <dataField fieldName="LastLoginDate" columns="20" />
+            <dataField fieldName="LastPasswordChangedDate" columns="20" />
+            <dataField fieldName="CreationDate" columns="20" />
             <dataField fieldName="IsLockedOut" />
-          </dataFields>
-        </category>
-        <category headerText="Customer" id="c4">
-          <dataFields>
+            <dataField fieldName="LastLockedOutDate" columns="20" />
+            <dataField fieldName="FailedPasswordAttemptCount" columns="15" />
+            <dataField fieldName="FailedPasswordAttemptWindowStart" columns="20" />
+            <dataField fieldName="FailedPasswordAnswerAttemptCount" columns="15" />
+            <dataField fieldName="FailedPasswordAnswerAttemptWindowStart" columns="20" />
             <dataField fieldName="CustomerID" aliasFieldName="CustomerName" />
-          </dataFields>
-        </category>
-        <category headerText="Password" id="c2">
-          <dataFields>
-            <dataField fieldName="Password" textMode="Password" />
-            <dataField fieldName="PasswordQuestion" hidden="true" />
-            <dataField fieldName="PasswordAnswer" textMode="Password" hidden="true" />
           </dataFields>
         </category>
       </categories>
@@ -137,7 +146,8 @@ from "dbo"."Users" "Users"
       <action id="a2" commandName="Edit" />
       <action id="a3" commandName="Delete" />
       <action id="a6" />
-      <action id="a7" commandName="New" commandArgument="createForm1" headerText="New User" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
     </actionGroup>
     <actionGroup id="ag2" scope="Form">
       <action id="a1" commandName="Edit" />
@@ -154,7 +164,7 @@ from "dbo"."Users" "Users"
       <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
     </actionGroup>
     <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
-      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" headerText="New User" />
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
     </actionGroup>
     <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
       <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
@@ -162,6 +172,13 @@ from "dbo"."Users" "Users"
     </actionGroup>
     <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
       <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
     </actionGroup>
     <actionGroup id="ag6" scope="ActionBar" headerText="Record">
       <action id="a1" whenLastCommandName="Edit" commandName="Update" />
@@ -186,7 +203,4 @@ from "dbo"."Users" "Users"
       <action id="a2" commandName="Delete" />
     </actionGroup>
   </actions>
-  <businessRules>
-    <rule id="r100" commandName="Insert|Update" type="Code" phase="Before" />
-  </businessRules>
 </dataController>

@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="Content1" label="Content1" conflictDetection="overwriteChanges" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text" custom="false">
+      <text><![CDATA[select
+	"tContent"."CUSTOMER_ID" "CUSTOMER_ID"
+	,"tContent"."CONTENT_ID" "CONTENT_ID"
+	,"tContent"."CONTENT_VER" "CONTENT_VER"
+	,"tContent"."CONTENT_DOC_TYPE" "CONTENT_DOC_TYPE"
+	,"tContentDocumentType"."CONTENT_TYPE_GROUP" "TcontentdocumenttypecontentTypeGroup"
+	,"tContentDocumentType"."CONTENT_DOC_TYPE_NAME" "TcontentdocumenttypecontentDocTypeName"
+	,"tContent"."CONTENT_NAME" "CONTENT_NAME"
+	,"tContent"."CONTENT_PATH" "CONTENT_PATH"
+	,"tContent"."EFFECTIVE_IND" "EFFECTIVE_IND"
+	,"tContent"."LAST_VERSION_IND" "LAST_VERSION_IND"
+	,"tContent"."CTRL_USER_ID" "CTRL_USER_ID"
+	,"tContent"."CTRL_CRE_DATE" "CTRL_CRE_DATE"
+	,"tContent"."CTRL_UPD_DATE" "CTRL_UPD_DATE"
+	,"tContent"."CTRL_APP_NAME" "CTRL_APP_NAME"
+	,"tContent"."SECURITY_PROF" "SECURITY_PROF"
+	,"tContent"."NOTES" "NOTES"
+	,"tContent"."SOURCE_ID" "SOURCE_ID"
+	,"tContent"."CUSTOMER_REF" "CUSTOMER_REF"
+	,"tContent"."CUSTOMER_ORDER_NUM" "CUSTOMER_ORDER_NUM"
+from "dbo"."tContent" "tContent"
+	left join "dbo"."tContentDocumentType" "tContentDocumentType" on "tContent"."CONTENT_DOC_TYPE" = "tContentDocumentType"."CONTENT_DOC_TYPE"]]></text>
+    </command>
+  </commands>
+  <fields>
+    <field name="Customer_Name" type="String" label="Customer Name" computed="true" readOnly="true" showInSummary="true">
+      <formula>select customerName
+from  tcustomer
+where customerid = customer_id</formula>
+    </field>
+    <field name="CUSTOMER_ID" type="Int32" allowNulls="false" label="Customer Id" showInSummary="true" readOnly="true" />
+    <field name="CONTENT_ID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Content ID" readOnly="true" />
+    <field name="CONTENT_VER" type="Int32" allowNulls="false" isPrimaryKey="true" label="Content Ver" readOnly="true" />
+    <field name="CONTENT_DOC_TYPE" type="String" label=" Document Type" length="6" showInSummary="true">
+      <items dataController="ContentDocumentType" dataTextField="CONTENT_DOC_TYPE_NAME" copy="TcontentdocumenttypecontentDocTypeName=CONTENT_DOC_TYPE_NAME" dataValueField="CONTENT_DOC_TYPE" />
+    </field>
+    <field name="TcontentdocumenttypecontentTypeGroup" type="String" readOnly="true" label="Content Type Group" length="12" />
+    <field name="TcontentdocumenttypecontentDocTypeName" type="String" readOnly="true" label="Tcontentdocumenttypecontent Doc Type Name" length="100" />
+    <field name="CONTENT_NAME" type="String" label="Content Name" length="100" showInSummary="true" readOnly="true" roles="Content Admin" />
+    <field name="CONTENT_PATH" type="String" allowQBE="false" allowSorting="false" label="Content Path" length="2000" showInSummary="true" readOnly="true" />
+    <field name="EFFECTIVE_IND" type="String" label="Effective Indicator" length="1" showInSummary="true" readOnly="true" computed="true">
+      <formula>case when EFFECTIVE_IND = 'Y' then 'Yes' else 'No' end</formula>
+    </field>
+    <field name="LAST_VERSION_IND" type="String" label="Last Version Ind" length="1" readOnly="true" computed="true" showInSummary="true">
+      <formula>case when LAST_VERSION_IND = 'Y' then 'Yes' else 'No' end</formula>
+    </field>
+    <field name="CTRL_USER_ID" type="String" label="Last User Modified" length="50" readOnly="true" />
+    <field name="CTRL_CRE_DATE" type="DateTime" dataFormatString="g" label="Creation Date" readOnly="true" />
+    <field name="CTRL_UPD_DATE" type="DateTime" dataFormatString="g" label="Update Date" readOnly="true" />
+    <field name="CTRL_APP_NAME" type="String" label="Last Application Update" length="50" readOnly="true" />
+    <field name="SECURITY_PROF" type="String" label="Security Prof" length="50" readOnly="true" />
+    <field name="NOTES" type="String" allowQBE="false" allowSorting="false" label="Notes" showInSummary="true" />
+    <field name="SOURCE_ID" type="String" label="Number Reference" length="25" />
+    <field name="DownloadLinkNew" type="String" label="Download Link" computed="true" htmlEncode="false" dataFormatString="&lt;a href=&quot;../download/{0}&quot; target=&quot;_blank&quot; type=&quot;PDF&quot;&gt;Click here&lt;/a&gt;" isVirtual="true">
+      <formula>cast("tContent"."Customer_ID" as varchar)+'/'+"tContent"."content_Name"</formula>
+    </field>
+    <field name="UserName" type="String" label="User Name" computed="true" readOnly="true">
+      <formula>select @UserName</formula>
+    </field>
+    <field name="ContentType" type="String" label="Content Type" computed="true">
+      <formula>select 'application/pdf'</formula>
+    </field>
+    <field name="DownloadLinkFromSummary" type="String" label="Download Link" onDemandStyle="Link" length="10" computed="true" isVirtual="true" htmlEncode="false">
+      <formula>Select 'Open'</formula>
+    </field>
+    <field name="TcontentdocumenttypecontentTypeGroupName" type="String" label="Tcontentdocumenttypecontent Type Group Name" />
+    <field name="CUSTOMER_REF" type="String" label="Customer Reference" length="50" />
+    <field name="CUSTOMER_ORDER_NUM" type="String" label="Customer Order Number" length="50" />
+    <field name="DownloadLink" type="String" label="Download Link" htmlEncode="false" computed="true" dataFormatString="&lt;a href=&quot;../download/{0}&quot; target=&quot;_blank&quot; type=&quot;PDF&quot;&gt;Click me&lt;/a&gt;" formatOnClient="false">
+      <formula>cast(tContent.Customer_ID as varchar)+'/'+tContent.CONTENT_NAME</formula>
+    </field>
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Content" filter="customer_ID = ( select case when customerID is null then customer_ID else customerID end from timbersmartITIwebportal.dbo.[Users] &quot;Users&quot; where &quot;Users&quot;.&quot;userName&quot; = @UserName ) &#xD;&#xA;AND LAST_VERSION_IND = 'Yes'&#xD;&#xA;AND EFFECTIVE_IND = 'Yes'" groupExpression="TcontentdocumenttypecontentDocTypeName" sortExpression="ctrl_cre_date desc" showInSelector="false">
+      <headerText />
+      <dataFields>
+        <dataField fieldName="CTRL_CRE_DATE" columns="20" />
+        <dataField fieldName="CUSTOMER_REF" columns="50" />
+        <dataField fieldName="SOURCE_ID" columns="25" search="Suggested" searchOptions="$between,=,$in,$contains" />
+        <dataField fieldName="CONTENT_DOC_TYPE" aliasFieldName="TcontentdocumenttypecontentTypeGroup" hyperlinkFormatString="~/pages/tContentDocumentType?CONTENT_DOC_TYPE={CONTENT_DOC_TYPE}&amp;_controller=tContentDocumentType&amp;_command=Select&amp;_argument=editForm1" hidden="true" />
+        <dataField fieldName="NOTES" rows="5" />
+        <dataField fieldName="DownloadLinkNew" rows="5" hidden="true" />
+        <dataField fieldName="DownloadLinkFromSummary" rows="5" hyperlinkFormatString="../download/{DownloadLinkNew}">
+          <headerText>Document Link</headerText>
+        </dataField>
+        <dataField fieldName="Customer_Name" rows="5" hidden="true" />
+        <dataField fieldName="CUSTOMER_ID" columns="15" hidden="true" />
+        <dataField fieldName="CONTENT_ID" columns="15" hidden="true" />
+        <dataField fieldName="CONTENT_VER" columns="15" hidden="true" />
+        <dataField fieldName="TcontentdocumenttypecontentDocTypeName">
+          <headerText>Document Type</headerText>
+        </dataField>
+        <dataField fieldName="CONTENT_NAME" />
+        <dataField fieldName="CONTENT_PATH" rows="5" hidden="true" />
+        <dataField fieldName="EFFECTIVE_IND" columns="1" hidden="true" />
+        <dataField fieldName="LAST_VERSION_IND" columns="1" hidden="true" />
+        <dataField fieldName="CTRL_USER_ID" columns="50" hidden="true" />
+        <dataField fieldName="TcontentdocumenttypecontentTypeGroup" columns="12" hidden="true">
+          <headerText>Document Type Group</headerText>
+        </dataField>
+        <dataField fieldName="CTRL_UPD_DATE" columns="20" />
+        <dataField fieldName="CTRL_APP_NAME" columns="50" hidden="true" />
+        <dataField fieldName="SECURITY_PROF" columns="50" hidden="true" />
+        <dataField fieldName="UserName" rows="5" hidden="true" />
+        <dataField fieldName="ContentType" rows="5" hidden="true" />
+        <dataField fieldName="DownloadLink" rows="5" />
+      </dataFields>
+      <overrideWhen />
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Content">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category headerText="Customer Details" id="c3" newColumn="true">
+          <dataFields>
+            <dataField fieldName="Customer_Name" rows="5" />
+            <dataField fieldName="CUSTOMER_ID" columns="15" hidden="true" />
+          </dataFields>
+        </category>
+        <category id="c1" headerText="Content Details">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="CONTENT_ID" columns="15" />
+            <dataField fieldName="CONTENT_VER" columns="15" />
+            <dataField fieldName="SOURCE_ID" columns="25" />
+            <dataField fieldName="CONTENT_DOC_TYPE" aliasFieldName="TcontentdocumenttypecontentTypeGroup" hyperlinkFormatString="~/pages/tContentDocumentType?CONTENT_DOC_TYPE={CONTENT_DOC_TYPE}&amp;_controller=tContentDocumentType&amp;_command=Select&amp;_argument=editForm1" />
+            <dataField fieldName="TcontentdocumenttypecontentDocTypeName" />
+            <dataField fieldName="CONTENT_NAME" />
+            <dataField fieldName="CONTENT_PATH" rows="5" hidden="true" />
+            <dataField fieldName="EFFECTIVE_IND" columns="1" />
+            <dataField fieldName="LAST_VERSION_IND" columns="1" />
+            <dataField fieldName="SECURITY_PROF" columns="50" hidden="true" />
+            <dataField fieldName="DownloadLinkNew" rows="5" readOnly="true" />
+          </dataFields>
+        </category>
+        <category headerText="NOTES" id="c4" newColumn="true">
+          <dataFields>
+            <dataField fieldName="NOTES" rows="5" />
+          </dataFields>
+        </category>
+        <category headerText="Control Details" id="c2">
+          <dataFields>
+            <dataField fieldName="CTRL_USER_ID" columns="50" />
+            <dataField fieldName="CTRL_CRE_DATE" columns="20" />
+            <dataField fieldName="CTRL_UPD_DATE" columns="20" />
+            <dataField fieldName="CTRL_APP_NAME" columns="50" />
+            <dataField fieldName="UserName" rows="5" hidden="true" />
+            <dataField fieldName="ContentType" rows="5" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New t Content">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New t Content" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="CUSTOMER_ID" columns="15" />
+            <dataField fieldName="CONTENT_ID" columns="15" />
+            <dataField fieldName="CONTENT_VER" columns="15" />
+            <dataField fieldName="CONTENT_DOC_TYPE" aliasFieldName="TcontentdocumenttypecontentTypeGroup" />
+            <dataField fieldName="TcontentdocumenttypecontentDocTypeName" />
+            <dataField fieldName="CONTENT_NAME" />
+            <dataField fieldName="CONTENT_PATH" rows="5" />
+            <dataField fieldName="EFFECTIVE_IND" columns="1" />
+            <dataField fieldName="LAST_VERSION_IND" columns="1" />
+            <dataField fieldName="CTRL_USER_ID" columns="50" />
+            <dataField fieldName="CTRL_CRE_DATE" columns="20" />
+            <dataField fieldName="CTRL_UPD_DATE" columns="20" />
+            <dataField fieldName="CTRL_APP_NAME" columns="50" />
+            <dataField fieldName="SECURITY_PROF" columns="50" />
+            <dataField fieldName="NOTES" rows="5" />
+            <dataField fieldName="SOURCE_ID" columns="25" />
+            <dataField fieldName="ContentType" rows="5" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Cancel" causesValidation="false" />
+      <action id="a6" />
+      <action id="a9" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form" flat="false">
+      <action id="a3" commandName="Cancel" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag100" scope="ActionBar" headerText="Document Filters" flat="false">
+      <action id="a1" commandName="Navigate" commandArgument="../pages/all-documents" headerText="All Records" />
+      <action id="a2" commandName="Navigate" commandArgument="~/pages/all-documents?TcontentdocumenttypecontentTypeGroup=DESPATCH" headerText="Despatch" />
+      <action commandName="Navigate" headerText="Order Confirmation" id="a100" commandArgument="~/pages/all-documents?TcontentdocumenttypecontentTypeGroup=ORDER" />
+      <action commandName="Navigate" headerText="Invoice &amp; Credits" id="a101" commandArgument="~/pages/all-documents?TcontentdocumenttypecontentTypeGroup=INVOICE" />
+      <action commandName="Navigate" headerText="Montly Statements" id="a102" commandArgument="~/pages/all-documents?content_Doc_Type=MON" />
+    </actionGroup>
+    <actionGroup id="ag101" scope="ActionBar" headerText="Search by ID" flat="true">
+      <action commandName="SQL" confirmation="_controller=ContentParam&#xD;&#xA;_title=Search Parameters&#xD;&#xA;_width=500" id="a100" headerText="Search by ID" roles="Content Admin">
+        <data><![CDATA[declare @NavToURL varchar(500);
+
+if @Parameters_ContentID <> ''
+begin
+set @NavToURL='../Pages/content?CONTENT_ID='+@Parameters_ContentID;
+end
+
+if @Parameters_SourceID <> ''
+begin
+set @NavToURL='../Pages/content?SOURCE_ID='+@Parameters_SourceID;
+end
+
+
+set @Result_NavigateUrl = @NavToURL;]]></data>
+      </action>
+    </actionGroup>
+    <actionGroup id="ag102" scope="Row" flat="false">
+      <action commandName="Navigate" id="a100" commandArgument="_blank:../download/{DownloadLinkNew}" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Delete" type="Sql" phase="Execute" name="DeleteRule"><![CDATA[-- Prevent System from updating .
+-- we will update manually.
+	
+
+	if @EFFECTIVE_IND <> 'Y'
+	begin
+
+ 		set @Result_ShowAlert  = 
+    	'Current Content is already :' +@EFFECTIVE_IND ;
+		
+		set @BusinessRules_PreventDefault = 1;
+		
+ 		GOTO WRAPUP;
+	end 
+
+-- Prevent System from updating .
+-- we will update manually.
+    set @BusinessRules_PreventDefault = 1;
+
+-- increment the content version first.
+	update tContent
+	set    content_ver = content_ver +1
+	where  content_id = @CONTENT_ID
+	and    content_ver = @CONTENT_VER;
+
+-- copy the record, before new changes apply.
+	insert into tContent
+	(CUSTOMER_ID,CONTENT_ID,CONTENT_VER, CONTENT_DOC_TYPE, CONTENT_NAME, CONTENT_PATH, EFFECTIVE_IND, LAST_VERSION_IND, CTRL_USER_ID, CTRL_CRE_DATE, CTRL_UPD_DATE, CTRL_APP_NAME, SECURITY_PROF, NOTES)
+	select customer_id,
+			content_id,
+		    content_ver-1,      			   		
+	   		content_doc_type,
+	   		content_name,
+	   		content_path,
+	   		effective_ind,
+	   		'N',
+	   		ctrl_user_id,
+	   		CTRL_CRE_DATE,
+	   		getdate(),
+	   		null, 
+	   		null,
+			notes
+	from   tContent
+	where  content_id = @CONTENT_ID
+	and    content_ver = @CONTENT_VER+1
+	and    last_version_ind = 'Y';
+
+
+
+
+
+
+	set @LAST_VERSION_IND = 'Y';
+	set @CONTENT_VER = @CONTENT_VER +1;
+
+-- at this stage ContentVersion has already been incremented and inserted.
+	update tContent
+	set last_version_ind = @LAST_VERSION_IND,
+		effective_ind = 'N',
+		ctrl_user_id = @UserName,
+		ctrl_upd_date = getdate(),
+		ctrl_cre_date = getdate()
+	where  content_id = @CONTENT_ID
+	and    content_ver = @CONTENT_VER
+	and    last_version_ind = 'Y';
+	
+WRAPUP:
+    
+
+END]]></rule>
+    <rule id="r101" commandName="Update|Delete" type="JavaScript" phase="Before"><![CDATA[if ([LAST_VERSION_IND] != 'Yes')
+{
+// tell the client library to skip the execution of update, insert, or delete
+    this.preventDefault();    
+
+     //this.result.focus(
+     //   'LastVersionInd', 'You can only update latest version of the content. ' +
+     //   'The current record selected is not the latest version.' );
+
+    // show an additional information in the message bar at the top of the page
+    this.result.showMessage('Error: You can only {0} latest version of the content. Current selected record "Last Version Indicator" is: {1}', 
+        this.arguments().CommandName, [LAST_VERSION_IND]);
+}]]></rule>
+    <rule id="r102" commandName="Update" type="Sql" phase="Execute"><![CDATA[BEGIN
+
+-- Prevent System from updating .
+-- we will update manually.
+set @BusinessRules_PreventDefault = 1
+
+
+-- increment the content version first.
+update tContent
+set    content_ver = content_ver +1
+where  content_id = @CONTENT_ID
+and    content_ver = @CONTENT_VER;
+
+-- copy the record, before new changes apply.
+	insert into tContent
+	(CUSTOMER_ID,CONTENT_ID,CONTENT_VER, CONTENT_DOC_TYPE, CONTENT_NAME, CONTENT_PATH, EFFECTIVE_IND, LAST_VERSION_IND, CTRL_USER_ID, CTRL_CRE_DATE, CTRL_UPD_DATE, CTRL_APP_NAME, SECURITY_PROF, NOTES)
+	select customer_id,
+			content_id,
+		    content_ver-1,      			   		
+	   		content_doc_type,
+	   		content_name,
+	   		content_path,
+	   		effective_ind,
+	   		'N',
+	   		ctrl_user_id,
+	   		CTRL_CRE_DATE,
+	   		getdate(),
+	   		null, 
+	   		null,
+			notes
+	from   tContent
+	where  content_id = @CONTENT_ID
+	and    content_ver = @CONTENT_VER+1
+	and    last_version_ind = 'Y';
+
+
+
+
+
+
+
+set @CONTENT_VER = @CONTENT_VER +1;
+
+
+-- at this stage ContentVersion has already been incremented and inserted.
+update  tContent
+set     notes= @NOTES,
+		content_doc_type = @CONTENT_DOC_TYPE,
+		ctrl_user_id = @UserName,
+		ctrl_upd_date = getdate(),
+		ctrl_cre_date = getdate()
+where   content_id = @CONTENT_ID
+and     content_ver = @CONTENT_VER
+and     last_version_ind = 'Y';
+
+
+
+		
+		
+END]]></rule>
+  </businessRules>
+</dataController>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataController name="ConsignmentStockDashboard" conflictDetection="overwriteChanges" label="Consignment Stock Dashboard" plugIn="TimberSmart.Data.AnnotationPlugIn" xmlns="urn:schemas-codeontime-com:data-aquarium">
+<dataController name="ConsignmentStockDashboard" conflictDetection="overwriteChanges" label="Consignment Stock Dashboard" xmlns="urn:schemas-codeontime-com:data-aquarium">
   <commands>
     <command id="command1" type="Text">
       <text><![CDATA[
@@ -21,43 +21,64 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
     </command>
   </commands>
   <fields>
+    <field name="ProductCategoryCode" type="String" allowNulls="false" isPrimaryKey="true" label="Product Category Code" length="5" showInSummary="true" />
+    <field name="CategoryName" type="String" allowNulls="false" label="Category Name" length="50" showInSummary="true" />
+    <field name="ProductWidth" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Product Width" />
+    <field name="ProductThickness" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Product Thickness" />
+    <field name="ProductLength" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Product Length" />
+    <field name="Packets" type="Int32" label="Packets" showInSummary="true" />
+    <field name="Cube" type="Decimal" label="Cube" showInSummary="true" />
+    <field name="Lineal" type="Decimal" label="Lineal" showInSummary="true" />
+    <field name="Pieces" type="Int32" label="Pieces" />
     <field name="CustomerID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Customer ID">
-      <items style="Lookup" dataController="Customer" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CompanyID" />
+      <items style="Lookup" dataController="Customer" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CustomerName" />
     </field>
-    <field name="CustomerCustomerName" type="String" readOnly="true" label="Customer Name" length="100" roles="Admins" showInSummary="true" />
-    <field name="ProductCategoryCode" type="String" allowNulls="false" isPrimaryKey="true" label="Product Category Code" length="50" showInSummary="true" hidden="true" />
-    <field name="CategoryName" type="String" allowNulls="false" label="Category Name" length="100" showInSummary="true" hidden="false" />
-    <field name="ProductWidth" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Width" showInSummary="true" />
-    <field name="ProductThickness" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Thickness" showInSummary="true" />
-    <field name="ProductLength" type="Decimal" allowNulls="false" isPrimaryKey="true" label="Length" showInSummary="true" />
-    <field name="Packets" type="Decimal" label="Packets" showInSummary="true" />
-    <field name="Cube" type="Decimal" label="Cube" />
-    <field name="Lineal" type="Decimal" label="Lineal" />
-    <field name="Pieces" type="Decimal" label="Pieces" />
+    <field name="CustomerCustomerName" type="String" readOnly="true" label="Customer Name" length="100" />
   </fields>
   <views>
-    <view id="grid1" type="Grid" commandId="command1" label="Consignment Stock Dashboard" sortExpression="CategoryName, ProductWidth, ProductThickness, ProductLength">
-      <headerText />
+    <view id="grid1" type="Grid" commandId="command1" label="Consignment Stock Dashboard">
+      <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
-        <dataField fieldName="CustomerCustomerName" />
-        <dataField fieldName="CategoryName" tag="pivot1-row1-column &#xD;&#xA;pivot2-row1-columnstacked&#xD;&#xA;" />
+        <dataField fieldName="ProductCategoryCode" columns="5" />
+        <dataField fieldName="CategoryName" columns="50" />
         <dataField fieldName="ProductWidth" columns="15" />
         <dataField fieldName="ProductThickness" columns="15" />
-        <dataField fieldName="ProductLength" columns="15" tag="pivot2-col1" />
-        <dataField fieldName="Packets" columns="15" tag=" pivot1-val1-sum&#xD;&#xA;pivot2-val1-sum" />
+        <dataField fieldName="ProductLength" columns="15" />
+        <dataField fieldName="Packets" columns="15" />
         <dataField fieldName="Cube" columns="15" />
         <dataField fieldName="Lineal" columns="15" />
         <dataField fieldName="Pieces" columns="15" />
-        <dataField fieldName="ProductCategoryCode" columns="50" hidden="true" />
+        <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Consignment Stock Dashboard">
-      <headerText />
+      <headerText>$DefaultEditViewDescription</headerText>
       <categories>
         <category id="c1" headerText="Consignment Stock Dashboard" newColumn="true">
-          <description />
+          <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
-            <dataField fieldName="CategoryName" />
+            <dataField fieldName="ProductCategoryCode" columns="5" />
+            <dataField fieldName="CategoryName" columns="50" />
+            <dataField fieldName="ProductWidth" columns="15" />
+            <dataField fieldName="ProductThickness" columns="15" />
+            <dataField fieldName="ProductLength" columns="15" />
+            <dataField fieldName="Packets" columns="15" />
+            <dataField fieldName="Cube" columns="15" />
+            <dataField fieldName="Lineal" columns="15" />
+            <dataField fieldName="Pieces" columns="15" />
+            <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" hyperlinkFormatString="~/pages/Customer?CustomerID={CustomerID}&amp;_controller=Customer&amp;_command=Select&amp;_argument=editForm1" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Consignment Stock Dashboard">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Consignment Stock Dashboard" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="ProductCategoryCode" columns="5" />
+            <dataField fieldName="CategoryName" columns="50" />
             <dataField fieldName="ProductWidth" columns="15" />
             <dataField fieldName="ProductThickness" columns="15" />
             <dataField fieldName="ProductLength" columns="15" />
@@ -68,19 +89,21 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
             <dataField fieldName="CustomerID" aliasFieldName="CustomerCustomerName" />
           </dataFields>
         </category>
-        <category headerText="Customer" id="c2" newColumn="true">
-          <dataFields>
-            <dataField fieldName="CustomerCustomerName" rows="5" />
-          </dataFields>
-        </category>
       </categories>
     </view>
   </views>
   <actions>
     <actionGroup id="ag1" scope="Grid">
       <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
     </actionGroup>
     <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
       <action id="a3" commandName="Cancel" />
       <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
       <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
@@ -89,13 +112,25 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
       <action id="a8" whenLastCommandName="New" commandName="Cancel" />
       <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
       <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
-      <action id="a13" whenLastCommandName="Insert" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
-      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
     </actionGroup>
     <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
       <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
       <action id="a5" />
-      <action id="a6" commandName="Import" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
     </actionGroup>
     <actionGroup id="ag6" scope="ActionBar" headerText="Record">
       <action id="a1" whenLastCommandName="Edit" commandName="Update" />

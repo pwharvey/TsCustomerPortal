@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="DocumentSearchParam" conflictDetection="overwriteChanges" label="DocumentSearchParam" handler="TimberSmart.Rules.DocumentSearchParamBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands />
+  <fields>
+    <field name="CustomerID" type="Int32" label="Customer ID" showInSummary="true" />
+    <field name="SourceID" type="String" label="Enter an ID to search:" length="25" showInSummary="true" isPrimaryKey="true" />
+    <field name="GridResults" type="DataView" label="Document Search Results">
+      <dataView controller="DocumentSearchResults" view="grid1" />
+    </field>
+  </fields>
+  <views>
+    <view id="editForm1" type="Form" commandId="command1" label="Document Search">
+      <headerText />
+      <categories>
+        <category id="c1" headerText="Document Search Parameter" newColumn="true">
+          <description />
+          <dataFields>
+            <dataField fieldName="CustomerID" columns="15" hidden="true" />
+            <dataField fieldName="SourceID" columns="25" />
+          </dataFields>
+        </category>
+        <category id="c2">
+          <dataFields>
+            <dataField fieldName="GridResults" tag="view-style-grid">
+              <dataView showActionBar="false" showDescription="false" showViewSelector="false" showSearchBar="false" showQuickFind="false" showPageSize="false" />
+              <headerText>Document Search Results</headerText>
+            </dataField>
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Document Search Param">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Document Search Param" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="CustomerID" columns="15" />
+            <dataField fieldName="SourceID" columns="25" />
+          </dataFields>
+        </category>
+        <category id="c2">
+          <dataFields>
+            <dataField fieldName="GridResults" tag="view-style-grid">
+              <dataView showSearchBar="false" showQuickFind="false" showActionBar="false" showViewSelector="false" showDescription="false" showPageSize="false" />
+              <headerText>Document Search Results</headerText>
+            </dataField>
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid" flat="false">
+      <action id="a1" commandName="Cancel" />
+      <action id="a6" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form" flat="false">
+      <action id="a5" whenLastCommandName="Edit" commandName="SQL" headerText="Search" key="Enter">
+        <data><![CDATA[set @Session_SourceID = @SourceID;
+set @Result_NavigateUrl = '../pages/document-search';]]></data>
+      </action>
+      <action id="a100" whenLastCommandName="Edit" commandName="SQL" headerText="Clear Search Results" key="Enter">
+        <data><![CDATA[set @Session_SourceID = null;
+set @Result_NavigateUrl = '../pages/document-search';]]></data>
+      </action>
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="GetData" commandName="Select" type="Code" phase="Before" />
+    <rule id="Insert" commandName="Insert" type="Code" phase="Before" />
+    <rule id="Update" commandName="Update" type="Code" phase="Before" />
+    <rule id="Delete" commandName="Delete" type="Code" phase="Before" />
+  </businessRules>
+</dataController>

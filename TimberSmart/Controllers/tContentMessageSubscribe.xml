@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="tContentMessageSubscribe" conflictDetection="overwriteChanges" label="t Content Message Subscribe" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"tContentMessageSubscribe"."msg_id" "msg_id"
+	,"tContentMessageSubscribe"."msg_type" "msg_type"
+	,"tContentMessageSubscribe"."msg_content" "msg_content"
+	,"tContentMessageSubscribe"."msg_status" "msg_status"
+	,"tContentMessageSubscribe"."error_msg" "error_msg"
+	,"tContentMessageSubscribe"."customer_id" "customer_id"
+	,"tContentMessageSubscribe"."content_id" "content_id"
+	,"tContentMessageSubscribe"."content_ver" "content_ver"
+	,"tContentMessageSubscribe"."ctrl_cre_date" "ctrl_cre_date"
+	,"tContentMessageSubscribe"."ctrl_upd_date" "ctrl_upd_date"
+	,"tContentMessageSubscribe"."ctrl_app_name" "ctrl_app_name"
+	,"tContentMessageSubscribe"."ctrl_user_id" "ctrl_user_id"
+from "dbo"."tContentMessageSubscribe" "tContentMessageSubscribe"
+]]></text>
+    </command>
+  </commands>
+  <fields>
+    <field name="msg_id" type="Int32" isPrimaryKey="true" label="Msg Id" />
+    <field name="msg_type" type="String" label="Msg Type" length="50" showInSummary="true" />
+    <field name="msg_content" type="String" onDemand="true" sourceFields="msg_id" onDemandHandler="tContentMessageSubscribemsg_content" onDemandStyle="Link" allowQBE="false" allowSorting="false" label="Msg Content" showInSummary="true" />
+    <field name="msg_status" type="String" label="Msg Status" length="1" showInSummary="true" />
+    <field name="error_msg" type="String" allowQBE="false" allowSorting="false" label="Error Msg" showInSummary="true" />
+    <field name="customer_id" type="String" label="Customer Id" length="12" showInSummary="true" />
+    <field name="content_id" type="String" label="Content Id" length="12" />
+    <field name="content_ver" type="Int32" label="Content Ver" />
+    <field name="ctrl_cre_date" type="DateTime" dataFormatString="g" label="Ctrl Cre Date" />
+    <field name="ctrl_upd_date" type="DateTime" dataFormatString="g" label="Ctrl Upd Date" />
+    <field name="ctrl_app_name" type="String" label="Ctrl App Name" length="25" />
+    <field name="ctrl_user_id" type="String" label="Ctrl User Id" length="25" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="t Content Message Subscribe">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="msg_id" columns="15" />
+        <dataField fieldName="msg_type" columns="50" />
+        <dataField fieldName="msg_content" rows="5" />
+        <dataField fieldName="msg_status" columns="1" />
+        <dataField fieldName="error_msg" rows="5" />
+        <dataField fieldName="customer_id" columns="12" />
+        <dataField fieldName="content_id" columns="12" />
+        <dataField fieldName="content_ver" columns="15" />
+        <dataField fieldName="ctrl_cre_date" columns="20" />
+        <dataField fieldName="ctrl_upd_date" columns="20" />
+        <dataField fieldName="ctrl_app_name" columns="25" />
+        <dataField fieldName="ctrl_user_id" columns="25" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review t Content Message Subscribe">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="t Content Message Subscribe" newColumn="true">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="msg_id" columns="15" />
+            <dataField fieldName="msg_type" columns="50" />
+            <dataField fieldName="msg_content" rows="5" />
+            <dataField fieldName="msg_status" columns="1" />
+            <dataField fieldName="error_msg" rows="5" />
+            <dataField fieldName="customer_id" columns="12" />
+            <dataField fieldName="content_id" columns="12" />
+            <dataField fieldName="content_ver" columns="15" />
+            <dataField fieldName="ctrl_cre_date" columns="20" />
+            <dataField fieldName="ctrl_upd_date" columns="20" />
+            <dataField fieldName="ctrl_app_name" columns="25" />
+            <dataField fieldName="ctrl_user_id" columns="25" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New t Content Message Subscribe">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New t Content Message Subscribe" newColumn="true">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="msg_id" columns="15" />
+            <dataField fieldName="msg_type" columns="50" />
+            <dataField fieldName="msg_content" rows="5" />
+            <dataField fieldName="msg_status" columns="1" />
+            <dataField fieldName="error_msg" rows="5" />
+            <dataField fieldName="customer_id" columns="12" />
+            <dataField fieldName="content_id" columns="12" />
+            <dataField fieldName="content_ver" columns="15" />
+            <dataField fieldName="ctrl_cre_date" columns="20" />
+            <dataField fieldName="ctrl_upd_date" columns="20" />
+            <dataField fieldName="ctrl_app_name" columns="25" />
+            <dataField fieldName="ctrl_user_id" columns="25" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.get_hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag9" scope="ActionColumn">
+      <action id="a1" commandName="Edit" commandArgument="editForm1" />
+      <action id="a2" commandName="Delete" />
+    </actionGroup>
+  </actions>
+</dataController>

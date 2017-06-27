@@ -18,6 +18,8 @@ Namespace TimberSmart.Handlers
         
         Shared Sub New()
             'register blob handlers
+            RegisterHandler("tContentMessageHandlermsg_template", """dbo"".""tContentMessageHandler""", """msg_template""", New String() {"""msg_type"""}, "t Content Message Handler Message Template", "ContentMessageHandler", "msg_template")
+            RegisterHandler("tContentMessageSubscribemsg_content", """dbo"".""tContentMessageSubscribe""", """msg_content""", New String() {"""msg_id"""}, "t Content Message Subscribe Message Content", "ContentMessageSubscribe", "msg_content")
         End Sub
     End Class
     
