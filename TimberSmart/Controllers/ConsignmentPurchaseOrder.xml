@@ -108,9 +108,5 @@ from "dbo"."tConsignmentPurchaseOrder" "tConsignmentPurchaseOrder"
       <action id="a6" whenLastCommandName="New" commandName="Insert" />
       <action id="a7" whenLastCommandName="New" commandName="Cancel" />
     </actionGroup>
-    <actionGroup id="ag9" scope="ActionColumn">
-      <action id="a1" commandName="Edit" commandArgument="editForm1" />
-      <action id="a2" commandName="Delete" />
-    </actionGroup>
   </actions>
 </dataController>

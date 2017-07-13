@@ -59,12 +59,9 @@
     </actionGroup>
     <actionGroup id="ag2" scope="Form" flat="false">
       <action id="a5" whenLastCommandName="Edit" commandName="SQL" headerText="Search" key="Enter">
-        <data><![CDATA[set @Session_SourceID = @SourceID;
-set @Result_NavigateUrl = '../pages/document-search';]]></data>
-      </action>
-      <action id="a100" whenLastCommandName="Edit" commandName="SQL" headerText="Clear Search Results" key="Enter">
-        <data><![CDATA[set @Session_SourceID = null;
-set @Result_NavigateUrl = '../pages/document-search';]]></data>
+        <data><![CDATA[--set @Result_ShowAlert = '@Session_SourceID=' + cast(@Session_SourceID as varchar);
+
+set @Result_NavigateUrl = '../pages/document-search?SourceIDInput='+cast(@SourceID as varchar);]]></data>
       </action>
     </actionGroup>
   </actions>

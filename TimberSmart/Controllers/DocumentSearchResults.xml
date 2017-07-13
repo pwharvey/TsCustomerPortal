@@ -157,7 +157,12 @@
 from   dbo.[Users] "Users" 
 where "Users"."userName" = @BusinessRules_UserName;
 
-exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@Session_SourceID;]]></rule>
+
+
+exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@Url_SourceIDInput;
+
+--set @Result_ShowAlert = '@Url_SourceIDInput=' + cast(@Url_SourceIDInput as varchar);
+]]></rule>
     <rule type="Sql" id="insert" commandName="Insert" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
 -- implement insert here]]></rule>
     <rule type="Sql" id="update" commandName="Update" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1

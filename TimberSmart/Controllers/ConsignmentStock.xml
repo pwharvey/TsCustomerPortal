@@ -146,10 +146,7 @@ from "dbo"."tConsignmentStock" "tConsignmentStock"
       <action id="a3" commandName="ReportAsExcel" />
       <action id="a4" commandName="ReportAsWord" />
     </actionGroup>
-    <actionGroup id="ag9" scope="ActionColumn">
-      <action id="a1" commandName="Edit" commandArgument="editForm1" />
-      <action id="a2" commandName="Delete" />
-    </actionGroup>
+    <actionGroup id="ag9" scope="ActionColumn" flat="false" />
     <actionGroup id="ag100" scope="ActionBar" headerText="Actions Flat" flat="true">
       <action commandName="SQL" id="a100" headerText="Update From Supplier" roles="Consignment Edit">
         <data><![CDATA[Exec pConsignmentStockGet @BusinessRules_UserId]]></data>

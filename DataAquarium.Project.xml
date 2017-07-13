@@ -2,7 +2,7 @@
   This file is provided to store the settings for your Data Aquarium project. 
   You can safely delete this file if no further code generation is planned.
 -->
-<project compatibility="20111118" dataModel="required" subscriptionLevel="Unlimited" name="TsCustomerPortal" prettyName="Ts Customer Portal" type="Web App Factory" codeDomProvider="VisualBasic" targetFramework="4.6" userInterface="TouchUI" pageImplementation="html" sourceControl="tfs" xmlns="urn:schemas-codeontime-com:data-aquarium-project">
+<project compatibility="20111118" dataModel="required" subscriptionLevel="Unlimited" name="TsCustomerPortal - TEST" prettyName="Ts Customer Portal - TEST" type="Web App Factory" codeDomProvider="VisualBasic" targetFramework="4.6" userInterface="TouchUI" pageImplementation="html" sourceControl="tfs" xmlns="urn:schemas-codeontime-com:data-aquarium-project">
   <connectionString hostDatabaseSharing="false" sessionStateMode="None">Data Source=tsmel02;Initial Catalog=TimberSmartITIWebPortal;Persist Security Info=True;User ID=timbersmart;Password=T1mberSm@rt;</connectionString>
   <providerName>System.Data.SqlClient</providerName>
   <namespace>TimberSmart</namespace>

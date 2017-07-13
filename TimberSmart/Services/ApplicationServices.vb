@@ -711,7 +711,7 @@ Namespace Services
         
         Public Overridable ReadOnly Property Name() As String
             Get
-                Return "Ts Customer Portal"
+                Return "Ts Customer Portal - TEST"
             End Get
         End Property
         

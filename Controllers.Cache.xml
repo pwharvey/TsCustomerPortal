@@ -366,10 +366,6 @@ from "dbo"."tConsignmentPurchaseOrder" "tConsignmentPurchaseOrder"
         <action id="a6" whenLastCommandName="New" commandName="Insert" />
         <action id="a7" whenLastCommandName="New" commandName="Cancel" />
       </actionGroup>
-      <actionGroup id="ag9" scope="ActionColumn">
-        <action id="a1" commandName="Edit" commandArgument="editForm1" />
-        <action id="a2" commandName="Delete" />
-      </actionGroup>
     </actions>
   </dataController>
   <dataController name="ConsignmentStock" conflictDetection="overwriteChanges" label="Consignment Stock" nativeSchema="dbo" nativeTableName="tConsignmentStock">
@@ -521,9 +517,7 @@ from "dbo"."tConsignmentStock" "tConsignmentStock"
         <action id="a3" commandName="ReportAsExcel" />
         <action id="a4" commandName="ReportAsWord" />
       </actionGroup>
-      <actionGroup id="ag9" scope="ActionColumn">
-        <action id="a1" commandName="Edit" commandArgument="editForm1" />
-        <action id="a2" commandName="Delete" />
+      <actionGroup id="ag9" scope="ActionColumn" flat="false">
       </actionGroup>
       <actionGroup id="ag100" scope="ActionBar" headerText="Actions Flat" flat="true">
         <action commandName="SQL" id="a100" headerText="Update From Supplier" roles="Consignment Edit">
@@ -649,7 +643,8 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
       <view id="gridSent" commandId="command1" type="Grid" label="Usage Sent" filter="NOT SentOn IS NULL" sortExpression="ConsignmentUsageID desc" reportTemplate="true">
         <dataFields>
           <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count&#xD;&#xA;pivot2-val1-count" />
-          <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" columns="100" />
+          <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100">
+          </dataField>
           <dataField fieldName="ConsumedOn" columns="20" tag="pivot1-row1-columnstacked-date" />
           <dataField fieldName="Price" columns="15" />
           <dataField fieldName="PriceUOM" columns="50" />
@@ -665,12 +660,15 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
           <dataField fieldName="ProductWidth" columns="15" />
           <dataField fieldName="ProductThickness" columns="15" />
           <dataField fieldName="ProductLength" columns="15" />
+          <dataField fieldName="CustomerID" columns="15" hidden="true">
+          </dataField>
         </dataFields>
       </view>
       <view id="gridErrors" commandId="command1" type="Grid" label="Usage Errors" filter="NOT Errors IS NULL" sortExpression="ConsignmentUsageID desc" reportTemplate="true">
         <dataFields>
           <dataField fieldName="PacketNo" columns="50" tag="pivot1-val1-count" />
-          <dataField fieldName="ProductID" aliasFieldName="ProductName" hyperlinkFormatString="~/pages/Product?ProductID={ProductID}&amp;_controller=Product&amp;_command=Select&amp;_argument=editForm1" columns="100" />
+          <dataField fieldName="ProductID" aliasFieldName="ProductName" columns="100">
+          </dataField>
           <dataField fieldName="ConsumedOn" columns="20" tag="pivot1-row1-column-date" />
           <dataField fieldName="InStock" />
           <dataField fieldName="Errors" />
@@ -680,6 +678,8 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
           <dataField fieldName="ProductThickness" columns="15">
           </dataField>
           <dataField fieldName="ProductLength" columns="15" />
+          <dataField fieldName="CustomerID" columns="15" hidden="true">
+          </dataField>
         </dataFields>
       </view>
       <view id="editForm1" type="Form" commandId="command1" label="Review Consignment Usage">
@@ -815,12 +815,8 @@ from "dbo"."tConsignmentUsage" "tConsignmentUsage"
         <action id="a6" whenLastCommandName="New" commandName="Insert" />
         <action id="a7" whenLastCommandName="New" commandName="Cancel" />
       </actionGroup>
-      <actionGroup id="ag9" scope="ActionColumn">
-        <action id="a1" commandName="Edit" commandArgument="editForm1" />
-        <action id="a2" commandName="Delete" />
-      </actionGroup>
       <actionGroup id="ag100" scope="ActionBar" headerText="Actions Flat" flat="true">
-        <action commandName="SQL" id="a100" headerText="Send To Supplier" roles="Consignment Edit" confirmation="_controller=ConsignmentUsageSend&#xD;&#xA;_title=Send Usage">
+        <action commandName="SQL" id="a100" headerText="Send To Supplier" roles="Consignment Edit" confirmation="_controller=ConsignmentUsageSend&#xD;&#xA;_title=Send Usage" cssClass="ui-icon-carat-r">
           <data>EXEC	[dbo].[pConsignmentStockConsume] @BusinessRules_UserId, @Parameters_CustomerRef
 SET @Result_Refresh = 1</data>
         </action>
@@ -2733,10 +2729,6 @@ from "dbo"."vConsignmentStockDashboard" "vConsignmentStockDashboard"
         <action id="a6" whenLastCommandName="New" commandName="Insert" />
         <action id="a7" whenLastCommandName="New" commandName="Cancel" />
       </actionGroup>
-      <actionGroup id="ag9" scope="ActionColumn">
-        <action id="a1" commandName="Edit" commandArgument="editForm1" />
-        <action id="a2" commandName="Delete" />
-      </actionGroup>
     </actions>
   </dataController>
   <dataController name="ConsignmentUsageDashboard" conflictDetection="overwriteChanges" label="Consignment Usage Dashboard" nativeSchema="dbo" nativeTableName="vConsignmentUsageDashboard">
@@ -2851,10 +2843,6 @@ from "dbo"."vConsignmentUsageDashboard" "vConsignmentUsageDashboard"
         <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
         <action id="a6" whenLastCommandName="New" commandName="Insert" />
         <action id="a7" whenLastCommandName="New" commandName="Cancel" />
-      </actionGroup>
-      <actionGroup id="ag9" scope="ActionColumn">
-        <action id="a1" commandName="Edit" commandArgument="editForm1" />
-        <action id="a2" commandName="Delete" />
       </actionGroup>
     </actions>
   </dataController>
@@ -3217,7 +3205,7 @@ from "dbo"."tContent" "tContent"
       </command>
     </commands>
     <fields xmlns="urn:schemas-codeontime-com:data-aquarium">
-      <field name="Customer_Name" type="String" label="Customer Name" computed="true" readOnly="true" showInSummary="true">
+      <field name="Customer_Name" type="String" label="Customer Name" computed="true" readOnly="true" showInSummary="true" dataFormatString="&lt;B&gt;{0}&lt;/B&gt;">
         <formula>select customerName
 from  tcustomer
 where customerid = customer_id</formula>
@@ -3649,12 +3637,9 @@ END</rule>
       </actionGroup>
       <actionGroup id="ag2" scope="Form" flat="false">
         <action id="a5" whenLastCommandName="Edit" commandName="SQL" headerText="Search" key="Enter">
-          <data>set @Session_SourceID = @SourceID;
-set @Result_NavigateUrl = '../pages/document-search';</data>
-        </action>
-        <action id="a100" whenLastCommandName="Edit" commandName="SQL" headerText="Clear Search Results" key="Enter">
-          <data>set @Session_SourceID = null;
-set @Result_NavigateUrl = '../pages/document-search';</data>
+          <data>--set @Result_ShowAlert = '@Session_SourceID=' + cast(@Session_SourceID as varchar);
+
+set @Result_NavigateUrl = '../pages/document-search?SourceIDInput='+cast(@SourceID as varchar);</data>
         </action>
       </actionGroup>
     </actions>
@@ -3838,7 +3823,12 @@ set @Result_NavigateUrl = '../pages/document-search';</data>
 from   dbo.[Users] "Users" 
 where "Users"."userName" = @BusinessRules_UserName;
 
-exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@Session_SourceID;</rule>
+
+
+exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@Url_SourceIDInput;
+
+--set @Result_ShowAlert = '@Url_SourceIDInput=' + cast(@Url_SourceIDInput as varchar);
+</rule>
       <rule type="Sql" id="insert" commandName="Insert" phase="Before">set @BusinessRules_PreventDefault = 1
 -- implement insert here</rule>
       <rule type="Sql" id="update" commandName="Update" phase="Before">set @BusinessRules_PreventDefault = 1

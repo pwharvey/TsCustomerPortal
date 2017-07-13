@@ -11738,6 +11738,336 @@ _width=500</Confirmation>
 <update>
   <Hidden>false</Hidden>
   <DataViewShowInSummary>false</DataViewShowInSummary>
+</update></c><c y="NodeSet" t="2017-06-28T08:57:45"><controller name="ConsignmentStock" />
+<actionGroup id="ag9" />
+<action id="a1" />
+<update>
+  <Roles>xxx</Roles>
+</update></c><c y="NodeSet" t="2017-06-28T08:57:54"><controller name="ConsignmentStock" />
+<actionGroup id="ag9" />
+<action id="a2" />
+<update>
+  <Roles>XXX</Roles>
+</update></c><c y="NodeSet" t="2017-06-28T08:58:00"><controller name="ConsignmentStock" />
+<actionGroup id="ag9" />
+<action id="a1" />
+<update>
+  <Roles>XXX</Roles>
+</update></c><c y="NodeSet" t="2017-06-28T08:59:13"><controller name="ConsignmentStock" />
+<actionGroup id="ag9" />
+<action id="a1" />
+<update>
+  <Roles />
+</update></c><c y="NodeSet" t="2017-06-28T08:59:30"><controller name="ConsignmentStock" />
+<actionGroup id="ag9" />
+<action id="a1" />
+<delete /></c><c y="NodeSet" t="2017-06-28T08:59:32"><controller name="ConsignmentStock" />
+<actionGroup id="ag9" />
+<action id="a2" />
+<delete /></c><c y="NodeSet" t="2017-06-28T08:59:37"><controller name="ConsignmentStock" />
+<actionGroup id="ag9" />
+<update>
+  <Flat>false</Flat>
+</update></c><c y="NodeSet" t="2017-06-28T09:10:48"><controller name="ConsignmentUsage" />
+<actionGroup id="ag4" />
+<action id="a2" />
+<update>
+  <Roles>ZZZ</Roles>
+</update></c><c y="NodeSet" t="2017-06-28T09:30:19"><controller name="ConsignmentUsage" />
+<actionGroup id="ag4" />
+<action id="a2" />
+<update>
+  <Roles />
+</update></c><c y="NodeSet" t="2017-06-28T09:32:35"><controller name="ConsignmentUsage" />
+<actionGroup id="ag9" />
+<delete /></c><c y="NodeSet" t="2017-06-28T09:50:49"><controller name="ConsignmentUsage" />
+<view id="gridSent" />
+<dataField fieldName="ProductID" />
+<update>
+  <HyperlinkFormatString />
+  <Hidden>false</Hidden>
+  <DataViewShowInSummary>false</DataViewShowInSummary>
+</update></c><c y="NodeSet" t="2017-06-28T09:56:25"><controller name="ConsignmentUsage" />
+<actionGroup id="ag100" />
+<action id="a100" />
+<update>
+  <Data>EXEC	[dbo].[pConsignmentStockConsume] @BusinessRules_UserId, @Parameters_CustomerRef
+SET @Result_Refresh = 1</Data>
+  <Confirmation>_controller=ConsignmentUsageSend
+_title=Send Usage</Confirmation>
+  <CssClass>ui-icon-carat-r</CssClass>
+</update></c><c y="NodeSet" t="2017-06-28T09:58:44"><controller name="ConsignmentUsage" />
+<view id="gridErrors" />
+<dataField fieldName="ProductID" />
+<update>
+  <HyperlinkFormatString />
+  <Hidden>false</Hidden>
+  <DataViewShowInSummary>false</DataViewShowInSummary>
+</update></c><c y="NodeSet" t="2017-06-28T10:02:44"><controller name="ConsignmentPurchaseOrder" />
+<actionGroup id="ag9" />
+<delete /></c><c y="NodeSet" t="2017-06-28T10:04:01"><controller name="ConsignmentStockDashboard" />
+<actionGroup id="ag9" />
+<delete /></c><c y="NodeSet" t="2017-06-28T10:12:43"><controller name="ConsignmentUsageDashboard" />
+<actionGroup id="ag9" />
+<delete /></c><c y="NodeSet" t="2017-06-28T11:08:29"><controller name="ConsignmentUsage" />
+<view id="gridSent" />
+<move>
+  <controller name="ConsignmentUsage" />
+  <field name="CustomerID" />
+</move></c><c y="NodeSet" t="2017-06-28T11:08:37"><controller name="ConsignmentUsage" />
+<view id="gridSent" />
+<dataField fieldName="CustomerID" />
+<update>
+  <Hidden>true</Hidden>
+  <DataViewShowInSummary>false</DataViewShowInSummary>
+</update></c><c y="NodeSet" t="2017-06-28T11:08:48"><controller name="ConsignmentUsage" />
+<view id="gridErrors" />
+<move>
+  <controller name="ConsignmentUsage" />
+  <field name="CustomerID" />
+</move></c><c y="NodeSet" t="2017-06-28T11:08:56"><controller name="ConsignmentUsage" />
+<view id="gridErrors" />
+<dataField fieldName="CustomerID" />
+<update>
+  <Hidden>true</Hidden>
+  <DataViewShowInSummary>false</DataViewShowInSummary>
+</update></c><c y="NodeSet" t="2017-07-12T16:08:13"><controller name="DocumentSearchParam" />
+<actionGroup id="ag2" />
+<action id="a5" />
+<update>
+  <Data>set @Session_SourceID = @SourceID;
+set @Result_ShowAlert = '@Session_SourceID=' + cast(@Session_SourceID as varchar);
+
+--set @Result_NavigateUrl = '../pages/document-search';</Data>
+</update></c><c y="NodeSet" t="2017-07-12T16:10:41"><controller name="DocumentSearchParam" />
+<actionGroup id="ag2" />
+<action id="a5" />
+<update>
+  <Data>set @Session_SourceID = @SourceID;
+--set @Result_ShowAlert = '@Session_SourceID=' + cast(@Session_SourceID as varchar);
+
+set @Result_NavigateUrl = '../pages/document-search';</Data>
+</update></c><c y="NodeSet" t="2017-07-12T16:11:12"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@Session_SourceID;
+
+set @Result_ShowAlert = '@Session_SourceID=' + cast(@Session_SourceID as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:11:20"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@Session_SourceID;
+
+set @Result_ShowAlert = '@Session_SourceID=' + cast(@Session_SourceID as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:13:47"><controller name="DocumentSearchParam" />
+<actionGroup id="ag2" />
+<action id="a5" />
+<update>
+  <Data>set @Session_SourceID = @SourceID;
+--set @Result_ShowAlert = '@Session_SourceID=' + cast(@Session_SourceID as varchar);
+
+set @Result_NavigateUrl = '../pages/document-search?SourceID='+cast(@SourceID as varchar);</Data>
+</update></c><c y="NodeSet" t="2017-07-12T16:14:19"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@Session_SourceID;
+
+set @Result_ShowAlert = '@SourceID_URL=' + cast(@SourceID_URL as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:15:53"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@URL_SourceID;
+
+set @Result_ShowAlert = '@SourceID_URL=' + cast(@URL_SourceID as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:16:06"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@URL_SourceID;
+
+set @Result_ShowAlert = '@SourceID_URL=' + cast(@URL_SourceID as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:17:22"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+--exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@URL_SourceID;
+
+set @Result_ShowAlert = '@SourceID_URL=' + cast(@URL_SourceID as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:18:45"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>declare @Url_SourceID as varchar;
+
+select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+--exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@URL_SourceID;
+
+set @Result_ShowAlert = '@SourceID_URL=' + cast(@Url_SourceID as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:20:25"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>
+
+select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+--exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@URL_SourceID;
+
+set @Result_ShowAlert = '@SourceID_URL=' + cast(@Url_SourceID as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:20:31"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>
+select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+--exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@URL_SourceID;
+
+set @Result_ShowAlert = '@SourceID_URL=' + cast(@Url_SourceID as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:23:26"><controller name="DocumentSearchParam" />
+<actionGroup id="ag2" />
+<action id="a5" />
+<update>
+  <Data>set @Session_SourceID = @SourceID;
+--set @Result_ShowAlert = '@Session_SourceID=' + cast(@Session_SourceID as varchar);
+
+set @Result_NavigateUrl = '../pages/document-search?SourceIDInput='+cast(@SourceID as varchar);</Data>
+</update></c><c y="NodeSet" t="2017-07-12T16:23:58"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+--exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@URL_SourceID;
+
+set @Result_ShowAlert = '@Url_SourceIDInput=' + cast(@Url_SourceIDInput as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:24:01"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+--exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@URL_SourceID;
+
+set @Result_ShowAlert = '@Url_SourceIDInput=' + cast(@Url_SourceIDInput as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:25:13"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@Url_SourceIDInput;
+
+--set @Result_ShowAlert = '@Url_SourceIDInput=' + cast(@Url_SourceIDInput as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:27:01"><controller name="DocumentSearchResults" />
+<rule id="getData" />
+<update>
+  <Script>select @Session_CustomerID = max(CustomerID)
+from   dbo.[Users] "Users" 
+where "Users"."userName" = @BusinessRules_UserName;
+
+
+
+exec pContent_Search @CustomerID=@Session_CustomerID, @ReferenceNo=@Url_SourceIDInput;
+
+--set @Result_ShowAlert = '@Url_SourceIDInput=' + cast(@Url_SourceIDInput as varchar);
+</Script>
+</update></c><c y="NodeSet" t="2017-07-12T16:28:07"><controller name="DocumentSearchParam" />
+<actionGroup id="ag2" />
+<action id="a5" />
+<update>
+  <Data>
+--set @Result_ShowAlert = '@Session_SourceID=' + cast(@Session_SourceID as varchar);
+
+set @Result_NavigateUrl = '../pages/document-search?SourceIDInput='+cast(@SourceID as varchar);</Data>
+</update></c><c y="NodeSet" t="2017-07-12T16:28:58"><controller name="DocumentSearchParam" />
+<actionGroup id="ag2" />
+<action id="a100" />
+<delete /></c><c y="NodeSet" t="2017-07-12T16:29:06"><controller name="DocumentSearchParam" />
+<actionGroup id="ag2" />
+<action id="a5" />
+<update>
+  <Data>--set @Result_ShowAlert = '@Session_SourceID=' + cast(@Session_SourceID as varchar);
+
+set @Result_NavigateUrl = '../pages/document-search?SourceIDInput='+cast(@SourceID as varchar);</Data>
+</update></c><c y="NodeSet" t="2017-07-13T16:40:19"><controller name="Content" />
+<field name="Customer_Name" />
+<update>
+  <Formula>select customerName
+from  tcustomer
+where customerid = customer_id</Formula>
+  <DataFormatString>&lt;B&gt;{0}&lt;/B&gt;</DataFormatString>
+</update></c><c y="NodeSet" t="2017-07-13T16:41:48"><controller name="Content" />
+<field name="Customer_Name" />
+<update>
+  <Formula>select customerName
+from  tcustomer
+where customerid = customer_id</Formula>
 </update></c></log><log type="Application"><c y="NodeSet" t="2016-12-20T16:49:48"><pages />
 <renameRefs type="controller">
   <Name>tContent</Name>

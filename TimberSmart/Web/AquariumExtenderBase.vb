@@ -221,11 +221,11 @@ Namespace Web
                 End If
                 p.ClientScript.RegisterStartupScript(GetType(AquariumExtenderBase), "TargetFramework", String.Format("var __targetFramework=""4.6"",__tf=4.0,__servicePath=""{0}"",__baseUrl=""{1}"",__design"& _ 
                             "erPort=""{2}"";", p.ResolveClientUrl(AquariumExtenderBase.DefaultServicePath), p.ResolveClientUrl("~"), designerPort), true)
-                p.ClientScript.RegisterStartupScript(GetType(AquariumExtenderBase), "TouchUI", String.Format("var __settings={{appInfo:""TsCustomerPortal|{0}"",mobileDisplayDensity:""Auto"",deskt"& _ 
-                            "opDisplayDensity:""Condensed"",mapApiIdentifier:""{1}"",labelsInList:""DisplayedAbove"& _ 
-                            """,initialListMode:""SeeAll"",buttonShapes:true,smartDates:false,sidebar:""Landscape"& _ 
-                            """,promoteActions:true,transitions:"""",theme:""Aquarium"",maxPivotRowCount: {2},help"& _ 
-                            ":true,ui:""TouchUI""{3}}};", BusinessRules.JavaScriptString(HttpContext.Current.User.Identity.Name), ApplicationServices.MapsApiIdentifier, ApplicationServices.Create().MaxPivotRowCount, siteContent), true)
+                p.ClientScript.RegisterStartupScript(GetType(AquariumExtenderBase), "TouchUI", String.Format("var __settings={{appInfo:""TsCustomerPortal - TEST|{0}"",mobileDisplayDensity:""Auto"& _ 
+                            """,desktopDisplayDensity:""Condensed"",mapApiIdentifier:""{1}"",labelsInList:""Display"& _ 
+                            "edAbove"",initialListMode:""SeeAll"",buttonShapes:true,smartDates:false,sidebar:""La"& _ 
+                            "ndscape"",promoteActions:true,transitions:"""",theme:""Aquarium"",maxPivotRowCount: {"& _ 
+                            "2},help:true,ui:""TouchUI""{3}}};", BusinessRules.JavaScriptString(HttpContext.Current.User.Identity.Name), ApplicationServices.MapsApiIdentifier, ApplicationServices.Create().MaxPivotRowCount, siteContent), true)
             End If
         End Sub
         
