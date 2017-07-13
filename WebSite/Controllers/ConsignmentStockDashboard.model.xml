@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="vConsignmentStockDashboard" alias="vConsignmentStockDashboard" created="2016-05-19T09:43:38" modified="2016-05-19T13:12:34" x="20" y="23" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="dbo" baseTable="vConsignmentStockDashboard" alias="vConsignmentStockDashboard" created="2016-05-19T09:43:38" modified="2016-12-22T17:21:28" x="20" y="23" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
     <foreignKey id="tCustomer" parentTableSchema="dbo" parentTableName="tCustomer" x="462" y="20">
       <foreignKeyColumn columnName="CustomerID" parentColumnName="CustomerID" />

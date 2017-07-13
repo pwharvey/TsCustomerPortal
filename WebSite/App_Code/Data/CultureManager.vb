@@ -15,7 +15,7 @@ Namespace TimberSmart.Data
         
         Public Const AutoDetectCulture As String = "Detect,Detect"
         
-        Public Shared SupportedCultures() As String = New String() {"en-NZ,en-NZ", "en-NZ,en-GB"}
+        Public Shared SupportedCultures() As String = New String() {"en-NZ,en-NZ"}
         
         Public Shared Sub Initialize()
             Dim ctx As HttpContext = HttpContext.Current
