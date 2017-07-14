@@ -9,7 +9,7 @@ Namespace Services
         ''' The number is automatically incremented when the application is published from the app generator.
         Public Shared ReadOnly Property Version() As String
             Get
-                Return "8.5.11.59"
+                Return "8.5.11.58"
             End Get
         End Property
         

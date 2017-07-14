@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="tContentMessageCommands" alias="tContentMessageCommands" created="2016-12-20T13:10:33" modified="2016-12-20T13:10:35" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
-  <foreignKeys />
-  <columns>
-    <column name="EG_NAME" fieldName="EG_NAME" label="Eg Name" />
-    <column name="EG_COMMAND" fieldName="EG_COMMAND" label="Eg Command" />
-  </columns>
-</dataModel>

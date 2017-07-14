@@ -51,8 +51,6 @@ generation library.
 
 ^AddMatchingGroup^Add matching group^AddMatchingGroup^
 
-^AddSearchBarField^More Search Fields^AddSearchBarField^
-
 ^AddToFavorites^Add to Favorites^AddToFavorites^
 
 ^AdvancedSearch^Advanced Search^AdvancedSearch^
@@ -62,10 +60,6 @@ generation library.
 ^After^After^After^
 
 ^Agenda^Agenda^Agenda^
-
-^AlignedLeft^Aligned Left^AlignedLeft^
-
-^AlignedRight^Aligned Right^AlignedRight^
 
 ^AllDatesInPreriod^All Dates in Period^AllDatesInPreriod^
 
@@ -92,8 +86,6 @@ generation library.
 ^BackColor^Back Color^BackColor^
 
 ^BatchEditActionHeaderText^Batch Edit^BatchEditActionHeaderText^
-
-^BatchEditInFormActionHeaderText^Batch Edit (Form)^BatchEditInFormActionHeaderText^
 
 ^BatchUpdate^update^BatchUpdate^
 
@@ -237,11 +229,11 @@ generation library.
 
 ^DefaultCancelActionHeaderText^Close^DefaultCancelActionHeaderText^
 
-^DefaultCreateViewDescription^Please fill this form and click OK button to create a new {0} record. Click Cancel to return to the previous screen.^DefaultCreateViewDescription^
+^DefaultCreateViewDescription^Please fill this form and press Save button to create a new {0} record. Press Cancel to return to the previous screen.^DefaultCreateViewDescription^
 
 ^DefaultEditDescription^These are the fields of the {0} record that can be edited.^DefaultEditDescription^
 
-^DefaultEditViewDescription^Please review {0} information below. Click Edit to change this record, click Delete to delete the record, or click Cancel/Close to return back.^DefaultEditViewDescription^
+^DefaultEditViewDescription^Please review {0} information below. Press Edit to change this record, press Delete to delete the record, or press Cancel/Close to return back.^DefaultEditViewDescription^
 
 ^DefaultGridViewDescription^This is a list of {0}.^DefaultGridViewDescription^
 
@@ -410,8 +402,6 @@ generation library.
 ^GridActionDescription^Display items in the standard<br/>list format.^GridActionDescription^
 
 ^GridActionHeaderText^Show in Standard View^GridActionHeaderText^
-
-^GridViewStyle^Grid^GridViewStyle^
 
 ^Group^Group^Group^
 
@@ -861,15 +851,15 @@ generation library.
 
 ^Suggestions^Suggestions^Suggestions^
 
-^SumAggregate^Sum: {0}^SumAggregate^
+^SumAggregate^Total: {0}^SumAggregate^
 
-^SumAggregateToolTip^Sum of {0}^SumAggregateToolTip^
+^SumAggregateToolTip^Total of {0}^SumAggregateToolTip^
 
 ^Summary^Summary^Summary^
 
 ^Summer^Summer^Summer^
 
-^SumOf^Sum of^SumOf^
+^SumOf^Total of^SumOf^
 
 ^Superscript^Super Script^Superscript^
 

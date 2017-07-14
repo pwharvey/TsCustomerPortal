@@ -1,316 +1,148 @@
-<application snapshot="false" xmlns="urn:schemas-codeontime-com:data-aquarium-application" xmlns:m="urn:codeontime:data-map" xmlns:dm="urn:schemas-codeontime-com:data-model">
+<?xml version="1.0" encoding="utf-8"?>
+<application snapshot="true" xmlns="urn:schemas-codeontime-com:data-aquarium-application" xmlns:m="urn:codeontime:data-map" xmlns:dm="urn:schemas-codeontime-com:data-model" integrity="checked">
   <pages xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-    <page name="Home" title="^HomeTitle^Start^HomeTitle^" description="^HomeDesc^Application home page^HomeDesc^" path="^HomePath^Home^HomePath^" style="HomePage" customStyle="Wide" index="1000">
+    <page name="Home" title="^HomeTitle^Start^HomeTitle^" description="^HomeDesc^Application home page^HomeDesc^" path="^HomePath^Home^HomePath^" style="HomePage" customStyle="Wide" index="1000" roles="*" useExtenders="false">
       <containers>
-        <container id="container1" flow="NewRow" />
-        <container id="container2" flow="NewColumn" />
+        <container id="c102" flow="NewRow" style="padding-top:8px" />
+        <container id="c101" flow="NewRow" />
       </containers>
       <controls>
-        <control id="control1" name="TableOfContents" container="container1" />
-        <control id="control2" name="Welcome" container="container2" />
+        <control id="control1" container="c101" name="Welcome" />
+        <control id="control2" container="c102" name="TableOfContents" />
       </controls>
+      <dataViews>
+      </dataViews>
     </page>
-    <page name="Company" title="Company" description="View Company" index="1010" path="Company">
+    <page name="Consignment" path="Consignment" index="1030" title="Consignment" roles="Consignment Stock,Consignment Usage" useExtenders="false" generate="Always" device="Touch UI">
+      <containers>
+      </containers>
+    </page>
+    <page name="ConsignmentStock" title="Consignment Stock" description="View Consignment Stock" index="1040" path="Consignment | Consignment Stock" roles="Consignment Stock" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="Company" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view1" controller="ConsignmentStock" view="grid1" showInSummary="true" container="container1" activator="None" text="" autoHighlightFirstRow="true" tag="view-style-grid" />
       </dataViews>
       <controls />
-      <about>This page allows company management.</about>
+      <about />
     </page>
-    <page name="Customer" title="Customer" description="View Customer" index="1020" path="Customer">
+    <page name="ConsignmentUsage" path="Consignment | Consignment Usage" index="1050" title="Consignment Usage" useExtenders="false" generate="Always" roles="Consignment Usage" description="View Consignment Usage">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="Customer" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view1" controller="ConsignmentUsage" view="gridEntered" showInSummary="true" container="container1" text="" showModalForms="true" autoHighlightFirstRow="true" tag="view-style-grid" activator="None" />
       </dataViews>
-      <controls />
-      <about>This page allows customer management.</about>
     </page>
-    <page name="Product" title="Product" description="View Product" index="1030" path="Product">
+    <page name="ConsignmentPurchaseOrder" title="Consignment Purchase Order" description="View Consignment Purchase Order" index="1060" path="Consignment | Consignment Purchase Order" roles="Consignment Usage" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
+        <container id="c101" flow="NewRow" style="padding-top:8px" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="Product" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
-      </dataViews>
-      <controls />
-      <about>This page allows product management.</about>
-    </page>
-    <page name="ConsignmentStock" title="Consignment Stock" description="View Consignment Stock" index="1040" path="Consignment Stock">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="ConsignmentStock" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
-      </dataViews>
-      <controls />
-      <about>This page allows consignment stock management.</about>
-    </page>
-    <page name="ConsignmentUsage" title="Consignment Usage" description="View Consignment Usage" index="1050" path="Consignment Usage">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="ConsignmentUsage" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows consignment usage management.</about>
-    </page>
-    <page name="Roles" title="Roles" description="View Roles" index="1060" path="Roles" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="Roles" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
-      </dataViews>
-      <controls />
-      <about>This page allows roles management.</about>
-    </page>
-    <page name="UserRoles" title="User Roles" description="View User Roles" index="1080" path="User Roles" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="UserRoles" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows user roles management.</about>
-    </page>
-    <page name="Users" title="Users" description="View Users" index="1070" path="Users" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="Users" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
-      </dataViews>
-      <controls />
-      <about>This page allows users management.</about>
-    </page>
-    <page name="ConsignmentStockDashboard" title="Consignment Stock Dashboard" description="View Consignment Stock Dashboard" index="1090" path="Consignment Stock Dashboard" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="ConsignmentStockDashboard" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows consignment stock dashboard management.</about>
-    </page>
-    <page name="ConsignmentUsageDashboard" title="Consignment Usage Dashboard" description="View Consignment Usage Dashboard" index="1100" path="Consignment Usage Dashboard" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="ConsignmentUsageDashboard" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows consignment usage dashboard management.</about>
-    </page>
-    <page name="TConsignmentUsage" title="T Consignment Usage" description="View T Consignment Usage" index="1110" path="T Consignment Usage" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="TConsignmentUsage" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows t consignment usage management.</about>
-    </page>
-    <page name="ConsignmentPurchaseOrder" title="Consignment Purchase Order" description="View Consignment Purchase Order" index="1110" path="Consignment Purchase Order" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="ConsignmentPurchaseOrder" view="grid1" showInSummary="true" container="container1" activator="None" text="" />
+        <dataView id="view1" controller="ConsignmentPurchaseOrder" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="false" />
+        <dataView id="view2" container="c101" controller="ConsignmentUsage" view="gridSent" filterSource="view1" filterFields="ConsignmentPurchaseOrderID" showModalForms="true" pageSize="5" autoHide="Container" text="Packs Consumed" activator="Tab" />
       </dataViews>
       <controls />
       <about>This page allows consignment purchase order management.</about>
     </page>
-    <page name="Document" title="Document" description="View Document" index="1130" path="Document" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+    <page name="Dashboard" path="Dashboard" index="1070" title="Dashboard" roles="Consignment Stock,Consignment Usage,Admins" useExtenders="false" generate="Always">
+      <containers>
+      </containers>
+      <dataViews>
+      </dataViews>
+    </page>
+    <page name="DashboardConsignmentStock" path="Dashboard | Dashboard Consignment Stock" index="1080" title="Consignment Stock" roles="Consignment Stock,Admins" useExtenders="false" generate="Always">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="Document" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+        <dataView id="view1" container="container1" controller="ConsignmentStockDashboard" view="grid1" pageSize="5" tag="view-style-grid" showModalForms="false" autoHighlightFirstRow="true" refreshInterval="30" activator="Tab" text="Consignment Stock" showInSummary="true" />
+        <dataView id="view3" container="container1" controller="ConsignmentStock" view="grid1" filterFields="ProductCategoryCode" showModalForms="true" pageSize="5" autoHide="Self" filterField2="ProductWidth" filterField3="ProductThickness" filterField4="ProductLength" filterField5="CustomerID" showInSummary="true" filterSource="view1" />
       </dataViews>
-      <controls />
-      <about>This page allows document management.</about>
     </page>
-    <page name="DocumentType" title="Document Type" description="View Document Type" index="1120" path="Document Type" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+    <page name="DashboardConsignmentUsage" path="Dashboard | Dashboard Consignment Usage" index="1090" title="Consignment Usage" roles="Consignment Stock,Admins" useExtenders="false" generate="Always">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="DocumentType" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+        <dataView id="view2" container="container1" controller="ConsignmentUsageDashboard" view="grid1" pageSize="5" refreshInterval="30" showModalForms="false" autoHighlightFirstRow="true" tag="view-style-grid" activator="Tab" text="Consignment Usage" showInSummary="true" />
+        <dataView id="view4" container="container1" controller="ConsignmentUsage" view="gridEntered" filterFields="ConsumedOn" showModalForms="true" pageSize="5" autoHide="Self" filterField2="ProductCategoryCode" filterField3="WidthAndThickness" filterField4="ProductLength" filterField5="CustomerID" showInSummary="true" filterSource="view2" />
       </dataViews>
-      <controls />
-      <about>This page allows document type management.</about>
     </page>
-    <page name="t_DM_CONTENT" title="t DM CONTENT" description="View t DM CONTENT" index="1010" path="t DM CONTENT" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+    <page name="Setup" path="Setup" index="1100" title="Setup" roles="Admins" useExtenders="false" generate="Always">
+      <containers>
+      </containers>
+      <dataViews>
+      </dataViews>
+    </page>
+    <page name="Company" title="Company" description="View Company" index="1110" path="Setup | Company" roles="Admins,ITI" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="t_DM_CONTENT" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+        <dataView id="view1" controller="Company" view="grid1" showInSummary="true" container="container1" activator="None" text="" autoHighlightFirstRow="true" />
       </dataViews>
       <controls />
-      <about>This page allows t dm content management.</about>
+      <about />
     </page>
-    <page name="t_DM_msg_handler" title="t DM msg handler" description="View t DM msg handler" index="1020" path="t DM msg handler" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+    <page name="Customer" title="Customer" description="View Customer" index="1120" path="Setup | Customer" roles="Admins,ITI" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="t_DM_msg_handler" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+        <dataView id="view1" controller="Customer" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="false" />
       </dataViews>
       <controls />
-      <about>This page allows t dm msg handler management.</about>
+      <about />
     </page>
-    <page name="t_DM_msg_subscribe" title="t DM msg subscribe" description="View t DM msg subscribe" index="1030" path="t DM msg subscribe" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+    <page name="Security" path="Security" index="1130" title="Security" useExtenders="false" generate="Always" roles="Admins">
+      <containers>
+      </containers>
+      <dataViews>
+      </dataViews>
+    </page>
+    <page name="Users" title="Users" description="View Users" index="1140" path="Security | Users" roles="Admins,ITI" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="t_DM_msg_subscribe" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+        <dataView id="view1" controller="Users" view="grid1" showInSummary="true" container="container1" activator="Tab" text="Users" showModalForms="false" autoHighlightFirstRow="true" />
+        <dataView id="view2" controller="UserRoles" view="grid1" showInSummary="true" container="container1" activator="None" text="Roles" showModalForms="true" filterSource="view1" filterFields="UserID" pageSize="5" autoHide="Self" />
       </dataViews>
       <controls />
-      <about>This page allows t dm msg subscribe management.</about>
+      <about />
     </page>
-    <page name="t_DM_REF_EG_SETTINGS" title="t DM REF EG SETTINGS" description="View t DM REF EG SETTINGS" index="1040" path="t DM REF EG SETTINGS" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+    <page name="Roles" title="Roles" description="View Roles" index="1150" path="Security | Roles" roles="Admins" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="t_DM_REF_EG_SETTINGS" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+        <dataView id="view1" controller="Roles" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="false" autoHighlightFirstRow="true" />
+        <dataView id="view2" controller="UserRoles" view="grid1" showInSummary="true" container="container1" activator="None" text="" showModalForms="true" filterFields="RoleID" pageSize="5" autoHide="Self" filterSourceController="Users" filterSource="view1" />
       </dataViews>
       <controls />
-      <about>This page allows t dm ref eg settings management.</about>
+      <about />
     </page>
-    <page name="t_DM_REF_DOC_TYPE" title="t DM REF DOC TYPE" description="View t DM REF DOC TYPE" index="1050" path="t DM REF DOC TYPE" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+    <page name="Me" path="My Details" index="1160" title="Me" roles="*" useExtenders="false" generate="Always">
       <containers>
-        <container id="container1" flow="NewRow" />
+        <container id="c101" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="t_DM_REF_DOC_TYPE" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+        <dataView id="view1" container="c101" controller="Me" />
       </dataViews>
-      <controls />
-      <about>This page allows t dm ref doc type management.</about>
     </page>
-    <page name="t_DM_msg_monitor" title="t DM msg monitor" description="View t DM msg monitor" index="1180" path="t DM msg monitor" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+    <page name="DocumentManagement" path="Document Management" index="1170" title="Document Management" useExtenders="false" generate="Always" roles="Content Admin" />
+    <page name="ContentDocumentType" path="Document Management | Content Document Type" index="1180" title="Content Document Type" roles="Content Admin" useExtenders="false" generate="Always">
       <containers>
-        <container id="container1" flow="NewRow" />
+        <container id="c101" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="t_DM_msg_monitor" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
+        <dataView id="view1" container="c101" controller="ContentDocumentType" view="grid1" multiSelect="false" autoHide="Nothing" />
       </dataViews>
-      <controls />
-      <about>This page allows t dm msg monitor management.</about>
     </page>
-    <page name="t_EG_COMMAND" title="t EG COMMAND" description="View t EG COMMAND" index="1170" path="t EG COMMAND" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="t_EG_COMMAND" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows t eg command management.</about>
-    </page>
-    <page name="tContent" title="t Content" description="View t Content" index="1120" path="t Content" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="tContent" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows t content management.</about>
-    </page>
-    <page name="tContentDocumentType" title="t Content Document Type" description="View t Content Document Type" index="1130" path="t Content Document Type" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="tContentDocumentType" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows t content document type management.</about>
-    </page>
-    <page name="tContentMessageCommands" title="t Content Message Commands" description="View t Content Message Commands" index="1140" path="t Content Message Commands" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="tContentMessageCommands" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows t content message commands management.</about>
-    </page>
-    <page name="tContentMessageHandler" title="t Content Message Handler" description="View t Content Message Handler" index="1150" path="t Content Message Handler" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="tContentMessageHandler" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows t content message handler management.</about>
-    </page>
-    <page name="tContentMessageMonitor" title="t Content Message Monitor" description="View t Content Message Monitor" index="1160" path="t Content Message Monitor" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="tContentMessageMonitor" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows t content message monitor management.</about>
-    </page>
-    <page name="tContentMessageSettings" title="t Content Message Settings" description="View t Content Message Settings" index="1170" path="t Content Message Settings" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="tContentMessageSettings" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows t content message settings management.</about>
-    </page>
-    <page name="tContentMessageSubscribe" title="t Content Message Subscribe" description="View t Content Message Subscribe" index="1180" path="t Content Message Subscribe" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="tContentMessageSubscribe" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows t content message subscribe management.</about>
-    </page>
-    <page name="Content" title="Content" description="View Content" index="1120" path="Content" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="Content" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" searchOnStart="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows content management.</about>
-    </page>
-    <page name="ContentMessageCommandLookup" title="Content Message Command Lookup" description="View Content Message Command Lookup" index="1190" path="Content Message Command Lookup" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
-      <containers>
-        <container id="container1" flow="NewRow" />
-      </containers>
-      <dataViews>
-        <dataView id="view1" controller="ContentMessageCommandLookup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" showModalForms="true" searchOnStart="true" />
-      </dataViews>
-      <controls />
-      <about>This page allows content message command lookup management.</about>
-    </page>
-    <page name="tContentDocumentTypeGroup" title="t Content Document Type Group" description="View t Content Document Type Group" index="1200" path="t Content Document Type Group" xmlns="urn:schemas-codeontime-com:data-aquarium-application">
+    <page name="ContentDocumentTypeGroup" title="Content Document Type Group" description="View Content Document Type Group" index="1190" path="Document Management | Content Document Type Group" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -319,6 +151,70 @@
       </dataViews>
       <controls />
       <about>This page allows t content document type group management.</about>
+    </page>
+    <page name="ContentMessageMonitor" path="Document Management | Content Message Monitor" index="1200" title="Content Message Monitor" roles="Content Admin" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="ContentMessageMonitor" view="grid1" multiSelect="false" autoHide="Nothing" />
+      </dataViews>
+    </page>
+    <page name="ContentMessageSettings" path="Document Management | Content Message Settings" index="1210" title="Content Message Settings" roles="Content Admin" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="ContentMessageSettings" view="grid1" multiSelect="false" autoHide="Nothing" />
+      </dataViews>
+    </page>
+    <page name="ContentMessageSubscribe" path="Document Management | Content Message Subscribe" index="1220" title="Content Message Subscribe" roles="Content Admin" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="ContentMessageSubscribe" view="grid1" multiSelect="false" autoHide="Nothing" />
+      </dataViews>
+    </page>
+    <page name="ContentMessageHandler" path="Document Management | Content Message Handler" index="1230" title="Content Message Handler" roles="Content Admin" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="ContentMessageHandler" view="grid1" multiSelect="false" autoHide="Nothing" />
+      </dataViews>
+    </page>
+    <page name="ContentMessageCommands" path="Document Management | Content Message Commands" index="1240" title="Content Message Commands" roles="XXX" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="ContentMessageCommands" view="grid1" multiSelect="false" autoHide="Nothing" />
+      </dataViews>
+    </page>
+    <page name="Documents" path="Documents" index="1250" title="Documents" roles="Content" useExtenders="false" generate="Always">
+      <containers>
+      </containers>
+      <dataViews>
+      </dataViews>
+    </page>
+    <page name="DocumentSearch" path="Documents | Document Search" index="1260" title="Document Search" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+      </controls>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="DocumentSearchParam" view="editForm1" multiSelect="false" startCommandName="Edit" autoHide="Nothing" tag="view-style-grid" showDescription="false" showViewSelector="false" showActionBar="false" showDetailsInListMode="false" showSearchBar="false" showQuickFind="false" />
+      </dataViews>
+    </page>
+    <page name="AllDocuments" path="Documents | All Documents" index="1270" title="All Documents" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="Content" view="grid1" multiSelect="false" autoHide="Nothing" tag="view-style-grid" showDescription="false" showViewSelector="false" />
+      </dataViews>
     </page>
   </pages>
   <userControls>
@@ -350,8 +246,7 @@
               </body>
     </userControl>
     <userControl name="Welcome" prefix="uc" generate="Always">
-      <body>
-                  
+      <body>                  
 &lt;!doctype html&gt;
 &lt;html&gt;
 &lt;body&gt;
@@ -365,6 +260,11 @@
     ^SignInPara1^Two standard user accounts are automatically created when application is initialized
     if membership option has been selected for this application.^SignInPara1^
 &lt;/div&gt;
+                  
+&lt;div class="ParaText"&gt;
+    ^SignInPara3^Move the mouse pointer over the link &lt;i&gt;Login to this web site&lt;/i&gt; on the right-hand side
+    at the top of the page and sign in with one of the accounts listed below.^SignInPara3^&lt;/div&gt;
+                
 &lt;div class="ParaText"&gt;
     &lt;div style="border: solid 1px black; background-color: InfoBackground; padding: 8px;
         float: left;"&gt;
@@ -380,33 +280,92 @@
 &lt;/div&gt;
 
 
-&lt;div id="app-welcome" data-app-role="page" data-activator="Button|^SignInHeader^Instructions^SignInHeader^" data-activator-description="^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^"&gt;
-      &lt;p&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/p&gt;
-      &lt;p&gt;
-          ^SignInPara1^Two standard user accounts are automatically created when application is initialized
-  if membership option has been selected for this application.^SignInPara1^
-      &lt;/p&gt;
-
-      &lt;p&gt;
-          ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
-  web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
-  access all areas of the web site with the exception of membership manager.^SignInPara2^
-      &lt;/p&gt;
-      &lt;p&gt;
-          ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
-          &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
-      &lt;/p&gt;
-      &lt;p&gt;
-          ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
-          &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
-      &lt;/p&gt;
-      &lt;p&gt;&lt;a href="#" data-role="button" data-inline="true" data-theme="b" data-app-role="loginstatus" data-icon="lock"&gt;Login Status&lt;/a&gt;&lt;/p&gt;
-
-&lt;/div&gt;
                   
 &lt;/body&gt;
 &lt;/html&gt;
                 </body>
+    </userControl>
+    <userControl name="ContentHome" prefix="uc" generate="Always">
+      <body>                
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;div class="ParaHeader"&gt;
+        ^TocHeader^Content Landing Page^TocHeader^
+    &lt;/div&gt;
+    &lt;div data-role="placeholder" data-placeholder="site-map"&gt;&lt;/div&gt;
+
+    &lt;div id="app-sitemap" data-app-role="page" data-activator="Button|^TocHeader^Content Landing Page^TocHeader^"&gt;
+        &lt;p&gt;
+            &lt;span&gt;^TocInstruction^Please select a page link in the table of contents below.^TocInstruction^&lt;/span&gt;
+        &lt;/p&gt;
+        &lt;div class="app-site-map"&gt;
+		  &lt;ul class="ui-listview" data-inset="false"&gt;
+			&lt;li class="app-depth1 ui-first-child"&gt;
+			    &lt;a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content" rel="external"&gt; View All Documents&lt;/a&gt;
+			    &lt;a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=DES" rel="external"&gt; View Despatch Documents&lt;/a&gt;
+			    &lt;a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=COC" rel="external"&gt; View Consignment Order Confirmation Documents&lt;/a&gt;
+			    &lt;a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=INV" rel="external"&gt; View Invoice Documents&lt;/a&gt;
+			    &lt;a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=PO"  rel="external"&gt; View Purchase Order Documents&lt;/a&gt;
+			    &lt;a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=POD" rel="external"&gt; View Proof of Delivery Documents&lt;/a&gt;
+			    &lt;a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=RA"  rel="external"&gt; View Remittance Advice Documents&lt;/a&gt;
+			    &lt;a class="ui-btn ui-btn-icon-right ui-icon-carat-r" href="~/pages/content?content_Doc_Type=SOC" rel="external"&gt; View Sales Order Confirmation Documents&lt;/a&gt;		
+			  &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+			  &lt;table title="" class="RadioButtonList" cellspacing="0" cellpadding="0"&gt;
+			  &lt;tbody&gt;
+			  &lt;tr&gt;
+				&lt;td class="Button"&gt;
+				  &lt;input name="view1_Item2" tabindex="177" id="view1_Item2_0" type="radio" checked="" value="S"&gt;
+				&lt;/td&gt;&lt;td class="Option"&gt;
+				&lt;label for="view1_Item2_0"&gt;Search by Source ID&lt;label&gt;&lt;/label&gt;&lt;/label&gt;
+				&lt;/td&gt;
+				
+				&lt;td class="Button"&gt;
+				  &lt;input name="view1_Item2" tabindex="178" id="view1_Item2_1" type="radio" checked="" value="C"&gt;
+				&lt;/td&gt;&lt;td class="Option"&gt;
+				&lt;label for="view1_Item2_1"&gt;Search by Document ID&lt;label&gt;&lt;/label&gt;&lt;/label&gt;
+				&lt;/td&gt;
+			  &lt;/tr&gt;
+			&lt;/tbody&gt;
+			&lt;/table&gt;
+			  
+			  
+			  
+			  &lt;span data-control="label" data-field="SourceID"&gt; &lt;span class="app-control-inner"&gt;&lt;b&gt;Enter ID to Search:&lt;/b&gt;&lt;/span&gt; &lt;/span&gt; 
+			  &lt;input tabindex="179" title="" class="TextInput" id="textID" type="text" size="50" maxlength="250" placeholder="ID Required for search" value=""&gt;			  
+			  &lt;a id="SourceIDLink"  class="ui-btn ui-mini ui-corner-all ui-icon-carat-r" href="~/pages/content?SOURCE_ID=" rel="external" onClick="Search_Click();"&gt; Search &lt;/a&gt; 			  
+			  &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+			  
+			  
+			  
+			&lt;/li&gt;
+		  &lt;/ul&gt;
+	    &lt;/div&gt;
+        &lt;p&gt;
+            &lt;br /&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt; 
+		  function Search_Click()
+		  { 
+			 if (view1_Item2_0.checked) 
+			 {
+			 	alert(" Value in Text Box =" + textID.value );
+			 	SourceIDLink.href = "content?SOURCE_ID=" + textID.value;
+			 }
+			 else if (view1_Item2_1.checked) 
+			 {
+			 	alert(" Value in Text Box =" + textID.value );
+			 	SourceIDLink.href = "content?CONTENT_ID=" + textID.value;
+			 }
+	         
+		  }
+	  
+
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+              </body>
     </userControl>
   </userControls>
 </application>

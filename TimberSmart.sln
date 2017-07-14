@@ -1,19 +1,18 @@
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
-MinimumVisualStudioVersion = 10.0.40219.1
+
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WebApp", "WebApp\WebApp.vbproj", "{2A3269C0-1E46-4467-9E3A-6C4D37AB3EFB}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TimberSmart", "TimberSmart\TimberSmart.vbproj", "{EA518276-0203-4D6C-A3FF-C7B5D5A3C420}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code On Time Items", "Code On Time Items", "{28A88784-1F02-4640-A1B5-9063F8F86D2C}"
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code On Time Items", "Code On Time Items", "{6B198DBC-2C93-4ADF-B0DE-8FAED1BC7079}"
 	ProjectSection(SolutionItems) = preProject
 		ClientLibrary.en-GB.txt = ClientLibrary.en-GB.txt
 		ClientLibrary.en-NZ.txt = ClientLibrary.en-NZ.txt
 		DataAquarium.Project.xml = DataAquarium.Project.xml
 		DataAquarium.Version.xml = DataAquarium.Version.xml
-		Sync.HSSSURFACEBOOK-patri.xml = Sync.HSSSURFACEBOOK-patri.xml
-		Sync.TSDEV01-nhan.xml = Sync.TSDEV01-nhan.xml
 	EndProjectSection
 EndProject
 Global
@@ -22,12 +21,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2A3269C0-1E46-4467-9E3A-6C4D37AB3EFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A3269C0-1E46-4467-9E3A-6C4D37AB3EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A3269C0-1E46-4467-9E3A-6C4D37AB3EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA518276-0203-4D6C-A3FF-C7B5D5A3C420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EA518276-0203-4D6C-A3FF-C7B5D5A3C420}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA518276-0203-4D6C-A3FF-C7B5D5A3C420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A3269C0-1E46-4467-9E3A-6C4D37AB3EFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A3269C0-1E46-4467-9E3A-6C4D37AB3EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A3269C0-1E46-4467-9E3A-6C4D37AB3EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

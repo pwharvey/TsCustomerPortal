@@ -27,7 +27,7 @@ from "dbo"."tContent" "tContent"
     </command>
   </commands>
   <fields>
-    <field name="Customer_Name" type="String" label="Customer Name" computed="true" readOnly="true" showInSummary="true" dataFormatString="&lt;B&gt;{0}&lt;/B&gt;">
+    <field name="Customer_Name" type="String" label="Customer Name" computed="true" readOnly="true" showInSummary="true">
       <formula>select customerName
 from  tcustomer
 where customerid = customer_id</formula>
